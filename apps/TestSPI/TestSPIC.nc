@@ -37,6 +37,7 @@ implementation {
   TestSPIM.Leds -> LedsC;
   TestSPIM.BusArbitration -> SPI;
   TestSPIM.SPIPacket -> SPI;
+  TestSPIM.SPIPacketAdvanced -> SPI;
 
 }
 

@@ -30,20 +30,30 @@ module TestSPIM {
   uses interface Leds;
   uses interface BusArbitration;
   uses interface SPIPacket;
+  uses interface SPIPacketAdvanced;
 }
 implementation {
 
   uint8_t txdata[10];
   uint8_t rxdata[10];
 
+  uint8_t cnt;
+
   event void Boot.booted() {
-    call Leds.yellowToggle();
-    call BusArbitration.getBus();
+    cnt = 0;
+    if (call BusArbitration.getBus() == SUCCESS)
+      call Leds.yellowToggle();
     if (call SPIPacket.send(txdata, rxdata, 10) == SUCCESS)
       call Leds.redToggle();
   }
 
   event void SPIPacket.sendDone(uint8_t* txbuffer, uint8_t* rxbuffer, uint8_t length, error_t success) {
+    call Leds.greenToggle();
+    if (call SPIPacketAdvanced.send(txdata, 0, 10, rxdata, 3, 6, 12) == SUCCESS)
+      call Leds.redToggle();
+  }
+
+  event void SPIPacketAdvanced.sendDone(uint8_t* _txbuffer, uint8_t _txstart, uint8_t _txend, uint8_t* _rxbuffer, uint8_t _rxstart, uint8_t _rxend, uint8_t _length, error_t _success) { 
     call Leds.greenToggle();
     if (call SPIPacket.send(txdata, rxdata, 10) == SUCCESS)
       call Leds.redToggle();
