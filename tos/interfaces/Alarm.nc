@@ -24,8 +24,11 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
+includes Timer;
+
 interface Alarm<frequency_tag>
 {
+  async command uint32_t now();
   async command uint32_t get();
   async command bool isSet();
   async command void cancel();

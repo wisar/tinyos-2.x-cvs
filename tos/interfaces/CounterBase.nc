@@ -24,11 +24,13 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-interface Counter32<frequency_tag>
+includes Timer;
+
+interface CounterBase<size_type,frequency_tag>
 {
-  async command uint32_t get();
+  async command size_type get();
   async command bool isOverflowPending();
-  async command bool clearOverflow();
+  async command void clearOverflow();
   async event void overflow();
 }
 
