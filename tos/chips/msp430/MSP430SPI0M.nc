@@ -24,12 +24,13 @@
  * @author Joe Polastre
  * Revision:  $Revision$
  * 
- * Primitives for accessing the hardware I2C module on MSP430 microcontrollers.
- * This module assumes that the bus is available and reserved prior to the
- * commands in this module being invoked.  Most applications will use the
- * readPacket and writePacket interfaces as they provide the master-mode
- * read and write operations from/to a slave device.  An I2C slave
- * implementation may be built above the primitives provided in this module.
+ * Primitives for accessing the hardware SPI module on MSP430 microcontrollers.
+ * This module assumes the bus has been reserved and checks that the bus
+ * owner is in fact the person using the bus.  SPIPacket provides a synchronous
+ * send interface where the transmit data length is equal to the receive
+ * data length.  SPIPacketAdvanced allows conservation of buffer space.
+ * This module assumes that the bus is in master mode and that the chip select
+ * line for a particular device is driven externally.
  */
 
 includes msp430usart;

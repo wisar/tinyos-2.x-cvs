@@ -24,6 +24,7 @@
  * @author Joe Polastre
  * Revision:  $Revision$
  *
+ * Interfaces for controlling the MSP430 USART0 port in SPI master mode
  */
 
 configuration MSP430SPI0C
