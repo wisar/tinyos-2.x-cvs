@@ -14,13 +14,13 @@ implementation
     call Leds.greenOn();
     call TimerControl.setControlAsCompare();
     call TimerCompare.setEventFromNow( 8192 );
+    call TimerControl.enableEvents();
   }
 
   async event void TimerCompare.fired()
   {
-    call TimerCompare.setEventFromPrev( 8192 );
     call Leds.redToggle();
+    call TimerCompare.setEventFromPrev( 8192 );
   }
 }
-
 
