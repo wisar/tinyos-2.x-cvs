@@ -36,6 +36,6 @@
  */
 interface CSMABackoff
 {
-  async event uint16_t initialBackoff(TOSMsg* m);
-  async event uint16_t congestionBackoff(TOSMsg* m);
+  async event uint16_t initial(TOSMsg* m);
+  async event uint16_t congestion(TOSMsg* m);
 }
