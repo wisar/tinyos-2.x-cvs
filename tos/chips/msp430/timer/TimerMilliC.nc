@@ -42,7 +42,6 @@ implementation
 	   , new MultiplexTimerM(TMilli,uint32_t,uniqueCount("TimerMilli")) as MultiTimerMilli
 	   , new SyncAlarmC(TMilli,uint32_t) as SyncAlarm
 	   , new CastTimerM(TMilli) as CastTimer
-	   , MathOpsM
 	   ;
 
   /* From the bottom:
@@ -65,14 +64,10 @@ implementation
 
   Init = AlarmTimerMilliC;
   Init = MultiTimerMilli;
-
   TimerMilli = CastTimer;
-  
-  CastTimer.TimerFrom -> MultiTimerMilli;
 
+  CastTimer.TimerFrom -> MultiTimerMilli;
   MultiTimerMilli.AlarmFrom -> SyncAlarm;
-  MultiTimerMilli.Math -> MathOpsM;
-  
   SyncAlarm.AlarmBaseFrom -> AlarmTimerMilliC;
 }
 
