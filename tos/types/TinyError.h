@@ -33,4 +33,6 @@ typedef enum {
   ESIZE          = 2,           // Parameter passed in was too big.
   ECANCEL        = 3,           // Operation cancelled by a call.
   EOFF           = 4,           // Subsystem is not active
+  EBUSY          = 5,           // The posted task has already been posted
 } error_t;
+

@@ -49,3 +49,4 @@ interface Scheduler {
     * set to FALSE. If sleep is TRUE, it always returns TRUE. */
   command bool runNextTask(bool sleep);
 }
+

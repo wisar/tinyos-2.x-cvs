@@ -26,7 +26,7 @@
 
 typedef struct { } TMilli;
 typedef struct { } T32Micro;
-typedef struct { } TMicro
+typedef struct { } TMicro;
 typedef struct { } TNano;
 
 typedef struct
