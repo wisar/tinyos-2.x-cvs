@@ -36,7 +36,7 @@
 
 
 includes TinyError;
-includes TinyMsg;
+includes TOSMsg;
 
 interface Send {
 

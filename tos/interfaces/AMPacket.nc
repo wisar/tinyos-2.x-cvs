@@ -37,7 +37,7 @@
   */ 
 
 
-includes TinyMsg;
+includes TOSMsg;
 includes AM;
 
 interface AMPacket {

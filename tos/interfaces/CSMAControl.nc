@@ -45,12 +45,12 @@ interface CSMAControl
   async command result_t disableCCA(); 
 
   /**
-   * Enable automatic link layer acknowledgements
+   * Enable automatic link layer acknowledgments
    */
   async command result_t enableAck();
 
   /**
-   * Disable automatic link layer acknowledgements
+   * Disable automatic link layer acknowledgments
    */
   async command result_t disableAck();
 

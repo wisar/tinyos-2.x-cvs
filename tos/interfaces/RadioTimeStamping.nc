@@ -42,7 +42,7 @@ interface RadioTimeStamping
   /** 
    * Receive an event that the SFD has been received.
    * NOTE: receiving an rxSFD() event does NOT mean that a packet
-   * will be fully received; the tranmission may stop, become
+   * will be fully received; the transmission may stop, become
    * corrupted, or be filtered by the physical or link layers.
    * The number of rxSFD events will always be great than or equal
    * to the number of Receive message events.

@@ -37,7 +37,7 @@
   */ 
 
 
-includes TinyMsg;
+includes TOSMsg;
 
 interface Packet {
 
@@ -54,7 +54,7 @@ interface Packet {
     * layer will clear out the routing headers and application data.
     */
 
-  command void clear(TOS_Msg* msg);
+  command void clear(TOSMsg* msg);
 
   /**
     * Return the length of the payload of msg. This value may be less
