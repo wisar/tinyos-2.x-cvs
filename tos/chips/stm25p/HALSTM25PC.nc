@@ -39,7 +39,7 @@ configuration HALSTM25PC {
 }
 
 implementation {
-  components HALSTM25PM, HPLSTM25PC, NoLeds as Leds;
+  components HALSTM25PM, HPLSTM25PC, NoLedsC as Leds;
 
   StdControl = HALSTM25PM;
   StdControl = HPLSTM25PC;

@@ -509,8 +509,6 @@ implementation {
    **********************************************************/
    async event result_t FIFOP.fired() {
 
-     //     call Leds.yellowToggle();
-
      // if we're trying to send a message and a FIFOP interrupt occurs
      // and acks are enabled, we need to backoff longer so that we don't
      // interfere with the ACK
