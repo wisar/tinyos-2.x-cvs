@@ -59,8 +59,19 @@ interface ATm128Timer8
   async command void setInterruptFlags( ATm128_TIFR_t flags );
 
   /// Interrupt signals
-  async event void overflow();
-  async event void fired();
+  async event void overflow();        //<! Signalled on overflow interrupt
+  async event void fired();           //<! Signalled on compare interrupt
+
+  /// Interrupt flag utilites: Bit level set/clr
+  async command void resetCompare();  //<! Clear the compare interrupt flag
+  async command void startCompare();  //<! Enable the compare interrupt
+  async command void stopCompare();   //<! Turn off compare interrupts
+  async command bool testCompare();   //<! Did compare interrupt occur?
+  async command bool checkCompare();  //<! Is compare interrupt on?
+
+  async command void resetOverflow(); //<! Clear the overflow interrupt flag
+  async command void startOverflow(); //<! Enable the overflow interrupt
+  async command void stopOverflow();  //<! Turn off overflow interrupts
+  async command bool testOverflow();  //<! Did overflow interrupt occur?
+  async command bool checkOverflow(); //<! Is overflow interrupt on?
 }
-
-
