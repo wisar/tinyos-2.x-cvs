@@ -55,5 +55,5 @@ interface Receive {
    * instead send a packet it most recently received.
    */
   
-  event TOSMsg* receive(TOSMsg* msg);
+  event TOSMsg* receive(TOSMsg* msg, void* payload, uint8_t len);
 }
