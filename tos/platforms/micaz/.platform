@@ -19,7 +19,8 @@ push( @includes, qw(
 @opts = qw(
 
   -gcc=avr-gcc
-  -mmcu=msp430x1611
+  -mmcu=atmega128
+  -fnesc-target=avr
   -fnesc-no-debug
 
 );
