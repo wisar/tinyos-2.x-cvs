@@ -28,47 +28,33 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-/** The basic message sending interface. Also see Packet and Receive.
+/**
+  * The basic TinyOS task interface. 
   *
   * @author Philip Levis
-  * @date   January 5 2005
+  * @date   January 12, 2005
   */ 
 
 
 includes TinyError;
-includes TinyMsg;
 
-interface Send {
-
-  /** 
-    * Send a packet with a data payload of <tt>len</tt>. To determine
-    * the maximum available size, use the Packet interface of the
-    * component providing Send. If send returns SUCCESS, then the
-    * component will signal the sendDone event in the future; if send
-    * returns an error, it will not signal sendDone.  Note that a
-    * component may accept a send request which it later finds it
-    * cannot satisfy; in this case, it will signal sendDone with an
-    * appropriate error code.
-    */ 
-  command error_t send(TOSMsg* msg, uint8_t len);
+interface BasicTask {
 
   /**
-    * Cancel a requested transmission. Returns SUCCESS if the 
-    * transmission was cancelled properly (not sent in its
-    * entirety). Note that the component may not know
-    * if the send was successfully cancelled, if the radio is
-    * handling much of the logic; in this case, a component
-    * should be conservative and return an appropriate error code.
-    * A successful call to cancel must always result in a 
-    * sendFailed event, and never a sendSucceeded event.
-    */
-  command error_t cancel(TOSMsg* msg);
+   * Post this task to the TinyOS scheduler. At some later time,
+   * depending on the scheduling policy, the scheduler will signal the
+   * <tt>run()</tt> event. The semantics of the return value of this
+   * call depend on the implementation of this interface (the class
+   * of task).
+   */
+  
+  async command error_t post();
 
-  /** 
-    * Signaled in response to an accepted send request. <tt>msg</tt>
-    * is the sent buffer, and <tt>error</tt> indicates whether the
-    * send was succesful, and if not, the cause of the failure.
-    */ 
-  event void sendDone(TOSMsg* msg, error_t error);
-
+  /**
+   * Event from the scheduler to run this task. Following the TinyOS
+   * concurrency model, the codes invoked from <tt>run()</tt> signals
+   * execute atomically with respect to one another, but can be
+   * preempted by async commands/events.
+   */
+  event void run();
 }

@@ -28,47 +28,14 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-/** The basic message sending interface. Also see Packet and Receive.
+/**
+  * Interface that notifies components when TinyOS has booted
+  * (initialized all of its components).
   *
   * @author Philip Levis
   * @date   January 5 2005
   */ 
 
-
-includes TinyError;
-includes TinyMsg;
-
-interface Send {
-
-  /** 
-    * Send a packet with a data payload of <tt>len</tt>. To determine
-    * the maximum available size, use the Packet interface of the
-    * component providing Send. If send returns SUCCESS, then the
-    * component will signal the sendDone event in the future; if send
-    * returns an error, it will not signal sendDone.  Note that a
-    * component may accept a send request which it later finds it
-    * cannot satisfy; in this case, it will signal sendDone with an
-    * appropriate error code.
-    */ 
-  command error_t send(TOSMsg* msg, uint8_t len);
-
-  /**
-    * Cancel a requested transmission. Returns SUCCESS if the 
-    * transmission was cancelled properly (not sent in its
-    * entirety). Note that the component may not know
-    * if the send was successfully cancelled, if the radio is
-    * handling much of the logic; in this case, a component
-    * should be conservative and return an appropriate error code.
-    * A successful call to cancel must always result in a 
-    * sendFailed event, and never a sendSucceeded event.
-    */
-  command error_t cancel(TOSMsg* msg);
-
-  /** 
-    * Signaled in response to an accepted send request. <tt>msg</tt>
-    * is the sent buffer, and <tt>error</tt> indicates whether the
-    * send was succesful, and if not, the cause of the failure.
-    */ 
-  event void sendDone(TOSMsg* msg, error_t error);
-
+interface Booted {
+  event void booted();
 }
