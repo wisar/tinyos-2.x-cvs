@@ -33,10 +33,8 @@
 
 configuration NullC{}
 implementation {
-  components Main, NullM, LedsC;
+  components Main, NullM;
 
   Main.Boot <- NullM;
-  
-  NullM -> LedsC.Leds;
 }
 
