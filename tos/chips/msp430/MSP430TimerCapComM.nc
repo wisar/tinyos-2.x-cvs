@@ -24,7 +24,7 @@
 
 includes MSP430Timer;
 
-generic module MSP430TimerCCM(
+generic module MSP430TimerCapComM(
     uint16_t TxCCTLx_addr,
     uint16_t TxCCRx_addr
   )

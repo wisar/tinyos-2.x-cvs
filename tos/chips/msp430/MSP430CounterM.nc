@@ -24,9 +24,9 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-generic module MSP430CounterM( typename frequency_tag )
+generic module MSP430CounterM( typedef frequency_tag )
 {
-  provides interface Counter<uint16_t,frequency_tag> as Counter;
+  provides interface CounterBase<uint16_t,frequency_tag> as Counter;
   uses interface MSP430Timer;
 }
 implementation
@@ -51,5 +51,4 @@ implementation
     signal Counter.overflow();
   }
 }
-
 

@@ -104,7 +104,7 @@ implementation
   async event void VectorTimerX1.fired()
   {
     uint8_t n = TxIV;
-    signal Event.fired[n]();
+    signal Event.fired[ n >> 1 ]();
   }
 
   async event void Overflow.fired()

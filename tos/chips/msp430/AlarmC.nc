@@ -26,23 +26,43 @@
 
 configuration AlarmC
 {
+  provides interface Init;
+
   // alarms required by standard tinyos components
-  provides interface Alarm<TMilli> as AlarmTimerMilli;
-  provides interface Alarm<T32khz> as AlarmTimerAsync32khz;
+  provides interface Alarm<T32khz> as AlarmTimer32khz;
+  //provides interface Alarm<T32khz> as AlarmTimerAsync32khz;
 
   // extra alarms to be used by applications
-  provides interface Alarm<T32khz> as Alarm32khz1;
-  provides interface Alarm<T32khz> as Alarm32khz2;
+  //provides interface Alarm<T32khz> as Alarm32khz1;
+  //provides interface Alarm<T32khz> as Alarm32khz2;
   // ...
 
-  provides interface Alarm<TMicro> as AlarmMicro1;
-  provides interface Alarm<TMicro> as AlarmMicro2;
+  //provides interface Alarm<TMicro> as AlarmMicro1;
+  //provides interface Alarm<TMicro> as AlarmMicro2;
   // ...
 }
 implementation
 {
-  components CounterC
+  components MSP430TimerC
+           , new MSP430AlarmM(T32khz) as MSP430Alarm32khz
+	   //, new WidenAlarmC(uint32_t,uint16_t,T32khz) as Widen32khz
+	   , new WidenAlarmM(uint32_t,uint16_t,T32khz) as WidenAlarm32khz
+	   , new CastAlarmM(T32khz) as CastAlarm32khz
+	   , CounterC
+	   , MathOpsM
            ;
-}
 
+  Init = MSP430Alarm32khz;
+
+  AlarmTimer32khz = CastAlarm32khz;
+
+  CastAlarm32khz.AlarmFrom -> WidenAlarm32khz.Alarm;
+  WidenAlarm32khz.AlarmFrom -> MSP430Alarm32khz.Alarm;
+  WidenAlarm32khz.Counter -> CounterC.CounterBase32khz;
+  WidenAlarm32khz.MathFrom -> MathOpsM;
+  WidenAlarm32khz.MathTo -> MathOpsM;
+  MSP430Alarm32khz.MSP430Timer -> MSP430TimerC.TimerB;
+  MSP430Alarm32khz.MSP430TimerControl -> MSP430TimerC.ControlB3;
+  MSP430Alarm32khz.MSP430Compare -> MSP430TimerC.CompareB3;
+}
 
