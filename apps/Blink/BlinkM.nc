@@ -33,6 +33,9 @@
  * Implementation for Blink application.  Toggle the red LED when a
  * Timer fires.
  **/
+
+includes Timer;
+
 module BlinkM {
   uses interface Timer<TMilli>;
   uses interface Leds;

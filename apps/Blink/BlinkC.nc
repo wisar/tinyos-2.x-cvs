@@ -28,6 +28,7 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
 /**
  * Blink is a basic application that toggles the a mote LED periodically.
  * It does so by starting a Timer that fires every second. It uses the
@@ -35,8 +36,8 @@
  *
  * @author tinyos-help@millennium.berkeley.edu
  **/
-configuration BlinkC {
-}
+
+configuration BlinkC {}
 implementation {
   components Main, BlinkM, new TimerMilli(), LedsC;
 
