@@ -29,7 +29,7 @@
  */
 
 /**
-  * The basic TinyOS task interface. 
+  * The basic TinyOS task interface, as discussed in TEP 106.
   *
   * @author Philip Levis
   * @date   January 12, 2005
@@ -38,7 +38,7 @@
 
 includes TinyError;
 
-interface BasicTask {
+interface TaskBasic {
 
   /**
    * Post this task to the TinyOS scheduler. At some later time,

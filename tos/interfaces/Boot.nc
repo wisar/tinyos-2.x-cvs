@@ -30,12 +30,12 @@
 
 /**
   * Interface that notifies components when TinyOS has booted
-  * (initialized all of its components).
+  * (initialized all of its components), as discussed in TEP 107.
   *
   * @author Philip Levis
   * @date   January 5 2005
   */ 
 
-interface Booted {
+interface Boot {
   event void booted();
 }
