@@ -1,4 +1,3 @@
-#if 0
 // $Id$
 
 /*									tab:4
@@ -42,7 +41,6 @@
  * @author Philip Levis
  * @date   January 17 2005
  */
-#endif
 
 module RealMain
 {
