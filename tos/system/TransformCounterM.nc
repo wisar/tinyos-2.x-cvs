@@ -24,6 +24,12 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
+// TransformCounterC increases the size and/or decreases the frequency of an
+// existing Counter.  bit_shift_right specifies the power of two to decrease
+// the frequency.  upper_count_type specifies the type to internally store the
+// upper bits -- those needed above from_size_type after its shifter right to
+// fill to_size_type.
+
 generic module TransformCounterM(
   typedef to_frequency_tag,
   typedef to_size_type,
@@ -32,8 +38,8 @@ generic module TransformCounterM(
   uint8_t bit_shift_right,
   typedef upper_count_type )
 {
-  provides interface CounterBase<to_size_type,to_frequency_tag> as Counter;
-  uses interface CounterBase<from_size_type,from_frequency_tag> as CounterFrom;
+  provides interface CounterBase<to_frequency_tag,to_size_type> as Counter;
+  uses interface CounterBase<from_frequency_tag,from_size_type> as CounterFrom;
   uses interface MathOps<to_size_type> as MathTo;
   uses interface MathOps<from_size_type> as MathFrom;
   uses interface MathOps<upper_count_type> as MathUpper;

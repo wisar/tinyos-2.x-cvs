@@ -22,36 +22,16 @@
 
 // @author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-// Cast a 32-bit CounterBase into a standard 32-bit Counter.
-generic module CastCounterM( typedef frequency_tag )
+// I needed this for now for tasks.  We can remove it later when tasks are
+// fixed.
+
+generic configuration TaskBasicC()
 {
-  provides interface Counter<frequency_tag> as Counter;
-  uses interface CounterBase<frequency_tag,uint32_t> as CounterFrom;
+  provides interface TaskBasic;
 }
 implementation
 {
-  async command uint32_t Counter.get()
-  {
-    return call CounterFrom.get();
-  }
-
-  async command bool Counter.isOverflowPending()
-  {
-    return call CounterFrom.isOverflowPending();
-  }
-
-  async command void Counter.clearOverflow()
-  {
-    call CounterFrom.clearOverflow();
-  }
-
-  async event void CounterFrom.overflow()
-  {
-    signal Counter.overflow();
-  }
-
-  default async event void Counter.overflow()
-  {
-  }
+  components TinyScheduler;
+  TaskBasic = TinyScheduler.TaskBasic[unique("TinyScheduler$TaskBasic")];
 }
 
