@@ -12,6 +12,7 @@
 push( @includes, qw(
 
   %T/platforms/micaz
+  %T/platforms/mica
   %T/chips/ATmega128
 
 ) );
