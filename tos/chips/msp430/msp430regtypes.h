@@ -173,6 +173,10 @@
 #define TYPE_MPY uint16_t
 #define TYPE_MPYS uint16_t
 #define TYPE_OP2 uint16_t
+#define TYPE_PORT_OUT uint8_t
+#define TYPE_PORT_IN uint8_t
+#define TYPE_PORT_DIR uint8_t
+#define TYPE_PORT_SEL uint8_t
 #define TYPE_P0DIR uint8_t
 #define TYPE_P0IE uint8_t
 #define TYPE_P0IES uint8_t

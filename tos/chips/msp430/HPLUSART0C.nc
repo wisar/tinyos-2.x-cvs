@@ -37,7 +37,7 @@ configuration HPLUSART0C
 }
 implementation
 {
-  components HPLUSART0M, new BusArbitrationC() as BA;
+  components HPLUSART0M, new BusArbitrationC() as BA, MSP430GeneralIOC as IO;
 
   Init = BA;
 
@@ -45,4 +45,10 @@ implementation
 
   HPLUSARTControl = HPLUSART0M;
   HPLUSARTFeedback = HPLUSART0M;
+
+  HPLUSART0M.PinUTXD0 -> IO.UTXD0;
+  HPLUSART0M.PinURXD0 -> IO.URXD0;
+  HPLUSART0M.PinSIMO0 -> IO.SIMO0;
+  HPLUSART0M.PinSOMI0 -> IO.SOMI0;
+  HPLUSART0M.PinUCLK0 -> IO.UCLK0;
 }
