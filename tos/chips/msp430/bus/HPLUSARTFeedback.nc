@@ -41,15 +41,21 @@ interface HPLUSARTFeedback {
    * A byte of data is about to be transmitted, 
    * ie. the TXBuffer is empty and ready to accept
    * next byte.
-   * @return SUCCESS always.
    */
-  async event error_t txDone();
+  async event void txDone();
 	
 	
   /**
    * A byte of data has been received. 
-   * @return SUCCESS always.
    */
-  async event error_t rxDone(uint8_t data);
+  async event void rxDone(uint8_t data);
+
+  /**
+   * Notification that an rxOverflow occurred.
+   * RX Overflow happens when the RX interrupt handler is too long
+   * compared to the bus speed and the MCU cannot process all of the 
+   * incoming bytes.
+   */
+  async event void rxOverflow();
 }
 

@@ -173,22 +173,33 @@ interface HPLUSARTControl {
   async command error_t disableTxIntr();
   async command error_t enableRxIntr();
   async command error_t enableTxIntr();
+  async command error_t enableRxTxIntr();
  
   /**
-   * SUCCESS if TX interrupt pending, flag is cleared automatically 
+   * TRUE if TX interrupt pending, flag must be cleared explicitly
    */
-  async command error_t isTxIntrPending();
+  async command bool isTxIntrPending();
 
   /**
-   * SUCCESS if RX interrupt pending, flag is cleared automatically 
+   * Clears the TX interrupt pending flag
    */
-  async command error_t isRxIntrPending();
+  async command error_t clrTxIntr();
+
+  /**
+   * TRUE if RX interrupt pending, flag must be cleared explicitly
+   */
+  async command bool isRxIntrPending();
+
+  /**
+   * Clears the RX interrupt pending flag
+   */
+  async command error_t clrRxIntr();
 
   /** 
    * SUCCESS if the TX buffer is empty and all of the bits have been
    * shifted out 
    */
-  async command error_t isTxEmpty();
+  async command bool isTxEmpty();
 
  /**
    * Transmit a byte of data. When the transmission is completed,
