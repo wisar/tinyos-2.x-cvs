@@ -102,7 +102,7 @@
 #define SET_BIT(port, bit)    (sbi(port, bit))
 #define CLR_BIT(port, bit)    (cbi(port, bit))
 #define READ_BIT(port, bit)   ((inp(port) & (1 << bit)) != 0)
-#define FLIP_BIT(port, bit)   _MMIO_BYTE(port) ^= (1 << bit)
+#define FLIP_BIT(port, bit)   (_MMIO_BYTE(port) ^= (1 << bit))
 
 /// Bit operators using bit flag mask
 #define SET_FLAG(port, flag)  ((port) |= (flag))

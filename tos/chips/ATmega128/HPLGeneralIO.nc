@@ -24,7 +24,7 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-configuration HPLGeneralIOC
+configuration HPLGeneralIO
 {
   // provides all the ports as raw ports
   provides {
@@ -92,120 +92,74 @@ configuration HPLGeneralIOC
 implementation
 {
   components 
-    new HPLGeneralIOM(PORTA, DDRA, 0) as A0,
-    new HPLGeneralIOM(PORTA, DDRA, 1) as A1,
-    new HPLGeneralIOM(PORTA, DDRA, 2) as A2,
-    new HPLGeneralIOM(PORTA, DDRA, 3) as A3,
-    new HPLGeneralIOM(PORTA, DDRA, 4) as A4,
-    new HPLGeneralIOM(PORTA, DDRA, 5) as A5,
-    new HPLGeneralIOM(PORTA, DDRA, 6) as A6,
-    new HPLGeneralIOM(PORTA, DDRA, 7) as A7,
+    new HPLGeneralIOPort(PORTA, DDRA) as PortA,
+    new HPLGeneralIOPort(PORTB, DDRB) as PortB,
+    new HPLGeneralIOPort(PORTC, DDRC) as PortC,
+    new HPLGeneralIOPort(PORTD, DDRD) as PortD,
+    new HPLGeneralIOPort(PORTE, DDRE) as PortE,
+    new HPLGeneralIOPort(PORTF, DDRF) as PortF,
 
-    new HPLGeneralIOM(PORTB, DDRB, 0) as B0,
-    new HPLGeneralIOM(PORTB, DDRB, 1) as B1,
-    new HPLGeneralIOM(PORTB, DDRB, 2) as B2,
-    new HPLGeneralIOM(PORTB, DDRB, 3) as B3,
-    new HPLGeneralIOM(PORTB, DDRB, 4) as B4,
-    new HPLGeneralIOM(PORTB, DDRB, 5) as B5,
-    new HPLGeneralIOM(PORTB, DDRB, 6) as B6,
-    new HPLGeneralIOM(PORTB, DDRB, 7) as B7,
-
-    new HPLGeneralIOM(PORTC, DDRC, 0) as C0,
-    new HPLGeneralIOM(PORTC, DDRC, 1) as C1,
-    new HPLGeneralIOM(PORTC, DDRC, 2) as C2,
-    new HPLGeneralIOM(PORTC, DDRC, 3) as C3,
-    new HPLGeneralIOM(PORTC, DDRC, 4) as C4,
-    new HPLGeneralIOM(PORTC, DDRC, 5) as C5,
-    new HPLGeneralIOM(PORTC, DDRC, 6) as C6,
-    new HPLGeneralIOM(PORTC, DDRC, 7) as C7,
-
-    new HPLGeneralIOM(PORTD, DDRD, 0) as D0,
-    new HPLGeneralIOM(PORTD, DDRD, 1) as D1,
-    new HPLGeneralIOM(PORTD, DDRD, 2) as D2,
-    new HPLGeneralIOM(PORTD, DDRD, 3) as D3,
-    new HPLGeneralIOM(PORTD, DDRD, 4) as D4,
-    new HPLGeneralIOM(PORTD, DDRD, 5) as D5,
-    new HPLGeneralIOM(PORTD, DDRD, 6) as D6,
-    new HPLGeneralIOM(PORTD, DDRD, 7) as D7,
-
-    new HPLGeneralIOM(PORTE, DDRE, 0) as E0,
-    new HPLGeneralIOM(PORTE, DDRE, 1) as E1,
-    new HPLGeneralIOM(PORTE, DDRE, 2) as E2,
-    new HPLGeneralIOM(PORTE, DDRE, 3) as E3,
-    new HPLGeneralIOM(PORTE, DDRE, 4) as E4,
-    new HPLGeneralIOM(PORTE, DDRE, 5) as E5,
-    new HPLGeneralIOM(PORTE, DDRE, 6) as E6,
-    new HPLGeneralIOM(PORTE, DDRE, 7) as E7,
-
-    new HPLGeneralIOM(PORTF, DDRF, 0) as F0,
-    new HPLGeneralIOM(PORTF, DDRF, 1) as F1,
-    new HPLGeneralIOM(PORTF, DDRF, 2) as F2,
-    new HPLGeneralIOM(PORTF, DDRF, 3) as F3,
-    new HPLGeneralIOM(PORTF, DDRF, 4) as F4,
-    new HPLGeneralIOM(PORTF, DDRF, 5) as F5,
-    new HPLGeneralIOM(PORTF, DDRF, 6) as F6,
-    new HPLGeneralIOM(PORTF, DDRF, 7) as F7,
-
-    new HPLGeneralIOM(PORTG, DDRG, 0) as G0,
-    new HPLGeneralIOM(PORTG, DDRG, 1) as G1,
-    new HPLGeneralIOM(PORTG, DDRG, 2) as G2,
-    new HPLGeneralIOM(PORTG, DDRG, 3) as G3,
-    new HPLGeneralIOM(PORTG, DDRG, 4) as G4
+    // PortG only exposes 5 bits...
+    new HPLGeneralIOPinM(PORTG, DDRG, 0) as G0,
+    new HPLGeneralIOPinM(PORTG, DDRG, 1) as G1,
+    new HPLGeneralIOPinM(PORTG, DDRG, 2) as G2,
+    new HPLGeneralIOPinM(PORTG, DDRG, 3) as G3,
+    new HPLGeneralIOPinM(PORTG, DDRG, 4) as G4
     ;
 
-  PortA0 = A0;
-  PortA1 = A1;
-  PortA2 = A2;
-  PortA3 = A3;
-  PortA4 = A4;
-  PortA5 = A5;
-  PortA6 = A6;
-  PortA7 = A7;
+  PortA0 = PortA.Pin0;
+  PortA1 = PortA.Pin1;
+  PortA2 = PortA.Pin2;
+  PortA3 = PortA.Pin3;
+  PortA4 = PortA.Pin4;
+  PortA5 = PortA.Pin5;
+  PortA6 = PortA.Pin6;
+  PortA7 = PortA.Pin7;
 
-  PortB0 = B0;
-  PortB1 = B1;
-  PortB2 = B2;
-  PortB3 = B3;
-  PortB4 = B4;
-  PortB5 = B5;
-  PortB6 = B6;
-  PortB7 = B7;
+  PortB0 = PortB.Pin0;
+  PortB1 = PortB.Pin1;
+  PortB2 = PortB.Pin2;
+  PortB3 = PortB.Pin3;
+  PortB4 = PortB.Pin4;
+  PortB5 = PortB.Pin5;
+  PortB6 = PortB.Pin6;
+  PortB7 = PortB.Pin7;
 
-  PortC0 = C0;
-  PortC1 = C1;
-  PortC2 = C2;
-  PortC3 = C3;
-  PortC4 = C4;
-  PortC5 = C5;
-  PortC6 = C6;
-  PortC7 = C7;
+  PortC0 = PortC.Pin0;
+  PortC1 = PortC.Pin1;
+  PortC2 = PortC.Pin2;
+  PortC3 = PortC.Pin3;
+  PortC4 = PortC.Pin4;
+  PortC5 = PortC.Pin5;
+  PortC6 = PortC.Pin6;
+  PortC7 = PortC.Pin7;
 
-  PortD0 = D0;
-  PortD1 = D1;
-  PortD2 = D2;
-  PortD3 = D3;
-  PortD4 = D4;
-  PortD5 = D5;
-  PortD6 = D6;
-  PortD7 = D7;
+  PortD0 = PortD.Pin0;
+  PortD1 = PortD.Pin1;
+  PortD2 = PortD.Pin2;
+  PortD3 = PortD.Pin3;
+  PortD4 = PortD.Pin4;
+  PortD5 = PortD.Pin5;
+  PortD6 = PortD.Pin6;
+  PortD7 = PortD.Pin7;
 
-  PortE0 = E0;
-  PortE1 = E1;
-  PortE2 = E2;
-  PortE3 = E3;
-  PortE4 = E4;
-  PortE5 = E5;
-  PortE6 = E6;
-  PortE7 = E7;
+  PortE0 = PortE.Pin0;
+  PortE1 = PortE.Pin1;
+  PortE2 = PortE.Pin2;
+  PortE3 = PortE.Pin3;
+  PortE4 = PortE.Pin4;
+  PortE5 = PortE.Pin5;
+  PortE6 = PortE.Pin6;
+  PortE7 = PortE.Pin7;
 
-  PortF0 = F0;
-  PortF1 = F1;
-  PortF2 = F2;
-  PortF3 = F3;
-  PortF4 = F4;
-  PortF5 = F5;
-  PortF6 = F6;
-  PortF7 = F7;
+  PortF0 = PortF.Pin0;
+  PortF1 = PortF.Pin1;
+  PortF2 = PortF.Pin2;
+  PortF3 = PortF.Pin3;
+  PortF4 = PortF.Pin4;
+  PortF5 = PortF.Pin5;
+  PortF6 = PortF.Pin6;
+  PortF7 = PortF.Pin7;
 
   PortG0 = G0;
   PortG1 = G1;
