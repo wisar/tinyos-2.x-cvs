@@ -38,7 +38,14 @@ interface Interrupt {
    *
    * @return SUCCESS if the interrupt has been enabled
    */
-  async command result_t startWait(bool low_to_high);
+  async command error_t startWait(bool low_to_high);
+
+  /**  
+   * Diables an edge interrupt or capture interrupt
+   * 
+   * @return SUCCESS if the interrupt has been disabled
+   */ 
+  async command error_t disable();
 
   /**
    * Fired when an edge interrupt occurs.
@@ -46,13 +53,6 @@ interface Interrupt {
    * @return SUCCESS to keep the interrupt enabled (equivalent to
    *         calling startWait again), FAIL to disable the interrupt
    */
-  async event result_t fired();
+  async event void fired();
 
-
-  /**
-   * Diables an edge interrupt or capture interrupt
-   * 
-   * @return SUCCESS if the interrupt has been disabled
-   */ 
-  async command result_t disable();
 }

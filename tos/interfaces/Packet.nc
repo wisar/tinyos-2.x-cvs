@@ -48,7 +48,7 @@ interface Packet {
     * clear the packet for reuse.
     */
 
-  command void clear(TOSMsg* msg);
+  command void clear(message_t* msg);
 
   /**
     * Return the length of the payload of msg. This value may be less
@@ -58,7 +58,7 @@ interface Packet {
     * the same value as maxPayloadLength(). 
     */
 
-  command uint8_t payloadLength(TOSMsg* msg);
+  command uint8_t payloadLength(message_t* msg);
 
  /**
    * Return the maximum payload length that this communication layer
@@ -78,6 +78,6 @@ interface Packet {
    * variable length packets, then *len is equal to 
    * maxPayloadLength().
    */
-  command void* getPayload(TOSMsg* msg, uint8_t* len);
+  command void* getPayload(message_t* msg, uint8_t* len);
 
 }

@@ -1,7 +1,5 @@
 /*									tab:4
- *
- *
- * "Copyright (c) 2000-2002 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -36,6 +34,6 @@
  */
 interface CSMABackoff
 {
-  async event uint16_t initial(TOSMsg* m);
-  async event uint16_t congestion(TOSMsg* m);
+  async event uint16_t initial(message_t* m);
+  async event uint16_t congestion(message_t* m);
 }

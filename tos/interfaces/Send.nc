@@ -50,7 +50,7 @@ interface Send {
     * cannot satisfy; in this case, it will signal sendDone with an
     * appropriate error code.
     */ 
-  command error_t send(TOSMsg* msg, uint8_t len);
+  command error_t send(message_t* msg, uint8_t len);
 
   /**
     * Cancel a requested transmission. Returns SUCCESS if the 
@@ -62,13 +62,13 @@ interface Send {
     * A successful call to cancel must always result in a 
     * sendFailed event, and never a sendSucceeded event.
     */
-  command error_t cancel(TOSMsg* msg);
+  command error_t cancel(message_t* msg);
 
   /** 
     * Signaled in response to an accepted send request. <tt>msg</tt>
     * is the sent buffer, and <tt>error</tt> indicates whether the
     * send was succesful, and if not, the cause of the failure.
     */ 
-  event void sendDone(TOSMsg* msg, error_t error);
+  event void sendDone(message_t* msg, error_t error);
 
 }

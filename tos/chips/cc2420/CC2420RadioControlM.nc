@@ -132,11 +132,11 @@ implementation {
   /*************************************************************
    * LENGTH
    */
-  command uint8_t RadioPacket.getLength(TOSMsg* msg) {
+  command uint8_t RadioPacket.getLength(message_t* msg) {
     return msg->header.length;
   }
 
-  command result_t RadioPacket.setLength(TOSMsg* msg, uint8_t _length) {
+  command result_t RadioPacket.setLength(message_t* msg, uint8_t _length) {
     atomic msg->header.length = length;
     return SUCCESS;
   }
@@ -144,17 +144,17 @@ implementation {
   /*************************************************************
    * DATA
    */
-  command uint8_t* RadioPacket.getData(TOSMsg* msg) {
+  command uint8_t* RadioPacket.getData(message_t* msg) {
     return msg->data;
   }
 
   /*************************************************************
    * ADDRESS
    */
-  command uint16_t RadioPacket.getAddress(TOSMsg* msg) {
+  command uint16_t RadioPacket.getAddress(message_t* msg) {
     return msg->header.addr;
   }
-  command result_t RadioPacket.setAddress(TOSMsg* msg, uint16_t _addr) {
+  command result_t RadioPacket.setAddress(message_t* msg, uint16_t _addr) {
     atomic msg->header.addr = _addr;
     return SUCCESS;
   }
@@ -162,10 +162,10 @@ implementation {
   /*************************************************************
    * GROUP
    */
-  command uint16_t RadioPacket.getGroup(TOSMsg* msg) {
+  command uint16_t RadioPacket.getGroup(message_t* msg) {
     return msg->header.destpan;
   }
-  command result_t RadioPacket.setGroup(TOSMsg* msg, uint16_t group) {
+  command result_t RadioPacket.setGroup(message_t* msg, uint16_t group) {
     atomic msg->header.destpan = group;
     return SUCCESS;
   }
@@ -173,14 +173,14 @@ implementation {
   /*************************************************************
    * TIME
    */
-  command uint16_t RadioPacket.getTime(TOSMsg* msg) {
+  command uint16_t RadioPacket.getTime(message_t* msg) {
     return msg->metadata.time;
   }
 
   /*************************************************************
    * ACKNOWLEDGMENTS
    */
-  command bool RadioPacket.isAck(TOSMsg* msg) {
+  command bool RadioPacket.isAck(message_t* msg) {
     return msg->metadata.ack;
   }
 

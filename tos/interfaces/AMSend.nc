@@ -52,7 +52,7 @@ interface AMSend {
     * request which it later finds it cannot satisfy; in this case, it
     * will signal sendDone with error code.
     */ 
-  command error_t send(am_addr_t addr, TOSMsg* msg, uint8_t len);
+  command error_t send(am_addr_t addr, message_t* msg, uint8_t len);
 
   /**
     * Cancel a requested transmission. Returns SUCCESS if the 
@@ -64,7 +64,7 @@ interface AMSend {
     * A successful call to cancel must always result in a 
     * sendFailed event, and never a sendSucceeded event.
     */
-  command error_t cancel(TOSMsg* msg);
+  command error_t cancel(message_t* msg);
 
   /** 
     * Signaled in response to an accepted send request. <tt>msg</tt> is
@@ -73,6 +73,6 @@ interface AMSend {
     *
     */ 
 
-  event void sendDone(TOSMsg* msg, error_t error);
+  event void sendDone(message_t* msg, error_t error);
 
 }
