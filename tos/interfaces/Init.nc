@@ -38,7 +38,7 @@
 includes TinyError;
 includes TOSMsg;
 
-interface Initialize {
+interface Init {
 
   /**
    * Initialize this component. Initialization should not assume that
