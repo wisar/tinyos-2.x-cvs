@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface AlarmBase<size_type,frequency_tag>
+interface AlarmBase<frequency_tag,size_type>
 {
   async command size_type now();
   async command size_type get();

@@ -26,21 +26,21 @@
 
 includes Timer;
 
-interface TimerAsync<frequency_tag>
+interface TimerBase<frequency_tag,size_type>
 {
   // basic interface
-  async command void startPeriodicNow( uint32_t dt );
-  async command void startOneShotNow( uint32_t dt );
-  async command void stop();
-  async event void fired( uint32_t when, uint32_t numMissed );
+  command void startPeriodicNow( size_type dt );
+  command void startOneShotNow( size_type dt );
+  command void stop();
+  event void fired( size_type when, size_type numMissed );
 
   // extended interface
-  async command bool isRunning();
-  async command bool isOneShot();
-  async command void startPeriodic( uint32_t t0, uint32_t dt );
-  async command void startOneShot( uint32_t t0, uint32_t dt );
-  async command uint32_t getNow();
-  async command uint32_t gett0();
-  async command uint32_t getdt();
+  command bool isRunning();
+  command bool isOneShot();
+  command void startPeriodic( size_type t0, size_type dt );
+  command void startOneShot( size_type t0, size_type dt );
+  command size_type getNow();
+  command size_type gett0();
+  command size_type getdt();
 }
 

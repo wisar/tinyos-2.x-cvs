@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface CounterBase<size_type,frequency_tag>
+interface CounterBase<frequency_tag,size_type>
 {
   async command size_type get();
   async command bool isOverflowPending();
