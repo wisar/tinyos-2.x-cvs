@@ -24,42 +24,45 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-generic module AlarmM( typename frequency_tag )
+generic module WidenAlarmM( 
+  typename to_size_type,
+  typename from_size_type,
+  typename frequency_tag )
 {
-  provides interface Init;
-  provides interface Alarm<frequency_tag> as Alarm;
-  uses interface Counter<uint32_t,frequency_tag> as Counter;
-  uses interface MSP430TimerControl;
-  uses interface MSP430Compare;
+  provides interface Alarm<to_size_type,frequency_tag> as Alarm;
+  uses interface Counter<to_size_type,frequency_tag> as Counter;
+  uses interface Alarm<from_size_type,frequency_tag> as AlarmFrom;
 }
 implementation
 {
-  uint32_t m_alarm = 0;
-
-  command error_t Init.init()
-  {
-    call MSP430TimerControl.setControlAsCompare();
-  }
+  to_size_type m_alarm = 0;
 
   async command uint32_t Alarm.get()
   {
-    return call MSP430Compare.get();
+    return m_alarm;
   }
 
   async command bool Alarm.isSet()
   {
+    return call AlarmFrom.isSet();
   }
 
   async command void Alarm.cancel()
   {
+    call AlarmFrom.cancel();
   }
 
-  async command void Alarm.set( uint32_t t0, uint32_t dt )
+  async command void Alarm.set( to_size_type t0, to_size_type dt )
   {
+    to_size_type now = call Counter.get();
+    to_size_type remaining = now - t0;
+    m_alarm = t0+dt;
+    //...
   }
 
-  async event void Alarm.fired()
+  async event void AlarmFrom.fired()
   {
+    //not quite, must check upper bytes, signal Alarm.fired();
   }
 }
 

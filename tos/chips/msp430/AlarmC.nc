@@ -41,9 +41,8 @@ configuration AlarmC
 }
 implementation
 {
-  // TODO, I think there may exist a nice Generic Component to build an
-  // alarm given a hardware resource (as for instance exposed in the
-  // tinyos-1.x MSP430Timer abstraction.
+  components CounterC
+           ;
 }
 
 

@@ -22,44 +22,16 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-// The TinyOS Timer interfaces are discussed in TEP 102.
+includes MSP430Timer;
 
-generic module AlarmM( typename frequency_tag )
+interface MSP430Compare
 {
-  provides interface Init;
-  provides interface Alarm<frequency_tag> as Alarm;
-  uses interface Counter<uint32_t,frequency_tag> as Counter;
-  uses interface MSP430TimerControl;
-  uses interface MSP430Compare;
-}
-implementation
-{
-  uint32_t m_alarm = 0;
+  async command uint16_t getEvent();
+  async command void setEvent( uint16_t time );
+  async command void setEventFromPrev( uint16_t delta );
+  async command void setEventFromNow( uint16_t delta );
 
-  command error_t Init.init()
-  {
-    call MSP430TimerControl.setControlAsCompare();
-  }
+  async event void fired();
 
-  async command uint32_t Alarm.get()
-  {
-    return call MSP430Compare.get();
-  }
-
-  async command bool Alarm.isSet()
-  {
-  }
-
-  async command void Alarm.cancel()
-  {
-  }
-
-  async command void Alarm.set( uint32_t t0, uint32_t dt )
-  {
-  }
-
-  async event void Alarm.fired()
-  {
-  }
 }
 

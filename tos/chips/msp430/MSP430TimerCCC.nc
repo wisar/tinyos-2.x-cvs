@@ -22,14 +22,23 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-// The TinyOS Timer interfaces are discussed in TEP 102.
+includes MSP430Timer;
 
-module CounterM
+generic configuration MSP430TimerCCC(uint16_t TxCCTLx_addr, uint16_t TxCCRx_addr)
 {
-  // TODO
+  provides interface MSP430TimerControl as Control;
+  provides interface MSP430Compare as Compare;
+  provides interface MSP430Capture as Capture;
+  uses interface MSP430Timer as Timer;
 }
 implementation
 {
-  // TODO
+  components new MSP430TimerCCM(TxCCTLx_addr,TxCCRx_addr) as TimerCC
+           ;
+
+  Control = TimerCC.Control;
+  Compare = TimerCC.Compare;
+  Capture = TimerCC.Capture;
+  TimerCC.Timer = Timer;
 }
 

@@ -26,12 +26,24 @@
 
 configuration CounterC
 {
-  // TODO
+  provides interface Counter32<TMilli> as Counter32Milli;
+  provides interface Counter<uint32_t,TMilli> as CounterMilli;
+  provides interface Counter<uint16_t,TMilli> as MSP430CounterMilli;
 }
 implementation
 {
-  // TODO, I think there may exist a nice Generic Component to build a
-  // counter given a hardware resource (as for instance exposed in the
-  // tinyos-1.x MSP430Timer abstraction.
+  components MSP430TimerC
+           , new MSP430CounterM(TMilli) as MSP430CounterB
+	   , new WidenCounterM(uint32_t,uint16_t,uint16_t,TMilli) as WidenB
+	   , new CastCounter32(TMilli) as CastB
+	   ;
+  
+  Counter32Milli = CastB.Counter;
+  CounterMilli = WidenB.Counter;
+  MSP430CounterMilli = MSP430CounterB.Counter;
+
+  CastB.CounterFrom -> WidenB.Counter;
+  WidenB.CounterFrom -> MSP430CounterB.Counter;
+  MSP430CounterB.MSP430Timer -> MSP430TimerC.TimerB;
 }
 
