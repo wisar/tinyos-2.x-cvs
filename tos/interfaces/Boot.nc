@@ -36,8 +36,7 @@
   * @date   January 5 2005
   */ 
 
-interface Boot
-{
+interface Boot {
   event void booted();
 }
 
