@@ -31,12 +31,12 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-configuration NullC
-{
-}
-implementation
-{
-  components Main, NullM;
-  Main.Boot -> NullM;
+configuration NullC{}
+implementation {
+  components Main, NullM, LedsC;
+
+  Main.Boot <- NullM;
+  
+  NullM -> LedsC.Leds;
 }
 

@@ -34,11 +34,12 @@
 module NullM
 {
   uses interface Boot;
+  uses interface Leds;
 }
 implementation
 {
-  event void Boot.booted()
-  {
+  event void Boot.booted()  {
+    call Leds.redOn();
   }
 }
 
