@@ -29,7 +29,7 @@
 
 includes Timer;
 
-generic configuration SyncAlarmC( typedef frequency_tag, typedef size_type )
+generic configuration SyncAlarmC( typedef frequency_tag, typedef size_type @integer() )
 {
   provides interface AlarmBase<frequency_tag,size_type> as AlarmBase;
   uses interface AlarmBase<frequency_tag,size_type> as AlarmBaseFrom;

@@ -27,7 +27,7 @@
 
 includes Timer;
 
-generic module SyncAlarmM( typedef frequency_tag, typedef size_type )
+generic module SyncAlarmM( typedef frequency_tag, typedef size_type @integer() )
 {
   provides interface AlarmBase<frequency_tag,size_type> as AlarmBase;
   uses interface AlarmBase<frequency_tag,size_type> as AlarmBaseFrom;

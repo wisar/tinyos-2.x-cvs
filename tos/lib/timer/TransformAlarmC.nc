@@ -31,9 +31,9 @@
 
 generic configuration TransformAlarmC( 
   typedef to_frequency_tag,
-  typedef to_size_type,
+  typedef to_size_type @integer(),
   typedef from_frequency_tag,
-  typedef from_size_type,
+  typedef from_size_type, @integer()
   uint8_t bit_shift_right )
 {
   provides interface AlarmBase<to_frequency_tag,to_size_type> as Alarm;
@@ -44,16 +44,10 @@ implementation
 {
   components new TransformAlarmM( to_frequency_tag, to_size_type,
     from_frequency_tag, from_size_type, bit_shift_right ) as Transform
-           , MathOpsM
-           , CastOpsM
            ;
 
   Alarm = Transform;
   Counter = Transform;
   AlarmFrom = Transform;
-
-  Transform.MathTo -> MathOpsM;
-  Transform.MathFrom -> MathOpsM;
-  Transform.CastFromTo -> CastOpsM;
 }
 

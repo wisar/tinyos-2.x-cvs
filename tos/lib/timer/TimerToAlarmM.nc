@@ -24,11 +24,10 @@
 
 // Convert a Timer into an Alarm, can be used to re-Multiplex a Timer, etc.
 
-generic module TimerToAlarmM( typedef frequency_tag, typedef size_type )
+generic module TimerToAlarmM( typedef frequency_tag, typedef size_type @integer() )
 {
   provides interface AlarmBase<frequency_tag,size_type> as AlarmBase;
   uses interface TimerBase<frequency_tag,size_type> as TimerBase;
-  uses interface MathOps<size_type> as Math;
 }
 implementation
 {
@@ -39,7 +38,7 @@ implementation
 
   async command size_type AlarmBase.get()
   {
-    return call Math.add( call TimerBase.gett0(), call TimerBase.getdt() );
+    return call call TimerBase.gett0() + call TimerBase.getdt();
   }
 
   async command bool AlarmBase.isSet()
