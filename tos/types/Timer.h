@@ -22,7 +22,7 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-// The TinyOS Timer interfaces are discussed in TEP 102.
+// The TinyOS Timer structures are discussed in TEP 102.
 
 typedef struct { } TMilli;
 typedef struct { } T32Micro;

@@ -28,8 +28,9 @@
  */
 
 typedef enum {
-  SUCCESS        = 0,
-  FAIL           = 1,        // An unknown error caused the operation to fail
-  ESIZE          = 2,        // Parameter passed in was too big.
-  ECANCEL        = 3,        // Operation cancelled by a call.
+  SUCCESS        = 0,          
+  FAIL           = 1,           // Generic condition: backwards compatible
+  ESIZE          = 2,           // Parameter passed in was too big.
+  ECANCEL        = 3,           // Operation cancelled by a call.
+  EOFF           = 4,           // Subsystem is not active
 } error_t;
