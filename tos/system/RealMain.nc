@@ -66,7 +66,7 @@ implementation
     
     /* Enable interrupts, in case initialization calls, such as for
        oscillator calibration, require them. */
-    __nesc_enable_interrupts();
+    __nesc_enable_interrupt();
 
     /* Initialize the platform. Then spin on the Scheduler, passing
      * FALSE so it will not put the system to sleep if there are no
