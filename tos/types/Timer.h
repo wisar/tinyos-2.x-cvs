@@ -25,7 +25,7 @@
 // The TinyOS Timer structures are discussed in TEP 102.
 
 typedef struct { } TMilli;
-typedef struct { } T32Micro;
+typedef struct { } T32khz;
 typedef struct { } TMicro;
 typedef struct { } TNano;
 

@@ -36,3 +36,21 @@ typedef enum {
   EBUSY          = 5,           // The posted task has already been posted
 } error_t;
 
+error_t rcombine(error_t r1, error_t r2)
+/* Returns: FAIL if r1 or r2 == FAIL , r2 otherwise. This is the standard
+     combining rule for results
+*/
+{
+  return (r1 || r2)? SUCCESS:FAIL;
+}
+
+error_t rcombine3(error_t r1, error_t r2, error_t r3)
+{
+  return rcombine(r1, rcombine(r2, r3));
+}
+
+error_t rcombine4(error_t r1, error_t r2, error_t r3,
+				 error_t r4)
+{
+  return rcombine(r1, rcombine(r2, rcombine(r3, r4)));
+}
