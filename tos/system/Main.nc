@@ -42,7 +42,7 @@
 
 configuration Main {
   provides interface Boot;
-  uses interface Initialize as SoftwareInit;
+  uses interface Init as SoftwareInit;
 }
 implementation {
   components RealMain, Platform, TinyScheduler;

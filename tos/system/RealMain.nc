@@ -47,8 +47,8 @@ module RealMain {
   provides interface Boot;
   uses {
     interface Scheduler;
-    interface Initialize as PlatformInit;
-    interface Initialize as SoftwareInit;
+    interface Init as PlatformInit;
+    interface Init as SoftwareInit;
   }
 }
 implementation
@@ -66,7 +66,7 @@ implementation
     
     /* Enable interrupts, in case initialization calls, such as for
        oscillator calibration, require them. */
-    __nesc_enable_interrupt();    
+    __nesc_enable_interrupts();
 
     /* Initialize the platform. Then spin on the Scheduler, passing
      * FALSE so it will not put the system to sleep if there are no

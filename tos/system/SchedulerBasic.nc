@@ -40,6 +40,7 @@
  * documented in TEP 106.
  *
  * @author Philip Levis
+ * @author Cory Sharp
  * @date   January 19 2005
  */
 
