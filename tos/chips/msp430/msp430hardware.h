@@ -175,32 +175,32 @@ inline void TOSH_uwait(uint16_t u)
   
 } 
 
-void __nesc_disable_interrupt()
+void __nesc_disable_interrupt() __attribute__((spontaneous, C))
 {
   dint();
   nop();
 }
 
-void __nesc_enable_interrupt()
+void __nesc_enable_interrupt() __attribute__((spontaneous, C))
 {
   eint();
 }
 
-bool are_interrupts_enabled()
+bool are_interrupts_enabled() __attribute__((spontaneous, C))
 {
   return ((READ_SR & SR_GIE) != 0);
 }
 
 typedef bool __nesc_atomic_t;
 
-__nesc_atomic_t __nesc_atomic_start(void)
+__nesc_atomic_t __nesc_atomic_start(void) __attribute__((spontaneous, C))
 {
   __nesc_atomic_t result = are_interrupts_enabled();
   __nesc_disable_interrupt();
   return result;
 }
 
-void __nesc_atomic_end( __nesc_atomic_t reenable_interrupts )
+void __nesc_atomic_end( __nesc_atomic_t reenable_interrupts ) __attribute__((spontaneous, C))
 {
   if( reenable_interrupts )
     __nesc_enable_interrupt();
@@ -263,7 +263,7 @@ inline void TOSH_sleep() {
   }
 }
 
-void __nesc_atomic_sleep()
+void __nesc_atomic_sleep() __attribute__((spontaneous, C))
 {
   TOSH_sleep(); // XXX fixme XXX
 }

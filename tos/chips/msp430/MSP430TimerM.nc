@@ -76,6 +76,11 @@ implementation
     TxCTL |= TxCLR;
   }
 
+  async command void Timer.enableEvents()
+  {
+    TxCTL |= TxIE;
+  }
+
   async command void Timer.disableEvents()
   {
     TxCTL &= ~TxIE;
@@ -105,6 +110,10 @@ implementation
   async event void Overflow.fired()
   {
     signal Timer.overflow();
+  }
+
+  default async event void Timer.overflow()
+  {
   }
 
   default async event void Event.fired[uint8_t n]()

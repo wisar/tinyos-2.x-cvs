@@ -233,21 +233,19 @@ implementation
 
   void garnishedBusyCalibrateDCO()
   {
-    bool do_dint;
-    do_dint = !are_interrupts_enabled();
-    eint();
+    bool do_disable_interrupts = !are_interrupts_enabled();
+    __nesc_enable_interrupt();
     busyCalibrateDCO();
-    if(do_dint)
-      dint();
+    if(do_disable_interrupts)
+      __nesc_disable_interrupt();
   }
     
   command error_t Init.init()
   {
-
     // Reset timers and clear interrupt vectors
     TACTL = TACLR;
-    TAIV = 0;
     TBCTL = TBCLR;
+    TAIV = 0;
     TBIV = 0;
 
     garnishedBusyCalibrateDCO();

@@ -35,6 +35,7 @@ interface MSP430Timer
   async command void setMode( int mode );
   async command int getMode();
   async command void clear();
+  async command void enableEvents();
   async command void disableEvents();
   async command void setClockSource( uint16_t clockSource );
   async command void setInputDivider( uint16_t inputDivider );

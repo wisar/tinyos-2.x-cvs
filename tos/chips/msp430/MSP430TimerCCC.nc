@@ -30,6 +30,7 @@ generic configuration MSP430TimerCCC(uint16_t TxCCTLx_addr, uint16_t TxCCRx_addr
   provides interface MSP430Compare as Compare;
   provides interface MSP430Capture as Capture;
   uses interface MSP430Timer as Timer;
+  uses interface MSP430TimerEvent as Event;
 }
 implementation
 {
@@ -39,6 +40,7 @@ implementation
   Control = TimerCC.Control;
   Compare = TimerCC.Compare;
   Capture = TimerCC.Capture;
-  TimerCC.Timer = Timer;
+  Timer = TimerCC.Timer;
+  Event = TimerCC.Event;
 }
 
