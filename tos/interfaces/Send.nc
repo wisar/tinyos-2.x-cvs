@@ -65,14 +65,8 @@ interface Send {
   command error_t cancel(TOSMsg* msg);
 
   /** 
-    * Signaled in response to an accepted send request if the 
-    * send was successful. 
+    * Signaled in response to an accepted send request. 
     */ 
-  event void sendSucceeded(TOSMsg* msg);
+  event void sendDone(TOSMsg* msg, error_t error);
 
-  /** 
-    * Signaled in response to an accepted send request if the 
-    * send failed. 
-    */ 
-  event void sendFailed(TOSMsg* msg, error_t error);
 }
