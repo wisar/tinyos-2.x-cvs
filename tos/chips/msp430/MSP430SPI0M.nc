@@ -67,6 +67,7 @@ implementation
   command error_t Init.init() {
     state = SPI_IDLE;
     busOwner = 0xFF;
+    return SUCCESS;
   }
 
   command error_t SPIPacket.send[uint8_t id](uint8_t* _txbuffer, uint8_t* _rxbuffer, uint8_t _length) {
@@ -121,9 +122,10 @@ implementation
     }
   }
   
-  uint8_t oneByte(uint8_t txbyte, bool rx) {
+  inline uint8_t oneByte(uint8_t txbyte, bool rx) {
     // clear the rx buffer
-    call USARTControl.rx();
+    if (rx)
+      call USARTControl.rx();
     // send the tx data
     call USARTControl.tx(txbyte);
     // check if a byte needs to be received
@@ -192,7 +194,7 @@ implementation
       }
     }
 
-    while(!(call USARTControl.isTxEmpty())) ;
+    while((call USARTControl.isTxEmpty()) != SUCCESS) ;
     post taskSendDone();
 
     return SUCCESS;
