@@ -67,7 +67,7 @@ implementation
   }
   
   TOSH_SIGNAL(UART0TX_VECTOR) {
-    if (call USARTControl.isI2C() == SUCCESS)
+    if (call USARTControl.isI2C() == TRUE)
       signal HPLI2CInterrupt.fired();
     else
       signal USARTData.txDone();
