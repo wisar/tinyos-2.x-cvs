@@ -36,9 +36,11 @@
  * @date   January 5 2005
  */ 
 
-generic configuration TimerMilli {
+includes Timer;
+
+generic configuration TimerMilli() {
   
-  provides interface Timer<TMilli> as Timer;
+  provides interface Timer<TMilli>;
 
 }
 

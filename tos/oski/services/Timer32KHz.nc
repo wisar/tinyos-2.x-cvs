@@ -36,6 +36,8 @@
  * @date   January 5 2005
  */ 
 
+includes Timer;
+
 generic configuration Timer32KHz {
   
   provides interface Timer<T32khz> as Timer;

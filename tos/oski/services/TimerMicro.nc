@@ -36,6 +36,7 @@
  * @date   January 5 2005
  */ 
 
+includes Timer;
 
 generic configuration TimerMicro {
   

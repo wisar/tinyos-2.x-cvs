@@ -38,6 +38,8 @@
  * @date   January 5 2005
  */ 
 
+includes Timer;
+
 configuration TimerImpl {
   provides {
     interface Timer<TMilli> as TimerMilli[uint8_t id];
