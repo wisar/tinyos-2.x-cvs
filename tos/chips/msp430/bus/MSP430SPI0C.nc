@@ -47,5 +47,6 @@ implementation
   BusArbitration = SPIM;
 
   SPIM.USARTControl -> HPLUSART0C.HPLUSARTControl;
+  SPIM.USARTFeedback -> HPLUSART0C.HPLUSARTFeedback;
   SPIM.LowerBusArbitration -> HPLUSART0C.BusArbitration;
 }
