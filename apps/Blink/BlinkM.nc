@@ -55,17 +55,17 @@ implementation
 
   event void Timer0.fired( uint32_t when, uint32_t numMissed )
   {
-    call Leds.led1Toggle();
+    call Leds.led0Toggle();
   }
   
   event void Timer1.fired( uint32_t when, uint32_t numMissed )
   {
-    call Leds.led2Toggle();
+    call Leds.led1Toggle();
   }
   
   event void Timer2.fired( uint32_t when, uint32_t numMissed )
   {
-    call Leds.led3Toggle();
+    call Leds.led2Toggle();
   }
 }
 

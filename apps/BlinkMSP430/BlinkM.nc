@@ -11,7 +11,7 @@ implementation
 {
   event void Boot.booted()
   {
-    call Leds.led2On();
+    call Leds.led1On();
     call TimerControl.setControlAsCompare();
     call TimerCompare.setEventFromNow( 8192 );
     call TimerControl.enableEvents();
@@ -19,7 +19,7 @@ implementation
 
   async event void TimerCompare.fired()
   {
-    call Leds.led1Toggle();
+    call Leds.led0Toggle();
     call TimerCompare.setEventFromPrev( 8192 );
   }
 }

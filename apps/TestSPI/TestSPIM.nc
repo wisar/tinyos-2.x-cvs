@@ -47,17 +47,17 @@ implementation {
 
   event void SPIPacket.sendDone(uint8_t* txbuffer, uint8_t* rxbuffer, uint8_t length, error_t success) {
     if (success != SUCCESS)
-      call Leds.led3Toggle();
+      call Leds.led2Toggle();
     else
-      call Leds.led1Toggle();
+      call Leds.led0Toggle();
     if (call SPIPacketAdvanced.send(txdata, 0, 10, rxdata, 3, 6, 12) == SUCCESS) ;
   }
 
   event void SPIPacketAdvanced.sendDone(uint8_t* _txbuffer, uint8_t _txstart, uint8_t _txend, uint8_t* _rxbuffer, uint8_t _rxstart, uint8_t _rxend, uint8_t _length, error_t _success) { 
     if (_success != SUCCESS)
-      call Leds.led3Toggle();
-    else 
       call Leds.led2Toggle();
+    else 
+      call Leds.led1Toggle();
     TOSH_uwait(10240); // delay to see the LEDs
     if (call SPIPacket.send(txdata, rxdata, 10) == SUCCESS) ;
   }

@@ -17,7 +17,7 @@ implementation
   {
     atomic
     {
-      call Leds.led2On();
+      call Leds.led1On();
       m_t0 = call Alarm.now();
       call Alarm.set( m_t0, DELAY_MILLI );
     }
@@ -30,7 +30,7 @@ implementation
       // this use of m_t0 produces a periodic alarm with no frequency skew
       m_t0 += DELAY_MILLI;
       call Alarm.set( m_t0, DELAY_MILLI );
-      call Leds.led1Toggle();
+      call Leds.led0Toggle();
     }
   }
 }

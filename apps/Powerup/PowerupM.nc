@@ -39,7 +39,7 @@ module PowerupM
 implementation
 {
   event void Boot.booted()  {
-    call Leds.led1On();
+    call Leds.led0On();
   }
 }
 
