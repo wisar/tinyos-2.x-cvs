@@ -122,7 +122,7 @@ implementation
     {
       to_size_type remaining = call MathTo.sub( m_dt, elapsed );
       from_size_type remaining_from = call MathFrom.cast_to( call MathTo.cast_from( remaining ) );
-      to_size_type delay = call MathTo.cast_to( ((uint64_t)1) << (sizeof(from_size_type)-1) );
+      to_size_type delay = call MathTo.cast_to( ((uint64_t)1) << (8*sizeof(from_size_type)-1) );
       if( call MathTo.gt( remaining, delay ) )
       {
 	from_size_type delay_from = call MathFrom.cast_to( call MathTo.cast_from( delay ) );
