@@ -22,18 +22,14 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-configuration MSP430ClockC
+configuration MSP430DCOCalibC
 {
-  provides interface Init;
-  provides interface MSP430ClockInit;
 }
 implementation
 {
-  components MSP430ClockM
-           , MSP430DCOCalibC  //perpetual recalibration with each ACLK overflow
-	   ;
+  components MSP430DCOCalibM, MSP430TimerC;
 
-  Init = MSP430ClockM;
-  MSP430ClockInit = MSP430ClockM;
+  MSP430DCOCalibM.TimerMicro -> MSP430TimerC.TimerA;
+  MSP430DCOCalibM.Timer32khz -> MSP430TimerC.TimerB;
 }
 
