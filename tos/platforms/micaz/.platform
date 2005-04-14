@@ -14,6 +14,8 @@ push( @includes, qw(
   %T/platforms/micaz
   %T/platforms/mica
   %T/chips/ATmega128
+  %T/chips/ATmega128/timer
+  %T/lib/timer
 
 ) );
 

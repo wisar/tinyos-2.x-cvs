@@ -1,4 +1,4 @@
-/// $Id$
+//$Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -24,22 +24,27 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-includes hardware;
-
-module PlatformM
+// TimerMilliCounterC is the counter to be used for all TimerMilli[].
+configuration TimerMilliCounterC
 {
-  provides interface Init;
-
-//  uses interface Init as HPLTimer;
+  provides interface Counter<TMilli> as CounterMilli;
+  provides interface CounterBase<TMilli,uint32_t> as CounterBaseMilli;
 }
 implementation
 {
+    components HPLTimerM,
+	new HALCounterM(T32khz, uint8_t) as HALCounter32khz, 
+	new TransformCounterM(TMilli, uint32_t, T32khz, uint8_t,
+			      5, uint32_t) as Transform,
+	new CastCounterM(TMilli) as Cast
+	;
+  
+  CounterMilli = Cast.Counter;
+  CounterBaseMilli = Transform.Counter;
 
-  command error_t Init.init()
-  {
-    TOSH_SET_PIN_DIRECTIONS();
-    //timer_init();
-    return SUCCESS;
-  }
+  Cast.CounterFrom -> Transform.Counter;
+  Transform.CounterFrom -> HALCounter32khz;
+
+  HALCounter32khz.Timer -> HPLTimerM.Timer0;   // wire async timer to Timer 0
 }
 

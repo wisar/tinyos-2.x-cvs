@@ -84,9 +84,9 @@ enum {
 /** ADC Multiplexer Selection Register */
 typedef struct
 {
-    uint8_t refs  : 2;  //!< Reference Selection Bits
-    uint8_t adlar : 1;  //!< ADC Left Adjust Result
     uint8_t mux   : 5;  //!< Analog Channel and Gain Selection Bits
+    uint8_t adlar : 1;  //!< ADC Left Adjust Result
+    uint8_t refs  : 2;  //!< Reference Selection Bits
 } ATm128ADCSelection_t;
 
 typedef ATm128ADCSelection_t ATm128_ADMUX_t;  //!< ADC Multiplexer Selection

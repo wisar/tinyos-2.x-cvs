@@ -24,21 +24,19 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-includes HPLTimer;
-
 interface HPLTimer<size_type>
 {
   /// Timer value register: Direct access
   async command size_type get();
-  async command void      set(size_type t);
+  async command void      set( size_type t );
 
   /// Interrupt signals
   async event void overflow();        //<! Signalled on overflow interrupt
 
   /// Interrupt flag utilites: Bit level set/clr
-  async command void resetOverflow(); //<! Clear the overflow interrupt flag
-  async command void startOverflow(); //<! Enable the overflow interrupt
-  async command void stopOverflow();  //<! Turn off overflow interrupts
-  async command bool testOverflow();  //<! Did overflow interrupt occur?
-  async command bool checkOverflow(); //<! Is overflow interrupt on?
+  async command void reset(); //<! Clear the overflow interrupt flag
+  async command void start(); //<! Enable the overflow interrupt
+  async command void stop();  //<! Turn off overflow interrupts
+  async command bool test();  //<! Did overflow interrupt occur?
+  async command bool isOn();  //<! Is overflow interrupt on?
 }
