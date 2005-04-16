@@ -38,15 +38,13 @@
 
 includes Timer;
 
-generic configuration TimerMilli() {
-  
+generic configuration TimerMilli()
+{
   provides interface Timer<TMilli>;
-
+}
+implementation
+{
+  components TimerMilliImpl;
+  Timer = TimerMilliImpl.TimerMilli[unique("TimerMilli")];
 }
 
-implementation {
-  components TimerImpl;
-
-  Timer = TimerImpl.TimerMilli[unique("OSKI.TimerImpl.TimerMilli")];
-  
-}

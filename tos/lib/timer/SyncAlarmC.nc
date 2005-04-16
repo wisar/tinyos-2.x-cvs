@@ -37,11 +37,9 @@ generic configuration SyncAlarmC( typedef frequency_tag, typedef size_type @inte
 implementation
 {
   components new SyncAlarmM(frequency_tag,size_type) as SyncAlarm
-           , new TaskBasicC() as Task;
 	   ;
 
   AlarmBase = SyncAlarm;
   AlarmBaseFrom = SyncAlarm;
-  SyncAlarm.TaskBasic -> Task;
 }
 

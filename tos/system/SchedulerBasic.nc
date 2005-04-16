@@ -44,6 +44,7 @@
  * @date   January 19 2005
  */
 
+includes hardware;
 
 module SchedulerBasic
 {
@@ -54,7 +55,7 @@ implementation
 {
   enum
   {
-    NUM_TASKS = uniqueCount("TinyScheduler$TaskBasic"),
+    NUM_TASKS = uniqueCount("TinyScheduler_TaskBasic"),
     END_TASK = 255,
   };
 

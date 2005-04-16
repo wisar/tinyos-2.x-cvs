@@ -31,7 +31,6 @@ generic module SyncAlarmM( typedef frequency_tag, typedef size_type @integer() )
 {
   provides interface AlarmBase<frequency_tag,size_type> as AlarmBase;
   uses interface AlarmBase<frequency_tag,size_type> as AlarmBaseFrom;
-  uses interface TaskBasic;
 }
 implementation
 {
@@ -60,14 +59,14 @@ implementation
     call AlarmBaseFrom.set( t0, dt );
   }
 
-  event void TaskBasic.run()
+  task void fireAlarm()
   {
     signal AlarmBase.fired();
   }
 
   async event void AlarmBaseFrom.fired()
   {
-    call TaskBasic.post_();
+    post fireAlarm();
   }
 }
 
