@@ -44,24 +44,18 @@ implementation
 {
   components Main
 	   , BlinkM
-	   //, new TimerMilli() as Timer0
-	   //, new TimerMilli() as Timer1
-	   //, new TimerMilli() as Timer2
-	   , TimerMilliC // XXX until nesc gets fixed
+	   , new TimerMilli() as Timer0
+	   , new TimerMilli() as Timer1
+	   , new TimerMilli() as Timer2
 	   , LedsC
 	   ;
 
   BlinkM -> Main.Boot;
-
   Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> TimerMilliC; // XXX until nesc gets fixed
 
-  //BlinkM.Timer0 -> Timer0;
-  //BlinkM.Timer1 -> Timer1;
-  //BlinkM.Timer2 -> Timer2;
-  BlinkM.Timer0 -> TimerMilliC.TimerMilli[unique("TimerMilli")]; // XXX until nesc gets fixed
-  BlinkM.Timer1 -> TimerMilliC.TimerMilli[unique("TimerMilli")]; // XXX until nesc gets fixed
-  BlinkM.Timer2 -> TimerMilliC.TimerMilli[unique("TimerMilli")]; // XXX until nesc gets fixed
+  BlinkM.Timer0 -> Timer0;
+  BlinkM.Timer1 -> Timer1;
+  BlinkM.Timer2 -> Timer2;
   BlinkM.Leds -> LedsC;
 }
 
