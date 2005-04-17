@@ -48,7 +48,7 @@ interface TaskBasic {
    * implementation of this interface (the class of task).
    */
   
-  async command error_t post_();
+  async command error_t postTask();
 
   /**
    * Event from the scheduler to run this task. Following the TinyOS
@@ -56,6 +56,6 @@ interface TaskBasic {
    * execute atomically with respect to one another, but can be
    * preempted by async commands/events.
    */
-  event void run();
+  event void runTask();
 }
 
