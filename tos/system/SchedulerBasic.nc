@@ -126,7 +126,7 @@ implementation
     }
   }
   
-  command bool Scheduler.runNextTaskOrSleep()
+  command bool Scheduler.runNextTask( bool sleep )
   {
     uint8_t nextTask;
     atomic
@@ -134,27 +134,13 @@ implementation
       nextTask = popTask();
       if( nextTask == END_TASK )
       {
-	__nesc_atomic_sleep();
+	if( sleep )
+	  __nesc_atomic_sleep();
 	return FALSE;
       }
     }
     signal TaskBasic.runTask[nextTask]();
     return TRUE;
-  }
-
-  command bool Scheduler.runNextTask()
-  {
-    uint8_t nextTask;
-    atomic { nextTask = popTask(); }
-    if( nextTask == END_TASK )
-    {
-      return FALSE;
-    }
-    else
-    {
-      signal TaskBasic.runTask[nextTask]();
-      return TRUE;
-    }
   }
 
   /**
