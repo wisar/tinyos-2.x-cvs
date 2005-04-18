@@ -29,16 +29,21 @@ includes hardware;
 module PlatformM
 {
   provides interface Init;
-
-//  uses interface Init as HPLTimer;
 }
 implementation
 {
+  void power_init() {
+      atomic {
+	  outw(MCUCR, 0);    // Internal RAM, IDLE, rupt vector at 0x0002
+	  sbi(MCUCR, SE);    // enable sleep instruction!
+      }
+  }
 
   command error_t Init.init()
   {
     TOSH_SET_PIN_DIRECTIONS();
     //timer_init();
+    power_init();
     return SUCCESS;
   }
 }

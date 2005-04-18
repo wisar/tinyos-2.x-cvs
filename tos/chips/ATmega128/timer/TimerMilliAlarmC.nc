@@ -35,7 +35,7 @@ implementation
 {
   components HPLTimerM,
       new HALAlarmM(T32khz,uint8_t) as HALAlarm,
-      new TransformAlarmM(TMilli,uint32_t,T32khz,uint8_t,5) as Transform,
+      new TransformAlarmM(TMilli,uint32_t,T32khz,uint8_t,0) as Transform,
       new CastAlarmM(TMilli) as Cast,
       TimerMilliCounterC as Counter
       ;

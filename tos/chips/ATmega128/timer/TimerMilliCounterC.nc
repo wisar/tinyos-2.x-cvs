@@ -35,7 +35,7 @@ implementation
     components HPLTimerM,
 	new HALCounterM(T32khz, uint8_t) as HALCounter32khz, 
 	new TransformCounterM(TMilli, uint32_t, T32khz, uint8_t,
-			      5, uint32_t) as Transform,
+			      0, uint32_t) as Transform,
 	new CastCounterM(TMilli) as Cast
 	;
   
