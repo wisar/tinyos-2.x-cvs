@@ -50,6 +50,7 @@
 #define sei()  __asm__ __volatile__ ("sei" ::)
 #define cli()  __asm__ __volatile__ ("cli" ::)
 
+#define bzero(x,y)   memset((x), 0, (y))
 
 #ifndef __outw
 #define __outw(val, port) outw(port, val);
@@ -165,7 +166,7 @@ __nesc_atomic_end(__nesc_atomic_t original_SREG) __attribute__((spontaneous))
 inline void
 __nesc_atomic_sleep()
 {
-    sbi(MCUCR, SE);
+    //sbi(MCUCR, SE);  power manager will enable/disable sleep
     asm volatile ("sleep");
 }
 
