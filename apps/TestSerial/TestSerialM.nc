@@ -41,27 +41,43 @@ module TestSerialM {
   uses {
     interface Leds;
     interface Boot;
-    interface HPLUART as UART;
+    interface Receive;
+    interface Send;
   }
 }
 implementation {
 
+  message_t buf;
+  message_t *bufPtr;
+  bool locked;
+
   event void Boot.booted() {
-    call Leds.led2Toggle();
-    call UART.init();
+    bufPtr = &buf;
   }
 
-  async event error_t UART.get(uint8_t data) {
-    call Leds.led1Toggle();
-    call UART.put(data);
-    return SUCCESS;
-  }
+  event message_t* Receive.receive(message_t* msg, 
+				   void* payload, uint8_t len) {
+    message_t *swap;
 
-  async event error_t UART.putDone() {
     call Leds.led0Toggle();
-    return SUCCESS;
+
+    if (!locked) {
+      locked = TRUE;
+      swap = bufPtr;
+      bufPtr = msg;
+      call Send.send(bufPtr, len);
+      return swap;
+    } else {
+      return msg;
+    }
+  }
+
+  event void Send.sendDone(message_t* msg, error_t error) {
+    if (msg == bufPtr)
+      locked = FALSE;
   }
 }
+
 
 
 

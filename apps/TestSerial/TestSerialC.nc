@@ -31,16 +31,17 @@
 
 configuration TestSerialC {}
 implementation {
-  components Main, TestSerialM, LedsC, HPLUARTM, HPLUSART1C;
-  
-  Main.SoftwareInit -> LedsC;
+  components Main, TestSerialM, SerialC, LedsC;
 
-  TestSerialM -> Main.Boot;
+  Main.SoftwareInit -> LedsC;
+  Main.SoftwareInit -> SerialC;
+
+  TestSerialM.Boot -> Main.Boot;
+
+  TestSerialM.Receive -> SerialC.Receive;
+  TestSerialM.Send -> SerialC.Send;
 
   TestSerialM.Leds -> LedsC;
-
-  TestSerialM.UART -> HPLUARTM;
-  HPLUARTM.USARTControl -> HPLUSART1C;
-  HPLUARTM.USARTData -> HPLUSART1C;
 }
+
 
