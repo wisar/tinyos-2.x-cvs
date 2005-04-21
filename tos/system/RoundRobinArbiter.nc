@@ -73,7 +73,7 @@ implementation {
       return SUCCESS;
     }
     post RequestedTask();
-    return SUCCESS;
+    return EBUSY;
   }  
   
   //Release the shared resource
