@@ -28,6 +28,8 @@
  * independent manner.
  */
 
+includes TinyError;
+
 interface Capture {
 
   /** 
@@ -38,7 +40,7 @@ interface Capture {
    *
    * @return SUCCESS if the timer capture has been enabled
    */
-  async command result_t enableCapture(bool low_to_high);
+  async command error_t enableCapture(bool low_to_high);
 
   /**
    * Fired when an edge interrupt occurs.
@@ -48,12 +50,12 @@ interface Capture {
    * @return SUCCESS to keep the interrupt enabled, FAIL to disable
    *         the interrupt
    */
-  async event result_t captured(uint32_t time);
+  async event error_t captured(uint32_t time);
 
   /**
    * Diables a capture interrupt
    * 
    * @return SUCCESS if the interrupt has been disabled
    */ 
-  async command result_t disable();
+  async command error_t disable();
 }
