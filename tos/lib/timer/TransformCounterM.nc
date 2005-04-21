@@ -55,7 +55,7 @@ implementation
 
   async command to_size_type Counter.get()
   {
-    to_size_type rv;
+    to_size_type rv = 0;
     atomic
     {
       upper_count_type high = m_upper;
