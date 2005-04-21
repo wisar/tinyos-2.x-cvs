@@ -35,6 +35,6 @@ implementation
   components PlatformM, HPLUARTM;
 
   Init = PlatformM;
-  PLatformM.UART -> HPLUARTM.UART0;
+  PlatformM.UART -> HPLUARTM.UART0;
 }
 
