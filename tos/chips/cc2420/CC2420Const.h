@@ -54,6 +54,10 @@ enum {
   CC2420_TIME_SYMBOL = 16
 };
 
+#ifndef TOSH_DATA_LENGTH
+#define TOSH_DATA_LENGTH 28
+#endif
+
 // TinyOS default RF channel
 #ifdef TOS_DEF_CHANNEL
 #define CC2420_DEF_CHANNEL          TOS_DEF_CHANNEL + 11

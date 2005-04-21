@@ -40,18 +40,18 @@ interface HPLCC2420RAM {
    *
    * @return SUCCESS if the request was accepted
    */
-  async command result_t write(uint16_t addr, uint8_t length, uint8_t* buffer);
+  async command error_t write(uint16_t addr, uint8_t length, uint8_t* buffer);
 
-  async event result_t writeDone(uint16_t addr, uint8_t length, uint8_t* buffer);
+  async event error_t writeDone(uint16_t addr, uint8_t length, uint8_t* buffer);
 
   /**
    * Read data from RAM
    *
    * @return SUCCESS if the request was accepted
    */
-  async command result_t read(uint16_t addr, uint8_t length, uint8_t* buffer);
+  async command error_t read(uint16_t addr, uint8_t length, uint8_t* buffer);
 
-  async event result_t readDone(uint16_t addr, uint8_t length, uint8_t* buffer);
+  async event error_t readDone(uint16_t addr, uint8_t length, uint8_t* buffer);
   
 
 }

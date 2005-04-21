@@ -25,7 +25,7 @@
  * Revision:  $Revision$
  */
 
-configuration CC2420RadioC
+configuration RadioC
 {
   provides {
     interface SplitControl;
@@ -39,10 +39,10 @@ implementation
 {
   components CSMARadioC;
 
-  SplitControl = CC2420RadioC;
-  Send = CC2420RadioC;
-  Receive = CC2420RadioC;
+  SplitControl = CSMARadioC;
+  Send = CSMARadioC;
+  Receive = CSMARadioC;
 
-  RadioControl = CC2420RadioControlC;
-  RadioPacket = CC2420RadioControlC;
+  RadioControl = CSMARadioC;
+  RadioPacket = CSMARadioC;
 }
