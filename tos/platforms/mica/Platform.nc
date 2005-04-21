@@ -32,8 +32,9 @@ configuration Platform
 }
 implementation
 {
-  components PlatformM;
+  components PlatformM, HPLUARTM;
 
   Init = PlatformM;
+  PLatformM.UART -> HPLUARTM.UART0;
 }
 

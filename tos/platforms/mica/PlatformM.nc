@@ -29,6 +29,7 @@ includes hardware;
 module PlatformM
 {
   provides interface Init;
+  uses interface HPLUART as UART;
 }
 implementation
 {
@@ -42,9 +43,15 @@ implementation
   command error_t Init.init()
   {
     TOSH_SET_PIN_DIRECTIONS();
-    //timer_init();
+    //timer_init();  // Initialized by system timer in HALAlarm...
     power_init();
+    call UART.init();
+
     return SUCCESS;
   }
+
+  /** That serial library uses HPLUART as the common interface is no fun. */
+  async event error_t UART.get(uint8_t data) { return SUCCESS; }
+  async event error_t UART.putDone()         { return SUCCESS; }
 }
 
