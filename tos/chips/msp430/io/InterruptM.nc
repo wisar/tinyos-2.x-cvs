@@ -57,13 +57,8 @@ implementation {
    * Event fired by lower level interrupt dispatch for Interrupt
    */
   async event void MSP430Interrupt.fired() {
-    error_t val = SUCCESS;
     call MSP430Interrupt.clear();
-    val = signal Interrupt.fired();
-    if (val == FAIL) {
-      call MSP430Interrupt.disable();
-      call MSP430Interrupt.clear();
-    }
+    signal Interrupt.fired();
   }
 
   default async event error_t Interrupt.fired() { return FAIL; }
