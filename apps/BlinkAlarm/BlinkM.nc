@@ -10,7 +10,6 @@ module BlinkM
 }
 implementation
 {
-  uint32_t m_t0;
   enum { DELAY_MILLI = 512 };
 
   event void Boot.booted()
@@ -18,8 +17,7 @@ implementation
     atomic
     {
       call Leds.led1On();
-      m_t0 = call Alarm.now();
-      call Alarm.set( m_t0, DELAY_MILLI );
+      call Alarm.startNow( DELAY_MILLI );
     }
   }
 
@@ -27,9 +25,8 @@ implementation
   {
     atomic
     {
-      // this use of m_t0 produces a periodic alarm with no frequency skew
-      m_t0 += DELAY_MILLI;
-      call Alarm.set( m_t0, DELAY_MILLI );
+      // this usage produces a periodic alarm with no frequency skew
+      call Alarm.start( call Alarm.getAlarm(), DELAY_MILLI );
       call Leds.led0Toggle();
     }
   }
