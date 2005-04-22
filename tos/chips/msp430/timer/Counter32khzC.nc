@@ -24,19 +24,24 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-// AlarmTimerMilliC is the alarm to be used to multiplex into TimerMilliC.
-configuration AlarmTimerMilliC
+// Counter32khzC is the counter to be used for all 32khzs.
+configuration Counter32khzC
 {
-  provides interface Init;
-  provides interface Alarm<TMilli> as AlarmTimerMilli;
-  provides interface AlarmBase<TMilli,uint32_t> as AlarmBaseTimerMilli;
+  provides interface Counter<T32khz> as Counter32khz;
+  provides interface CounterBase<T32khz,uint32_t> as CounterBase32khz;
 }
 implementation
 {
-  components new AlarmMilliC();
+  components MSP430TimerC
+	   , MSP430Counter32khzC
+	   , new TransformCounterM(T32khz,uint32_t,T32khz,uint16_t,0,uint16_t) as Transform
+	   , new CastCounterM(T32khz) as Cast
+	   ;
+  
+  Counter32khz = Cast.Counter;
+  CounterBase32khz = Transform.Counter;
 
-  Init = AlarmMilliC;
-  AlarmTimerMilli = AlarmMilliC;
-  AlarmBaseTimerMilli = AlarmMilliC;
+  Cast.CounterFrom -> Transform.Counter;
+  Transform.CounterFrom -> MSP430Counter32khzC;
 }
 
