@@ -28,11 +28,15 @@ includes Timer;
 
 interface AlarmBase<frequency_tag,size_type>
 {
-  async command size_type now();
-  async command size_type get();
-  async command bool isSet();
-  async command void cancel();
-  async command void set( size_type t0, size_type dt );
+  // basic interface
+  async command void startNow( size_type dt );
+  async command void stop();
   async event void fired();
+
+  // extended interface
+  async command bool isRunning();
+  async command void start( size_type t0, size_type dt );
+  async command size_type getNow();
+  async command size_type getAlarm();
 }
 

@@ -30,29 +30,14 @@ generic module CastAlarmM( typedef frequency_tag )
 }
 implementation
 {
-  async command uint32_t Alarm.now()
+  async command void Alarm.startNow( uint32_t dt )
   {
-    return call AlarmFrom.now();
+    return call AlarmFrom.startNow(dt);
   }
 
-  async command uint32_t Alarm.get()
+  async command void Alarm.stop()
   {
-    return call AlarmFrom.get();
-  }
-
-  async command bool Alarm.isSet()
-  {
-    return call AlarmFrom.isSet();
-  }
-
-  async command void Alarm.cancel()
-  {
-    return call AlarmFrom.cancel();
-  }
-
-  async command void Alarm.set( uint32_t t0, uint32_t dt )
-  {
-    return call AlarmFrom.set(t0,dt);
+    return call AlarmFrom.stop();
   }
 
   async event void AlarmFrom.fired()
@@ -62,6 +47,26 @@ implementation
 
   default async event void Alarm.fired()
   {
+  }
+
+  async command bool Alarm.isRunning()
+  {
+    return call AlarmFrom.isRunning();
+  }
+
+  async command void Alarm.start( uint32_t t0, uint32_t dt )
+  {
+    return call AlarmFrom.start(t0,dt);
+  }
+
+  async command uint32_t Alarm.getNow()
+  {
+    return call AlarmFrom.getNow();
+  }
+
+  async command uint32_t Alarm.getAlarm()
+  {
+    return call AlarmFrom.getAlarm();
   }
 }
 
