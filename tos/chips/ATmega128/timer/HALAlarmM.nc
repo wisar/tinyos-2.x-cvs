@@ -48,23 +48,28 @@ implementation
       return SUCCESS;
   }
   
-  async command timer_size Alarm.now() {
+  async command timer_size Alarm.getNow() {
       return call HPLTimer.get();
   }
 
-  async command timer_size Alarm.get() {
+  async command timer_size Alarm.getAlarm() {
       return call HPLCompare.get();
   }
 
-  async command bool Alarm.isSet() {
+  async command bool Alarm.isRunning() {
       return call HPLCompare.isOn();
   }
 
-  async command void Alarm.cancel() {
+  async command void Alarm.stop() {
       call HPLCompare.stop();
   }
 
-  async command void Alarm.set( timer_size t0, timer_size dt ) 
+  async command void Alarm.startNow( timer_size dt ) 
+  {
+      call Alarm.start( call HPLTimer.get(), dt);
+  }
+
+  async command void Alarm.start( timer_size t0, timer_size dt ) 
   {
       timer_size now = call HPLTimer.get();
       timer_size elapsed = now - t0;
