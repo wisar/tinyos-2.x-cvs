@@ -25,14 +25,18 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * - Description ----------------------------------------------------------
- * Resource Arbiter Test Application
  * - Revision -------------------------------------------------------------
  * $Revision$
- * $Date$
- * @author Kevin Klues
- * ========================================================================
+ * $Date$ 
+ * ======================================================================== 
+ */
+ 
+ /**
+ * TestArbiter Application  
+ * This application is used to test the functionality of the arbiter 
+ * components developed using the Resource and ResourceUser uinterfaces
+ *
+ * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
 module TestArbiterM {
