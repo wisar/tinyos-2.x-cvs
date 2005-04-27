@@ -82,26 +82,24 @@ implementation {
   //  release it
   event void Resource0.requested() {
     call Resource0.release();
+    delay();
+    call Resource0.request();
+    call Resource1.request();
+    call Resource2.request();
   }
   event void Resource1.requested() {
     call Resource1.release();
+    delay();
+    call Resource0.request();
+    call Resource1.request();
+    call Resource2.request();    
   }  
   event void Resource2.requested() {
     call Resource2.release();
-  }
-  
-  //If see that resource is released, request it again 
-  event void Resource0.released() {
     delay();
     call Resource0.request();
-  }   
-  event void Resource1.released() {
-    delay();
-    call Resource1.request();  
+    call Resource1.request();
+    call Resource2.request();    
   }
-  event void Resource2.released() {
-    delay();
-    call Resource2.request();  
-  }   
 }
 
