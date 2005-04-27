@@ -46,7 +46,7 @@ implementation {
   components Main
      , TestArbiterM
      , new RoundRobinArbiter( uniqueCount(TEST_ARBITER_RESOURCE) ) as Arbiter   
-     //, new StandardArbiter( uniqueCount(TEST_ARBITER_RESOURCE) ) as Arbiter   
+     //, new FCFSArbiter( uniqueCount(TEST_ARBITER_RESOURCE) ) as Arbiter   
      , LedsC
      ;
 
