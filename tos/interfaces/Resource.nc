@@ -48,9 +48,6 @@ interface Resource {
    * @return SUCCESS You have gained access to the resource.
    *         EBUSY   The resource is busy. The current owner of 
    *                 the bus will receive the requested() event
-   *         FAIL    The resource could not be allocated.  There
-   *                 is no current owner, but for some reason
-   *                 the resource could not be given to you.
    */
   async command error_t request();
   
@@ -69,9 +66,4 @@ interface Resource {
    * Release a shared resource you previously acquired.
    */
   async command void release();
-  
-  /**
-   * Notification of a shared resource being released
-   */
-  event void released();  
 }
