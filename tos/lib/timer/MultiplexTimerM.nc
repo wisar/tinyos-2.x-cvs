@@ -64,8 +64,8 @@ implementation
   {
     atomic
     {
-      bzero( m_timers, sizeof(m_timers) );
-      bzero( m_flags, sizeof(m_flags) );
+      memset(m_timers, 0, sizeof(m_timers));
+      memset(m_flags, 0, sizeof(m_flags));
       m_processing_timers = FALSE;
       m_reprocess_timers = FALSE;
     }
