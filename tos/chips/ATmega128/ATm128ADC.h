@@ -138,12 +138,12 @@ enum {
 /** ADC Multiplexer Selection Register */
 typedef struct
 {
-    uint8_t aden  : 1;  //!< ADC Enable
-    uint8_t adsc  : 1;  //!< ADC Start Conversion
-    uint8_t adfr  : 1;  //!< ADC Free Running Select
-    uint8_t adif  : 1;  //!< ADC Interrupt Flag
-    uint8_t adie  : 1;  //!< ADC Interrupt Enable
     uint8_t adps  : 3;  //!< ADC Prescaler Select Bits
+    uint8_t adie  : 1;  //!< ADC Interrupt Enable
+    uint8_t adif  : 1;  //!< ADC Interrupt Flag
+    uint8_t adfr  : 1;  //!< ADC Free Running Select
+    uint8_t adsc  : 1;  //!< ADC Start Conversion
+    uint8_t aden  : 1;  //!< ADC Enable
 } ATm128ADCControl_t;
 
 
