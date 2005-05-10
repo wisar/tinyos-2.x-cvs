@@ -35,8 +35,8 @@ implementation
 {
   void power_init() {
       atomic {
-	  outw(MCUCR, 0);    // Internal RAM, IDLE, rupt vector at 0x0002
-	  sbi(MCUCR, SE);    // enable sleep instruction!
+	MCUCR = _BV(SE);      // Internal RAM, IDLE, rupt vector at 0x0002,
+			      // enable sleep instruction!
       }
   }
 

@@ -13,6 +13,7 @@ push( @includes, qw(
 
   %T/platforms/mica2
   %T/platforms/mica
+  %T/chips/cc1000
   %T/chips/ATmega128
   %T/chips/ATmega128/timer
   %T/lib/timer
