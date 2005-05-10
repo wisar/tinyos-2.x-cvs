@@ -45,8 +45,8 @@ interface HPLADC
   async command void disableADC();        //<! Disable ADC sampling
   async command void startConversion();          //<! Start ADC conversion
   async command void stopConversion();           //<! Stop ADC conversion
-  async command void enableInterruption()        //<! Enable ADC Interruption
-  async command void disableInterruption()       //<! Disable ADC Interruption
+  async command void enableInterruption();        //<! Enable ADC Interruption
+  async command void disableInterruption();       //<! Disable ADC Interruption
   async command void setContinuous();  //<! Enable continuous sampling
   async command void setSingle();      //<! Disable continuous sampling
   async command void reset();          //<! Clear the ADC interrupt flag
@@ -57,8 +57,6 @@ interface HPLADC
 
   /**
    * Signaled when a data ready is ready.
-   *
-   * @return SUCCESS always.
    */
-  async event result_t dataReady(uint16_t data);     
+  async event void dataReady(uint16_t data);     
 }
