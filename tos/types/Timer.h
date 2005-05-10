@@ -23,6 +23,8 @@
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
 // The TinyOS Timer structures are discussed in TEP 102.
+#ifndef TIMER_H
+#define TIMER_H
 
 typedef struct { } TMilli;
 typedef struct { } T32khz;
@@ -35,3 +37,4 @@ typedef struct
   bool overflow;
 } stopwatch_t;
 
+#endif
