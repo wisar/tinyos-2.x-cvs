@@ -41,19 +41,24 @@ implementation
     , new GeneralIOM() as Led1Impl
     , new GeneralIOM() as Led2Impl
     , new GeneralIOM() as Led3Impl
+    , PlatformLedsM
     ;
 
-  Led0 = Led1Impl.IO;
-  Led0Impl.MSPIO -> MSP430GeneralIOC.Port50;
+  
+  Led0 = PlatformLedsM.Led0;
+  PlatformLedsM.Led0Impl -> Led0Impl.GeneralIO;
+  Led0Impl.MSP430GeneralIO -> MSP430GeneralIOC.Port50;
 
-  Led1 = Led1Impl.IO;
-  Led1Impl.MSPIO -> MSP430GeneralIOC.Port51;
+  Led1 = PlatformLedsM.Led1;
+  PlatformLedsM.Led1Impl -> Led1Impl.GeneralIO;
+  Led1Impl.MSP430GeneralIO -> MSP430GeneralIOC.Port51;
 
-  Led2 = Led2Impl.IO;
-  Led2Impl.MSPIO -> MSP430GeneralIOC.Port52;
-
-  Led3 = Led3Impl.IO;
-  Led3Impl.MSPIO -> MSP430GeneralIOC.Port53;
-
+  Led2 = PlatformLedsM.Led2;
+  PlatformLedsM.Led2Impl -> Led2Impl.GeneralIO;
+  Led2Impl.MSP430GeneralIO -> MSP430GeneralIOC.Port52;
+  
+  Led3 = PlatformLedsM.Led3;
+  PlatformLedsM.Led3Impl -> Led3Impl.GeneralIO;
+  Led3Impl.MSP430GeneralIO -> MSP430GeneralIOC.Port53;
 }
 
