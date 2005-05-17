@@ -30,20 +30,30 @@
 
 
 /**
- * The OSKI presentation of the operating status of the Active Message
- * subsystem.
+ * Components should never wire directly to this component. This is
+ * the underlying configuration of OSKI broadcasts. Wires the
+ * broadcast implementation (BroadcastC) to the boot sequence and
+ * underlying Active Messages, and exports the broadcasting
+ * interfaces.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-configuration AMServiceImplC {
-  provides interface Service[uint8_t id];
+includes Broadcast;
+
+configuration BroadcastImplC {
+  provides {
+    interface Send[uint8_t id];
+    interface Receive[uint8_t id];
+    interface Packet;
+  }
 }
+
 implementation {
-  components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
-  
-  Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  components BroadcastC;
+
+  Send = BroadcastC;
+  Receive = BroadcastC;
+  Packet = BroadcastC;
 }

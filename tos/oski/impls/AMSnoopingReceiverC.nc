@@ -30,20 +30,27 @@
 
 
 /**
- * The OSKI presentation of the operating status of the Active Message
- * subsystem.
+ * The OSKI presentation of Active Message reception.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-configuration AMServiceImplC {
-  provides interface Service[uint8_t id];
+includes AM;
+
+generic configuration AMSnoopingReceiverC(am_id_t AMId) {
+  provides {
+    interface Receive;
+    interface Packet;
+    interface AMPacket;
+  }
 }
+
 implementation {
-  components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
-  
-  Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  components ActiveMessageImpl;
+
+  Receive = ActiveMessageImpl.Snoop[AMId];
+  Receive = ActiveMessageImpl.Receive[AMId];
+  Packet = ActiveMessageImpl;
+  AMPacket = ActiveMessageImpl;
 }

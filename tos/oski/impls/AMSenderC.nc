@@ -30,20 +30,26 @@
 
 
 /**
- * The OSKI implementation of the operating status of the Broadcast
- * subsystem.
+ * The OSKI presentation of Active Message reception.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-configuration BroadcastServiceImpl {
-  provides interface Service[uint8_t id];
+includes AM;
+
+generic configuration AMSenderC(am_id_t AMId) {
+  provides {
+    interface AMSend;
+    interface Packet;
+    interface AMPacket;
+  }
 }
+
 implementation {
-  components BroadcastImpl;
-  components new ServiceOrControllerP("OSKI.BroadcastServiceImpl.Service");
-  
-  Service = ServiceOrControllerP;
-  ServiceOrControllerP.SplitControl -> BroadcastImpl;  
+  components ActiveMessageImpl;
+
+  AMSend = ActiveMessageImpl.AMSend[AMId];
+  Packet = ActiveMessageImpl;
+  AMPacket = ActiveMessageImpl;
 }

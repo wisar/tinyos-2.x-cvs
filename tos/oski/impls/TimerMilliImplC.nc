@@ -30,20 +30,24 @@
 
 
 /**
- * The OSKI presentation of the operating status of the Active Message
- * subsystem.
+ * Components should never wire to this component. This is the
+ * underlying configuration of the OSKI timers. Wires the timer
+ * implementation (TimerC) to the boot sequence and exports the
+ * various Timer interfaces.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @author Cory Sharp
+ * @date   May 16 2005
  */ 
 
-configuration AMServiceImplC {
-  provides interface Service[uint8_t id];
+includes Timer;
+
+configuration TimerMilliImplC {
+  provides interface Timer<TMilli> as TimerMilli[uint8_t id];
 }
 implementation {
-  components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
-  
-  Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  components TimerMilliC, Main;
+  Main.SoftwareInit -> TimerMilliC;
+  TimerMilli = TimerMilliC;
 }
+

@@ -30,35 +30,20 @@
 
 
 /**
- * The underlying configuration of OSKI Active Messages. Wires the AM
- * implementation (ActiveMessageC) to the boot sequence, and exports
- * the AM interfaces.
+ * The OSKI presentation of the operating status of the Active Message
+ * subsystem.
  *
  * @author Philip Levis
  * @date   January 5 2005
  */ 
 
-includes AM;
-
-configuration ActiveMessageImpl {
-  provides {
-    interface SplitControl;      
-    interface AMSend[am_id_t id];
-    interface Receive[am_id_t id];
-    interface Receive as Snoop[am_id_t id];
-    interface Packet;
-    interface AMPacket;
-  }
+configuration AMServiceImplC {
+  provides interface Service[uint8_t id];
 }
-
 implementation {
-  components ActiveMessageC, Main;
-
-  Main.SplitControl -> ActiveMessageC;
+  components ActiveMessageImplC;
+  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
   
-  AMSend = ActiveMessageC;
-  Receive = ActiveMessageC.Receive;
-  Snoop = ActiveMessageC.Snoop;
-  Packet = ActiveMessageC;
-  AMPacket = ActiveMessageC;
+  Service = ServiceOrControllerM;
+  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
 }

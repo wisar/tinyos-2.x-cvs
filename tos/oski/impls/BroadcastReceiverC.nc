@@ -30,20 +30,24 @@
 
 
 /**
- * The OSKI presentation of the operating status of the Active Message
- * subsystem.
+ * The OSKI presentation of a single hop broadcast reception.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-configuration AMServiceImplC {
-  provides interface Service[uint8_t id];
+includes Broadcast;
+
+generic configuration BroadcastReceiverC(bcast_id_t id) {
+  provides {
+    interface Receive;
+    interface Packet;
+  }
 }
+
 implementation {
-  components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
-  
-  Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  components BroadcastImplC;
+
+  Receive = BroadcastImplC.Receive[id];
+  Packet = BroadcastImplC;
 }

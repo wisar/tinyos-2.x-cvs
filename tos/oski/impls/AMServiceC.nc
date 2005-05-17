@@ -30,24 +30,19 @@
 
 
 /**
- * The underlying configuration of the OSKI timers. Wires the timer
- * implementation (TimerC) to the boot sequence and exports the
- * various Timer interfaces.
+ * The OSKI presentation of controlling the Active Message service. Also
+ * see AMServiceNotifier.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-includes Timer;
-
-configuration TimerMilliImpl
-{
-  provides interface Timer<TMilli> as TimerMilli[uint8_t id];
-}
-implementation
-{
-  components TimerMilliC, Main;
-  Main.SoftwareInit -> TimerMilliC;
-  TimerMilli = TimerMilliC;
+generic configuration AMServiceC {
+  provides interface Service;
 }
 
+implementation {
+  components AMServiceImplC;
+
+  Service = AMServiceImplC.Service[unique("OSKI.AMServiceImplC.Service")];
+}

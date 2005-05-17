@@ -65,10 +65,10 @@
  * the next time it is called or signalled.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-generic module ServiceOrControllerP(char* strID) {
+generic module ServiceOrControllerM(char strID[]) {
   provides {
     interface Service[uint8_t id];
     interface ServiceNotify;

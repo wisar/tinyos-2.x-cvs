@@ -30,33 +30,35 @@
 
 
 /**
- * The configuration for OSKI broadcasts, which wires the broadcast
- * module to its underlying components.
+ * Components should never wire directly to this component: use
+ * BroadcastSenderC and BroadcastReceiverC instead. This is the
+ * configuration for OSKI broadcasts, which wires the broadcast module
+ * to its underlying components.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
 includes Broadcast;
 
 configuration BroadcastC {
   provides {
-    interface Send[bcast_id id];
-    interface Receive[bcast_id id];
+    interface Send[uint8_t id];
+    interface Receive[uint8_t id];
     interface Packet;
   }
 }
 
 implementation {
-  components BroadcastP, ActiveMessageImpl;
+  components BroadcastM, ActiveMessageImplC as AM;
 
-  BroadcastP.AMSend -> ActiveMessageImpl.AMSend[TOS_BCAST_AM_ID];
-  BroadcastP.SubReceive -> ActiveMessageImpl.AMReceive[TOS_BCAST_AM_ID];
-  BroadcastP.SubPacket -> ActiveMessageImpl;
-  BroadcastP.AMPacket -> ActiveMessageImpl;
+  BroadcastM.AMSend -> AM.AMSend[TOS_BCAST_AM_ID];
+  BroadcastM.SubReceive -> AM.Receive[TOS_BCAST_AM_ID];
+  BroadcastM.SubPacket -> AM;
+  BroadcastM.AMPacket -> AM;
 
-  Send = BroadcastP;
-  Receive = BroadcastP;
-  Packet = BroadcastP;
+  Send = BroadcastM;
+  Receive = BroadcastM;
+  Packet = BroadcastM;
   
 }

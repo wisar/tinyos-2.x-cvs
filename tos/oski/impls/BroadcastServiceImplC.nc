@@ -30,20 +30,20 @@
 
 
 /**
- * The OSKI presentation of the operating status of the Active Message
+ * The OSKI implementation of the operating status of the Broadcast
  * subsystem.
  *
  * @author Philip Levis
  * @date   January 5 2005
  */ 
 
-configuration AMServiceImplC {
+configuration BroadcastServiceImplC {
   provides interface Service[uint8_t id];
 }
 implementation {
-  components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
+  components BroadcastImplC;
+  components new ServiceOrControllerM("OSKI.BroadcastServiceImpl.Service");
   
   Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  ServiceOrControllerM.SplitControl -> BroadcastImplC;  
 }

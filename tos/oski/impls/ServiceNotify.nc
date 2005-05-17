@@ -1,6 +1,6 @@
 // $Id$
 /*									tab:4
- * "Copyright (c) 2005 The Regents of the University  of California.  
+ * "Copyright (c) 2004-5 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -19,7 +19,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2004 Intel Corporation
+ * Copyright (c) 2004-5 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -28,30 +28,18 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-
 /**
- * The underlying configuration of OSKI broadcasts. Wires the
- * broadcast implementation (BroadcastC) to the boot sequence and
- * underlying Active Messages, and exports the broadcasting interfaces.
- *
- * @author Philip Levis
- * @date   January 5 2005
- */ 
+  * Obtain updates on the running status of a service; this operates
+  * on the whole service, and not its instances.
+  *
+  * @author Philip Levis
+  * @date   January 5 2005
+  */ 
 
-includes Broadcast;
 
-configuration BroadcastImpl {
-  provides {
-    interface Send[bcast_id id];
-    interface Receive[bcast_id id];
-    interface Packet;
-  }
-}
+interface ServiceNotify {
 
-implementation {
-  components BroadcastC;
-
-  Send = BroadcastC;
-  Receive = BroadcastC;
-  Packet = BroadcastC;
+  event void started();
+  event void stopped();
+  
 }
