@@ -50,8 +50,7 @@ interface Interrupt {
   /**
    * Fired when an edge interrupt occurs.
    *
-   * @return SUCCESS to keep the interrupt enabled (equivalent to
-   *         calling startWait again), FAIL to disable the interrupt
+   * NOTE: Interrupts keep running until "disable()" is called
    */
   async event void fired();
 
