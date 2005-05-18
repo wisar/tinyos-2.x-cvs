@@ -39,6 +39,7 @@ module MSP430SPI0M
 {
   provides {
     interface Init;
+    interface SPIByte[uint8_t id];
     interface SPIPacket[uint8_t id];
     interface SPIPacketAdvanced[uint8_t id];
     interface BusArbitration[uint8_t id];
@@ -69,6 +70,23 @@ implementation
     state = SPI_IDLE;
     busOwner = 0xFF;
     return SUCCESS;
+  }
+
+  command uint8_t SPIByte.tx[uint8_t id](uint8_t value) {
+    uint8_t temp;
+    atomic {
+      if ((busOwner != id) || (state != SPI_IDLE))
+	return 0;
+    }
+    // clear out the receive buffer
+    temp = call USARTControl.rx();
+    // transmit
+    call USARTControl.tx(value);
+    // wait for the transmission to complete
+    while (!call USARTControl.isRxIntrPending()) ;
+    // get the result
+    temp = call USARTControl.rx();
+    return temp;
   }
 
   command error_t SPIPacket.send[uint8_t id](uint8_t* _txbuffer, uint8_t* _rxbuffer, uint8_t _length) {

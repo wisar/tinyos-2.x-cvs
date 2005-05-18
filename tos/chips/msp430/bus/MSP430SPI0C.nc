@@ -31,6 +31,7 @@ configuration MSP430SPI0C
 {
   provides {
     interface Init;
+    interface SPIByte[uint8_t id];
     interface SPIPacket[uint8_t id];
     interface SPIPacketAdvanced[uint8_t id];
     interface BusArbitration[uint8_t id];
@@ -42,6 +43,7 @@ implementation
 
   Init = HPLUSART0C;
   Init = SPIM;
+  SPIByte = SPIM;
   SPIPacket = SPIM;
   SPIPacketAdvanced = SPIM;
   BusArbitration = SPIM;

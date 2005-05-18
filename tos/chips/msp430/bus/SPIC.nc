@@ -28,6 +28,7 @@
 generic configuration SPIC() {
   provides interface Init;
   provides interface BusArbitration;
+  provides interface SPIByte;
   provides interface SPIPacket;
   provides interface SPIPacketAdvanced;
 }
@@ -39,6 +40,7 @@ implementation {
   };
 
   Init = SPI;
+  SPIByte = SPI.SPIByte[SPI_BUS_ID];
   SPIPacket = SPI.SPIPacket[SPI_BUS_ID];
   SPIPacketAdvanced = SPI.SPIPacketAdvanced[SPI_BUS_ID];
   BusArbitration = SPI.BusArbitration[SPI_BUS_ID];
