@@ -44,7 +44,7 @@ generic configuration TimerMilli()
 }
 implementation
 {
-  components TimerMilliImpl;
-  Timer = TimerMilliImpl.TimerMilli[unique("TimerMilli")];
+  components TimerMilliImplC;
+  Timer = TimerMilliImplC.TimerMilli[unique("TimerMilli")];
 }
 

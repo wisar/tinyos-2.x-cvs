@@ -32,9 +32,10 @@ configuration Platform
 }
 implementation
 {
-  components PlatformM, HPLUARTM;
+  components PlatformM, MotePlatformC, HPLUARTM;
 
   Init = PlatformM;
   PlatformM.UART -> HPLUARTM.UART0;
+  PlatformM.MoteInit -> MotePlatformC;
 }
 

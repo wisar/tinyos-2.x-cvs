@@ -30,6 +30,7 @@ module PlatformM
 {
   provides interface Init;
   uses interface HPLUART as UART;
+  uses interface Init as MoteInit;
 }
 implementation
 {
@@ -42,8 +43,11 @@ implementation
 
   command error_t Init.init()
   {
-    TOSH_SET_PIN_DIRECTIONS();
-    //timer_init();  // Initialized by system timer in HALAlarm...
+    error_t ok = call MoteInit.init();
+
+    if (ok != SUCCESS)
+      return ok;
+
     power_init();
     call UART.init();
 

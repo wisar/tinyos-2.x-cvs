@@ -103,23 +103,23 @@ implementation
   
   //=== UART Get Events. ======================================
   default async event error_t UART0.get(uint8_t data) { return SUCCESS; }
-  TOSH_SIGNAL(SIG_UART0_RECV) {
+  AVR_ATOMIC_HANDLER(SIG_UART0_RECV) {
       if (READ_BIT(UCSR0A, RXC))
 	  signal UART0.get(UDR0);
   }
   default async event error_t UART1.get(uint8_t data) { return SUCCESS; }
-  TOSH_SIGNAL(SIG_UART1_RECV) {
+  AVR_ATOMIC_HANDLER(SIG_UART1_RECV) {
       if (READ_BIT(UCSR1A, RXC))
 	  signal UART1.get(UDR1);
   }
 
   //=== UART Put Done Events. =================================
   default async event error_t UART0.putDone() { return SUCCESS; }
-  TOSH_INTERRUPT(SIG_UART0_TRANS) {
+  AVR_NONATOMIC_HANDLER(SIG_UART0_TRANS) {
       signal UART0.putDone();
   }
   default async event error_t UART1.putDone() { return SUCCESS; }
-  TOSH_INTERRUPT(SIG_UART1_TRANS) {
+  AVR_NONATOMIC_HANDLER(SIG_UART1_TRANS) {
       signal UART1.putDone();
   }
 

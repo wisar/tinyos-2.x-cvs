@@ -87,7 +87,7 @@ implementation
 
   default async event void HPLADC.dataReady(uint16_t done) { }
 
-  TOSH_SIGNAL(SIG_ADC) {
+  AVR_ATOMIC_HANDLER(SIG_ADC) {
       uint16_t data = call HPLADC.getValue();
       data &= ATMEGA128_10BIT_ADC_MASK;
       __nesc_enable_interrupt();

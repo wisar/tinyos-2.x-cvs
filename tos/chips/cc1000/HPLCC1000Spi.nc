@@ -31,7 +31,7 @@
 /**
  * Interface to the CC1000 chip using a SPI bus in slave mode
  */
-interface CC1000Spi
+interface HPLCC1000Spi
 {
   async command void writeByte(uint8_t data);
   async command bool isBufBusy();
