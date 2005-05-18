@@ -39,7 +39,7 @@ implementation
   Capture = SFDM;
   
   SFDM.LocalTime -> Counter32khzC;
-  SFDM.MSP430Control -> MSP430TimerC.ControlB1;
+  SFDM.MSP430TimerControl -> MSP430TimerC.ControlB1;
   SFDM.MSP430Capture -> MSP430TimerC.CaptureB1;
   SFDM.MSP430GeneralIO -> MSP430GeneralIOC.Port41;
 
