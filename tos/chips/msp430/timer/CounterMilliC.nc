@@ -28,15 +28,20 @@
 configuration CounterMilliC
 {
   provides interface Counter<TMilli,uint32_t> as CounterMilli32;
+  provides interface LocalTime<TMilli> as LocalTimeMilli;
 }
 implementation
 {
   components MSP430TimerC
 	   , MSP430Counter32khzC
 	   , new TransformCounterC(TMilli,uint32_t,T32khz,uint16_t,5,uint32_t) as Transform
+	   , new CounterToLocalTimeC(TMilli)
 	   ;
   
   CounterMilli32 = Transform.Counter;
+  LocalTimeMilli = CounterToLocalTimeC;
+
+  CounterToLocalTimeC.Counter -> Transform;
   Transform.CounterFrom -> MSP430Counter32khzC;
 }
 

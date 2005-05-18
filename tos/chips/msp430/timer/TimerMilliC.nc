@@ -38,15 +38,16 @@ configuration TimerMilliC
 }
 implementation
 {
-  components AlarmTimerMilliC
-	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilli")) as VirtualizeTimer
+  components new AlarmMilliC()
 	   , new AlarmToTimerC(TMilli)
+	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilli"))
 	   ;
 
-  Init = VirtualizeTimer;
-  TimerMilli = VirtualizeTimer;
+  Init = AlarmMilliC;
+  Init = VirtualizeTimerC;
+  TimerMilli = VirtualizeTimerC;
 
-  VirtualizeTimer.TimerFrom -> AlarmToTimerC;
-  AlarmToTimerC.Alarm -> AlarmTimerMilliC;
+  VirtualizeTimerC.TimerFrom -> AlarmToTimerC;
+  AlarmToTimerC.Alarm -> AlarmMilliC;
 }
 
