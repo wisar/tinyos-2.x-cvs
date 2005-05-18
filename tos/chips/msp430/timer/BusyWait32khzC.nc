@@ -24,22 +24,17 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-// Counter32khzC is the counter to be used for all 32khzs.
-configuration Counter32khzC
+configuration BusyWait32khzC
 {
-  provides interface Counter<T32khz,uint16_t> as Counter32khz16;
-  provides interface Counter<T32khz,uint32_t> as Counter32khz32;
+  provides interface BusyWait<T32khz,uint16_t>;
 }
 implementation
 {
-  components MSP430TimerC
+  components new BusyWaitCounterC(T32khz,uint16_t)
 	   , MSP430Counter32khzC
-	   , new TransformCounterC(T32khz,uint32_t,T32khz,uint16_t,0,uint16_t) as Transform
 	   ;
   
-  Counter32khz16 = MSP430Counter32khzC;
-  Counter32khz32 = Transform.Counter;
-
-  Transform.CounterFrom -> MSP430Counter32khzC;
+  BusyWait = BusyWaitCounterC;
+  BusyWaitCounter.Counter -> MSP430Counter32khzC;
 }
 

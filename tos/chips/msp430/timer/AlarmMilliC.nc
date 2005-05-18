@@ -28,24 +28,20 @@
 generic configuration AlarmMilliC()
 {
   provides interface Init;
-  provides interface Alarm<TMilli> as AlarmMilli;
-  provides interface AlarmBase<TMilli,uint32_t> as AlarmBaseMilli;
+  provides interface Alarm<TMilli,uint32_t> as AlarmMilli32;
 }
 implementation
 {
   components new MSP430Timer32khzC() as MSP430Timer
-           , new MSP430AlarmM(T32khz) as MSP430Alarm
-           , new TransformAlarmM(TMilli,uint32_t,T32khz,uint16_t,5) as Transform
-           , new CastAlarmM(TMilli) as Cast
+           , new MSP430AlarmC(T32khz) as MSP430Alarm
+           , new TransformAlarmC(TMilli,uint32_t,T32khz,uint16_t,5) as Transform
 	   , CounterMilliC as Counter
            ;
 
   Init = MSP430Alarm;
 
-  AlarmMilli = Cast;
-  AlarmBaseMilli = Transform;
+  AlarmMilli32 = Transform;
 
-  Cast.AlarmFrom -> Transform;
   Transform.AlarmFrom -> MSP430Alarm;
   Transform.Counter -> Counter;
 

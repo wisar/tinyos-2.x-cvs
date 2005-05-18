@@ -27,21 +27,16 @@
 // CounterMilliC is the counter to be used for all Millis.
 configuration CounterMilliC
 {
-  provides interface Counter<TMilli> as CounterMilli;
-  provides interface CounterBase<TMilli,uint32_t> as CounterBaseMilli;
+  provides interface Counter<TMilli,uint32_t> as CounterMilli32;
 }
 implementation
 {
   components MSP430TimerC
 	   , MSP430Counter32khzC
-	   , new TransformCounterM(TMilli,uint32_t,T32khz,uint16_t,5,uint32_t) as Transform
-	   , new CastCounterM(TMilli) as Cast
+	   , new TransformCounterC(TMilli,uint32_t,T32khz,uint16_t,5,uint32_t) as Transform
 	   ;
   
-  CounterMilli = Cast.Counter;
-  CounterBaseMilli = Transform.Counter;
-
-  Cast.CounterFrom -> Transform.Counter;
+  CounterMilli32 = Transform.Counter;
   Transform.CounterFrom -> MSP430Counter32khzC;
 }
 

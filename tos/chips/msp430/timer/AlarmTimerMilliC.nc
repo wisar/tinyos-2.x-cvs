@@ -28,8 +28,7 @@
 configuration AlarmTimerMilliC
 {
   provides interface Init;
-  provides interface Alarm<TMilli> as AlarmTimerMilli;
-  provides interface AlarmBase<TMilli,uint32_t> as AlarmBaseTimerMilli;
+  provides interface Alarm<TMilli,uint32_t> as AlarmTimerMilli;
 }
 implementation
 {
@@ -37,6 +36,5 @@ implementation
 
   Init = AlarmMilliC;
   AlarmTimerMilli = AlarmMilliC;
-  AlarmBaseTimerMilli = AlarmMilliC;
 }
 

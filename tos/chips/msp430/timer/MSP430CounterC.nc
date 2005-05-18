@@ -24,22 +24,33 @@
 
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
-// Counter32khzC is the counter to be used for all 32khzs.
-configuration Counter32khzC
+// MSP430Counter is a generic component that wraps the MSP430 HPL timers into a
+// TinyOS Counter.
+generic module MSP430CounterC( typedef frequency_tag )
 {
-  provides interface Counter<T32khz,uint16_t> as Counter32khz16;
-  provides interface Counter<T32khz,uint32_t> as Counter32khz32;
+  provides interface Counter<frequency_tag,uint16_t> as Counter;
+  uses interface MSP430Timer;
 }
 implementation
 {
-  components MSP430TimerC
-	   , MSP430Counter32khzC
-	   , new TransformCounterC(T32khz,uint32_t,T32khz,uint16_t,0,uint16_t) as Transform
-	   ;
-  
-  Counter32khz16 = MSP430Counter32khzC;
-  Counter32khz32 = Transform.Counter;
+  async command uint16_t Counter.get()
+  {
+    return call MSP430Timer.get();
+  }
 
-  Transform.CounterFrom -> MSP430Counter32khzC;
+  async command bool Counter.isOverflowPending()
+  {
+    return call MSP430Timer.isOverflowPending();
+  }
+
+  async command void Counter.clearOverflow()
+  {
+    call MSP430Timer.clearOverflow();
+  }
+
+  async event void MSP430Timer.overflow()
+  {
+    signal Counter.overflow();
+  }
 }
 

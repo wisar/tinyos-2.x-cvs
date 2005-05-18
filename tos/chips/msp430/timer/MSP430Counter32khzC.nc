@@ -27,12 +27,12 @@
 // MSP430Counter32khC provides the standard 32khz counter for the MSP430.
 configuration MSP430Counter32khzC
 {
-  provides interface CounterBase<T32khz,uint16_t> as MSP430Counter32khz;
+  provides interface Counter<T32khz,uint16_t> as MSP430Counter32khz;
 }
 implementation
 {
   components MSP430TimerC
-           , new MSP430CounterM(T32khz) as Counter
+           , new MSP430CounterC(T32khz) as Counter
 	   ;
   
   MSP430Counter32khz = Counter;
