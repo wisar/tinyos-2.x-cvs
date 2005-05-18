@@ -428,11 +428,11 @@ implementation
      return SUCCESS;
   }
 
-  async event error_t CCA.fired() {
+  async event void CCA.fired() {
     // reset the CCA pin back to the CCA function
     call HPLChipcon.write(CC2420_IOCFG1, 0);
+    call CCA.disable();
     post PostOscillatorOn();
-    return FAIL;
   }
 }
 
