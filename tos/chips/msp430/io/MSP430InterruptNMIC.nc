@@ -31,7 +31,7 @@ configuration MSP430InterruptNMIC
 }
 implementation
 {
-  components MSP430InterruptNMIM;
+  components MSP430InterruptNMIM as MSP430InterruptM;
 
   NMI = MSP430InterruptM.NMI;
   OF = MSP430InterruptM.OF;

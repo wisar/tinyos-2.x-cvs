@@ -38,7 +38,7 @@ configuration MSP430InterruptPort2C
 }
 implementation
 {
-  components MSP430InterruptPort2M;
+  components MSP430InterruptPort2M as MSP430InterruptM;
 
 #ifdef __msp430_have_port2
   Port20 = MSP430InterruptM.Port20;

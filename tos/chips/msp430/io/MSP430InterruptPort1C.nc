@@ -38,7 +38,7 @@ configuration MSP430InterruptPort1C
 }
 implementation
 {
-  components MSP430InterruptPort1M;
+  components MSP430InterruptPort1M as MSP430InterruptM;
 
 #ifdef __msp430_have_port1
   Port10 = MSP430InterruptM.Port10;
