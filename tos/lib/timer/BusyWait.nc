@@ -26,21 +26,9 @@
 
 includes Timer;
 
-interface TimerAsync<frequency_tag>
+interface BusyWait<frequency_tag,size_type>
 {
   // basic interface
-  async command void startPeriodicNow( uint32_t dt );
-  async command void startOneShotNow( uint32_t dt );
-  async command void stop();
-  async event void fired( uint32_t when, uint32_t numMissed );
-
-  // extended interface
-  async command bool isRunning();
-  async command bool isOneShot();
-  async command void startPeriodic( uint32_t t0, uint32_t dt );
-  async command void startOneShot( uint32_t t0, uint32_t dt );
-  async command uint32_t getNow();
-  async command uint32_t gett0();
-  async command uint32_t getdt();
+  async command void wait( size_type dt );
 }
 

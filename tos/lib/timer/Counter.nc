@@ -26,9 +26,9 @@
 
 includes Timer;
 
-interface Counter<frequency_tag>
+interface Counter<frequency_tag,size_type>
 {
-  async command uint32_t get();
+  async command size_type get();
   async command bool isOverflowPending();
   async command void clearOverflow();
   async event void overflow();

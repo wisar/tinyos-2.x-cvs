@@ -26,21 +26,37 @@
 
 includes Timer;
 
-interface TimerBase<frequency_tag,size_type>
+generic module BusyWaitC( typedef frequency_tag, typedef size_type @integer() )
 {
-  // basic interface
-  command void startPeriodicNow( size_type dt );
-  command void startOneShotNow( size_type dt );
-  command void stop();
-  event void fired( size_type when, size_type numMissed );
+  provides interface BusyWait<frequency_tag,size_type>;
+  uses interface Counter<frequency_tag,size_type>;
+}
+implementation
+{
+  enum
+  {
+    HALF_MAX_SIZE_TYPE = ((size_type)1) << (8*sizeof(size_type)-1),
+  };
 
-  // extended interface
-  command bool isRunning();
-  command bool isOneShot();
-  command void startPeriodic( size_type t0, size_type dt );
-  command void startOneShot( size_type t0, size_type dt );
-  command size_type getNow();
-  command size_type gett0();
-  command size_type getdt();
+  async command void BusyWait.wait( size_type dt )
+  {
+    atomic
+    {
+      // comparisons are <= to guarantee a wait at least as long as dt
+
+      size_type t0 = call Counter.get();
+      if( dt <= HALF_MAX_SIZE_TYPE )
+      {
+	while( (call Counter.get() - t0) <= dt );
+      }
+      else
+      {
+	dt -= HALF_MAX_SIZE_TYPE;
+	while( (call Counter.get() - t0) <= dt );
+	t0 += dt;
+	while( (call Counter.get() - t0) <= HALF_MAX_SIZE_TYPE );
+      }
+    }
+  }
 }
 

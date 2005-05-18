@@ -26,17 +26,17 @@
 
 includes Timer;
 
-interface Alarm<frequency_tag>
+interface Alarm<frequency_tag,size_type>
 {
   // basic interface
-  async command void startNow( uint32_t dt );
+  async command void startNow( size_type dt );
   async command void stop();
   async event void fired();
 
   // extended interface
   async command bool isRunning();
-  async command void start( uint32_t t0, uint32_t dt );
-  async command uint32_t getNow();
-  async command uint32_t getAlarm();
+  async command void start( size_type t0, size_type dt );
+  async command size_type getNow();
+  async command size_type getAlarm();
 }
 

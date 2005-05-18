@@ -20,26 +20,26 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-// @author Cory Sharp <cssharp@eecs.berkeley.edu>
+//@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-// SyncAlarmC takes an alarm and filters its fired event through a task, thus
-// transforming it from interrupt context to task context.  It's used to
-// sychronize an alarm feeding into MultiplexTimerM to get sync timers out
-// instead of async timers.
+// The TinyOS Timer interfaces are discussed in TEP 102.
 
 includes Timer;
 
-generic configuration SyncAlarmC( typedef frequency_tag, typedef size_type @integer() )
+generic module CounterToLocalTimeC(frequency_tag)
 {
-  provides interface AlarmBase<frequency_tag,size_type> as AlarmBase;
-  uses interface AlarmBase<frequency_tag,size_type> as AlarmBaseFrom;
+  provides interface LocalTime<frequency_tag>;
+  uses interface Counter<frequency_tag,uint32_t>;
 }
 implementation
 {
-  components new SyncAlarmM(frequency_tag,size_type) as SyncAlarm
-	   ;
+  async command uint32_t LocalTime.get()
+  {
+    return call Counter.get();
+  }
 
-  AlarmBase = SyncAlarm;
-  AlarmBaseFrom = SyncAlarm;
+  async event void Counter.overflow()
+  {
+  }
 }
 
