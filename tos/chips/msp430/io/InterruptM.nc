@@ -1,6 +1,6 @@
 //$Id$
 
-/* "Copyright (c) 2000-2003 The Regents of the University of California.  
+/* "Copyright (c) 2000-2005 The Regents of the University of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -61,5 +61,5 @@ implementation {
     signal Interrupt.fired();
   }
 
-  default async event error_t Interrupt.fired() { return FAIL; }
+  default async event void Interrupt.fired() { }
 }
