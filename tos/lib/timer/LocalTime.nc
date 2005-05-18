@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface LocalTime<frequency_tag>
+interface LocalTime<precision_tag>
 {
   async command uint32_t get();
 }

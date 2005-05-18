@@ -26,10 +26,10 @@
 
 includes Timer;
 
-generic module BusyWaitC( typedef frequency_tag, typedef size_type @integer() )
+generic module BusyWaitC( typedef precision_tag, typedef size_type @integer() )
 {
-  provides interface BusyWait<frequency_tag,size_type>;
-  uses interface Counter<frequency_tag,size_type>;
+  provides interface BusyWait<precision_tag,size_type>;
+  uses interface Counter<precision_tag,size_type>;
 }
 implementation
 {

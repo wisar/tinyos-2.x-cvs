@@ -22,10 +22,10 @@
 
 // @author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-generic module AlarmToTimerC( typedef frequency_tag )
+generic module AlarmToTimerC( typedef precision_tag )
 {
-  provides interface Timer<frequency_tag>;
-  uses interface Alarm<frequency_tag,uint32_t>;
+  provides interface Timer<precision_tag>;
+  uses interface Alarm<precision_tag,uint32_t>;
 }
 implementation
 {

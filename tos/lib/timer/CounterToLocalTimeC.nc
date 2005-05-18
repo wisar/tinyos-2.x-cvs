@@ -26,10 +26,10 @@
 
 includes Timer;
 
-generic module CounterToLocalTimeC(frequency_tag)
+generic module CounterToLocalTimeC( typedef precision_tag )
 {
-  provides interface LocalTime<frequency_tag>;
-  uses interface Counter<frequency_tag,uint32_t>;
+  provides interface LocalTime<precision_tag>;
+  uses interface Counter<precision_tag,uint32_t>;
 }
 implementation
 {

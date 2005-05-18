@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface Timer<frequency_tag>
+interface Timer<precision_tag>
 {
   // basic interface
   command void startPeriodicNow( uint32_t dt );

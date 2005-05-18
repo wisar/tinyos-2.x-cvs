@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface Alarm<frequency_tag,size_type>
+interface Alarm<precision_tag,size_type>
 {
   // basic interface
   async command void startNow( size_type dt );

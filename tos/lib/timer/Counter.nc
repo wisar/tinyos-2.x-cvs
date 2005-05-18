@@ -26,7 +26,7 @@
 
 includes Timer;
 
-interface Counter<frequency_tag,size_type>
+interface Counter<precision_tag,size_type>
 {
   async command size_type get();
   async command bool isOverflowPending();

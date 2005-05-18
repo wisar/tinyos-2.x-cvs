@@ -26,9 +26,8 @@
 
 includes Timer;
 
-interface BusyWait<frequency_tag,size_type>
+interface BusyWait<precision_tag,size_type>
 {
-  // basic interface
   async command void wait( size_type dt );
 }
 
