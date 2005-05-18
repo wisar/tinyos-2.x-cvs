@@ -51,9 +51,9 @@ implementation
     // components required for the radio
       CC2420RadioM
     , CC2420ControlM
-    , HPLCC2420C, 
+    , HPLCC2420C
     , CC2420RadioControlM
-    , RandomLFSR
+    , RandomLfsrC as RandomC
     , new Alarm32khzC() as AlarmC
     , LedsC
     // defined by each platform
@@ -62,6 +62,9 @@ implementation
     , CC2420RadioCaptureSFD
     ;
 
+  Init = AlarmC;
+  Init = RandomC;
+  Init = HPLCC2420C;
   Init = CC2420RadioM;
   SplitControl = CC2420RadioM;
   Send = CC2420RadioM;
@@ -78,8 +81,7 @@ implementation
   CC2420RadioM.CC2420Init -> CC2420ControlM;
   CC2420RadioM.CC2420SplitControl -> CC2420ControlM;
   CC2420RadioM.CC2420Control -> CC2420ControlM;
-  CC2420RadioM.Random -> RandomLFSR;
-  CC2420RadioM.TimerControl -> AlarmC;
+  CC2420RadioM.Random -> RandomC;
   CC2420RadioM.BackoffTimerJiffy -> AlarmC;
 
   CC2420RadioM.HPLChipcon -> HPLCC2420C.HPLCC2420;
@@ -88,6 +90,7 @@ implementation
   CC2420RadioM.RadioCCA -> CC2420RadioIO.CC2420RadioCCA;
   CC2420RadioM.RadioFIFO -> CC2420RadioIO.CC2420RadioFIFO;
   CC2420RadioM.RadioFIFOP -> CC2420RadioIO.CC2420RadioFIFOP;
+  CC2420RadioM.RadioSFD -> CC2420RadioIO.CC2420RadioSFD;
   CC2420RadioM.FIFOP -> CC2420RadioInterruptFIFOP;
   CC2420RadioM.SFD -> CC2420RadioCaptureSFD;
 
@@ -99,5 +102,7 @@ implementation
   CC2420ControlM.RadioReset -> CC2420RadioIO.CC2420RadioReset;
   CC2420ControlM.RadioVREF -> CC2420RadioIO.CC2420RadioVREF;
   CC2420ControlM.CCA -> CC2420RadioIO.CC2420RadioCCAInterrupt;
+
+  HPLCC2420C.CC2420RadioCS -> CC2420RadioIO.CC2420RadioCS;
 
 }

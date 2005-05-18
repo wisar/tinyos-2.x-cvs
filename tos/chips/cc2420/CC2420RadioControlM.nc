@@ -44,7 +44,7 @@ implementation {
   /*************************************************************
    * TinyOS virtual RF channel support
    */
-  command result_t RadioControl.SetRFChannel(uint8_t channel) {
+  command error_t RadioControl.SetRFChannel(uint8_t channel) {
     if (channel > call RadioControl.GetMaxChannels() - 1) {
       return FAIL;
     }
@@ -62,7 +62,7 @@ implementation {
   /*************************************************************
    * RF output power programming
    */
-  command result_t RadioControl.SetRFPower(uint8_t power) {
+  command error_t RadioControl.SetRFPower(uint8_t power) {
     atomic rfpower = power;
     // CC2420 power level is between 0 and 31
     return call CC2420.SetRFPower(power >> 3);
@@ -136,7 +136,7 @@ implementation {
     return msg->header.length;
   }
 
-  command result_t RadioPacket.setLength(message_t* msg, uint8_t _length) {
+  command error_t RadioPacket.setLength(message_t* msg, uint8_t _length) {
     atomic msg->header.length = length;
     return SUCCESS;
   }
@@ -154,7 +154,7 @@ implementation {
   command uint16_t RadioPacket.getAddress(message_t* msg) {
     return msg->header.addr;
   }
-  command result_t RadioPacket.setAddress(message_t* msg, uint16_t _addr) {
+  command error_t RadioPacket.setAddress(message_t* msg, uint16_t _addr) {
     atomic msg->header.addr = _addr;
     return SUCCESS;
   }
@@ -165,7 +165,7 @@ implementation {
   command uint16_t RadioPacket.getGroup(message_t* msg) {
     return msg->header.destpan;
   }
-  command result_t RadioPacket.setGroup(message_t* msg, uint16_t group) {
+  command error_t RadioPacket.setGroup(message_t* msg, uint16_t group) {
     atomic msg->header.destpan = group;
     return SUCCESS;
   }

@@ -58,6 +58,19 @@ enum {
 #define TOSH_DATA_LENGTH 28
 #endif
 
+enum {
+  // size of the header not including the length byte
+  MSG_HEADER_SIZE = sizeof(TOSRadioHeader),
+  // size of the footer
+  MSG_FOOTER_SIZE = sizeof(TOSRadioFooter),
+  // size of the data length
+  DATA_LENGTH = TOSH_DATA_LENGTH,
+  // size of the full packet
+  MSG_DATA_SIZE = DATA_LENGTH + MSG_HEADER_SIZE + MSG_FOOTER_SIZE,
+  // position of the length byte
+  LENGTH_BYTE_NUMBER = 1,
+};
+
 // TinyOS default RF channel
 #ifdef TOS_DEF_CHANNEL
 #define CC2420_DEF_CHANNEL          TOS_DEF_CHANNEL + 11

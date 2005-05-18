@@ -42,7 +42,7 @@ interface HPLCC2420FIFO {
    *
    * @return SUCCESS if the bus is free to read from the FIFO
    */
-  async command error_t readRXFIFO(uint8_t length, uint8_t *data);
+  command error_t readRXFIFO(uint8_t length, uint8_t *data);
 
   /**
    * Writes a series of bytes to the transmit FIFO.
@@ -52,7 +52,7 @@ interface HPLCC2420FIFO {
    *
    * @return SUCCESS if the bus is free to write to the FIFO
    */
-  async command error_t writeTXFIFO(uint8_t length, uint8_t *data);
+  command error_t writeTXFIFO(uint8_t length, uint8_t *data);
 
   /**
    * Notification that a byte from the RX FIFO has been received.
@@ -62,7 +62,7 @@ interface HPLCC2420FIFO {
    *
    * @return SUCCESS 
    */
-  async event error_t RXFIFODone(uint8_t length, uint8_t *data);
+  event error_t RXFIFODone(uint8_t length, uint8_t *data);
 
   /**
    * Notification that the bytes have been written to the FIFO
@@ -73,5 +73,5 @@ interface HPLCC2420FIFO {
    *
    * @return SUCCESS
    */
-  async event error_t TXFIFODone(uint8_t length, uint8_t *data);
+  event error_t TXFIFODone(uint8_t length, uint8_t *data);
 }

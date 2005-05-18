@@ -420,20 +420,19 @@ implementation
     return call HPLChipconRAM.write(CC2420_RAM_SHORTADR, 2, (uint8_t*)&addr);
   }
 
-  async event error_t HPLChipconRAM.readDone(uint16_t addr, uint8_t length, uint8_t* buffer) {
+  event error_t HPLChipconRAM.readDone(uint16_t addr, uint8_t length, uint8_t* buffer) {
      return SUCCESS;
   }
 
-  async event error_t HPLChipconRAM.writeDone(uint16_t addr, uint8_t length, uint8_t* buffer) {
+  event error_t HPLChipconRAM.writeDone(uint16_t addr, uint8_t length, uint8_t* buffer) {
      return SUCCESS;
   }
 
-   async event error_t CCA.fired() {
-     // reset the CCA pin back to the CCA function
-     call HPLChipcon.write(CC2420_IOCFG1, 0);
-     post PostOscillatorOn();
-     return FAIL;
-   }
-	
+  async event error_t CCA.fired() {
+    // reset the CCA pin back to the CCA function
+    call HPLChipcon.write(CC2420_IOCFG1, 0);
+    post PostOscillatorOn();
+    return FAIL;
+  }
 }
 
