@@ -30,7 +30,7 @@ configuration CC2420RadioInterruptFIFO
 implementation
 {
   components 
-    , MSP430InterruptPort1C
+      MSP430InterruptPort1C
     , new InterruptM()
     ;
 

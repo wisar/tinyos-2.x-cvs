@@ -32,6 +32,7 @@ implementation
   components 
       new CaptureM() as SFDM
     , MSP430TimerC
+    , MSP430GeneralIOC
     , Counter32khzC
     ;
 
