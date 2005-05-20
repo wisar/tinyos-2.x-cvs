@@ -53,17 +53,17 @@ implementation
     call Timer2.startPeriodicNow( 1000 );
   }
 
-  event void Timer0.fired( uint32_t when, uint32_t numMissed )
+  event void Timer0.fired()
   {
     call Leds.led0Toggle();
   }
   
-  event void Timer1.fired( uint32_t when, uint32_t numMissed )
+  event void Timer1.fired()
   {
     call Leds.led1Toggle();
   }
   
-  event void Timer2.fired( uint32_t when, uint32_t numMissed )
+  event void Timer2.fired()
   {
     call Leds.led2Toggle();
   }
