@@ -100,8 +100,10 @@ implementation
 	  }
 	  else
 	  {
+	    // The remaining time is non-positive (the timer had fired).
+	    // So add dt to convert it to remaining for the next event.
 	    timer->t0 += timer->dt;
-	    elapsed -= timer->dt;
+	    remaining += timer->dt; 
 	  }
 
 	  signal Timer.fired[num]();
