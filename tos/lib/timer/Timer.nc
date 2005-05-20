@@ -32,7 +32,7 @@ interface Timer<precision_tag>
   command void startPeriodicNow( uint32_t dt );
   command void startOneShotNow( uint32_t dt );
   command void stop();
-  event void fired( uint32_t when, uint32_t numMissed );
+  event void fired();
 
   // extended interface
   command bool isRunning();

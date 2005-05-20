@@ -54,10 +54,9 @@ implementation
 
   task void fired()
   { 
-    uint32_t when = call Alarm.getAlarm();
     if( m_oneshot == FALSE )
-      start( when, m_dt, FALSE );
-    signal Timer.fired( when, 0 );
+      start( call Alarm.getAlarm(), m_dt, FALSE );
+    signal Timer.fired();
   }
 
   async event void Alarm.fired()
