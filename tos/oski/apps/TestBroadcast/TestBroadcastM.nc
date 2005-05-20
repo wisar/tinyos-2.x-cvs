@@ -60,7 +60,7 @@ implementation {
     call MilliTimer.startPeriodicNow(1000);
   }
 
-  event void MilliTimer.fired(uint32_t when, uint32_t numMissed) {
+  event void MilliTimer.fired() {
     call Leds.led1Toggle();
     /*if (locked) {
       return;

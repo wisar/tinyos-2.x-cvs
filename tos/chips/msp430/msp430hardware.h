@@ -157,6 +157,7 @@ inline void TOSH_wait_250ns(void)
 
 inline void TOSH_uwait(uint16_t u) 
 { 
+  /*
   uint16_t i;
   if (u < 500)
     for (i=2; i < u; i++) { 
@@ -174,7 +175,9 @@ inline void TOSH_uwait(uint16_t u)
                    "nop\n\t"
                    ::);
     }
-  
+  */
+  uint16_t t0 = TAR;
+  while((TAR - t0) <= u);
 } 
 
 void __nesc_disable_interrupt()

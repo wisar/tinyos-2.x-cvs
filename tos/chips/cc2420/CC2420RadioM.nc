@@ -361,7 +361,7 @@ implementation {
    * Multiplexed timer to control initial backoff, 
    * congestion backoff, and delay while waiting for an ACK
    */
-  async event error_t BackoffTimerJiffy.fired( uint32_t when, uint32_t numMissed ) {
+  async event error_t BackoffTimerJiffy.fired() {
     uint8_t currentstate;
     atomic currentstate = stateRadio;
 

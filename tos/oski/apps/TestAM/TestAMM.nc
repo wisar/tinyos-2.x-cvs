@@ -60,7 +60,7 @@ implementation {
     call SplitControl.start();
   }
   
-  event void MilliTimer.fired(uint32_t when, uint32_t numMissed) {
+  event void MilliTimer.fired() {
     counter++;
     if (locked) {
       return;

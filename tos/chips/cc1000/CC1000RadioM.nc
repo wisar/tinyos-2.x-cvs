@@ -376,7 +376,7 @@ implementation
       ; // XXX. Hmm
   }
 
-  event void WakeupTimer.fired(uint32_t when, uint32_t numMissed) {
+  event void WakeupTimer.fired() {
     atomic 
       {
 	if (lplRxPower == 0)
@@ -1038,7 +1038,7 @@ implementation
       call SquelchTimer.startPeriodicNow(CC1K_SquelchIntervalFast);
   }
 
-  event void SquelchTimer.fired(uint32_t when, uint32_t numMissed) {
+  event void SquelchTimer.fired() {
     atomic
       if (radioState == IDLE_STATE)
 	requestRssi(RSSI_NOISE_FLOOR);
