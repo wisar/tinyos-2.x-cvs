@@ -27,7 +27,7 @@
 // Convert ATmega128 hardware timer to TinyOS CounterBase.
 generic module HALCounterM( typedef frequency_tag, typedef timer_size )
 {
-  provides interface CounterBase<frequency_tag,timer_size> as Counter;
+  provides interface Counter<frequency_tag,timer_size> as Counter;
   uses interface HPLTimer<timer_size> as Timer;
 }
 implementation

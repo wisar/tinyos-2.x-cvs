@@ -69,6 +69,8 @@ implementation
     SPDR = outgoingByte;
     signal HPLCC1000Spi.dataReady(temp);
   }
+  default async event void HPLCC1000Spi.dataReady(uint8_t data) { }
+  
 
   async command void HPLCC1000Spi.writeByte(uint8_t data) {
     atomic outgoingByte = data;

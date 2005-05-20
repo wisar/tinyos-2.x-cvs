@@ -28,7 +28,7 @@ generic module HALAlarmM(typedef frequency_tag,
 			 typedef timer_size @integer())
 {
     provides interface Init;
-    provides interface AlarmBase<frequency_tag,timer_size> as Alarm;
+    provides interface Alarm<frequency_tag,timer_size> as Alarm;
 
     uses interface HPLTimer<timer_size>;
     uses interface HPLCompare<timer_size>;

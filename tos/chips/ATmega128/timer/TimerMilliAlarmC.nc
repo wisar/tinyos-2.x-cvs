@@ -28,23 +28,19 @@
 configuration TimerMilliAlarmC
 {
   provides interface Init;
-  provides interface Alarm<TMilli> as TimerMilliAlarm;
-  provides interface AlarmBase<TMilli,uint32_t> as TimerMilliBase;
+  provides interface Alarm<TMilli,uint32_t> as TimerMilliBase;
 }
 implementation
 {
   components HPLTimerM,
       new HALAlarmM(T32khz,uint8_t) as HALAlarm,
-      new TransformAlarmM(TMilli,uint32_t,T32khz,uint8_t,0) as Transform,
-      new CastAlarmM(TMilli) as Cast,
+      new TransformAlarmC(TMilli,uint32_t,T32khz,uint8_t,0) as Transform,
       TimerMilliCounterC as Counter
       ;
 
-  TimerMilliAlarm = Cast;
   TimerMilliBase = Transform;
 
   // Alarm Transform Wiring
-  Cast.AlarmFrom -> Transform;
   Transform.AlarmFrom -> HALAlarm;
   Transform.Counter -> Counter;
 
