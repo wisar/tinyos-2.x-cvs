@@ -58,5 +58,9 @@ implementation
       }
     }
   }
+
+  async event void Counter.overflow()
+  {
+  }
 }
 
