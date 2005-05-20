@@ -36,7 +36,7 @@ implementation {
   components MSP430SPI0C as SPI;
 
   enum {
-    SPI_BUS_ID = unique("BusHPLUSART0"),
+    SPI_BUS_ID = unique("Bus.HPLUSART0"),
   };
 
   Init = SPI;

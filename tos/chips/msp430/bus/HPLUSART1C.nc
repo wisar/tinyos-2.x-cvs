@@ -37,7 +37,7 @@ configuration HPLUSART1C
 }
 implementation
 {
-  components HPLUSART1M, new BusArbitrationC() as BA, MSP430GeneralIOC as IO;
+  components HPLUSART1M, new BusArbitrationC("Bus.HPLUSART1") as BA, MSP430GeneralIOC as IO;
 
   Init = BA;
 

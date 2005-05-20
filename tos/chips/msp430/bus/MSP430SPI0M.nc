@@ -72,7 +72,7 @@ implementation
     return SUCCESS;
   }
 
-  command uint8_t SPIByte.tx[uint8_t id](uint8_t value) {
+  async command uint8_t SPIByte.tx[uint8_t id](uint8_t value) {
     uint8_t temp;
     atomic {
       if ((busOwner != id) || (state != SPI_IDLE))
@@ -278,6 +278,10 @@ implementation
   // pass through the busFree event
   event error_t LowerBusArbitration.busFree[uint8_t id]() {
     return signal BusArbitration.busFree[id]();
+  }
+
+  default event error_t BusArbitration.busFree[uint8_t id]() {
+    return FAIL;
   }
 
 }
