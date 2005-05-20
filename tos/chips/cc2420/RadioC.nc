@@ -28,6 +28,7 @@
 configuration RadioC
 {
   provides {
+    interface Init;
     interface SplitControl;
     interface RadioControl;
     interface RadioPacket;
@@ -39,6 +40,7 @@ implementation
 {
   components CSMARadioC;
 
+  Init = CSMARadioC;
   SplitControl = CSMARadioC;
   Send = CSMARadioC;
   Receive = CSMARadioC;

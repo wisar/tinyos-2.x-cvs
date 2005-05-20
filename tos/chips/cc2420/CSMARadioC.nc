@@ -59,6 +59,7 @@ implementation
     // defined by each platform
     , CC2420RadioIO
     , CC2420RadioInterruptFIFOP
+    , CC2420RadioInterruptCCA
     , CC2420RadioCaptureSFD
     ;
 
@@ -95,13 +96,12 @@ implementation
   CC2420RadioM.SFD -> CC2420RadioCaptureSFD;
 
   CC2420ControlM.HPLChipconInit -> HPLCC2420C.Init;
-  CC2420ControlM.HPLChipconControl -> HPLCC2420C.StdControl;
   CC2420ControlM.HPLChipcon -> HPLCC2420C.HPLCC2420;
   CC2420ControlM.HPLChipconRAM -> HPLCC2420C.HPLCC2420RAM;
 
   CC2420ControlM.RadioReset -> CC2420RadioIO.CC2420RadioReset;
   CC2420ControlM.RadioVREF -> CC2420RadioIO.CC2420RadioVREF;
-  CC2420ControlM.CCA -> CC2420RadioIO.CC2420RadioCCAInterrupt;
+  CC2420ControlM.CCA -> CC2420RadioInterruptCCA;
 
   HPLCC2420C.CC2420RadioCS -> CC2420RadioIO.CC2420RadioCS;
 
