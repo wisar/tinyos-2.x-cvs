@@ -6,7 +6,7 @@ module BlinkM
 {
   uses interface Boot;
   uses interface Leds;
-  uses interface Alarm<TMilli> as Alarm;
+  uses interface Alarm<TMilli,uint32_t> as Alarm;
 }
 implementation
 {
