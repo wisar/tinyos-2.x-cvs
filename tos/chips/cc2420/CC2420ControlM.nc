@@ -60,7 +60,7 @@ implementation
     STOP_STATE,
   };
 
-  uint8_t state = 0;
+  uint8_t state;
   norace uint16_t gCurrentParameters[14];
 
    /************************************************************************
@@ -115,16 +115,7 @@ implementation
    *************************************************************************/
   command error_t Init.init() {
 
-    uint8_t _state = FALSE;
-
-    atomic {
-      if (state == IDLE_STATE) {
-	state = INIT_STATE;
-	_state = TRUE;
-      }
-    }
-    if (!_state)
-      return FAIL;
+    state = INIT_STATE;
 
     call HPLChipconInit.init();
   
@@ -169,7 +160,8 @@ implementation
 
     gCurrentParameters[CP_IOCFG1]   =  0;
 
-    atomic state = INIT_STATE_DONE;
+    state = INIT_STATE_DONE;
+
     return SUCCESS;
   }
 
