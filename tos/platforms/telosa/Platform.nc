@@ -33,11 +33,9 @@ implementation
 {
   components PlatformM
     , MSP430ClockC
-    , HPLUSART1C
     ;
 
   Init = PlatformM;
   PlatformM.MSP430ClockInit -> MSP430ClockC.Init;
-  PlatformM.HPLUSART1Init -> HPLUSART1C.Init;
 }
 
