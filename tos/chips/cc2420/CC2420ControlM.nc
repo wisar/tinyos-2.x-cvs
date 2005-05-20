@@ -39,7 +39,6 @@ module CC2420ControlM {
   }
   uses {
     interface Init as HPLChipconInit;
-    interface StdControl as HPLChipconControl;
     interface HPLCC2420 as HPLChipcon;
     interface HPLCC2420RAM as HPLChipconRAM;
 
@@ -181,7 +180,6 @@ implementation
 
     call HPLChipcon.cmd(CC2420_SXOSCOFF); 
     ok = call CCA.disable();
-    ok &= call HPLChipconControl.stop();
 
     call RadioReset.clr();
     ok &= call CC2420Control.VREFOff();
@@ -215,7 +213,6 @@ implementation
     if (!_state)
       return FAIL;
 
-    call HPLChipconControl.start();
     //turn on power
     call CC2420Control.VREFOn();
     // toggle reset
