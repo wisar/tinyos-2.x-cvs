@@ -20,10 +20,13 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
+/**
+ * @author Joe Polastre
+ */
 interface SPIByte
 {
   /**
-   * Synchronous transmit and receive
+   * Synchronous transmit and receive (can be in interrupt context)
    */
-  command uint8_t tx(uint8_t val);
+  async command uint8_t tx(uint8_t val);
 }

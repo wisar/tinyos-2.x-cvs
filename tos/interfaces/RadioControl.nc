@@ -81,7 +81,7 @@ interface RadioControl
    *
    * @result The corresponding output dBm of the input power level
    */
-  command uint8_t RFtoDB(uint8_t power);
+  command int8_t RFtoDB(uint8_t power);
 
   /**
    * Convert a dBm value to a relative RFPower value.
