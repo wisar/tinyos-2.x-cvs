@@ -29,7 +29,7 @@
  *
  * $Id$
  */
-generic module BusArbitrationM() {
+generic module BusArbitrationM(char busname[]) {
   provides {
     interface Init;
     interface BusArbitration[uint8_t id];
@@ -46,7 +46,7 @@ implementation {
     uint8_t i;
     uint8_t currentstate;
     // tell everyone the bus has been released
-    for (i = 0; i < uniqueCount("BusArbitration"); i++) {
+    for (i = 0; i < uniqueCount(busname); i++) {
       atomic currentstate = state;
       if (currentstate == BUS_IDLE) 
         signal BusArbitration.busFree[i]();

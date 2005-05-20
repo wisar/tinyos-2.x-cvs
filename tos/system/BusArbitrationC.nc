@@ -33,7 +33,7 @@
  *
  * $Id$
  */
-generic configuration BusArbitrationC()
+generic configuration BusArbitrationC(char busname[])
 {
   provides {
     interface Init;
@@ -42,7 +42,7 @@ generic configuration BusArbitrationC()
 }
 implementation
 {
-  components new BusArbitrationM();
+  components new BusArbitrationM(busname);
 
   Init = BusArbitrationM;
   BusArbitration = BusArbitrationM;
