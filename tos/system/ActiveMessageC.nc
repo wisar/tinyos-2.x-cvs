@@ -37,24 +37,26 @@
 
 /**
  * @author Philip Levis
- * @date January 17 2005
+ * @date May 16 2005
  */
 
 configuration ActiveMessageC {
   provides {
+    interface Init;
     interface SplitControl;
 
-    interface AMSend[am_id_t id];
-    interface Receive[am_id_t id];
-    interface Receive as Snoop[am_id_t id];
+    interface AMSend[uint8_t id];
+    interface Receive[uint8_t id];
+    interface Receive as Snoop[uint8_t id];
 
     interface Packet;
     interface AMPacket;
   }
 }
 implementation {
-  components ActiveMessageM, RadioPacket;
+  components ActiveMessageM, RadioPacketC;
 
+  Init = ActiveMessageM;
   SplitControl = ActiveMessageM;
   
   AMSend   = ActiveMessageM;
@@ -63,8 +65,9 @@ implementation {
   Packet   = ActiveMessageM;
   AMPacket = ActiveMessageM;
 
-  ActiveMessageM.SubControl -> RadioPacket;
-  ActiveMessageM.SubPacket  -> RadioPacket;
-  ActiveMessageM.SubSend    -> RadioPacket;
-  ActiveMessageM.SubReceive -> RadioPacket;
+  ActiveMessageM.SubControl -> RadioPacketC;
+  ActiveMessageM.SubPacket  -> RadioPacketC;
+  ActiveMessageM.SubSend    -> RadioPacketC;
+  ActiveMessageM.SubReceive -> RadioPacketC;
+  ActiveMessageM.SubInit -> RadioPacketC;
 }

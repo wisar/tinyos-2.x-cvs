@@ -43,6 +43,7 @@ includes Broadcast;
 
 configuration BroadcastC {
   provides {
+    interface Service;
     interface Send[uint8_t id];
     interface Receive[uint8_t id];
     interface Packet;
@@ -51,7 +52,8 @@ configuration BroadcastC {
 
 implementation {
   components BroadcastM, ActiveMessageImplC as AM;
-
+  components new AMServiceC();
+  
   BroadcastM.AMSend -> AM.AMSend[TOS_BCAST_AM_ID];
   BroadcastM.SubReceive -> AM.Receive[TOS_BCAST_AM_ID];
   BroadcastM.SubPacket -> AM;
@@ -60,5 +62,5 @@ implementation {
   Send = BroadcastM;
   Receive = BroadcastM;
   Packet = BroadcastM;
-  
+  Service = AMServiceC;
 }

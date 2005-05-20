@@ -40,20 +40,20 @@
 configuration TestBroadcastC {}
 implementation {
   components Main, TestBroadcastM, LedsC;
-  components new BroadcastSenderC(5) as Sender;
-  components new BroadcastReceiverC(5) as Receiver;
+  //  components new BroadcastSenderC(5) as Sender;
+  //components new BroadcastReceiverC(5) as Receiver;
   components new BroadcastServiceC();
-  components new OSKITimerMilliC();
+  components new OSKITimerMsC();
   
   Main.SoftwareInit -> LedsC;
   
   TestBroadcastM.Boot -> Main.Boot;
 
-  TestBroadcastM.Receive -> Receiver;
-  TestBroadcastM.Send -> Sender;
-  TestBroadcastM.Service -> BroadcastServiceC;
+  // TestBroadcastM.Receive -> Receiver;
+  //TestBroadcastM.Send -> Sender;
+  TestBroadcastM.Service -> BroadcastServiceC.Service;
   TestBroadcastM.Leds -> LedsC;
-  TestBroadcastM.MilliTimer -> OSKITimerMilliC;
+  TestBroadcastM.MilliTimer -> OSKITimerMsC;
 }
 
 

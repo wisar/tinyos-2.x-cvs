@@ -44,6 +44,7 @@ includes Broadcast;
 
 configuration BroadcastImplC {
   provides {
+    interface Service;
     interface Send[uint8_t id];
     interface Receive[uint8_t id];
     interface Packet;
@@ -53,6 +54,7 @@ configuration BroadcastImplC {
 implementation {
   components BroadcastC;
 
+  Service = BroadcastC;
   Send = BroadcastC;
   Receive = BroadcastC;
   Packet = BroadcastC;

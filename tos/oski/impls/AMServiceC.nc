@@ -37,7 +37,7 @@
  * @date   May 16 2005
  */ 
 
-generic configuration AMServiceC {
+generic configuration AMServiceC() {
   provides interface Service;
 }
 

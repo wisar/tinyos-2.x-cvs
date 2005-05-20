@@ -42,8 +42,8 @@ configuration BroadcastServiceImplC {
 }
 implementation {
   components BroadcastImplC;
-  components new ServiceOrControllerM("OSKI.BroadcastServiceImpl.Service");
+  components new ServiceOrMuxM("OSKI.BroadcastServiceImpl.Service");
   
-  Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> BroadcastImplC;  
+  Service = ServiceOrMuxM;
+  ServiceOrMuxM.SubService -> BroadcastImplC;
 }

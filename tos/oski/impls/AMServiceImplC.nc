@@ -42,7 +42,7 @@ configuration AMServiceImplC {
 }
 implementation {
   components ActiveMessageImplC;
-  components new ServiceOrControllerM("OSKI.AMServiceImpl.Service");
+  components new ServiceOrControllerM("OSKI.AMServiceImplC.Service");
   
   Service = ServiceOrControllerM;
   ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  

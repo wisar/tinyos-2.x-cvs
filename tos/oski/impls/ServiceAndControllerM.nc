@@ -80,6 +80,11 @@ generic module ServiceAndControllerM(char* strID) {
 
 implementation {
 
+  enum {
+    STATUS_BITS = uniqueCount(strID),
+    STATUS_BYTES = (STATUS_BITS + 7) / 8,
+  };
+
   typedef struct {
     uint8_t busy:1;
     uint8_t active:1;
@@ -88,7 +93,7 @@ implementation {
   // Bits are stored big-endian. Bit 0 is the 0th bit of the last
   // element, while bit 18 is the 2nd bit of the third to last
   // element.
-  uint8_t bitmask[(uniqueCount(strID) + 7) / 8];
+  uint8_t bitmask[STATUS_BYTES];
 
   // Assume that we are initially busy (the rest of TinyOS is
   // initializing the underlying service, but that it isn't started

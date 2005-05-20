@@ -35,8 +35,7 @@
 #include "CC1000Const.h"
 #include "TOSMsg.h"
 
-configuration CSMARadioC
-{
+configuration CSMARadioC{
   provides {
     interface Init;
     interface SplitControl;
@@ -45,6 +44,7 @@ configuration CSMARadioC
     interface Send;
     interface Receive;
 
+    interface Packet;    
     interface CSMAControl;
     interface CSMABackoff;
     interface RadioTimeStamping;
@@ -52,8 +52,7 @@ configuration CSMARadioC
     interface LowPowerListening;
   }
 }
-implementation
-{
+implementation {
   components CC1000RadioM, CC1000ControlM, HPLCC1000C;
   components RandomLfsrC, TimerMilliC;
 
@@ -64,7 +63,7 @@ implementation
   SplitControl = CC1000RadioM;
   Send = CC1000RadioM;
   Receive = CC1000RadioM;
-
+  Packet = CC1000RadioM;
   //RadioControl = CC1000RadioM;
   //RadioPacket = CC1000RadioM;
 
