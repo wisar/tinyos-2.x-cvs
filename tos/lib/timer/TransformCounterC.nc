@@ -50,10 +50,10 @@ implementation
     LOW_SHIFT_RIGHT = bit_shift_right,
     HIGH_SHIFT_LEFT = 8*sizeof(from_size_type) - LOW_SHIFT_RIGHT,
     NUM_UPPER_BITS = 8*sizeof(to_size_type) - 8*sizeof(from_size_type) + bit_shift_right,
-    // hack to remove warning when NUM_UPPER_BITS == 8*sizeof(upper_count_type)
-    NUB_HACK0 = NUM_UPPER_BITS / 2,
-    NUB_HACK1 = NUM_UPPER_BITS - NUB_HACK0,
-    OVERFLOW_MASK = ((((upper_count_type)1) << NUB_HACK0) << NUB_HACK1) - 1,
+    // 1. hack to remove warning when NUM_UPPER_BITS == 8*sizeof(upper_count_type)
+    // 2. still provide warning if NUM_UPPER_BITS > 8*sizeof(upper_count_type)
+    // 3. and allow for the strange case of NUM_UPPER_BITS == 0
+    OVERFLOW_MASK = NUM_UPPER_BITS ? ((((upper_count_type)2) << (NUM_UPPER_BITS-1)) - 1) : 0,
   };
 
   async command to_size_type Counter.get()
