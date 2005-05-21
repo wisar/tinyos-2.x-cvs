@@ -34,11 +34,11 @@ implementation {
     , RadioC;
   
   Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> RadioC;
 
   Impl -> Main.Boot;
 
   Impl.Leds -> LedsC;
+  Impl.SplitControl -> RadioC;
 
 }
 

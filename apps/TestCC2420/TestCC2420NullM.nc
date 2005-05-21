@@ -30,13 +30,19 @@ includes TOSMsg;
 module TestCC2420NullM {
   uses interface Boot;
   uses interface Leds;
+  uses interface SplitControl;
 }
 implementation {
 
   message_t msg;
 
   event void Boot.booted() {
+    // start the radio
+    call SplitControl.start();
   }
+
+  event void SplitControl.startDone(error_t error) { }
+  event void SplitControl.stopDone(error_t error) { }
 
 }
 
