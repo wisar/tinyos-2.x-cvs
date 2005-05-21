@@ -66,21 +66,25 @@ implementation
 
   async command void Alarm.start( uint16_t t0, uint16_t dt )
   {
-    uint16_t now = call MSP430Timer.get();
-    uint16_t elapsed = now - t0;
-    if( elapsed >= dt )
+    atomic
     {
-      call MSP430Compare.setEventFromNow(2);
-    }
-    else
-    {
-      uint16_t remaining = dt - elapsed;
-      if( remaining <= 2 )
+      uint16_t now = call MSP430Timer.get();
+      uint16_t elapsed = now - t0;
+      if( elapsed >= dt )
+      {
 	call MSP430Compare.setEventFromNow(2);
+      }
       else
-	call MSP430Compare.setEvent( now+remaining );
+      {
+	uint16_t remaining = dt - elapsed;
+	if( remaining <= 2 )
+	  call MSP430Compare.setEventFromNow(2);
+	else
+	  call MSP430Compare.setEvent( now+remaining );
+      }
+      call MSP430TimerControl.clearPendingInterrupt();
+      call MSP430TimerControl.enableEvents();
     }
-    call MSP430TimerControl.enableEvents();
   }
 
   async command uint16_t Alarm.getNow()
