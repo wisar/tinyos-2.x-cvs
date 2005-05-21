@@ -48,7 +48,7 @@
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */
  
-generic module FCFSArbiter(uint8_t numUsers) {
+generic module FCFSArbiter(char resourceName[]) {
   provides {
     interface Init;
     interface Resource[uint8_t id];
@@ -59,7 +59,7 @@ implementation {
 
   uint8_t state;
   uint8_t resId;
-  uint8_t resQ[numUsers];
+  uint8_t resQ[uniqueCount(resourceName)];
   uint8_t qHead;
   uint8_t qTail;
   enum {RES_IDLE, RES_BUSY};
@@ -128,7 +128,7 @@ implementation {
    */
   async command error_t Resource.immediateRequest[uint8_t id]() {
     atomic {
-      if(state = RES_IDLE) {
+      if(state == RES_IDLE) {
         state = RES_BUSY;
         resId = id;
         return SUCCESS;

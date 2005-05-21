@@ -45,7 +45,7 @@
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */
  
-generic module RoundRobinArbiter(uint8_t numUsers) {
+generic module RoundRobinArbiter(char resourceName[]) {
   provides {
     interface Init;
     interface Resource[uint8_t id];
@@ -56,7 +56,7 @@ implementation {
 
   uint8_t state;
   uint8_t resId;
-  uint8_t request[(numUsers-1)/8 + 1];
+  uint8_t request[(uniqueCount(resourceName)-1)/8 + 1];
   enum {RES_IDLE, RES_BUSY};
   enum {NO_RES = 0xFF};
   
@@ -119,7 +119,7 @@ implementation {
    */
   async command error_t Resource.immediateRequest[uint8_t id]() {
     atomic {
-      if(state = RES_IDLE) {
+      if(state == RES_IDLE) {
         state = RES_BUSY;
         resId = id;
         return SUCCESS;
@@ -174,7 +174,7 @@ implementation {
     //in Round-Robin order
   bool GrantNextRequest() {
     int i;
-    for(i=resId+1; i<numUsers; i++) {
+    for(i=resId+1; i<uniqueCount(resourceName); i++) {
       if((request[i/8] & (1 << (i % 8))) > 0) {
         request[resId/8] = request[resId/8] & ~(1 << (resId % 8));
         resId = i;
