@@ -31,7 +31,6 @@ includes TOSMsg;
 configuration CSMARadioC
 {
   provides {
-    interface Init;
     interface SplitControl;
     interface RadioControl;
     interface RadioPacket;
@@ -61,12 +60,14 @@ implementation
     , CC2420RadioInterruptFIFOP
     , CC2420RadioInterruptCCA
     , CC2420RadioCaptureSFD
+    , Main
     ;
 
-  Init = AlarmC;
-  Init = RandomC;
-  Init = HPLCC2420C;
-  Init = CC2420RadioM;
+  Main.SoftwareInit -> AlarmC;
+  Main.SoftwareInit -> RandomC;
+  Main.SoftwareInit -> HPLCC2420C;
+  Main.SoftwareInit -> CC2420RadioM;
+
   SplitControl = CC2420RadioM;
   Send = CC2420RadioM;
   Receive = CC2420RadioM;
