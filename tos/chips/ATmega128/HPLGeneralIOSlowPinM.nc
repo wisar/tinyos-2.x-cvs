@@ -23,41 +23,31 @@
  */
 
 /// @author Martin Turon <mturon@xbow.com>
+/// @author David Gay <dgay@intel-research.net>
 
-generic configuration HPLGeneralIOPort (uint8_t port_addr, uint8_t ddr_addr, uint8_t pin_addr)
+/**
+ * Generic pin access for pins not mapped into I/O space (for which the
+ * sbi, cbi instructions cannot be used). This can be used for ports F-G.
+ */
+
+generic module HPLGeneralIOSlowPinM (uint8_t port_addr, 
+				     uint8_t ddr_addr, 
+				     uint8_t pin_addr,
+				     uint8_t bit)
 {
-  // provides all the ports as raw ports
-  provides {
-    interface GeneralIO as Pin0;
-    interface GeneralIO as Pin1;
-    interface GeneralIO as Pin2;
-    interface GeneralIO as Pin3;
-    interface GeneralIO as Pin4;
-    interface GeneralIO as Pin5;
-    interface GeneralIO as Pin6;
-    interface GeneralIO as Pin7;
-  }
+    provides interface GeneralIO as IO;
 }
 implementation
 {
-  components 
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 0) as Bit0,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 1) as Bit1,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 2) as Bit2,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 3) as Bit3,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 4) as Bit4,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 5) as Bit5,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 6) as Bit6,
-    new HPLGeneralIOPinM (port_addr, ddr_addr, pin_addr, 7) as Bit7;
+#define pin (*(volatile uint8_t *)pin_addr)
+#define port (*(volatile uint8_t *)port_addr)
+#define ddr (*(volatile uint8_t *)ddr_addr)
 
-  Pin0 = Bit0;
-  Pin1 = Bit1;
-  Pin2 = Bit2;
-  Pin3 = Bit3;
-  Pin4 = Bit4;
-  Pin5 = Bit5;
-  Pin6 = Bit6;
-  Pin7 = Bit7;
-
+    inline async command bool IO.get()        { return READ_BIT (pin, bit); }
+    inline async command void IO.set()        { atomic SET_BIT  (port, bit); }
+    inline async command void IO.clr()        { atomic CLR_BIT  (port, bit); }
+    inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
+    
+    inline async command void IO.makeInput()  { atomic CLR_BIT  (ddr, bit);  }
+    inline async command void IO.makeOutput() { atomic SET_BIT  (ddr, bit);  }
 }
-

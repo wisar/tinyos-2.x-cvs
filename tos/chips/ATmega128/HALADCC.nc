@@ -48,7 +48,7 @@ configuration HALADCC
 implementation
 {
   components Main, HALADCM, HPLADCM,
-    new RoundRobinArbiter(uniqueCount(ADC_RESOURCE)) as ADCArbiter;
+    new RoundRobinArbiter(ADC_RESOURCE) as ADCArbiter;
 
   Init = HALADCM;
   Init = ADCArbiter;
