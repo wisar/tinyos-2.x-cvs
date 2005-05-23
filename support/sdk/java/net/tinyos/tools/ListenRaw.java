@@ -47,7 +47,6 @@ import java.io.*;
 import javax.comm.*;
 
 import net.tinyos.util.*;
-import net.tinyos.message.*;
 
 public class ListenRaw {
     private static String CLASS_NAME = "net.tinyos.tools.ListenRaw";

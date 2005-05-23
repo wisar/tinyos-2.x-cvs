@@ -32,7 +32,6 @@ package net.tinyos.tools;
 
 import net.tinyos.util.*;
 import net.tinyos.packet.*;
-import net.tinyos.message.*;
 import java.io.*;
 
 public class Send {
