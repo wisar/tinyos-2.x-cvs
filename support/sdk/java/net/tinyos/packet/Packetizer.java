@@ -31,7 +31,6 @@
 package net.tinyos.packet;
 
 import net.tinyos.util.*;
-import net.tinyos.message.*;
 import java.io.*;
 import java.util.*;
 

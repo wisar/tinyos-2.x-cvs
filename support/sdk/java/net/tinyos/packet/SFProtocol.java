@@ -32,7 +32,6 @@
 
 package net.tinyos.packet;
 
-import net.tinyos.message.Dump;
 import java.io.*;
 
 abstract public class SFProtocol extends AbstractSource

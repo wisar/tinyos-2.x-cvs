@@ -41,10 +41,7 @@
 package net.tinyos.packet;
 
 /**
- * CommError interface (report MoteIF errors).<p>
- *
- * An interface for listening to messages built from
- * net.tinyos.message.Message
+ * An interface for reporting packet source errors.
  *
  * @version	1, 1 Aug 2003
  * @author	David Gay
