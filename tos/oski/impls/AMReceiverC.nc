@@ -38,7 +38,7 @@
 
 includes AM;
 
-generic configuration AMSnooperC(am_id_t AMId) {
+generic configuration AMReceiverC(am_id_t AMId) {
   provides {
     interface Receive;
     interface Packet;
@@ -47,9 +47,9 @@ generic configuration AMSnooperC(am_id_t AMId) {
 }
 
 implementation {
-  components ActiveMessageImpl;
+  components ActiveMessageImplC as Impl;
 
-  Receive = ActiveMessageImpl.Snoop[AMId];
-  Packet = ActiveMessageImpl;
-  AMPacket = ActiveMessageImpl;
+  Receive = Impl.Receive[AMId];
+  Packet = Impl;
+  AMPacket = Impl;
 }
