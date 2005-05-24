@@ -73,6 +73,7 @@ implementation
       }
     else // We should only come here with currentOp = CANCELLED
       nextOp = reason;
+    return SUCCESS;
   }
 
   void startNextOp() {

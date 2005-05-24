@@ -63,7 +63,6 @@ implementation
     uint16_t squelchTab[CC1K_SquelchTableSize];
     uint8_t i, j, min; 
     uint32_t newThreshold;
-    uint16_t min_value;
 
     squelchTable[squelchIndex++] = data;
     if (squelchIndex >= CC1K_SquelchTableSize)

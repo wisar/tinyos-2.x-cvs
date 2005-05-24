@@ -76,7 +76,6 @@ implementation {
   CC1000RadioM.Random -> RandomLfsrC;
   CC1000RadioM.HPLCC1000Spi -> HPLCC1000C;
 
-  CC1000RadioM.SquelchTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
   CC1000RadioM.CC1000Squelch -> CC1000SquelchM;
 
   CC1000RadioM.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
