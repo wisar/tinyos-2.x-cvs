@@ -12,7 +12,7 @@ endif
 endif
 
 
-TOSCOMMDIR ?= $(TOSDIR)/../tools/java/net/tinyos/comm
+TOSCOMMDIR ?= $(TOSDIR)/../support/sdk/java/net/tinyos/comm
 INSTALLDIR ?= /usr/local/bin
 JAVADIR ?= $(shell x="`which javac`"; echo $${x%/bin/javac})
 JAVADIR ?= $(shell perl -e '($$x=`which javac`)=~s{/[^/]+/javac$$}{}; print $$x')
@@ -24,13 +24,6 @@ JAVADEPS = \
   build_$(PLATFORM)/NativeSerial.java \
   build_$(PLATFORM)/TOSComm.java \
   build_$(PLATFORM)/TOSCommJNI.java \
-  ByteQueue.java \
-  SerialPort.java \
-  SerialPortEvent.java \
-  SerialPortListener.java \
-  TOSCommLibraryLoader.java \
-  TOSSerial.java \
-  UnsupportedCommOperationException.java
 
 JAVAOBJS = $(JAVADEPS:%.java=%.class)
 
@@ -63,7 +56,7 @@ include Makefile.$(PLATFORM)
 
 
 $(JAVAOBJS): $(JAVADEPS)
-	javac $(JAVADEPS)
+	javac $(JAVADEPS) *.java
 
 $(BUILDDIR):
 	mkdir $(BUILDDIR)

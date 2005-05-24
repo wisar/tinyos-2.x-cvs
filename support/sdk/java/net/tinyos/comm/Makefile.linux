@@ -23,9 +23,9 @@ $(SWIGOBJS): $(SWIGDEPS)
 
 install: FORCE
 	install -d $(TOSCOMMDIR)
-	install *.class $(BUILDDIR)/*.class $(TOSCOMMDIR)
-	install $(TOSCOMMLIB) $(JAVADIR)/jre/lib/i386
+	install $(BUILDDIR)/*.class $(TOSCOMMDIR)
+	install $(TOSCOMMLIB) $(JAVADIR)/jre/bin
 
 uninstall: FORCE
-	rm -rf $(TOSCOMMDIR)/../comm $(JAVADIR)/jre/lib/i386/libTOSComm.so
+	rm -rf $(TOSCOMMDIR)/../comm $(JAVADIR)/jre/bin/libTOSComm.so
 
