@@ -36,20 +36,20 @@
  * ========================================================================
  */
  
-interface HPLTDA5250RegComm {
+interface TDA5250RegComm {
  /**
    * Transmit a byte of data to a given register. 
    * @param address The address of the register to write to
    * @param data the 8-bit data value to write to the register
    */
-  async command void writeByte(uint8_t address, uint8_t data);
+  async command error_t writeByte(uint8_t address, uint8_t data);
   
  /**
    * Transmit a word of data to a given register. 
    * @param address The address of the register to write to
    * @param data the 16-bit data value to write to the register
    */  
-  async command void writeWord(uint8_t address, uint16_t data);
+  async command error_t writeWord(uint8_t address, uint16_t data);
   
  /**
    * Read a byte of data from a given register. 
