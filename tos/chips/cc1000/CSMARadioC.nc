@@ -53,8 +53,8 @@ configuration CSMARadioC{
   }
 }
 implementation {
-  components CC1000RadioM, CC1000ControlM, HPLCC1000C;
-  components RandomLfsrC, TimerMilliC;
+  components CC1000RadioM, CC1000RssiM, CC1000SquelchM, CC1000ControlM;
+  components HPLCC1000C, RandomLfsrC, TimerMilliC;
 
   Init = CC1000RadioM;
   Init = TimerMilliC;
@@ -74,13 +74,22 @@ implementation {
 
   CC1000RadioM.CC1000Control -> CC1000ControlM;
   CC1000RadioM.Random -> RandomLfsrC;
-  CC1000RadioM.RSSIADC -> HPLCC1000C;
   CC1000RadioM.HPLCC1000Spi -> HPLCC1000C;
 
   CC1000RadioM.SquelchTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
+  CC1000RadioM.CC1000Squelch -> CC1000SquelchM;
+
   CC1000RadioM.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
 
   CC1000ControlM.HPLCC1000 -> HPLCC1000C;
   //CC1000RadioM.PowerManagement ->HPLPowerManagementM.PowerManagement;
   //HPLSpiM.PowerManagement ->HPLPowerManagementM.PowerManagement;
+
+  CC1000RadioM.RssiRx -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
+  CC1000RadioM.RssiNoiseFloor -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
+  CC1000RadioM.RssiCheckChannel -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
+  CC1000RadioM.RssiPulseCheck -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
+  CC1000RadioM.RssiPulseFail -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
+  CC1000RadioM.cancelRssi -> CC1000RssiM;
+  CC1000RssiM.ActualRssi -> HPLCC1000C;
 }
