@@ -29,6 +29,9 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
+#ifndef CRC_H
+#define CRC_H
+
 /**
  * Default CRC function. Note that avrmote has a much more efficient one. 
  *
@@ -54,3 +57,5 @@ uint16_t crcByte(uint16_t crc, uint8_t b)
 
   return crc;
 }
+
+#endif
