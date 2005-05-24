@@ -30,57 +30,62 @@
  */
 
 /**
- *  Implementation of the OSKI TestBroadcast application.
+ *  Implementation of the OSKI TestAMService application.
  *
  *  @author Philip Levis
- *  @date   May 16 2005
+ *  @date   May 24 2005
  *
  **/
 
 includes Timer;
 
-module TestBroadcastM {
+module TestAMServiceM {
   uses {
     interface Leds;
     interface Boot;
     interface Receive;
-    interface Send;
+    interface AMSend;
     interface Timer<TMilli> as MilliTimer;
     interface Service;
+    //interface ServiceNotify;
   }
 }
 implementation {
 
   message_t packet;
+
   bool locked;
+  uint8_t counter = 0;
   
   event void Boot.booted() {
     call Service.start();
     call MilliTimer.startPeriodicNow(1000);
   }
-
+  
   event void MilliTimer.fired() {
+    counter++;
     if (locked) {
       return;
-    }
-    else if (call Send.send(&packet, 6) == SUCCESS) {
+     }
+    else if (call AMSend.send(AM_BROADCAST_ADDR, &packet, 0) == SUCCESS) {
       call Leds.led0On();
       locked = TRUE;
     }
   }
-  
+
   event message_t* Receive.receive(message_t* bufPtr, 
 				   void* payload, uint8_t len) {
-     call Leds.led1Toggle();
-     return bufPtr;
+    call Leds.led1Toggle();
+    return bufPtr;
   }
 
-  event void Send.sendDone(message_t* bufPtr, error_t error) {
+  event void AMSend.sendDone(message_t* bufPtr, error_t error) {
     if (&packet == bufPtr) {
-      call Leds.led0Off();
       locked = FALSE;
+      call Leds.led0Off();
     }
   }
+
 }
 
 

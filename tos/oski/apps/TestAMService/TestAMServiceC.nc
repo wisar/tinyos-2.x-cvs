@@ -20,7 +20,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2002-2003 Intel Corporation
+ * Copyright (c) 2002-2005 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -30,59 +30,31 @@
  */
 
 /**
- *  Implementation of the OSKI TestBroadcast application.
+ * This application sends OSKI broadcasts at 1Hz and blinks LED 0 when
+ * it receives a broadcast.
  *
- *  @author Philip Levis
- *  @date   May 16 2005
- *
- **/
+ * @author Philip Levis
+ * @date   May 16 2005
+ */
 
-includes Timer;
-
-module TestBroadcastM {
-  uses {
-    interface Leds;
-    interface Boot;
-    interface Receive;
-    interface Send;
-    interface Timer<TMilli> as MilliTimer;
-    interface Service;
-  }
-}
+configuration TestAMServiceC {}
 implementation {
-
-  message_t packet;
-  bool locked;
+  components Main, TestAMServiceM as App, LedsC;
+  components new AMSenderC(5);
+  components new AMReceiverC(5);
+  components new OSKITimerMsC();
+  components new AMServiceC();
   
-  event void Boot.booted() {
-    call Service.start();
-    call MilliTimer.startPeriodicNow(1000);
-  }
-
-  event void MilliTimer.fired() {
-    if (locked) {
-      return;
-    }
-    else if (call Send.send(&packet, 6) == SUCCESS) {
-      call Leds.led0On();
-      locked = TRUE;
-    }
-  }
+  Main.SoftwareInit -> LedsC;
   
-  event message_t* Receive.receive(message_t* bufPtr, 
-				   void* payload, uint8_t len) {
-     call Leds.led1Toggle();
-     return bufPtr;
-  }
-
-  event void Send.sendDone(message_t* bufPtr, error_t error) {
-    if (&packet == bufPtr) {
-      call Leds.led0Off();
-      locked = FALSE;
-    }
-  }
+  App.Boot -> Main.Boot;
+  
+  App.Receive -> AMReceiverC;
+  App.AMSend -> AMSenderC;
+  App.Service -> AMServiceC;
+  App.Leds -> LedsC;
+  App.MilliTimer -> OSKITimerMsC;
+  
 }
-
-
 
 
