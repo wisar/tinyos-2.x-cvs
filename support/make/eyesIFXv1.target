@@ -14,7 +14,7 @@ DEFAULT_PROGRAM = jtag
 endif
 
 NESC_FLAGS:=-Wnesc-all
-PFLAGS += -I$(TOSDIR)/platforms/eyes/eyesIFXv1
+PFLAGS += -I$(TOSDIR)/platforms/eyesIFX/eyesIFXv1
 
 $(call TOSMake_include_platform,msp)
 

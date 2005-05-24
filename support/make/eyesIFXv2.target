@@ -17,7 +17,7 @@ MSP_BSL_FLAGS ?= --invert-test --invert-reset --f1x
 BSL?=1
 
 NESC_FLAGS:=-Wnesc-all -mdisable-hwmul
-PFLAGS += -I$(TOSDIR)/platforms/eyes/eyesIFXv2
+PFLAGS += -I$(TOSDIR)/platforms/eyesIFX/eyesIFXv2
 
 $(call TOSMake_include_platform,msp)
 
