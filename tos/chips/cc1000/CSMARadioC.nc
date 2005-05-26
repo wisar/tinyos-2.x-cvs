@@ -88,7 +88,6 @@ implementation {
   CC1000RadioM.RssiNoiseFloor -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
   CC1000RadioM.RssiCheckChannel -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
   CC1000RadioM.RssiPulseCheck -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
-  CC1000RadioM.RssiPulseFail -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
   CC1000RadioM.cancelRssi -> CC1000RssiM;
   CC1000RssiM.ActualRssi -> HPLCC1000C;
 }
