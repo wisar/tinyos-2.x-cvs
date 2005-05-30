@@ -89,11 +89,7 @@ implementation {
      
      // initializing pin values
      call TXRX.set();
-     call PWDDD.clr();
-       
-     // reset the radio to default values
-     call TDA5250Config.reset();
-     
+     call PWDDD.clr();     
      return SUCCESS;
    }
 

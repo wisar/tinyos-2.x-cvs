@@ -61,7 +61,7 @@ configuration TDA5250RegistersC {
 implementation {
   components TDA5250RegistersM
 	         , TDA5250RadioIO
-					 , MSP430TDA5250RegCommC as TDA5250RegCommC
+					 , TDA5250RegCommC
 					 , PotC
            ;
   
