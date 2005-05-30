@@ -54,6 +54,7 @@
 #define TDA5250_REG_TYPE_COUNT_TH1        uint16_t
 #define TDA5250_REG_TYPE_COUNT_TH2        uint16_t
 #define TDA5250_REG_TYPE_RSSI_TH3         uint8_t
+#define TDA5250_REG_TYPE_RF_POWER         uint8_t
 #define TDA5250_REG_TYPE_CLK_DIV          uint8_t
 #define TDA5250_REG_TYPE_XTAL_CONFIG      uint8_t
 #define TDA5250_REG_TYPE_BLOCK_PD         uint16_t
