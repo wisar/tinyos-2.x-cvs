@@ -41,8 +41,7 @@ module TDA5250RegCommM {
     interface Resource;
   }
   uses {
-    interface GeneralIO as BUSM;     
-    interface GeneralIO as DATA;
+    interface GeneralIO as BUSM;
     interface Resource as SPIResource;
     interface ResourceUser;   
     interface HPLUSARTControl as USARTControl;
