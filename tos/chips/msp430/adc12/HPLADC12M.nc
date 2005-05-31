@@ -113,18 +113,6 @@ implementation
   async command void HPLADC12.setMSC(){ ADC12CTL0 |= MSC; }
   async command void HPLADC12.resetMSC(){ ADC12CTL0 &= ~MSC; }
   
-  async command void HPLADC12.setConversionMode(uint8_t mode){
-    uint16_t ctl1 = ADC12CTL1 & 0xFFF9;
-    switch(mode){
-      case SINGLE_CHANNEL: ADC12CTL0 &= ~MSC; break;
-      case SEQUENCE_OF_CHANNELS: ctl1 |= 0x0002; ADC12CTL0 |= MSC; break;
-      case REPEAT_SINGLE_CHANNEL: ctl1 |= 0x0004; ADC12CTL0 |= MSC; break;
-      case REPEAT_SEQUENCE_OF_CHANNELS: ctl1 |= 0x0006; ADC12CTL0 |= MSC; break;
-    }
-    ADC12CTL1 = ctl1;
-    return;
-  }
-    
   async command void HPLADC12.setRefOn(){ ADC12CTL0 |= REFON;}
   async command void HPLADC12.setRefOff(){ ADC12CTL0 &= ~REFON;}
   async command uint8_t HPLADC12.getRefon(){ return (ADC12CTL0 & REFON) >> 5;}

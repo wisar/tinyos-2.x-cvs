@@ -60,7 +60,6 @@ interface HPLADC12
   async command bool isBusy();
   /* ATTENTION: setConversionMode and setSHT etc. require ENC-flag to be reset! 
      (disableConversion) */
-  async command void setConversionMode(uint8_t mode);
   async command void setSHT(uint8_t sht);
   async command void setMSC();
   async command void resetMSC();
