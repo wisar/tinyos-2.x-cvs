@@ -59,6 +59,7 @@ implementation {
 
   uint8_t state;
   uint8_t resId;
+	uint8_t reqResId;
   uint8_t resQ[uniqueCount(resourceName)];
   uint8_t qHead;
   uint8_t qTail;
@@ -106,11 +107,11 @@ implementation {
     atomic {
       if(state == RES_IDLE) {
         state = RES_BUSY;
-        resId = id;
+        reqResId = id;
         granted = TRUE;
       }
     }
-    if(granted) {
+    if(granted == TRUE) {
       post GrantedTask();
       return SUCCESS;
     }
@@ -189,7 +190,7 @@ implementation {
       if(qHead == NO_RES)
         qTail = NO_RES;
       resQ[id] = NO_RES;
-      resId = id;
+      reqResId = id;
       post GrantedTask();
       return SUCCESS;
     }
@@ -218,6 +219,7 @@ implementation {
   //Task for pulling the Resource.granted() signal
     //into synchronous context  
   task void GrantedTask() {
+	  atomic resId = reqResId;
     signal Resource.granted[resId]();
   }
   

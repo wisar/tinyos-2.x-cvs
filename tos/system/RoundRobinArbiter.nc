@@ -56,6 +56,7 @@ implementation {
 
   uint8_t state;
   uint8_t resId;
+	uint8_t reqResId;
   uint8_t request[(uniqueCount(resourceName)-1)/8 + 1];
   enum {RES_IDLE, RES_BUSY};
   enum {NO_RES = 0xFF};
@@ -97,11 +98,11 @@ implementation {
     atomic {
       if(state == RES_IDLE) {
         state = RES_BUSY;
-        resId = id;
+        reqResId = id;
         granted = TRUE;
       }
     }
-    if(granted) {
+    if(granted == TRUE) {
       post GrantedTask();
       return SUCCESS;
     }
@@ -176,16 +177,16 @@ implementation {
     int i;
     for(i=resId+1; i<uniqueCount(resourceName); i++) {
       if((request[i/8] & (1 << (i % 8))) > 0) {
-        request[resId/8] = request[resId/8] & ~(1 << (resId % 8));
-        resId = i;
+        reqResId = i;
+			  request[resId/8] = request[resId/8] & ~(1 << (resId % 8));
         post GrantedTask();
         return SUCCESS;
       }  
     }
     for(i=0; i<=resId; i++) {
       if((request[i/8] & (1 << (i % 8))) > 0) {
-        request[resId/8] = request[resId/8] & ~(1 << (resId % 8));
-        resId = i;
+        reqResId = i;
+			  request[resId/8] = request[resId/8] & ~(1 << (resId % 8));
         post GrantedTask();
         return SUCCESS;
       }
@@ -207,6 +208,7 @@ implementation {
   //Task for pulling the Resource.granted() signal
     //into synchronous context  
   task void GrantedTask() {
+	  atomic resId = reqResId;
     signal Resource.granted[resId]();
   }
   
