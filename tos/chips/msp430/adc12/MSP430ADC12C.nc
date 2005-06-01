@@ -42,12 +42,12 @@ configuration MSP430ADC12C
   provides interface Init;
   provides interface Resource[uint8_t id];
   provides interface MSP430ADC12SingleChannel as SingleChannel[uint8_t id];
-  provides interface MSP430ADC12SingleChannel as SingleChannelADCC[uint8_t id];
+  provides interface MSP430ADC12SingleChannel as SingleChannelADCC[uint8_t client];
 }
 implementation
 {
   components MSP430ADC12M, HPLADC12M, MSP430TimerC, RefVoltGeneratorC, 
-             new FCFSArbiter(MSP430ADC12_CLIENT) as Arbiter;
+             new FCFSArbiter(ADC_RESOURCE) as Arbiter;
 
   Init = Arbiter;
   Resource = Arbiter;

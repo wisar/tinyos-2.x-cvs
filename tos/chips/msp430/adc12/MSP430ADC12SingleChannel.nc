@@ -109,7 +109,7 @@ interface MSP430ADC12SingleChannel
    * in the second it defines whether another conversion takes
    * place (SUCCESS) or not (FAIL).
    */  
-  async event result_t singleDataReady(uint16_t data);
+  async event error_t singleDataReady(uint16_t data);
 
  /**
    * Data from call to getMultipleData() or getMultipleDataRepeat() 
