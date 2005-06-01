@@ -49,7 +49,7 @@ interface RefVoltGenerator
    * @return SUCCESS if reference voltage generator was switched on,
    * FAIL otherwise (not reserved or ADC is busy).
   */ 
-  async command result_t switchOn(uint8_t voltageLevel);
+  async command error_t switchOn(uint8_t voltageLevel);
   
   /*
    * Turns the reference voltage generator off.
@@ -57,7 +57,7 @@ interface RefVoltGenerator
    * @return FAIL if not switched on (or client has no access reserved)
    * SUCCESS otherwise
    */
-  async command result_t switchOff();
+  async command error_t switchOff();
   
   /**
    * Returns current voltage level.
