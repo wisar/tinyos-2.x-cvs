@@ -65,7 +65,7 @@ interface AcquireDataBuffered {
      *    The data acquisition SHOULD start immediately (within 
      *    hardware constraints).
      */
-    async command result_t getData();
+    async command error_t getData();
 
     /** Data has been acquired.
      * @param buffer Buffer containing the data.
