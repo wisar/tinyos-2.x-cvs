@@ -205,7 +205,6 @@ implementation
 
 	  case PULSECHECK_STATE:
 	    call CC1000Control.rxMode();
-	    uwait(35);
 	    call RssiPulseCheck.getData();
 	    uwait(80);
 	    //call CC1000Control.biasOn();
@@ -241,7 +240,7 @@ implementation
 
   void lplSendWakeup() {
     enterIdleStateSetWakeup();
-    call CC1000Control.on();
+    call CC1000Control.coreOn();
     //uwait(2000);
     call CC1000Control.biasOn();
     uwait(200);
@@ -288,12 +287,8 @@ implementation
       }
     else
       {
-	//call CC1000Control.rxMode();
-	//uwait(35);
 	call RssiPulseCheck.getData();
 	uwait(80);
-	//call CC1000Control.biasOn();
-	//call CC1000StdControl.stop();
       }
   }
 
@@ -334,8 +329,8 @@ implementation
       else
 	return SUCCESS;
 
-    call CC1000Control.on();
-    //uwait(2000);
+    call CC1000Control.coreOn();
+    uwait(2000);
     call CC1000Control.biasOn();
     uwait(200);
     call HPLCC1000Spi.rxMode();

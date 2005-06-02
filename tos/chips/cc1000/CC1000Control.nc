@@ -73,11 +73,6 @@ interface CC1000Control
   async command void off();
 
   /**
-   * Turn the CC1000 on
-   */
-  async command void on();
-
-  /**
    * Shift the CC1000 Radio into transmit mode.
    *
    * @return SUCCESS if the radio was successfully switched to TX mode.
@@ -100,7 +95,7 @@ interface CC1000Control
    * @return SUCCESS when the bias powered is shutdown.
    */
 
-  async command void biasOff();			
+  async command void coreOn();			
 
   /**
    * Turn the bias power on. This function must be followed by a call to
