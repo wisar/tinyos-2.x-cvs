@@ -82,7 +82,7 @@ implementation {
   //Csma.PowerManagement ->HPLPowerManagementM.PowerManagement;
   //HPLSpiM.PowerManagement ->HPLPowerManagementM.PowerManagement;
 
-  Csma.ByteRadio <- SendReceive;
+  Csma.ByteRadio -> SendReceive;
   Csma.ByteRadioInit -> SendReceive;
   Csma.ByteRadioControl -> SendReceive;
 
