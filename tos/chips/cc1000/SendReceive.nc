@@ -37,8 +37,9 @@
  * listen() command is called, and stops listening when off() is called.
  *
  * This code has some degree of platform-independence, via the
- * CC1000Control, RSSIADC and SpiByteFifo interfaces. However, these
- * interfaces may be still somewhat platform-dependent.
+ * CC1000Control, RSSIADC and SpiByteFifo interfaces which must be provided
+ * by the platform. However, these interfaces may still reflect some
+ * particularities of the mica2 hardware implementation.
  *
  * @author Philip Buonadonna
  * @author Jaein Jeong
