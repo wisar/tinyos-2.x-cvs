@@ -42,7 +42,6 @@ configuration MSP430ADC12C
   provides interface Init;
   provides interface Resource[uint8_t id];
   provides interface MSP430ADC12SingleChannel as SingleChannel[uint8_t id];
-  provides interface MSP430ADC12SingleChannel as SingleChannelADCC[uint8_t client];
 }
 implementation
 {
@@ -52,7 +51,6 @@ implementation
   Init = Arbiter;
   Resource = Arbiter;
   SingleChannel = MSP430ADC12M.SingleChannel;
-  SingleChannelADCC = MSP430ADC12M.SingleChannelADCC;
     
   MSP430ADC12M.ADCResourceUser -> Arbiter;
   MSP430ADC12M.HPLADC12 -> HPLADC12M;
