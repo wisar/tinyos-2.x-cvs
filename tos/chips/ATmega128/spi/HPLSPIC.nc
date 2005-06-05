@@ -24,13 +24,9 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-//includes hardware;
-
 configuration HPLSPIC
 {
-    provides {
-	interface HPLSPI as SpiBus;
-    }
+    provides interface HPLSPI as SpiBus;
 }
 implementation
 {
@@ -43,4 +39,3 @@ implementation
     HPLSPIM.Mosi -> HPLGeneralIO.PortB2;  // Master out, slave in
     HPLSPIM.Miso -> HPLGeneralIO.PortB3;  // Master in, slave out
 }
-
