@@ -33,13 +33,13 @@ interface HPLSPI
     async event   void    dataReady(uint8_t data);
 
     async command bool isBusy();
+    async command error_t sleep();
 
+    // General access to control registers
     async command ATm128SPIControl_t getControl();
     async command ATm128SPIStatus_t  getStatus();
     async command void               setControl(ATm128SPIControl_t ctrl);
     async command void               setStatus(ATm128SPIStatus_t stts);
-
-    async command error_t disable();
 
     // Slave control
     async command error_t slaveInit();
