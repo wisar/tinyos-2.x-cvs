@@ -68,7 +68,7 @@ configuration CSMARadioC{
 }
 implementation {
   components Csma, SendReceive, CC1000RssiM, CC1000SquelchM, CC1000ControlM;
-  components HPLCC1000C, RandomLfsrC, TimerMilliC;
+  components HPLCC1000C, RandomC, TimerMilliC;
 
   Init = Csma;
   Init = TimerMilliC;
@@ -87,7 +87,7 @@ implementation {
   RadioTimeStamping = SendReceive;
 
   Csma.CC1000Control -> CC1000ControlM;
-  Csma.Random -> RandomLfsrC;
+  Csma.Random -> RandomC;
   Csma.CC1000Squelch -> CC1000SquelchM;
   Csma.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
 

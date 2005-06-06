@@ -52,7 +52,7 @@ implementation
     , CC2420ControlM
     , HPLCC2420C
     , CC2420RadioControlM
-    , RandomLfsrC as RandomC
+    , RandomC
     , new Alarm32khzC() as AlarmC
     , LedsC
     // defined by each platform
