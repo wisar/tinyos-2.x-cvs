@@ -44,9 +44,9 @@ implementation
 {
   components Main
 	   , BlinkM
-	   , new TimerMilli() as Timer0
-	   , new TimerMilli() as Timer1
-	   , new TimerMilli() as Timer2
+	   , new OSKITimerMsC() as Timer0
+	   , new OSKITimerMsC() as Timer1
+	   , new OSKITimerMsC() as Timer2
 	   , LedsC
 	   ;
 
