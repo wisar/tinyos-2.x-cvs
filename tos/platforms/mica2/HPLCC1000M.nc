@@ -181,11 +181,7 @@ implementation
 
 
   async command bool HPLCC1000.getLOCK() {
-    char cVal;
-
-    cVal = call CHP_OUT.get();
-
-    return cVal;
+    return call CHP_OUT.get();
   }
 }
   
