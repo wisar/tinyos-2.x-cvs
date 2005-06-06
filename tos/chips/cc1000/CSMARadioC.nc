@@ -72,7 +72,7 @@ implementation {
 
   Init = Csma;
   Init = TimerMilliC;
-  Init = RandomLfsrC;
+  Init = RandomC;
 
   SplitControl = Csma;
   Send = SendReceive;
