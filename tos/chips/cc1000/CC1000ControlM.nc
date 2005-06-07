@@ -290,6 +290,9 @@ implementation
     for (i = CC1K_FREQ_2A; i <= CC1K_PLL; i++)
       call CC.write(i, read_uint8_t(&CC1K_Params[freq][i]));
     call CC.write(CC1K_MATCH, read_uint8_t(&CC1K_Params[freq][CC1K_MATCH]));
+    rxCurrent = read_uint8_t(&CC1K_Params[freq][CC1K_CURRENT]);
+    txCurrent = read_uint8_t(&CC1K_Params[freq][CC1K_MATCH + 1]);
+    power = read_uint8_t(&CC1K_Params[freq][CC1K_PA_POW]);
 
     calibrate();
   }
