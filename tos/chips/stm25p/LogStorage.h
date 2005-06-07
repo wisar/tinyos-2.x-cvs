@@ -1,6 +1,6 @@
 // $Id$
 
-/*									tab:4
+/*									tab:2
  * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
@@ -25,32 +25,34 @@
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
 
-includes HALSTM25P;
+#ifndef __LOG_STORAGE_H__
+#define __LOG_STORAGE_H__
 
-configuration StorageManagerC {
-  provides {
-    interface SectorStorage[volume_t volume];
-    interface Mount[volume_t volume];
-    interface StdControl;
-    interface StorageRemap[volume_t volume];
-    interface StorageManager[volume_t volume];
-  }
-}
+typedef uint32_t log_len_t;
+typedef uint32_t log_cookie_t;
+typedef uint8_t logstorage_t;
 
-implementation {
+typedef uint16_t log_block_addr_t;
 
-  components CrcC, HALSTM25PC, StorageManagerM, LedsC;
+typedef struct {
+  log_cookie_t cookie;
+} LogSectorHeader;
 
-  StdControl = StorageManagerM;
-  StdControl = HALSTM25PC;
-  
-  SectorStorage = StorageManagerM.SectorStorage;
-  Mount = StorageManagerM;
-  StorageRemap = StorageManagerM;
-  StorageManager = StorageManagerM;
-  
-  StorageManagerM.Crc -> CrcC;
-  StorageManagerM.HALSTM25P -> HALSTM25PC.HALSTM25P[unique("HALSTM25P")];
-  StorageManagerM.Leds -> LedsC;
+typedef struct {
+  log_block_addr_t length : 12;
+  log_block_addr_t flags  : 4;
+} LogBlockHeader;
 
-}
+enum {
+  LOG_BLOCK_ALLOCATED = 1 << 0,
+  LOG_BLOCK_VALID = 1 << 1,
+};
+
+enum {
+  LOG_BLOCK_MAX_LENGTH = 1 << 8,
+  LOG_BLOCK_LENGTH_MASK = (1 << 12) - 1,
+  LOG_BLOCK_FLAGS_MASK = 0xf,
+  LOG_MAX_COOKIE = 0xffffffff,
+};
+
+#endif

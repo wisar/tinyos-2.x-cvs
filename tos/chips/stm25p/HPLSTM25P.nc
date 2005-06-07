@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2004 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -28,11 +28,10 @@
 interface HPLSTM25P {
   async command result_t getBus();
   async command result_t releaseBus();
-  async command result_t beginCmd(uint8_t cmd);
+  async command result_t beginCmd();
   async command result_t endCmd();
   async command result_t hold();
   async command result_t unhold();
-  async command result_t txBuf(uint8_t* buf, stm25p_addr_t len);
-  async command result_t rxBuf(uint8_t* buf, stm25p_addr_t len);
-  async command result_t computeCrc(uint16_t* crcResult, stm25p_addr_t len);
+  async command result_t txBuf(void* buf, stm25p_addr_t len);
+  async command result_t rxBuf(void* buf, stm25p_addr_t len, uint16_t* crc);
 }

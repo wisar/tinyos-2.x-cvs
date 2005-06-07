@@ -1,6 +1,6 @@
 // $Id$
 
-/*									tab:4
+/*									tab:2
  * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
@@ -25,32 +25,42 @@
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
 
-includes HALSTM25P;
+#ifndef __CONFIG_STORAGE_H__
+#define __CONFIG_STORAGE_H__
 
-configuration StorageManagerC {
-  provides {
-    interface SectorStorage[volume_t volume];
-    interface Mount[volume_t volume];
-    interface StdControl;
-    interface StorageRemap[volume_t volume];
-    interface StorageManager[volume_t volume];
-  }
-}
+#include "Storage.h"
 
-implementation {
+enum {
+  CONFIG_MAX_STR_LEN = 32,
+  CONFIG_MAX_ITEMS = 1L,
+  CONFIG_INVALID_ID = 0xffff,
+  CONFIG_INVALID_SIZE = 0xffff,
+  CONFIG_INVALID_VER = 0xffff,
+};
 
-  components CrcC, HALSTM25PC, StorageManagerM, LedsC;
+typedef struct {
+  uint16_t id;        // unique id of block
+  uint16_t size;      // size of block
+} config_header_t;
 
-  StdControl = StorageManagerM;
-  StdControl = HALSTM25PC;
-  
-  SectorStorage = StorageManagerM.SectorStorage;
-  Mount = StorageManagerM;
-  StorageRemap = StorageManagerM;
-  StorageManager = StorageManagerM;
-  
-  StorageManagerM.Crc -> CrcC;
-  StorageManagerM.HALSTM25P -> HALSTM25PC.HALSTM25P[unique("HALSTM25P")];
-  StorageManagerM.Leds -> LedsC;
+typedef struct {
+  char name[CONFIG_MAX_STR_LEN];
+  uint16_t id;
+} config_entry_t;
 
-}
+typedef struct {
+  int16_t ver;
+  int16_t crc;
+} config_sector_header_t;
+
+typedef uint16_t config_addr_t;
+typedef uint8_t configstorage_t;
+
+enum {
+  CONFIG_ID_SIZE = CONFIG_MAX_ITEMS*sizeof(config_entry_t),
+  CONFIG_DATA_ADDR = CONFIG_ID_SIZE+sizeof(config_sector_header_t),
+  CONFIG_MAX_SIZE = 16L*1024L, //STM25P_SECTOR_SIZE - CONFIG_DATA_ADDR,
+};
+
+
+#endif

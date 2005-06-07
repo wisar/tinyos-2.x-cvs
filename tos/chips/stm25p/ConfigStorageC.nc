@@ -1,6 +1,6 @@
 // $Id$
 
-/*									tab:4
+/*									tab:2
  * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
@@ -25,32 +25,32 @@
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
 
-includes HALSTM25P;
-
-configuration StorageManagerC {
+generic configuration ConfigStorageC() {
   provides {
-    interface SectorStorage[volume_t volume];
-    interface Mount[volume_t volume];
-    interface StdControl;
-    interface StorageRemap[volume_t volume];
-    interface StorageManager[volume_t volume];
+    interface Mount;
+    interface ConfigRead;
+    interface ConfigWrite;
   }
 }
 
 implementation {
 
-  components CrcC, HALSTM25PC, StorageManagerM, LedsC;
+  enum {
+    CONFIG_ID = unique("ConfigStorage"),
+    VOLUME_ID = unique("StorageManager"),
+  };
 
-  StdControl = StorageManagerM;
-  StdControl = HALSTM25PC;
-  
-  SectorStorage = StorageManagerM.SectorStorage;
-  Mount = StorageManagerM;
-  StorageRemap = StorageManagerM;
-  StorageManager = StorageManagerM;
-  
-  StorageManagerM.Crc -> CrcC;
-  StorageManagerM.HALSTM25P -> HALSTM25PC.HALSTM25P[unique("HALSTM25P")];
-  StorageManagerM.Leds -> LedsC;
+  components ConfigStorageM, Main, StorageManagerC, LedsC as Leds;
+
+  Mount = ConfigStorageM.Mount[CONFIG_ID];
+  ConfigRead = ConfigStorageM.ConfigRead[CONFIG_ID];
+  ConfigWrite = ConfigStorageM.ConfigWrite[CONFIG_ID];
+
+  Main.StdControl -> StorageManagerC;
+
+  ConfigStorageM.SectorStorage[CONFIG_ID] -> StorageManagerC.SectorStorage[VOLUME_ID];
+  ConfigStorageM.StorageManager[CONFIG_ID] -> StorageManagerC.StorageManager[VOLUME_ID];
+  ConfigStorageM.ActualMount[CONFIG_ID] -> StorageManagerC.Mount[VOLUME_ID];
+  ConfigStorageM.Leds -> Leds;
 
 }

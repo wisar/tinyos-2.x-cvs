@@ -1,6 +1,6 @@
 // $Id$
 
-/*									tab:4
+/*									tab:2
  * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
@@ -27,30 +27,16 @@
 
 includes HALSTM25P;
 
-configuration StorageManagerC {
-  provides {
-    interface SectorStorage[volume_t volume];
-    interface Mount[volume_t volume];
-    interface StdControl;
-    interface StorageRemap[volume_t volume];
-    interface StorageManager[volume_t volume];
-  }
-}
+interface SectorStorage {
 
-implementation {
+  command result_t read(stm25p_addr_t addr, void* data, stm25p_addr_t len);
 
-  components CrcC, HALSTM25PC, StorageManagerM, LedsC;
+  command result_t write(stm25p_addr_t addr, void* data, stm25p_addr_t len);
+  event void writeDone(storage_result_t result);
 
-  StdControl = StorageManagerM;
-  StdControl = HALSTM25PC;
+  command result_t erase(stm25p_addr_t addr, stm25p_addr_t len);
+  event void eraseDone(storage_result_t result);
   
-  SectorStorage = StorageManagerM.SectorStorage;
-  Mount = StorageManagerM;
-  StorageRemap = StorageManagerM;
-  StorageManager = StorageManagerM;
-  
-  StorageManagerM.Crc -> CrcC;
-  StorageManagerM.HALSTM25P -> HALSTM25PC.HALSTM25P[unique("HALSTM25P")];
-  StorageManagerM.Leds -> LedsC;
+  command result_t computeCrc(uint16_t* crcResult, uint16_t crc, stm25p_addr_t addr, stm25p_addr_t len);
 
 }

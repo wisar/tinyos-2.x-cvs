@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2004 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -43,7 +43,7 @@ implementation {
     VOLUME_ID = unique("StorageManager"),
   };
 
-  components BlockStorageM, Main, StorageManagerC;
+  components BlockStorageM, Main, StorageManagerC, LedsC as Leds;
 
   Mount = BlockStorageM.Mount[BLOCK_ID];
   BlockRead = BlockStorageM.BlockRead[BLOCK_ID];
@@ -52,7 +52,9 @@ implementation {
 
   Main.StdControl -> StorageManagerC;
 
-  BlockStorageM.HALSTM25P[BLOCK_ID] -> StorageManagerC.HALSTM25P[VOLUME_ID];
+  BlockStorageM.SectorStorage[BLOCK_ID] -> StorageManagerC.SectorStorage[VOLUME_ID];
   BlockStorageM.ActualMount[BLOCK_ID] -> StorageManagerC.Mount[VOLUME_ID];
+  BlockStorageM.StorageManager[BLOCK_ID] -> StorageManagerC.StorageManager[VOLUME_ID];
+  BlockStorageM.Leds -> Leds;
 
 }

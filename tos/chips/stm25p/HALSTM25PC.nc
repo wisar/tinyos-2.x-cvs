@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2004 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -33,19 +33,16 @@ configuration HALSTM25PC {
     interface StdControl;
     interface HALSTM25P[volume_t volume];
   }
-  uses {
-    interface StorageRemap[volume_t volume];
-  }
 }
 
 implementation {
-  components HALSTM25PM, HPLSTM25PC, NoLedsC as Leds;
+  components HALSTM25PM, HPLSTM25PC, LedsC as Leds, TimerC;
 
   StdControl = HALSTM25PM;
   StdControl = HPLSTM25PC;
   HALSTM25P = HALSTM25PM;
-  StorageRemap = HALSTM25PM;
 
   HALSTM25PM.HPLSTM25P -> HPLSTM25PC;
   HALSTM25PM.Leds -> Leds;
+  HALSTM25PM.Timer -> TimerC.Timer[unique("Timer")];
 }

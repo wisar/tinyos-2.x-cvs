@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2004 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -24,6 +24,8 @@
 /*
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
+
+includes HALSTM25P;
 
 interface StorageRemap {
   command uint32_t physicalAddr(uint32_t volumeAddr);

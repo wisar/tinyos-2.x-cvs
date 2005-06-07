@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2004 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -26,14 +26,17 @@
  */
 
 includes BlockStorage;
+includes Storage;
 
 interface BlockWrite {
-  command result_t write(block_addr_t addr, uint8_t* buf, block_addr_t len);
-  event void writeDone(result_t result);
+
+  command result_t write(block_addr_t addr, void* buf, block_addr_t len);
+  event void writeDone(storage_result_t result, block_addr_t addr, void* buf, block_addr_t len);
 
   command result_t erase();
-  event void eraseDone(result_t result);
+  event void eraseDone(storage_result_t result);
 
   command result_t commit();
-  event void commitDone(result_t result);
+  event void commitDone(storage_result_t result);
+
 }
