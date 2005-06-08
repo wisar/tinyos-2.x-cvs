@@ -38,7 +38,11 @@ configuration TestADCC
 }
 implementation
 {
-  components Main, TestADCM, DemoSensorC as Sensor, LedsC;
+  // NOTE: The channel/port number to be sampled is defined by
+  // the parameter given to ADCChannelC (default 0). This is  
+  // actually a platform dependent property, but for this test  
+  // application it is sufficient to sample *any* channel.
+  components Main, TestADCM, new ADCChannelC(0) as Sensor, LedsC;
 
   TestADCM -> Main.Boot;
   Main.SoftwareInit -> LedsC;
