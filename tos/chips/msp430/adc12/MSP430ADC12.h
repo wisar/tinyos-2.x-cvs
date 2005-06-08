@@ -254,6 +254,9 @@ enum sampcon_id_enum
 
  /******************************* internal ***********************************/
 
+// The unique string for allocating ADC resource interfaces on HAL1
+#define MSP430ADC12_RESOURCE "MSP430ADC12HAL1Client.resource"
+
 /* Test for GCC bug (bitfield access) - only version 3.2.3 is known to be stable */
 // check: is this relevant anymore ?
 #define GCC_VERSION (__GNUC__ * 100 + __GNUC_MINOR__ * 10 + __GNUC_PATCHLEVEL__)

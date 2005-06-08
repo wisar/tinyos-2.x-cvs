@@ -50,13 +50,11 @@ configuration ADCC {
 }
 implementation {
   components ADCM, MSP430ADC12ChannelConfigM, MSP430ADC12C,
-             new RoundRobinArbiter(ADC_RESOURCE) as HAL2Arbiter,
              new MSP430ADC12Client() as HAL1;
   
   Init = MSP430ADC12C;
-  Init = HAL2Arbiter;
   StdControl = ADCM.StdControlNull;
-  Resource = HAL2Arbiter;
+  Resource = ADCM;
   AcquireData = ADCM;
   AcquireDataNow = ADCM;
   AcquireDataBuffered = ADCM;

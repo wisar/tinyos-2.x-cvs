@@ -41,7 +41,7 @@ generic configuration MSP430ADC12Client()
   components MSP430ADC12C;
    
   enum {
-    ID = unique(ADC_RESOURCE),
+    ID = unique(MSP430ADC12_RESOURCE),
   };
   Resource = MSP430ADC12C.Resource[ID];
   MSP430ADC12SingleChannel = MSP430ADC12C.SingleChannel[ID];

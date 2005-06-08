@@ -46,6 +46,8 @@ configuration MSP430ADC12C
 implementation
 {
   components MSP430ADC12M, HPLADC12M, MSP430TimerC, RefVoltGeneratorC, 
+             // this arbiter should rather be a lean static Arbiter
+             // that does not keep state (no events get signalled)
              new FCFSArbiter(ADC_RESOURCE) as Arbiter;
 
   Init = Arbiter;
