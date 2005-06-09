@@ -34,7 +34,6 @@
 #define TOSH_HARDWARE_EYESIFXV2
 
 #include "msp430hardware.h"
-#include "MSP430ADC12.h"
 
 // LED assignments
 TOSH_ASSIGN_PIN(RED_LED, 5, 0); // Compatibility with the mica2
