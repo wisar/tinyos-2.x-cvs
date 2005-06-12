@@ -43,7 +43,7 @@ module StorageManagerM {
 implementation {
 
   enum {
-    NUM_VOLUMES = unique("StorageManager"),
+    NUM_VOLUMES = uniqueCount("StorageManager"),
   };
 
   enum {
