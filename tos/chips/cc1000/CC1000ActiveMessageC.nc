@@ -1,5 +1,7 @@
-/* $Id$
- * "Copyright (c) 2000-2005 The Regents of the University  of California.  
+// $Id$
+
+/*									tab:4
+ * "Copyright (c) 2004-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -18,7 +20,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2002-2005 Intel Corporation
+ * Copyright (c) 2004-2005 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -26,32 +28,51 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/**
- * The mica2 radio packet abstraction, encapsulating the CC1000.
+/*
  *
- * @author Philip Levis
- * @date   May 16 2005
- * Revision:  $Revision$
+ * Authors:		Philip Levis
+ * Date last modified:  $Id$
+ *
  */
 
+/**
+ *
+ * The Active Message layer for the CC1000 radio. This configuration
+ * just layers the AM dispatch (CC1000ActiveMessageM) on top of the
+ * underlying CC1000 radio packet (CC1000CsmaRadioC), which is
+ * inherently an AM packet (acknowledgements based on AM destination
+ * addr and group).
+ * 
+ * @author Philip Levis
+ * @date June 19 2005
+ */
 
-configuration RadioPacketC {
+configuration CC1000ActiveMessageC {
   provides {
     interface Init;
     interface SplitControl;
-    interface Send;
-    interface Receive;
+    interface AMSend[am_id_t id];
+    interface Receive[am_id_t id];
+    interface Receive as Snoop[am_id_t id];
+    interface AMPacket;
     interface Packet;
-    interface RadioTimeStamping;
   }
 }
 implementation {
-  components CSMARadioC;
 
-  Init = CSMARadioC;
-  SplitControl = CSMARadioC;
-  Send = CSMARadioC;
-  Receive = CSMARadioC;
-  RadioTimeStamping = CSMARadioC;
-  Packet = CSMARadioC;
+  components CC1000ActiveMessageM as AM, CC1000CsmaRadioC as Radio;
+  components ActiveMessageAddressC as Address;
+  
+  Init         = Radio;
+  SplitControl = Radio;
+  Packet       = Radio;
+
+  AMSend   = AM;
+  Receive  = AM.Receive;
+  Snoop    = AM.Snoop;
+  AMPacket = AM;
+
+  AM.SubSend    -> Radio.Send;
+  AM.SubReceive -> Radio.Receive;
+  AM.amAddress -> Address;
 }

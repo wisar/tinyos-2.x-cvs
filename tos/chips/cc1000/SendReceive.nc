@@ -68,6 +68,7 @@ module SendReceive {
     interface HPLCC1000Spi;
 
     interface AcquireDataNow as RssiRx;
+    async command am_addr_t amAddress();
   }
 }
 implementation 
@@ -482,7 +483,8 @@ implementation
     rxBufPtr->footer.crc = rxBufPtr->footer.crc == runningCrc;
 
     if (f.ack &&
-	rxBufPtr->footer.crc && rxBufPtr->header.addr == TOS_LOCAL_ADDRESS)
+	rxBufPtr->footer.crc &&
+	rxBufPtr->header.addr == call amAddress())
       {
 	enterAckState();
 	call CC1000Control.txMode();
