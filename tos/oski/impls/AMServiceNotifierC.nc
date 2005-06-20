@@ -37,12 +37,12 @@
  * @date   May 16 2005
  */ 
 
-generic configuration AMServiceNotifierC {
+generic configuration AMServiceNotifierC() {
   provides interface ServiceNotify as Notify;
 }
 
 implementation {
-  components AMServiceImpl;
+  components AMServiceImplC as Impl;
 
-  Notify = AMServiceImpl;
+  Notify = Impl;
 }

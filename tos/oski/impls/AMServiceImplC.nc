@@ -39,11 +39,13 @@
 
 configuration AMServiceImplC {
   provides interface Service[uint8_t id];
+  provides interface ServiceNotify;
 }
 implementation {
   components ActiveMessageImplC;
   components new ServiceOrControllerM("OSKI.AMServiceImplC.Service");
   
   Service = ServiceOrControllerM;
-  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;  
+  ServiceOrControllerM.SplitControl -> ActiveMessageImplC;
+  ServiceNotify = ServiceOrControllerM;
 }
