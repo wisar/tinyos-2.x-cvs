@@ -36,7 +36,6 @@
  * ========================================================================
  */
  
-#include "msp430baudrates.h"
 #include "msp430BusResource.h"
 enum {
   TDA5250_SPI_BUS_ID = unique(MSP430_SPIO_BUS)
