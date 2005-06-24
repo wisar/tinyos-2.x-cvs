@@ -66,6 +66,7 @@ implementation {
            ;
   
   Init = TDA5250RegistersM;
+	Init = TDA5250RegCommC;
 	Resource = TDA5250RegCommC;
 	
   CONFIG = TDA5250RegistersM.CONFIG;

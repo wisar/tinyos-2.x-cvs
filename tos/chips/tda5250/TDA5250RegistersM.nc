@@ -67,7 +67,7 @@ implementation {
    error_t writeByte(uint8_t addr, uint16_t data) {
      error_t result;
      call ENTDA.clr();
-     result = call TDA5250RegComm.writeWord(addr, data);  
+     result = call TDA5250RegComm.writeByte(addr, data);  
      call ENTDA.set();
      return result;
    }

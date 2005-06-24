@@ -47,9 +47,6 @@ module TDA5250RegCommM {
 
 implementation {
 
-   uint8_t txBuf[3];
-	 uint8_t rxBuf[1];
-   
    command error_t Init.init() {
      // setting pins to output
      call BUSM.makeOutput();
