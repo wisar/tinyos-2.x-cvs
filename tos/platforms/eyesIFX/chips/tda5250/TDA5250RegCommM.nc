@@ -100,7 +100,7 @@ implementation {
        return FAIL;      
       transmitByte(address);
       transmitByte(data);
-      while (call USARTControl.isTxEmpty() == FAIL);
+      while (call USARTControl.isTxEmpty() == FALSE);
       return SUCCESS;
    } 
 
