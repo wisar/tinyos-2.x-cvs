@@ -35,3 +35,4 @@ implementation
   StdControl  = DemoChannel;    
   AcquireData = DemoChannel;
 }
+

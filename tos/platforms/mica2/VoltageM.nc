@@ -25,20 +25,22 @@
 
 module VoltageM
 {
-  provides interface StdControl;	
+  provides interface StdControl;
+  uses interface GeneralIO as BAT_MON;	
 }
 implementation
 {
   
-  command result_t StdControl.start() {
-	TOSH_MAKE_BAT_MON_OUTPUT();
-	TOSH_SET_BAT_MON_PIN();
+  command error_t StdControl.start() {
+	call BAT_MON.makeOutput();
+	call BAT_MON.set();
     return SUCCESS;
   }
 
-  command result_t StdControl.stop() {
-	TOSH_CLR_BAT_MON_PIN();
+  command error_t StdControl.stop() {
+	call BAT_MON.clr();
     return SUCCESS;
   }	
 
 }
+
