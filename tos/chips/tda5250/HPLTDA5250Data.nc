@@ -32,50 +32,59 @@
  */
  
  /**
- * HPLTDA5250M configuration  
- * Controlling the TDA5250 at the HPL layer.. 
+ * TDA5250Data Interface  
+ * Interface for sending and receiving bytes of data over the TDA5250 Radio 
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
  
-#include "tda5250Const.h"
-#include "tda5250RegDefaultSettings.h"
-#include "tda5250RegTypes.h"
-configuration TDA5250ConfigC {
-  provides {
-    interface Init;  
-    interface TDA5250Config;
-    interface Resource as Resource;
-  }
-}
-implementation {
-  components TDA5250ConfigM
-           , TDA5250RegistersC
-           , TDA5250RadioIO
-           , TDA5250RadioInterruptPWDDD
-           ;
-   
-  Init = TDA5250ConfigM;
-  Init = TDA5250RegistersC;  
-  Resource = TDA5250RegistersC.Resource;
-  TDA5250Config = TDA5250ConfigM;
+interface HPLTDA5250Data {
+
+ /**
+   * Transmit a byte of data over the radio. 
+   * @param data The data byte to be transmitted
+   * @return SUCCESS Byte successfully transmitted
+             FAIL    Byte could not be transmitted
+   */
+  async command error_t tx(uint8_t data);
+
+  /**
+   * Signalled when the next byte can be made ready to transmit
+   * Receiving such an event does not guarantee that the previous
+   * byte has already been transmitted, just that the next one can
+   * now be handed over for transmission.
+   */
+  async event void txReady();
   
-  TDA5250ConfigM.CONFIG -> TDA5250RegistersC.CONFIG;
-  TDA5250ConfigM.FSK -> TDA5250RegistersC.FSK;
-  TDA5250ConfigM.XTAL_TUNING -> TDA5250RegistersC.XTAL_TUNING;
-  TDA5250ConfigM.LPF -> TDA5250RegistersC.LPF;
-  TDA5250ConfigM.ON_TIME -> TDA5250RegistersC.ON_TIME;
-  TDA5250ConfigM.OFF_TIME -> TDA5250RegistersC.OFF_TIME;
-  TDA5250ConfigM.COUNT_TH1 -> TDA5250RegistersC.COUNT_TH1;
-  TDA5250ConfigM.COUNT_TH2 -> TDA5250RegistersC.COUNT_TH2;
-  TDA5250ConfigM.RSSI_TH3 -> TDA5250RegistersC.RSSI_TH3;
-  TDA5250ConfigM.CLK_DIV -> TDA5250RegistersC.CLK_DIV;
-  TDA5250ConfigM.XTAL_CONFIG -> TDA5250RegistersC.XTAL_CONFIG;
-  TDA5250ConfigM.BLOCK_PD -> TDA5250RegistersC.BLOCK_PD;
-  TDA5250ConfigM.STATUS -> TDA5250RegistersC.STATUS;
-  TDA5250ConfigM.ADC -> TDA5250RegistersC.ADC;  
+  /**
+   * Command for querying whether any bytes are still waiting to be transmitted
+   */  
+  async command bool isTxDone();
   
-  TDA5250ConfigM.PWDDD -> TDA5250RadioIO.TDA5250RadioPWDDD;    
-  TDA5250ConfigM.TXRX -> TDA5250RadioIO.TDA5250RadioTXRX;  
-  TDA5250ConfigM.PWDDDInterrupt -> TDA5250RadioInterruptPWDDD;
+  /**
+   * Signaled when a byte of data has been received from the radio.
+   * @param data The data byte received
+   */
+  async event void rxDone(uint8_t data);
+ 
+  /**
+   * Enable transmitting over the radio
+  */  
+  async command error_t enableTx();
+  
+  /**
+   * Disable transmitting over the radio
+  */    
+  async command error_t disableTx();
+  
+  /**
+   * Enable receiving over the radio
+  */    
+  async command error_t enableRx();
+  
+  /**
+   * Disable receiving over the radio
+  */    
+  async command error_t disableRx(); 	
 }
+

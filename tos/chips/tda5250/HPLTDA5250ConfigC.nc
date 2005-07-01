@@ -32,38 +32,58 @@
  */
  
  /**
- * HPLTDA5250M configuration  
+ * HPLTDA5250ConfigM configuration  
  * Controlling the TDA5250 at the HPL layer.. 
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
  
-#include "msp430baudrates.h"
-#include "msp430BusResource.h"
-enum {
-  TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
-};     
-configuration TDA5250DataC {
+#include "tda5250Const.h"
+#include "tda5250RegDefaultSettings.h"
+#include "tda5250RegTypes.h"
+configuration HPLTDA5250ConfigC {
   provides {
     interface Init;  
-    interface TDA5250Data;
+    interface HPLTDA5250Config;
     interface Resource as Resource;
   }
 }
 implementation {
-  components TDA5250DataM
-	         , HPLUSART0C
+  components HPLTDA5250ConfigM
+           , TDA5250RegistersC
+					 , new Alarm32khzC() as TransmitterDelay
+					 , new Alarm32khzC() as ReceiverDelay
+					 , new Alarm32khzC() as RSSIStableDelay
            , TDA5250RadioIO
+           , TDA5250RadioInterruptPWDDD
            ;
    
-  Init = TDA5250DataM;
-	Init = HPLUSART0C;
-  Resource = TDA5250DataM.Resource;
-  TDA5250Data = TDA5250DataM;
+  Init = HPLTDA5250ConfigM;
+  Init = TDA5250RegistersC;  
+  Resource = TDA5250RegistersC.Resource;
+  HPLTDA5250Config = HPLTDA5250ConfigM;
   
-	TDA5250DataM.DATA -> TDA5250RadioIO.TDA5250RadioDATA;
-	TDA5250DataM.USARTControl -> HPLUSART0C;
-	TDA5250DataM.USARTFeedback -> HPLUSART0C;
-	TDA5250DataM.UARTResource -> HPLUSART0C.Resource[TDA5250_UART_BUS_ID];
-  TDA5250DataM.ResourceUser -> HPLUSART0C.ResourceUser; 	
+  HPLTDA5250ConfigM.CONFIG -> TDA5250RegistersC.CONFIG;
+  HPLTDA5250ConfigM.FSK -> TDA5250RegistersC.FSK;
+  HPLTDA5250ConfigM.XTAL_TUNING -> TDA5250RegistersC.XTAL_TUNING;
+  HPLTDA5250ConfigM.LPF -> TDA5250RegistersC.LPF;
+  HPLTDA5250ConfigM.ON_TIME -> TDA5250RegistersC.ON_TIME;
+  HPLTDA5250ConfigM.OFF_TIME -> TDA5250RegistersC.OFF_TIME;
+  HPLTDA5250ConfigM.COUNT_TH1 -> TDA5250RegistersC.COUNT_TH1;
+  HPLTDA5250ConfigM.COUNT_TH2 -> TDA5250RegistersC.COUNT_TH2;
+  HPLTDA5250ConfigM.RSSI_TH3 -> TDA5250RegistersC.RSSI_TH3;
+  HPLTDA5250ConfigM.RF_POWER -> TDA5250RegistersC.RF_POWER;
+  HPLTDA5250ConfigM.CLK_DIV -> TDA5250RegistersC.CLK_DIV;
+  HPLTDA5250ConfigM.XTAL_CONFIG -> TDA5250RegistersC.XTAL_CONFIG;
+  HPLTDA5250ConfigM.BLOCK_PD -> TDA5250RegistersC.BLOCK_PD;
+  HPLTDA5250ConfigM.STATUS -> TDA5250RegistersC.STATUS;
+  HPLTDA5250ConfigM.ADC -> TDA5250RegistersC.ADC;  
+	
+	HPLTDA5250ConfigM.TransmitterDelay -> TransmitterDelay.Alarm32khz16;
+	HPLTDA5250ConfigM.ReceiverDelay -> ReceiverDelay.Alarm32khz16;
+	HPLTDA5250ConfigM.RSSIStableDelay -> RSSIStableDelay.Alarm32khz16;
+  
+  HPLTDA5250ConfigM.PWDDD -> TDA5250RadioIO.TDA5250RadioPWDDD;    
+  HPLTDA5250ConfigM.TXRX -> TDA5250RadioIO.TDA5250RadioTXRX;  
+  HPLTDA5250ConfigM.PWDDDInterrupt -> TDA5250RadioInterruptPWDDD;
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, Technische Universitaet Berlin
+ * Copyright (c) 2004, Technische Universitat Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name of the Technische Universitaet Berlin nor the names
+ * - Neither the name of the Technische Universitat Berlin nor the names
  *   of its contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  *
@@ -25,29 +25,45 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * - Description ---------------------------------------------------------
- * Macros for configuring the TDA5250.
- * - Revision ------------------------------------------------------------
+ * - Revision -------------------------------------------------------------
  * $Revision$
- * $Date$
- * Author: Kevin Klues (klues@tkn.tu-berlin.de)
- * ========================================================================
+ * $Date$ 
+ * ======================================================================== 
  */
-
-#ifndef TDA5250_H
-#define TDA5250_H
-
-typedef enum {
-  RADIO_MODE_NULL,
-  RADIO_MODE_DISABLED,
-  RADIO_MODE_PENDING,
-  RADIO_MODE_TX,
-  RADIO_MODE_RX,
-  RADIO_MODE_CCA,
-  RADIO_MODE_SLEEP,
-  RADIO_MODE_TIMER,
-  RADIO_MODE_SELF_POLLING
-} radioMode_t;
-
-#endif //TDA5250_H
+ 
+ /**
+ * HPLTDA5250M configuration  
+ * Controlling the TDA5250 at the HPL layer.. 
+ *
+ * @author Kevin Klues (klues@tkn.tu-berlin.de)
+ */
+ 
+#include "msp430baudrates.h"
+#include "msp430BusResource.h"
+enum {
+  TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
+};
+configuration HPLTDA5250DataC {
+  provides {
+    interface Init;  
+    interface HPLTDA5250Data;
+    interface Resource as Resource;
+  }
+}
+implementation {
+  components HPLTDA5250DataM
+	         , HPLUSART0C
+           , TDA5250RadioIO
+           ;
+   
+  Init = HPLTDA5250DataM;
+	Init = HPLUSART0C;
+  Resource = HPLTDA5250DataM.Resource;
+  HPLTDA5250Data = HPLTDA5250DataM;
+  
+	HPLTDA5250DataM.DATA -> TDA5250RadioIO.TDA5250RadioDATA;
+	HPLTDA5250DataM.USARTControl -> HPLUSART0C;
+	HPLTDA5250DataM.USARTFeedback -> HPLUSART0C;
+	HPLTDA5250DataM.UARTResource -> HPLUSART0C.Resource[TDA5250_UART_BUS_ID];
+  HPLTDA5250DataM.ResourceUser -> HPLUSART0C.ResourceUser; 	
+}

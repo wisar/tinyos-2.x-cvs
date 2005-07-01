@@ -32,59 +32,39 @@
  */
  
  /**
- * TDA5250Data Interface  
- * Interface for sending and receiving bytes of data over the TDA5250 Radio 
+ * HPLTDA5250ConfigM configuration  
+ * Controlling the TDA5250 at the HPL layer.. 
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
  
-interface TDA5250Data {
-
- /**
-   * Transmit a byte of data over the radio. 
-   * @param data The data byte to be transmitted
-   * @return SUCCESS Byte successfully transmitted
-             FAIL    Byte could not be transmitted
-   */
-  async command error_t tx(uint8_t data);
-
-  /**
-   * Signalled when the next byte can be made ready to transmit
-   * Receiving such an event does not guarantee that the previous
-   * byte has already been transmitted, just that the next one can
-   * now be handed over for transmission.
-   */
-  async event void txReady();
-  
-  /**
-   * Command for querying whether any bytes are still waiting to be transmitted
-   */  
-  async command bool isTxDone();
-  
-  /**
-   * Signaled when a byte of data has been received from the radio.
-   * @param data The data byte received
-   */
-  async event void rxDone(uint8_t data);
-	
-  /**
-   * Enable transmitting over the radio
-  */  
-  async command error_t enableTx();
-  
-  /**
-   * Disable transmitting over the radio
-  */    
-  async command error_t disableTx();
-  
-  /**
-   * Enable receiving over the radio
-  */    
-  async command error_t enableRx();
-  
-  /**
-   * Disable receiving over the radio
-  */    
-  async command error_t disableRx();	
+#include "tda5250Const.h"
+#include "tda5250RegDefaultSettings.h"
+#include "tda5250RegTypes.h"
+configuration TDA5250RadioC {
+  provides {
+    interface Init;  
+    interface SplitControl;
+    interface TDA5250Control;
+    interface RadioByteComm;
+  }
 }
-
+implementation {
+  components TDA5250RadioM
+           , HPLTDA5250ConfigC
+           , HPLTDA5250DataC
+           ;
+   
+  Init = HPLTDA5250ConfigC;
+  Init = HPLTDA5250DataC;  
+  Init = TDA5250RadioM; 
+  TDA5250Control = TDA5250RadioM;
+  RadioByteComm = TDA5250RadioM;
+  SplitControl = TDA5250RadioM;
+  
+  TDA5250RadioM.ConfigResource -> HPLTDA5250ConfigC;
+  TDA5250RadioM.DataResource -> HPLTDA5250DataC;
+  
+  TDA5250RadioM.HPLTDA5250Config -> HPLTDA5250ConfigC;
+  TDA5250RadioM.HPLTDA5250Data -> HPLTDA5250DataC;
+}

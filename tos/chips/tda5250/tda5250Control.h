@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, Technische Universitat Berlin
+ * Copyright (c) 2004, Technische Universitaet Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name of the Technische Universitat Berlin nor the names
+ * - Neither the name of the Technische Universitaet Berlin nor the names
  *   of its contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  *
@@ -25,46 +25,40 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$ 
- * ======================================================================== 
- */
- 
- /**
- * TDA5250DataComm Interface  
- * Interface for sending and receiving bytes of data over the TDA5250 Radio 
  *
- * @author Kevin Klues (klues@tkn.tu-berlin.de)
+ * - Description ---------------------------------------------------------
+ * Macros for configuring the TDA5250.
+ * - Revision ------------------------------------------------------------
+ * $Revision$
+ * $Date$
+ * Author: Kevin Klues (klues@tkn.tu-berlin.de)
+ * ========================================================================
  */
- 
-interface TDA5250DataComm {
 
- /**
-   * Transmit a byte of data over the radio. 
-   * @param data The data byte to be transmitted
-   * @return SUCCESS Byte successfully transmitted
-             FAIL    Byte could not be transmitted
-   */
-  async command error_t tx(uint8_t data);
+#ifndef TDA5250CONTROL_H
+#define TDA5250CONTROL_H
 
-  /**
-   * Signalled when the next byte can be made ready to transmit
-   * Receiving such an event does not guarantee that the previous
-   * byte has already been transmitted, just that the next one can
-   * now be handed over for transmission.
-   */
-  async event void txReady();
-  
-  /**
-   * Command for querying whether any bytes are still waiting to be transmitted
-   */  
-  async command bool isTxDone();
-  
-  /**
-   * Signaled when a byte of data has been received from the radio.
-   * @param data The data byte received
-   */
-  async event void rxDone(uint8_t data);
-}
+typedef enum {
+  RADIO_MODE_ON_TRANSITION,
+	RADIO_MODE_ON,
+  RADIO_MODE_OFF_TRANSITION,
+  RADIO_MODE_OFF,
+  RADIO_MODE_TX_TRANSITION,
+  RADIO_MODE_TX,
+  RADIO_MODE_RX_TRANSITION,
+  RADIO_MODE_RX,
+  RADIO_MODE_CCA_TRANSITION,
+  RADIO_MODE_CCA,
+  RADIO_MODE_TIMER_TRANSITION,
+  RADIO_MODE_TIMER,
+  RADIO_MODE_SELF_POLLING_TRANSITION,
+  RADIO_MODE_SELF_POLLING,
+  RADIO_MODE_SLEEP_TRANSITION,
+  RADIO_MODE_SLEEP
+} radioMode_t;
 
+#define INIT_RSSI_THRESHOLD     26
+#define TH1_VALUE               0x0000
+#define TH2_VALUE               0xFFFF
+
+#endif //TDA5250CONTROL_H
