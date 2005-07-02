@@ -442,7 +442,7 @@ implementation {
        call TXRX.clr();
        call PWDDD.clr();
       }
-			call ReceiverDelay.startNow(TDA5250_TRANSMITTER_SETUP_TIME);
+			call TransmitterDelay.startNow(TDA5250_TRANSMITTER_SETUP_TIME);
    }
    
    async command void HPLTDA5250Config.SetRxMode() { 

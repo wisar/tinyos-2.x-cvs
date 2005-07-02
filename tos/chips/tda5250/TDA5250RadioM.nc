@@ -152,7 +152,7 @@ implementation {
    
    event void DataResource.granted() {
      switch(radioMode) {   
-       case RADIO_MODE_TX_TRANSITION:      
+       case RADIO_MODE_TX_TRANSITION:
          call HPLTDA5250Config.SetTxMode();
        break;       
        case RADIO_MODE_RX_TRANSITION:    
@@ -282,7 +282,7 @@ implementation {
    }
    
    async command bool RadioByteComm.isTxDone() {
-     call HPLTDA5250Data.isTxDone();   
+     return call HPLTDA5250Data.isTxDone();   
    }
   
   default async event void TDA5250Control.TimerModeDone(){
