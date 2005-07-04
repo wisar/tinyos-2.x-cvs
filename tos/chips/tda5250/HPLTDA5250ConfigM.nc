@@ -452,7 +452,7 @@ implementation {
        call CONFIG.set(currentConfig);
      }
      else {
-       call TXRX.set();
+       call TXRX.set();	 
        call PWDDD.clr();
      }
 		 call ReceiverDelay.startNow(TDA5250_RECEIVER_SETUP_TIME);
@@ -463,7 +463,10 @@ implementation {
        currentConfig = CONFIG_ALL_PD_POWER_DOWN(currentConfig);
        call CONFIG.set(currentConfig);
      }
-     else call PWDDD.set();
+     else {	 
+		   call PWDDD.makeOutput();
+		   call PWDDD.set();
+		 }
 		 signal HPLTDA5250Config.SetSleepModeDone();
    }
          
