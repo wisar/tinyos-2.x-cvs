@@ -178,7 +178,7 @@ implementation {
        if(radioBusy() == FALSE) {
          radioMode = RADIO_MODE_TIMER_TRANSITION;  
          onTime = on_time;
-         onTime = off_time;
+         offTime = off_time;
        }
      }
      if(radioMode == RADIO_MODE_TIMER_TRANSITION)  
@@ -201,7 +201,7 @@ implementation {
        if(radioBusy() == FALSE) {      
          radioMode = RADIO_MODE_SELF_POLLING_TRANSITION;  
          onTime = on_time;
-         onTime = off_time;
+         offTime = off_time;
        }
      }
      if(radioMode == RADIO_MODE_SELF_POLLING_TRANSITION)
