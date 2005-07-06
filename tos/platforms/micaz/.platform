@@ -13,8 +13,11 @@ push( @includes, qw(
 
   %T/platforms/micaz
   %T/platforms/mica
+  %T/platforms/micaz/chips/cc2420
+  %T/chips/cc2420
   %T/chips/ATmega128
   %T/chips/ATmega128/timer
+  %T/chips/ATmega128/spi
   %T/lib/timer
 
 ) );
