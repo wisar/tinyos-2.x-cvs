@@ -109,9 +109,9 @@ implementation
      if(error == SUCCESS)
        TransmitNextByte();
      else if(error == ECANCEL)
-       post SendDoneCancelTask();        
+		   post SendDoneCancelTask();
      else post SendDoneFailTask();
-   }
+	 }
    
    /**************** Rx Done ****************/
    async event void RadioByteComm.txByteReady(error_t error) {

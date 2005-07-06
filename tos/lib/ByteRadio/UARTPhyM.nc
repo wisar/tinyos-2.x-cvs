@@ -85,7 +85,6 @@ implementation
    command error_t Init.init(){
      atomic {
        phyState = STATE_NULL;  
-       crc = 0;
      }     
      return SUCCESS;
    }  
@@ -96,7 +95,7 @@ implementation
        length = length_value;
 			 numPreambles = 1;
        crc = 0;
-     }     
+     }
      TransmitNextByte();
    }
    
