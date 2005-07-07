@@ -185,8 +185,8 @@ implementation
    
    async event void TDA5250PhyPacketRx.recvFooterDone(bool error) {
 	   call RxTimeoutTimer.stop();
+     atomic rxBusy = FALSE;		 
      call TDA5250PhyPacketRx.recvHeader();	 
-     atomic rxBusy = FALSE;
      signal PhyPacketRx.recvFooterDone(error);
    }
    
