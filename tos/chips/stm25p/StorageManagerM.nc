@@ -71,7 +71,7 @@ implementation {
 
   command result_t StdControl.init() {
 
-    uint8_t i;
+    int i;
     
     state = S_NEVER_USED;
 
@@ -170,7 +170,7 @@ implementation {
 
   result_t formatFlash() {
 
-    uint8_t i;
+    int i;
 
     for ( i = 0; i < STM25P_NUM_SECTORS; i++ )
       sectorTable.sector[i].volumeId = 0xd0 + i;

@@ -112,7 +112,7 @@ implementation {
   void sendCmd(uint8_t cmd, stm25p_addr_t addr, void* data, stm25p_addr_t len) {
 
     uint8_t cmdBytes[2*STM25P_ADDR_SIZE + 1];
-    uint8_t i;
+    int i;
 
     // begin command
     call HPLSTM25P.beginCmd();
