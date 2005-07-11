@@ -75,6 +75,7 @@ implementation
    }
    task void ReceiveTask() {
      signal Receive.receive((message_t*)rxBufPtr, (void*)rxBufPtr, msgLength);
+		 call PhyPacketRx.recvHeader();
    }   
 
    /**************** Radio Init  *****************/
