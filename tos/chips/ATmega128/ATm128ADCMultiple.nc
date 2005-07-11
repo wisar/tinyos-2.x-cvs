@@ -95,4 +95,12 @@ interface ATm128ADCMultiple
    */	
   async event bool dataReady(uint16_t data, bool precise, uint8_t channel,
 			     uint8_t *newChannel, uint8_t *newRefVoltage);
+
+
+  /* Note: there is no cancel in free-running mode because you cannot tell
+     from a successful (or unsuccessful) cancellation whether there will
+     be another dataReady event. Thus you cannot tell when you can safely
+     reuse the ADC (short of waiting one ADC conversion period, in which
+     case you might as well use the result of dataReady to cancel).
+  */
 }
