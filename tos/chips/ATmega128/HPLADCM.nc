@@ -89,7 +89,6 @@ implementation
 
   AVR_ATOMIC_HANDLER(SIG_ADC) {
       uint16_t data = call HPLADC.getValue();
-      data &= ATMEGA128_10BIT_ADC_MASK;
       __nesc_enable_interrupt();
       signal HPLADC.dataReady(data);
   }

@@ -42,7 +42,8 @@ configuration HALADCC
     interface Init;
     interface StdControl;
     interface Resource[uint8_t client];
-    interface ATm128ADC[uint8_t port];
+    interface ATm128ADCSingle[uint8_t channel];
+    interface ATm128ADCMultiple;
   }
 }
 implementation
@@ -55,7 +56,8 @@ implementation
   StdControl = HALADCM;
 
   Resource = ADCArbiter;
-  ATm128ADC = HALADCM.ATm128ADC;
+  ATm128ADCSingle = HALADCM;
+  ATm128ADCMultiple = HALADCM;
 
   HALADCM.HPLADC -> HPLADCM;
 }

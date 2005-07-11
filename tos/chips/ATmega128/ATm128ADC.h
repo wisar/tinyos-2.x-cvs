@@ -94,6 +94,8 @@ typedef ATm128ADCSelection_t ATm128_ADMUX_t;  //!< ADC Multiplexer Selection
 #define ATMEGA128_10BIT_ADC_MASK 0x3ff 
 
 /** ADC Prescaler Settings */
+/* Note: each platform must define ATM128_ADC_PRESCALE to the smallest
+   prescaler which guarantees full A/D precision. */
 enum {
     ATM128_ADC_PRESCALE_2 = 0,
     ATM128_ADC_PRESCALE_2b,

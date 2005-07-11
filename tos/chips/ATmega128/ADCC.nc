@@ -21,6 +21,7 @@ configuration ADCC {
     interface AcquireData[uint8_t port];
     interface AcquireDataNow[uint8_t port];
   }
+  uses interface ATm128ADCConfig[uint8_t port];
 }
 implementation {
   components HALADCC, ADCM;
@@ -31,6 +32,7 @@ implementation {
 
   AcquireData = ADCM;
   AcquireDataNow = ADCM;
+  ATm128ADCConfig = ADCM;
 
-  ADCM.ATm128ADC -> HALADCC;
+  ADCM.ATm128ADCSingle -> HALADCC;
 }
