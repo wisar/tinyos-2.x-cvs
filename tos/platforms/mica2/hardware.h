@@ -42,14 +42,14 @@
 #define HARDWARE_H
 
 #include <atmega128hardware.h>
+#include <ATm128ADC.h>
 
-// A/D channels
+// A/D constants (channels, etc)
 enum {
-  CHANNEL_RSSI       = 0,
-  CHANNEL_THERMISTOR = 1,    // normally unpopulated
-  CHANNEL_BATTERY    = 7,
-  CHANNEL_BANDGAP    = 30,   // 1.23V Fixed bandgap reference
-  CHANNEL_GND        = 31
+  CHANNEL_RSSI       = ATM128_ADC_SNGL_ADC0,
+  CHANNEL_THERMISTOR = ATM128_ADC_SNGL_ADC1,    // normally unpopulated
+  CHANNEL_BATTERY    = ATM128_ADC_SNGL_ADC7,
+  ATM128_ADC_PRESCALE = ATM128_ADC_PRESCALE_64  // normal mica2 prescaler value
 };
 
 void inline uwait(int u_sec) {
