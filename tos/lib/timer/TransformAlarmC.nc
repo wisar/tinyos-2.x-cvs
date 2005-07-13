@@ -53,7 +53,8 @@ implementation
 
   async command to_size_type Alarm.getAlarm()
   {
-    return m_t0 + m_dt;
+    atomic return m_t0 + m_dt;
+    //return m_t0 + m_dt;
   }
 
   async command bool Alarm.isRunning()
