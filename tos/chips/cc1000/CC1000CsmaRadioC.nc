@@ -106,4 +106,5 @@ implementation {
   Csma.RssiPulseCheck -> CC1000RssiM.Rssi[unique("CC1000RSSI")];
   Csma.cancelRssi -> CC1000RssiM;
   CC1000RssiM.ActualRssi -> HPLCC1000C;
+  Csma.RssiControl -> HPLCC1000C.RssiControl;
 }
