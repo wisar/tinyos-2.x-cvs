@@ -52,31 +52,33 @@ module RealMain
 implementation
 {
   int main() __attribute__ ((C, spontaneous)) {
-    /* First, initialize the Scheduler so components can post
-       tasks. Initialize all of the very hardware specific stuff, such
-       as CPU settings, counters, etc. After the hardware is ready,
-       initialize the requisite software components and start
-       execution.*/
+    atomic
+      {
+	/* First, initialize the Scheduler so components can post
+	   tasks. Initialize all of the very hardware specific stuff, such
+	   as CPU settings, counters, etc. After the hardware is ready,
+	   initialize the requisite software components and start
+	   execution.*/
     
-    call Scheduler.init(); 
+	call Scheduler.init(); 
     
-    /* Enable interrupts, in case initialization calls, such as for
-       oscillator calibration, require them. */
+	/* Initialize the platform. Then spin on the Scheduler, passing
+	 * FALSE so it will not put the system to sleep if there are no
+	 * more tasks; if no tasks remain, continue on to software
+	 * initialization */
+	call PlatformInit.init();    
+	while (call Scheduler.runNextTask(FALSE));
+
+	/* Initialize software components.Then spin on the Scheduler,
+	 * passing FALSE so it will not put the system to sleep if there
+	 * are no more tasks; if no tasks remain, the system has booted
+	 * successfully.*/
+	call SoftwareInit.init(); 
+	while (call Scheduler.runNextTask(FALSE));
+      }
+
+    /* Enable interrupts now that system is ready. */
     __nesc_enable_interrupt();
-
-    /* Initialize the platform. Then spin on the Scheduler, passing
-     * FALSE so it will not put the system to sleep if there are no
-     * more tasks; if no tasks remain, continue on to software
-     * initialization */
-    call PlatformInit.init();    
-    while (call Scheduler.runNextTask(FALSE));
-
-    /* Initialize software components.Then spin on the Scheduler,
-     * passing FALSE so it will not put the system to sleep if there
-     * are no more tasks; if no tasks remain, the system has booted
-     * successfully.*/
-    call SoftwareInit.init(); 
-    while (call Scheduler.runNextTask(FALSE));
 
     signal Boot.booted();
 
