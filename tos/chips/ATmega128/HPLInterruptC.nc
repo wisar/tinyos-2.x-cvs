@@ -42,18 +42,20 @@ configuration HPLInterruptC
 }
 implementation
 {
-#define IRQ_PIN_ARGS(bit) (uint8_t)&EICRA, ISC##bit##0, ISC##bit##1, \
-                          bit+1, bit
+#define IRQ_PORT_D_PIN(bit) (uint8_t)&EICRA, ISC##bit##0, ISC##bit##1, \
+                            bit+1, bit
+#define IRQ_PORT_E_PIN(bit) (uint8_t)&EICRB, ISC##bit##0, ISC##bit##1, \
+                            bit+1, bit
 
   components 
-      new HPLInterruptPinM(IRQ_PIN_ARGS(0)) as IntPin0,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(1)) as IntPin1,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(2)) as IntPin2,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(3)) as IntPin3,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(4)) as IntPin4,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(5)) as IntPin5,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(6)) as IntPin6,
-      new HPLInterruptPinM(IRQ_PIN_ARGS(7)) as IntPin7
+      new HPLInterruptPinM(IRQ_PORT_D_PIN(0)) as IntPin0,
+      new HPLInterruptPinM(IRQ_PORT_D_PIN(1)) as IntPin1,
+      new HPLInterruptPinM(IRQ_PORT_D_PIN(2)) as IntPin2,
+      new HPLInterruptPinM(IRQ_PORT_D_PIN(3)) as IntPin3,
+      new HPLInterruptPinM(IRQ_PORT_E_PIN(4)) as IntPin4,
+      new HPLInterruptPinM(IRQ_PORT_E_PIN(5)) as IntPin5,
+      new HPLInterruptPinM(IRQ_PORT_E_PIN(6)) as IntPin6,
+      new HPLInterruptPinM(IRQ_PORT_E_PIN(7)) as IntPin7
       ;
   
   Int0 = IntPin0;
