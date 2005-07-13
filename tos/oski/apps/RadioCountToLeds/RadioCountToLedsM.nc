@@ -71,9 +71,8 @@ implementation {
       return;
     }
     else {
-      uint8_t len;
-      RadioCountMsg* rcm = (RadioCountMsg*)call Packet.getPayload(&packet, &len);
-      if (len < sizeof(RadioCountMsg)) {
+      RadioCountMsg* rcm = (RadioCountMsg*)call Packet.getPayload(&packet, NULL);
+      if (call Packet.maxPayloadLength() < sizeof(RadioCountMsg)) {
 	return;
       }
 

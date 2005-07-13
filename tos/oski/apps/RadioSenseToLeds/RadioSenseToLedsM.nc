@@ -111,7 +111,7 @@ implementation {
     }
     
     rsm = (RadioSenseMsg*)call Packet.getPayload(&packet, &len);
-    if (len < sizeof(RadioSenseMsg)) {
+    if (call Packet.maxPayloadLength() < sizeof(RadioSenseMsg)) {
       return;
     }
     rsm->error = err;
