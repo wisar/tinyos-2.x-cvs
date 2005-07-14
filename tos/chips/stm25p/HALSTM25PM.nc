@@ -112,7 +112,7 @@ implementation {
   void sendCmd(uint8_t cmd, stm25p_addr_t addr, void* data, stm25p_addr_t len) {
 
     uint8_t cmdBytes[2*STM25P_ADDR_SIZE + 1];
-    int i;
+    uint8_t i;
 
     // begin command
     call HPLSTM25P.beginCmd();
@@ -128,7 +128,7 @@ implementation {
 
     // data
     if (STM25P_CMDS[cmd].receive)
-      call HPLSTM25P.rxBuf(data, len, &crcScratch);
+      crcScratch = call HPLSTM25P.rxBuf(data, len, crcScratch);
     else if (STM25P_CMDS[cmd].transmit)
       call HPLSTM25P.txBuf(data, len);
 

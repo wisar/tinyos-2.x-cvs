@@ -28,10 +28,10 @@
 interface HPLSTM25P {
   async command result_t getBus();
   async command result_t releaseBus();
-  async command result_t beginCmd();
-  async command result_t endCmd();
-  async command result_t hold();
-  async command result_t unhold();
-  async command result_t txBuf(void* buf, stm25p_addr_t len);
-  async command result_t rxBuf(void* buf, stm25p_addr_t len, uint16_t* crc);
+  async command void beginCmd();
+  async command void endCmd();
+  async command void hold();
+  async command void unhold();
+  async command void txBuf(void* buf, stm25p_addr_t len);
+  async command uint16_t rxBuf(void* buf, stm25p_addr_t len, uint16_t crc);
 }
