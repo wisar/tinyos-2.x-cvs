@@ -40,6 +40,7 @@ implementation {
 
   StdControl = HALSTM25PM;
   StdControl = HPLSTM25PC;
+  StdControl = TimerC;
   HALSTM25P = HALSTM25PM;
 
   HALSTM25PM.HPLSTM25P -> HPLSTM25PC;
