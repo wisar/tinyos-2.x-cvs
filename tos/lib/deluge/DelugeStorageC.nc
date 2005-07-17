@@ -30,8 +30,9 @@
 
 configuration DelugeStorageC {
   provides {
-    interface DelugeDataRead as DataRead[uint8_t id];
-    interface DelugeDataWrite as DataWrite[uint8_t id];
+    interface DelugeDataRead as DataRead;
+    interface DelugeDataWrite as DataWrite;
+    interface DelugeMetadataStore as MetadataStore;
     interface DelugeStorage;
   }
 }
@@ -42,8 +43,7 @@ implementation {
   DataRead = Storage;
   DataWrite = Storage;
   DelugeStorage = Storage;
-
-  Main.StdControl -> Storage;
+  MetadataStore = Storage;
 
   Storage.Leds -> Leds;
 

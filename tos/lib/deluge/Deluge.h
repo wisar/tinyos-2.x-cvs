@@ -83,6 +83,7 @@ typedef struct DelugeAdvTimer {
 
 typedef struct DelugeNodeDesc {
   imgvnum_t vNum;
+  uint32_t  uid;
   imgnum_t  imgNum;
   uint8_t   dummy;
   uint16_t  crc;
