@@ -248,7 +248,7 @@ implementation {
 
     result_t result;
 
-    if (state != S_READY)
+    if ( state != S_READY || !numSectors[volume] )
       return FALSE;
 
     state = newState;
