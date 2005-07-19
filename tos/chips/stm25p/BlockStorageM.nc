@@ -113,6 +113,7 @@ implementation {
       result = call SectorStorage.erase[blockId](0, call StorageManager.getVolumeSize[blockId]());
       break;
     case S_COMMIT:
+      result = SUCCESS;
       break;
     }
     
