@@ -44,7 +44,6 @@ implementation {
   enum {
     NUM_LOGS = uniqueCount("LogStorage"),
     BLOCK_SIZE = 1024,
-    BLOCK_MASK = BLOCK_SIZE-1,
     INVALID_PTR = 0xffffffff,
     INVALID_HDR = 0xff,
   };
@@ -370,6 +369,7 @@ implementation {
     if ( state == S_ERASE ) {
       log->curReadPtr = sizeof(stm25p_addr_t);
       log->curWritePtr = 0;
+      appendState = S_ERASE_SECTOR;
       signalDone(result); 
     }
 
