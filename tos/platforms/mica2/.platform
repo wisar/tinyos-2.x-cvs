@@ -16,7 +16,9 @@ push( @includes, qw(
   %T/chips/cc1000
   %T/chips/ATmega128
   %T/chips/ATmega128/timer
+  %T/chips/ATmega128/spi
   %T/lib/timer
+  %T/lib/serial
 
 ) );
 

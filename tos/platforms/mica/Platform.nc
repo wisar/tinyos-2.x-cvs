@@ -35,7 +35,8 @@ implementation
   components PlatformM, MotePlatformC, HPLUARTM;
 
   Init = PlatformM;
-  PlatformM.UART -> HPLUARTM.UART0;
+  Init = HPLUARTM.UART0Init;
+
   PlatformM.MoteInit -> MotePlatformC;
 }
 
