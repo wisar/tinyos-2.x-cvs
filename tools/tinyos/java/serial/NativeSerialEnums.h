@@ -40,9 +40,9 @@ namespace NativeSerialEnums
 
   enum parity_type
   {
-    PARITY_NONE = 0,
-    PARITY_EVEN = 1,
-    PARITY_ODD = 2,
+    NPARITY_NONE = 0,
+    NPARITY_EVEN = 1,
+    NPARITY_ODD = 2,
   };
 
   enum stop_type

@@ -236,9 +236,9 @@ note( "setSerialPortParams begin" );
     state.c_cflag |= PARENB;
     switch( parity )
     {
-      case PARITY_EVEN: state.c_cflag &= ~PARODD; break;
-      case PARITY_ODD: state.c_cflag |= PARODD; break;
-      case PARITY_NONE: default: state.c_cflag &= ~PARENB;
+      case NPARITY_EVEN: state.c_cflag &= ~PARODD; break;
+      case NPARITY_ODD: state.c_cflag |= PARODD; break;
+      case NPARITY_NONE: default: state.c_cflag &= ~PARENB;
     }
 
     errno_wrap( tcsetattr( m_fd, TCSANOW, &state ) == -1, "set_comm_state" );
@@ -272,8 +272,8 @@ note( "setSerialPortParams end" );
   {
     int parity = get_comm_state().c_cflag;
     if( parity & PARENB )
-      return (parity & PARODD) ? PARITY_ODD : PARITY_EVEN;
-    return PARITY_NONE;
+      return (parity & PARODD) ? NPARITY_ODD : NPARITY_EVEN;
+    return NPARITY_NONE;
   }
 
   int read( signed char* buffer, int off, int len )
