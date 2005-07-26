@@ -32,6 +32,7 @@
 #define __DELUGE_H__
 
 #include "DelugeMetadata.h"
+#include "TOSBoot.h"
 
 #ifndef DELUGE_NUM_IMAGES
 #define DELUGE_NUM_IMAGES 3
@@ -39,7 +40,6 @@
 
 enum {
   DELUGE_VERSION                    = 2,
-  DELUGE_MIN_ADV_PERIOD_LOG2        = 8,
   DELUGE_MAX_ADV_PERIOD_LOG2        = 20,
   DELUGE_NUM_NEWDATA_ADVS_REQUIRED  = 2,
   DELUGE_NUM_MIN_ADV_PERIODS        = 2,
