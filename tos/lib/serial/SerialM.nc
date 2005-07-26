@@ -45,7 +45,7 @@
  * FramerM
  * 
  * This modules provides framing for TOS_Msg's using PPP-HDLC-like framing 
- * (see RFC 1662).  When sending, a TOS_Msg is encapsulated in an HLDC frame.
+ * (see RFC 1662).  When sending, a TOS_Msg is encapsulated in an HDLC frame.
  * Receiving is similar EXCEPT that the component expects a special token byte
  * be received before the data payload. The purpose of the token is to feed back
  * an acknowledgement to the sender which serves as a crude form of flow-control.
@@ -485,6 +485,7 @@ implementation {
   nosync:
     /* reset all counters, etc */
     rxInit();
+    call SerialFrameComm.resetReceive();
     signal ReceiveBytePacket.endPacket(FAIL);
     
     /* if this was a flag, start in proto state.. */
