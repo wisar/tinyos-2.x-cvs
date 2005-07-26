@@ -37,7 +37,7 @@ public class TOSCommLibraryLoader
       System.err.println(
         "The toscomm JNI library was not found.\n"+
 	"Check that your tinyos-tools package is installed and try\n"+
-	"rerunning tinyos-install-jni."+
+	"rerunning tinyos-install-jni.\n"+
 	"Aborting.");
       System.exit(1);
     }
