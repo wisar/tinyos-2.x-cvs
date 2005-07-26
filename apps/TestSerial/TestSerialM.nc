@@ -37,7 +37,7 @@
 
 includes Timer;
 
-module TestSerialM {
+module TestSerialM { 
   uses {
     interface Leds;
     interface Boot;
