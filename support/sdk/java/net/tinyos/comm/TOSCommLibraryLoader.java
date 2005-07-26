@@ -30,17 +30,15 @@ public class TOSCommLibraryLoader
   {
     try
     {
-      System.loadLibrary("TOSComm");
+      System.loadLibrary("toscomm");
     }
     catch( Throwable t )
     {
       System.err.println(
-        "The TOSComm JNI library was not found.\n"
-      + "Please make sure the net.tinyos.comm package is properly installed.\n"
-      //+ "See tinyos-1.x/tools/java/net/tinyos/comm/README.TOSComm for more details.\n"
-      + "See tinyos-1.x/beta/TOSComm/README.TOSComm for more details.\n"
-      + "Aborting."
-      );
+        "The toscomm JNI library was not found.\n"+
+	"Check that your tinyos-tools package is installed and try\n"+
+	"rerunning tinyos-install-jni."+
+	"Aborting.");
       System.exit(1);
     }
   }
