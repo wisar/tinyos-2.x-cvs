@@ -38,7 +38,7 @@ module HPLUARTM
 implementation
 {
   //=== UART Init Commands. ====================================
-  async command error_t UART0Init.init() {
+  command error_t UART0Init.init() {
       ATm128UARTMode_t    mode;
       ATm128UARTStatus_t  stts;
       ATm128UARTControl_t ctrl;
@@ -55,7 +55,7 @@ implementation
 
       return SUCCESS;
   }
-  async command error_t UART1Init.init() {
+  command error_t UART1Init.init() {
       ATm128UARTMode_t    mode;
       ATm128UARTStatus_t  stts;
       ATm128UARTControl_t ctrl;
