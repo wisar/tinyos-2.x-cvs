@@ -1,4 +1,6 @@
-module HldcTranslateM {
+includes Serial;
+
+module HdlcTranslateM {
   provides interface SerialFrameComm;
   uses interface SerialByteComm;
 }
@@ -7,11 +9,13 @@ implementation {
   typedef struct {
     uint8_t sendEscape:1;
     uint8_t receiveEscape:1;
-  } HldcState;
+  } HdlcState;
   
-  HdlcState state = {0,0};
-  uint8_t txTemp;
+  norace HdlcState state = {0,0};
+  norace uint8_t txTemp;
   
+  // TODO: add reset for when SerialM goes no-sync.
+
   async event void SerialByteComm.get(uint8_t data) {
     if (data == HDLC_FLAG_BYTE) {
       signal SerialFrameComm.delimiterReceived();
@@ -41,7 +45,7 @@ implementation {
     }
   }
 
-  async event SerialByteComm.putDone() {
+  async event void SerialByteComm.putDone() {
     if (state.sendEscape) {
       state.sendEscape = 0;
       call SerialByteComm.put(txTemp);
