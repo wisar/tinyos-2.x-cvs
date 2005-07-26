@@ -47,6 +47,3 @@
 }
 
 %include "NativeSerial.h"
-
-char* getenv( const char* name );
-
