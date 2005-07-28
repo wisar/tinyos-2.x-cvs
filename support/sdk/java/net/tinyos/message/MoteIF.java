@@ -117,9 +117,11 @@ public class MoteIF {
 	// Start source if it isn't started yet
 	try {
 	    source.start();
-	    source.awaitStartup();
 	}
 	catch (IllegalThreadStateException e) { }
+	try {
+	    source.awaitStartup();
+	}
 	catch (IOException e) { 
 	    e.printStackTrace();
 	}
