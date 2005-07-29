@@ -38,6 +38,8 @@ configuration HPLInterruptC
       interface HPLInterrupt as Int5;
       interface HPLInterrupt as Int6;
       interface HPLInterrupt as Int7;
+
+      interface HPLInterrupt as NoInt;
   }
 }
 implementation
@@ -55,7 +57,8 @@ implementation
       new HPLInterruptPinM(IRQ_PORT_E_PIN(4)) as IntPin4,
       new HPLInterruptPinM(IRQ_PORT_E_PIN(5)) as IntPin5,
       new HPLInterruptPinM(IRQ_PORT_E_PIN(6)) as IntPin6,
-      new HPLInterruptPinM(IRQ_PORT_E_PIN(7)) as IntPin7
+      new HPLInterruptPinM(IRQ_PORT_E_PIN(7)) as IntPin7,
+      HPLInterruptNoneM as IntNone
       ;
   
   Int0 = IntPin0;
@@ -66,5 +69,6 @@ implementation
   Int5 = IntPin5;
   Int6 = IntPin6;
   Int7 = IntPin7;
+  NoInt = IntNone;
 }
 
