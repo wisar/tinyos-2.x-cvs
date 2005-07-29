@@ -31,11 +31,11 @@ configuration CC2420RadioInterruptFIFO
 implementation
 {
   components 
-      CC2420RadioIO
-    , new InterruptM()
+      HPLInterruptC,
+      new InterruptM()
     ;
 
   Interrupt = InterruptM.Interrupt;
-  InterruptM.HPLInterrupt -> CC2420RadioIO.CC2420RadioFIFO;
+  InterruptM.HPLInterrupt -> HPLInterruptC.NoInt;  // not connected to irq
 }
 

@@ -31,10 +31,10 @@ configuration CC2420RadioInterruptCCA
 implementation
 {
   components 
-      CC2420RadioIO
-    , new InterruptM()
+      HPLInterruptC,
+      new InterruptM()
     ;
 
   Interrupt = InterruptM.Interrupt;
-  InterruptM.HPLInterrupt -> CC2420RadioIO.CC2420RadioCCA;
+  InterruptM.HPLInterrupt -> HPLInterruptC.NoInt;  // not connected to irq
 }
