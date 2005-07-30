@@ -47,5 +47,5 @@ implementation
     Interrupt = SoftIrqM;
     GeneralIO = SoftIrqM;
     
-    SoftIrqM.Timer -> IrqTimer;   // strap into an OSKI system timer
+    SoftIrqM.IrqTimer -> IrqTimer;   // strap into an OSKI system timer
 }
