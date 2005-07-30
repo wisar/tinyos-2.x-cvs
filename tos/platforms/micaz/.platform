@@ -18,6 +18,7 @@ push( @includes, qw(
   %T/chips/ATmega128
   %T/chips/ATmega128/timer
   %T/chips/ATmega128/spi
+  %T/lib/gpio
   %T/lib/timer
   %T/lib/serial
 
