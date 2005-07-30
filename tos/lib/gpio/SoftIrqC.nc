@@ -42,11 +42,10 @@ implementation
 {
     components
 	new SoftIrqM(interval), 
-	new OSKITimerMsC() as IrqTimer,
-	;
+	new OSKITimerMsC() as IrqTimer;
 
     Interrupt = SoftIrqM;
     GeneralIO = SoftIrqM;
     
-    SoftIrqPinM.Timer -> IrqTimer;   // strap into an OSKI system timer
+    SoftIrqM.Timer -> IrqTimer;   // strap into an OSKI system timer
 }
