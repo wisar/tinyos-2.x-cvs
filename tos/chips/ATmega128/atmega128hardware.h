@@ -63,6 +63,9 @@
 #define CLR_BIT(port, bit)    ((port) &= ~_BV(bit))
 #define READ_BIT(port, bit)   (((port) & _BV(bit)) != 0)
 #define FLIP_BIT(port, bit)   ((port) ^= _BV(bit))
+#define WRITE_BIT(port, bit, value) \
+   if (value) SET_BIT((port), (bit)); \
+   else CLR_BIT((port), (bit))
 
 /// Bit operators using bit flag mask
 #define SET_FLAG(port, flag)  ((port) |= (flag))

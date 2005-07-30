@@ -42,6 +42,6 @@ implementation
 	new SoftIrqC(CC2420CCA_SOFT_IRQ_RATE) as SoftIrq,
         CC2420RadioIO;
     
-    Interrupt = SoftIrq.Interrupt;
-    SoftIrq.IrqPin -> CC2420RadioIO.CC2420RadioCCA;
+    Interrupt = SoftIrq;
+    SoftIrq -> CC2420RadioIO.CC2420RadioCCA;
 }

@@ -39,10 +39,10 @@ configuration CC2420RadioInterruptFIFO
 implementation
 {
     components 
-	new HalSoftInterruptPinC(CC2420FIFO_SOFT_IRQ_RATE) as SoftIrq,
+	new SoftIrqC(CC2420FIFO_SOFT_IRQ_RATE) as SoftIrq,
 	CC2420RadioIO;
     
-    Interrupt = SoftIrq.Interrupt;
+    Interrupt = SoftIrq;
     SoftIrq.IrqPin -> CC2420RadioIO.CC2420RadioFIFO;
 }
 

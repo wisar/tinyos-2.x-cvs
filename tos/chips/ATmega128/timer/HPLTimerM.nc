@@ -261,6 +261,9 @@ implementation
       return (call Timer2Ctrl.getInterruptMask()).bits.ocie2; 
   }
 
+  //=== Capture 16-bit implementation. ===================================
+  async command void Capture1.setEdge(bool up) { WRITE_BIT(TCCR1B,ICES1, up); }
+  async command void Capture3.setEdge(bool up) { WRITE_BIT(TCCR3B,ICES3, up); }
 
   //=== Timer 16-bit implementation. ===================================
   async command void Timer1.reset()    { SET_BIT(TIFR,TOV1); }

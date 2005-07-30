@@ -21,28 +21,19 @@
  */
 
 /**
- * @author Joe Polastre
  * @author Martin Turon
  */
 configuration CC2420RadioCaptureSFD
 {
-  provides interface Capture;
+    provides interface Capture;
 }
 implementation
 {
-  components 
-      new CaptureM() as SFDM
-    , HPLTimerM
-    , HPLGeneralIO
-    , Counter32khzC
-    ;
+    components HPLTimerM, new HALCaptureM() as CaptureSFD;
 
-  Capture = SFDM;
-  
-  SFDM.LocalTime -> Counter32khzC;
-  SFDM.MSP430TimerControl -> HPLTimerM.Timer1;
-  SFDM.MSP430Capture -> HPLTimerM.Capture1B;
-  SFDM.MSP430GeneralIO -> HPLGeneralIO.PortD4;
-
+    // Timer1 capture is tied to ATm128 pin D4, a.k.a. CC2420 pin SFD
+    Capture = CaptureSFD;  
+    //CaptureSFD.Timer -> HPLTimerM.Timer1;
+    CaptureSFD.HPLCapture -> HPLTimerM.Capture1;
 }
 

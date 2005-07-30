@@ -33,11 +33,13 @@ interface HPLCapture<size_type>
   /// Interrupt signals
   async event void captured(size_type t);  //<! Signalled on capture interrupt
 
-  /// Interrupt flag utilites: Bit level set/clr
+  /// Interrupt flag utilites: Bit level set/clr  
   async command void reset();         //<! Clear the capture interrupt flag
   async command void start();         //<! Enable the capture interrupt
   async command void stop();          //<! Turn off capture interrupts
   async command bool test();          //<! Did capture interrupt occur?
   async command bool isOn();          //<! Is capture interrupt on?
+
+  async command void setEdge(bool);   //<! True = detect rising edge
 }
 
