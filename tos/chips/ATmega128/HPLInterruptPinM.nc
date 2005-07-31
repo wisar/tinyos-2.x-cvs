@@ -30,10 +30,14 @@
 generic module HPLInterruptPinM (uint8_t ctrl_addr, 
 				 uint8_t edge0_addr, 
 				 uint8_t edge1_addr, 
-				 uint8_t irq_sig,
 				 uint8_t bit)
 {
-    provides interface HPLInterrupt as Irq;
+    provides {
+	interface HPLInterrupt as Irq;
+    }
+    uses {
+	interface HPLInterruptSig as IrqSignal;
+    }
 }
 implementation
 {
@@ -57,16 +61,11 @@ implementation
     }
 
     /** 
-     * Forward the external interrupt event. 
-     *
-     * Implementation Note:
-     *    Exploit the AVR implementation of SIG_INTERRUPT##bit to 
-     *    link to _VECTOR(bit+1) rather than SIG_INTERRUPT##bit
-     *    as nesC generics isn't designed for passing function names.
+     * Forward the external interrupt event.  This ties the statically
+     * allocated interrupt vector SIG_INTERRUPT##bit to a particular
+     * pin passed in via the generic component instantiation.
      */
-    default async event void Irq.fired() { }
-    AVR_NONATOMIC_HANDLER( _VECTOR(irq_sig) ) {
-	signal Irq.fired();
-    }
-}
+    async event void IrqSignal.fired() { signal Irq.fired(); }
 
+    default async event void Irq.fired() { }
+}

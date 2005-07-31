@@ -1,4 +1,4 @@
-/// $Id$
+//$Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -24,22 +24,36 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-interface HPLCapture<size_type>
+// Timer32khzCounterC is the counter to be used for all Timer32khz[].
+configuration Timer32khzCounterC
 {
-  /// Capture value register: Direct access
-  async command size_type get();
-  async command void      set(size_type t);
+  provides interface Counter<T32khz,uint16_t> as Counter32khz16;
+  provides interface Counter<T32khz,uint32_t> as Counter32khz32;
+  provides interface LocalTime<T32khz> as LocalTime32khz;
+}
+implementation
+{
+    components HPLTimerM,
+	new HALCounterM(T32khz, uint8_t) as HALCounter32khz, 
+	new TransformCounterC(T32khz, uint16_t, T32khz, uint8_t,
+			      0, uint16_t) as Transform16,
+	new TransformCounterC(T32khz, uint32_t, T32khz, uint16_t,
+			      0, uint32_t) as Transform32,
+	new CounterToLocalTimeC(T32khz)
+	;
+  
+  // Top-level interface wiring
+  Counter32khz16 = Transform16.Counter;
+  Counter32khz32 = Transform32.Counter;
+  LocalTime32khz = CounterToLocalTimeC;
 
-  /// Interrupt signals
-  async event void captured(size_type t);  //<! Signalled on capture interrupt
+  // Strap in low-level hardware timer (Timer0)
+  HALCounter32khz.Timer -> HPLTimerM.Timer0;   // wire async timer to Timer 0
 
-  /// Interrupt flag utilites: Bit level set/clr  
-  async command void reset();          //<! Clear the capture interrupt flag
-  async command void start();          //<! Enable the capture interrupt
-  async command void stop();           //<! Turn off capture interrupts
-  async command bool test();           //<! Did capture interrupt occur?
-  async command bool isOn();           //<! Is capture interrupt on?
+  // Counter Transform Wiring
+  Transform16.CounterFrom -> HALCounter32khz;
+  Transform32.CounterFrom -> Transform16;
 
-  async command void setEdge(bool up); //<! True = detect rising edge
+  CounterToLocalTimeC.Counter -> Transform32;
 }
 

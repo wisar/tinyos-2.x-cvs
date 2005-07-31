@@ -32,11 +32,13 @@ configuration TimerMilliAlarmC
 }
 implementation
 {
-  components HPLTimerM,
-      new HALAlarmM(T32khz,uint8_t) as HALAlarm,
-      new TransformAlarmC(TMilli,uint32_t,T32khz,uint8_t,0) as Transform,
-      TimerMilliCounterC as Counter
-      ;
+    components 
+//      HPLTimerM,
+//      new HALAlarmM(T32khz,uint8_t) as HALAlarm,
+	Timer32khzAlarmC as HALAlarm,
+	new TransformAlarmC(TMilli,uint32_t,T32khz,uint32_t,5) as Transform,
+	TimerMilliCounterC as Counter
+	;
 
   TimerMilliBase = Transform;
 
@@ -46,7 +48,7 @@ implementation
 
   // Strap in low-level hardware timer (Timer0)
   Init = HALAlarm;
-  HALAlarm.HPLTimer -> HPLTimerM.Timer0;
-  HALAlarm.HPLCompare -> HPLTimerM.Compare0;
+//  HALAlarm.HPLTimer -> HPLTimerM.Timer0;
+//  HALAlarm.HPLCompare -> HPLTimerM.Compare0;
 }
 

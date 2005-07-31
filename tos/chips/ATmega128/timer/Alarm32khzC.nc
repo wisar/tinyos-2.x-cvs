@@ -24,22 +24,20 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-interface HPLCapture<size_type>
+// Glue hardware timers into Alarm32khzC.
+generic configuration Alarm32khzC()
 {
-  /// Capture value register: Direct access
-  async command size_type get();
-  async command void      set(size_type t);
+  provides interface Init;
+  provides interface Alarm<T32khz,uint16_t> as Alarm32khz16;
+  provides interface Alarm<T32khz,uint32_t> as Alarm32khz32;
+}
+implementation
+{
+  components Timer32khzAlarmC;
 
-  /// Interrupt signals
-  async event void captured(size_type t);  //<! Signalled on capture interrupt
-
-  /// Interrupt flag utilites: Bit level set/clr  
-  async command void reset();          //<! Clear the capture interrupt flag
-  async command void start();          //<! Enable the capture interrupt
-  async command void stop();           //<! Turn off capture interrupts
-  async command bool test();           //<! Did capture interrupt occur?
-  async command bool isOn();           //<! Is capture interrupt on?
-
-  async command void setEdge(bool up); //<! True = detect rising edge
+  // Top-level interface wiring
+  Init         = Timer32khzAlarmC;
+  Alarm32khz16 = Timer32khzAlarmC;
+  Alarm32khz32 = Timer32khzAlarmC;
 }
 

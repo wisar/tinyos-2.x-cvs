@@ -24,22 +24,35 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-interface HPLCapture<size_type>
+// Glue hardware timers into Alarm32khzC.
+configuration Timer32khzAlarmC
 {
-  /// Capture value register: Direct access
-  async command size_type get();
-  async command void      set(size_type t);
+  provides interface Init;
+  provides interface Alarm<T32khz,uint16_t> as Alarm32khz16;
+  provides interface Alarm<T32khz,uint32_t> as Alarm32khz32;
+}
+implementation
+{
+  components HPLTimerM,
+      new HALAlarmM(T32khz,uint8_t) as HALAlarm,
+      new TransformAlarmC(T32khz,uint16_t,T32khz,uint8_t,0) as Transform16,
+      new TransformAlarmC(T32khz,uint32_t,T32khz,uint16_t,0) as Transform32,
+      Timer32khzCounterC as Counter
+      ;
 
-  /// Interrupt signals
-  async event void captured(size_type t);  //<! Signalled on capture interrupt
+  // Top-level interface wiring
+  Alarm32khz16 = Transform16;
+  Alarm32khz32 = Transform32;
 
-  /// Interrupt flag utilites: Bit level set/clr  
-  async command void reset();          //<! Clear the capture interrupt flag
-  async command void start();          //<! Enable the capture interrupt
-  async command void stop();           //<! Turn off capture interrupts
-  async command bool test();           //<! Did capture interrupt occur?
-  async command bool isOn();           //<! Is capture interrupt on?
+  // Strap in low-level hardware timer (Timer0)
+  Init = HALAlarm;
+  HALAlarm.HPLTimer -> HPLTimerM.Timer0;      // assign HW resource : TIMER0
+  HALAlarm.HPLCompare -> HPLTimerM.Compare0;  // assign HW resource : COMPARE0
 
-  async command void setEdge(bool up); //<! True = detect rising edge
+  // Alarm Transform Wiring
+  Transform16.AlarmFrom -> HALAlarm;      // start with 8-bit hardware alarm
+  Transform16.Counter -> Counter;         // uses 16-bit virtualized counter
+  Transform32.AlarmFrom -> Transform16;   // then feed that into 32-bit xform
+  Transform32.Counter -> Counter;         // uses 32-bit virtualized counter
 }
 

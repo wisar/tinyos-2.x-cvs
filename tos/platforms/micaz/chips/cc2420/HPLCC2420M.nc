@@ -79,7 +79,7 @@ implementation
   }
 
   command error_t Init.init() {
-    state = IDLE;
+    atomic state = IDLE;
     call RadioCSN.makeOutput();
     call RadioCSN.set();
     return SUCCESS;

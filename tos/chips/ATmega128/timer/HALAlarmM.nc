@@ -43,7 +43,8 @@ implementation
 	  call HPLTimer.setScale(AVR_CLOCK_OFF);
 	  call HPLTimer.set(0);
 	  call HPLTimer.start();
-	  call HPLTimer.setScale(ATM128_CLK8_DIVIDE_32);
+	  //call HPLTimer.setScale(ATM128_CLK8_DIVIDE_32);
+	  call HPLTimer.setScale(ATM128_CLK8_NORMAL);
       }
       return SUCCESS;
   }
