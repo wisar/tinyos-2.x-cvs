@@ -42,6 +42,7 @@ implementation {
   TestSerialM.Send -> SerialC.Send;
 
   TestSerialM.Leds -> LedsC;
+  SerialC.Leds -> LedsC;
 }
 
 

@@ -48,8 +48,8 @@ module TestSerialM {
 implementation {
 
   message_t buf;
-  message_t *bufPtr;
-  bool locked;
+  message_t *bufPtr = &buf;
+  bool locked = FALSE;
 
   event void Boot.booted() {
     bufPtr = &buf;
@@ -59,7 +59,7 @@ implementation {
 				   void* payload, uint8_t len) {
     message_t *swap;
 
-    call Leds.led0Toggle();
+    //       call Leds.led0Toggle();
 
     if (!locked) {
       locked = TRUE;
