@@ -75,6 +75,7 @@ module SerialM {
   }
 }
 implementation {
+#define NO_TX_SEQNO
 
   enum {
     RX_DATA_BUFFER_SIZE = 2,
@@ -82,14 +83,6 @@ implementation {
     SERIAL_MTU = 255,
     SERIAL_VERSION = 1,
     ACK_QUEUE_SIZE = 5,
-  };
-
-  enum {
-    PROTO_DATA             = 1,
-    PROTO_ACK              = 64,
-    PROTO_PACKET_ACK       = 65,
-    PROTO_PACKET_NOACK     = 66,
-    PROTO_UNKNOWN          = 255
   };
 
   enum {
@@ -327,10 +320,11 @@ implementation {
   inline uint16_t rx_current_crc(){
     uint16_t crc;
     uint8_t tmp = RxBuf.writePtr;
-    if (tmp == 0) tmp = RX_DATA_BUFFER_SIZE;
-    crc = RxBuf.buf[--tmp] & 0xff;
-    if (tmp == 0) tmp = RX_DATA_BUFFER_SIZE;
-    crc = (crc << 8) | (RxBuf.buf[--tmp] & 0xff);
+    tmp = (tmp == 0 ? RX_DATA_BUFFER_SIZE : tmp - 1);
+    crc = RxBuf.buf[tmp] & 0x00ff;
+    crc = (crc << 8) & 0xFF00;
+    tmp = (tmp == 0 ? RX_DATA_BUFFER_SIZE : tmp - 1);
+    crc |= (RxBuf.buf[tmp] & 0x00FF);
     return crc;
   }
 
@@ -383,6 +377,16 @@ implementation {
     rx_state_machine(FALSE,data);
   }
 
+  bool valid_rx_proto(uint8_t proto){
+    switch (proto){
+    case SERIAL_PROTO_PACKET_ACK: 
+      return TRUE;
+    case SERIAL_PROTO_ACK:
+    case SERIAL_PROTO_PACKET_NOACK:
+    default: 
+      return FALSE;
+    }
+  }
 
   void rx_state_machine(bool isDelimeter, uint8_t data){
 
@@ -421,6 +425,8 @@ implementation {
         RxCRC = crcByte(RxCRC,data);
         RxState = RXSTATE_TOKEN;
         RxProto = data;
+        if (!valid_rx_proto(RxProto))
+          goto nosync;
         //TODO verify RxProto is valid
         if (signal ReceiveBytePacket.startPacket() != SUCCESS){
           goto nosync;
@@ -500,7 +506,6 @@ implementation {
       if (RxReentered > 0) {
         data = RxReenteredBuffer;
         retry=1;
-        //call Leds.redToggle();
       }
       else 
         retry=0;
@@ -555,7 +560,7 @@ implementation {
     uint8_t fail;
 
     uint8_t proto;
-    error_t result;
+    error_t result = SUCCESS;
     bool send_completed = FALSE;
     bool start_it = FALSE;
 
@@ -633,7 +638,6 @@ implementation {
     
     atomic {
       if (TxReentered > 0) {
-        call Leds.greenToggle();
         abort_reentry = 1;
       }
       TxReentered++;
