@@ -71,25 +71,25 @@ implementation {
   Storage.Mount[DELUGE_VOLUME_ID_3] -> BlockStorage3;
   Storage.StorageRemap[DELUGE_VOLUME_ID_3] -> BlockStorage3;
 #if DELUGE_NUM_IMAGES >= 5
-  components new BlockStorageC() as BlockStorage3;
+  components new BlockStorageC() as BlockStorage4;
   Storage.BlockRead[DELUGE_VOLUME_ID_4] -> BlockStorage4;
   Storage.BlockWrite[DELUGE_VOLUME_ID_4] -> BlockStorage4;
   Storage.Mount[DELUGE_VOLUME_ID_4] -> BlockStorage4;
   Storage.StorageRemap[DELUGE_VOLUME_ID_4] -> BlockStorage4;
 #if DELUGE_NUM_IMAGES >= 6
-  components new BlockStorageC() as BlockStorage3;
+  components new BlockStorageC() as BlockStorage5;
   Storage.BlockRead[DELUGE_VOLUME_ID_5] -> BlockStorage5;
   Storage.BlockWrite[DELUGE_VOLUME_ID_5] -> BlockStorage5;
   Storage.Mount[DELUGE_VOLUME_ID_5] -> BlockStorage5;
   Storage.StorageRemap[DELUGE_VOLUME_ID_5] -> BlockStorage5;
 #if DELUGE_NUM_IMAGES >= 7
-  components new BlockStorageC() as BlockStorage3;
+  components new BlockStorageC() as BlockStorage6;
   Storage.BlockRead[DELUGE_VOLUME_ID_6] -> BlockStorage6;
   Storage.BlockWrite[DELUGE_VOLUME_ID_6] -> BlockStorage6;
   Storage.Mount[DELUGE_VOLUME_ID_6] -> BlockStorage6;
   Storage.StorageRemap[DELUGE_VOLUME_ID_6] -> BlockStorage6;
 #if DELUGE_NUM_IMAGES >= 8
-  components new BlockStorageC() as BlockStorage3;
+  components new BlockStorageC() as BlockStorage7;
   Storage.BlockRead[DELUGE_VOLUME_ID_7] -> BlockStorage7;
   Storage.BlockWrite[DELUGE_VOLUME_ID_7] -> BlockStorage7;
   Storage.Mount[DELUGE_VOLUME_ID_7] -> BlockStorage7;
