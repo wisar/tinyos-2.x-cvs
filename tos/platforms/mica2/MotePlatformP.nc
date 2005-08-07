@@ -12,7 +12,7 @@
  * 
  * @author David Gay
  */
-module MotePlatformM
+module MotePlatformP
 {
   provides interface Init as PlatformInit;
   uses interface GeneralIO as SerialIdPin;

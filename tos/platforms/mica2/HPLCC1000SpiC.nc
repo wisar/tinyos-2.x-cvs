@@ -41,8 +41,7 @@
  */
 
 
-module HPLCC1000SpiM
-{
+module HPLCC1000SpiC {
   provides interface Init as PlatformInit;
   provides interface HPLCC1000Spi;
   //uses interface PowerManagement;

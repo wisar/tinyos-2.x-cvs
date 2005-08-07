@@ -30,9 +30,9 @@ configuration VoltageC
 }
 implementation
 {
-  components VoltageM, new ADCChannelC(CHANNEL_BATTERY) as VoltageChannel, HPLGeneralIO;
+  components VoltageP, new ADCChannelC(CHANNEL_BATTERY) as VoltageChannel, HPLGeneralIOC;
   
-  StdControl  = VoltageM;  
+  StdControl  = VoltageP;  
   AcquireData = VoltageChannel;
   VoltageM.BAT_MON -> HPLGeneralIO.PortA5;
 }

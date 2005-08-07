@@ -17,10 +17,10 @@ configuration MotePlatformC
   provides interface Init as PlatformInit;
 }
 implementation {
-  components MotePlatformM, HPLCC1000InitC, HPLGeneralIO;
+  components MotePlatformP, HPLCC1000InitC, HPLGeneralIOC;
 
-  PlatformInit = MotePlatformM;
+  PlatformInit = MotePlatformP;
   PlatformInit = HPLCC1000InitC;
 
-  MotePlatformM.SerialIdPin -> HPLGeneralIO.PortA4;
+  MotePlatformP.SerialIdPin -> HPLGeneralIOC.PortA4;
 }

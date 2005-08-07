@@ -41,7 +41,7 @@
  * @author Philip Buonadonna
  */
 
-module HPLCC1000M {
+module HPLCC1000P {
   provides {
     interface Init as PlatformInit;
     interface HPLCC1000;

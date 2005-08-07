@@ -23,17 +23,15 @@
  */
 /// @author Hu Siquan <husq@xbow.com>
 
-module VoltageM
-{
+module VoltageP {
   provides interface StdControl;
   uses interface GeneralIO as BAT_MON;	
 }
-implementation
-{
+implementation {
   
   command error_t StdControl.start() {
-	call BAT_MON.makeOutput();
-	call BAT_MON.set();
+    call BAT_MON.makeOutput();
+    call BAT_MON.set();
     return SUCCESS;
   }
 
