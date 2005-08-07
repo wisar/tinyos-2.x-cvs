@@ -60,7 +60,7 @@ configuration CC1000ActiveMessageC {
 }
 implementation {
 
-  components CC1000ActiveMessageM as AM, CC1000CsmaRadioC as Radio;
+  components CC1000ActiveMessageP as AM, CC1000CsmaRadioC as Radio;
   components ActiveMessageAddressC as Address;
   
   Init         = Radio;

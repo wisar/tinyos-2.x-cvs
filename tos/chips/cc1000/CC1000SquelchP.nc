@@ -37,7 +37,7 @@
   
 #include "CC1000Const.h"
 
-module CC1000SquelchM
+module CC1000SquelchP
 {
   provides {
     interface Init;

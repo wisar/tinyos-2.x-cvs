@@ -41,7 +41,7 @@
 */
 
 #define CC1000RSSI "cc1000.rssi"
-module CC1000RssiM
+module CC1000RssiP
 {
   provides {
     interface AcquireDataNow as Rssi[uint8_t reason];

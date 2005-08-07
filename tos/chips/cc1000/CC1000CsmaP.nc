@@ -49,7 +49,7 @@
 #include "CC1000Const.h"
 #include "Timer.h"
 
-module Csma {
+module CC1000CsmaP {
   provides {
     interface Init;
     interface SplitControl;

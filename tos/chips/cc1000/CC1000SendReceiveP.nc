@@ -52,7 +52,7 @@
 #include "CC1000Const.h"
 #include "Timer.h"
 
-module SendReceive {
+module CC1000SendReceiveP {
   provides {
     interface Init;
     interface StdControl;

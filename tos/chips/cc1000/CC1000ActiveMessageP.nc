@@ -40,7 +40,7 @@
  * @date June 19 2005
  */
 
-module CC1000ActiveMessageM {
+module CC1000ActiveMessageP {
   provides {
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];

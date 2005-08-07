@@ -40,7 +40,7 @@
  */
 #include "CC1000Const.h"
 
-module CC1000ControlM {
+module CC1000ControlP {
   provides {
     interface CC1000Control;
   }
