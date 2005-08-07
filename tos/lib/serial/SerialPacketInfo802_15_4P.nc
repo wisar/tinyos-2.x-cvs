@@ -21,17 +21,27 @@
  */
 
 /**
- * A basic byte-level interface to a serial port.
+ * Implementation of the metdata necessary for a dispatcher to
+ * communicate 802.15.4 message_t packets over a serial port.
  *
- * @author David Gay
  * @author Philip Levis
  * @author Ben Greenstein
  * @date August 7 2005
  *
  */
 
-interface SerialByteComm {
-  async command error_t put(uint8_t data);
-  async event void get(uint8_t data);
-  async event void putDone();
+includes 802_15_4;
+module SerialPacketInfo802_15_4P {
+  provides interface SerialPacketInfo as Info;
+}
+implementation {
+  async command uint8_t Info.offset() {
+    return sizeof(TOSRadioHeader) - sizeof(TOS802Header);
+  }
+  async command uint8_t Info.dataLinkLength(message_t* msg, uint8_t upperLen) {
+    return upperLen + sizeof(TOS802Header) + sizeof(TOS802Footer);
+  }
+  async command uint8_t Info.upperLength(message_t* msg, uint8_t dataLinkLen) {
+    return dataLinkLen - (sizeof(TOS802Header) + sizeof(TOS802Footer));
+  }
 }

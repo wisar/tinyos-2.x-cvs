@@ -21,17 +21,27 @@
  */
 
 /**
- * A basic byte-level interface to a serial port.
+ * Implementation of the metadata neccessary for a dispatcher to
+ * communicate with basic active messages packets over a serial port.
  *
- * @author David Gay
  * @author Philip Levis
  * @author Ben Greenstein
  * @date August 7 2005
  *
  */
 
-interface SerialByteComm {
-  async command error_t put(uint8_t data);
-  async event void get(uint8_t data);
-  async event void putDone();
+module SerialPacketInfoActiveMessageP {
+  provides interface SerialPacketInfo as Info;
 }
+implementation {
+  async command uint8_t Info.offset() {
+    return sizeof(TOSRadioHeader) - sizeof(CC1KHeader);
+  }
+  async command uint8_t Info.dataLinkLength(message_t* msg, uint8_t upperLen) {
+    return upperLen + sizeof(CC1KHeader) + sizeof(CC1KFooter);
+  }
+  async command uint8_t Info.upperLength(message_t* msg, uint8_t dataLinkLen) {
+    return dataLinkLen - (sizeof(CC1KHeader) + sizeof(CC1KFooter));
+  }
+}
+
