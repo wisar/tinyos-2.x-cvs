@@ -52,8 +52,8 @@ configuration RandomLfsrC
 }
 implementation
 {
-  components RandomLfsrM;
+  components RandomLfsrP;
 
-  Init = RandomLfsrM;
-  Random = RandomLfsrM;
+  Init = RandomLfsrP;
+  Random = RandomLfsrP;
 }

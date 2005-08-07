@@ -20,7 +20,7 @@
  *
  */
 /**
- * Generic configuration for the BusArbitration component.
+ * DEPRECATED: generic configuration for the BusArbitration component.
  * Each instance of BusArbitrationC creates a new parameterized 
  * implementation of BusArbitration.  It is intended that each bus
  * on a microcontroller has one instance of BusArbitrationC that it
@@ -28,6 +28,11 @@
  * of the bus.  For example, SPIC provides primitives for the SPI bus
  * and the BusArbitration interface that allows users of the SPI bus to
  * be granted access to the SPI bus primitives.
+ *
+ * The BusArbitration abstraction is deprecated in TinyOS 2.x,
+ * replaced by Resource (see TEP 108). BusArbitration is included here
+ * only for transitioning 1.x code to 2.x.
+ *
  *
  * @author Joe Polastre
  *
@@ -42,8 +47,8 @@ generic configuration BusArbitrationC(char busname[])
 }
 implementation
 {
-  components new BusArbitrationM(busname);
+  components new BusArbitrationP(busname);
 
-  Init = BusArbitrationM;
-  BusArbitration = BusArbitrationM;
+  Init = BusArbitrationP;
+  BusArbitration = BusArbitrationP;
 }

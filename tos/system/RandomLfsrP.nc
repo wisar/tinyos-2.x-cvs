@@ -28,21 +28,23 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
 /*
  *
  * Authors:		Alec Woo, David Gay, Philip Levis
- * Date last modified:  6/25/02
+ * Date last modified:  8/8/05
  *
- * +1 necessary to prevent spinning on zero.
  */
 
-/* This is a 16 bit Linear Feedback Shift Register pseudo random number
-   generator */
-
 /**
+ * This is a 16 bit Linear Feedback Shift Register pseudo random number
+   generator. It is faster than the MLCG generator, but the numbers generated
+ * have less randomness.
+ *
  * @author Alec Woo
  * @author David Gay
  * @author Philip Levis
+ * @date   August 8 2005
  */
 
 module RandomLfsrP

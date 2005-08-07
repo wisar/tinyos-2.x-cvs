@@ -48,13 +48,13 @@ configuration MainC {
   uses interface Init as SoftwareInit;
 }
 implementation {
-  components Platform, RealMain, TinyScheduler;
+  components PlatformC, RealMainP, TinySchedulerC;
 
-  RealMain.Scheduler -> TinyScheduler;
-  RealMain.PlatformInit -> Platform;
+  RealMainP.Scheduler -> TinySchedulerC;
+  RealMainP.PlatformInit -> PlatformC;
 
   // Export the SoftwareInit and Booted for applications
-  SoftwareInit = RealMain.SoftwareInit;
-  Boot = RealMain;
+  SoftwareInit = RealMainP.SoftwareInit;
+  Boot = RealMainP;
 }
 

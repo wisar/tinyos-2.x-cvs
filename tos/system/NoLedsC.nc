@@ -37,8 +37,8 @@ configuration NoLedsC {
   provides interface Leds;
 }
 implementation {
-  components NoLedsM;
-  Init = NoLedsM;
-  Leds = NoLedsM;
+  components NoLedsP;
+  Init = NoLedsP;
+  Leds = NoLedsP;
 }
 

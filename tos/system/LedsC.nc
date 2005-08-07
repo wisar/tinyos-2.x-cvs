@@ -30,12 +30,12 @@ configuration LedsC {
   provides interface Leds;
 }
 implementation {
-  components LedsM, PlatformLeds;
-  Init = LedsM;
-  Leds = LedsM;
+  components LedsP, PlatformLedsC;
+  Init = LedsP;
+  Leds = LedsP;
 
-  LedsM.Led0 -> PlatformLeds.Led0;
-  LedsM.Led1 -> PlatformLeds.Led1;
-  LedsM.Led2 -> PlatformLeds.Led2;
+  LedsP.Led0 -> PlatformLedsC.Led0;
+  LedsP.Led1 -> PlatformLedsC.Led1;
+  LedsP.Led2 -> PlatformLedsC.Led2;
 }
 
