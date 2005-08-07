@@ -8,24 +8,24 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Provide arbitrated access to the AcquireData interface of the ADCC
+ * Provide arbitrated access to the AcquireData interface of the AdcC
  * component for a particular port.
  * 
  * @author David Gay
  */
-#include "ADC.h"
+#include "Adc.h"
 
-generic configuration ADCChannelC(uint8_t port) {
+generic configuration AdcChannelC(uint8_t port) {
   provides interface AcquireData;
 }
 implementation {
-  components ADCC, ADCChannelArbiterC;
+  components AdcC, AdcChannelArbiterC;
 
   enum {
     ID = unique(ADC_RESOURCE)
   };
 
-  AcquireData = ADCChannelArbiterC.AcquireData[ID];
-  ADCChannelArbiterC.Resource[ID] -> ADCC.Resource[ID];
-  ADCChannelArbiterC.Service[ID] -> ADCC.AcquireData[port];
+  AcquireData = AdcChannelArbiterC.AcquireData[ID];
+  AdcChannelArbiterC.Resource[ID] -> AdcC.Resource[ID];
+  AdcChannelArbiterC.Service[ID] -> AdcC.AcquireData[port];
 }

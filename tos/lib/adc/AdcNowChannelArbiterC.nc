@@ -8,35 +8,35 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Provide arbitrated access to the AcquireData interface of the ADCC
+ * Provide arbitrated access to the AcquireDataNow interface of the ADCC
  * component.  
  *
  * Client identifiers are obtained with unique(ADC_RESOURCE), the Service
  * interface should be wired to the desired ADCC port for the particular
  * client id allocated.
  * 
- * The ADCChannelC generic component provides a more user-friendly interface.
+ * The ADCNowChannelC generic component provides a more user-friendly
+ * interface.
  * 
  * @author David Gay
  */
-#include "ADC.h"
+#include "Adc.h"
 
-configuration ADCChannelArbiterC {
+configuration AdcNowChannelArbiterC {
   provides {
-    interface AcquireData[uint8_t client];
+    interface AcquireDataNow[uint8_t client];
   }
   uses {
-    interface AcquireData as Service[uint8_t client];
+    interface AcquireDataNow as Service[uint8_t client];
     interface Resource[uint8_t client];
   }
 }
 implementation {
-  components ADCC, new AcquireDataRoundRobinM() as Arbiter, Main;
+  components AdcC, new AcquireDataNowRoundRobinM() as Arbiter, Main;
 
-  AcquireData = Arbiter;
+  AcquireDataNow = Arbiter;
   Service = Arbiter;
   Resource = Arbiter;
 
-  Main.SoftwareInit -> ADCC;
-  //Main.StdControl -> ADCC;
+  Main.SoftwareInit -> AdcC;
 }
