@@ -33,7 +33,7 @@
  *
  * @param  interval   How often to check soft irq pin in msec
  */
-generic module SoftIrqM (uint8_t interval)
+generic module SoftIrqP (uint8_t interval)
 {
     provides interface Interrupt as SoftIrq;
     

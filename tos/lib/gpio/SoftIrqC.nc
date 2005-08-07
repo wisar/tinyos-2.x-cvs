@@ -41,11 +41,11 @@ generic configuration SoftIrqC (uint8_t interval) {
 implementation
 {
     components
-	new SoftIrqM(interval), 
+	new SoftIrqP(interval), 
 	new OSKITimerMsC() as IrqTimer;
 
-    Interrupt = SoftIrqM;
-    GeneralIO = SoftIrqM;
+    Interrupt = SoftIrqP;
+    GeneralIO = SoftIrqP;
     
-    SoftIrqM.IrqTimer -> IrqTimer;   // strap into an OSKI system timer
+    SoftIrqP.IrqTimer -> IrqTimer;   // strap into an OSKI system timer
 }
