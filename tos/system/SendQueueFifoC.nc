@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-generic module SendQueueFIFOM(uint8_t depth) {
+generic module SendQueueFifoC(uint8_t depth) {
   provides {
     interface Send;
   }

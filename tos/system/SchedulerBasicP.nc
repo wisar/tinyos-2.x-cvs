@@ -46,8 +46,7 @@
 
 includes hardware;
 
-module SchedulerBasic
-{
+module SchedulerBasicP {
   provides interface Scheduler;
   provides interface TaskBasic[uint8_t id];
 }

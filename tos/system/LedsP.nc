@@ -30,7 +30,7 @@
  * @date   March 21, 2005
  */
 
-module LedsM {
+module LedsP {
   provides {
     interface Init;
     interface Leds;

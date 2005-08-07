@@ -21,15 +21,19 @@
  */
 
 /**
- * Generic module for Bus Arbitration.  The module code is replicated
+ * DEPRECATED: generic module for Bus Arbitration.  The module code is replicated
  * for each instance and provides users of the bus with a method for
  * obtaining access to that bus.
+ *
+ * The BusArbitration abstraction is deprecated in TinyOS 2.x, replaced by
+ * Resource (see TEP 108). BusArbitration is included  here only for transitioning 
+ * 1.x code to 2.x. 
  *
  * @author Joe Polastre
  *
  * $Id$
  */
-generic module BusArbitrationM(char busname[]) {
+generic module BusArbitrationP(char busname[]) {
   provides {
     interface Init;
     interface BusArbitration[uint8_t id];

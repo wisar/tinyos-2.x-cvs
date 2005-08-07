@@ -42,15 +42,13 @@
  * @date   January 17 2005
  */
 
-module RealMain
-{
+module RealMainP {
   provides interface Boot;
   uses interface Scheduler;
   uses interface Init as PlatformInit;
   uses interface Init as SoftwareInit;
 }
-implementation
-{
+implementation {
   int main() __attribute__ ((C, spontaneous)) {
     atomic
       {

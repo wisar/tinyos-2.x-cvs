@@ -45,7 +45,7 @@
  * @author Philip Levis
  */
 
-module RandomLfsrM
+module RandomLfsrP
 {
   provides interface Init;
   provides interface Random;
