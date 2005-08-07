@@ -22,13 +22,21 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+/**
+ * A platform's basic UART abstraction. On a mica mote, this is UART0 of
+ * the HPL.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ * @author Philip Levis
+ * @date August 7 2005
+ */
 
-configuration PlatformSerial {
-  provides interface HPLUART as SerialByteComm;
+configuration PlatformSerialC {
+  provides interface SerialByteComm;
 }
 implementation {
-  components HPLUARTM;
+  components HPLUARTM, PlatformC;
 
   SerialByteComm = HPLUARTM.UART0;
+  PlatformC.SubInit -> HPLUARTM;
 }

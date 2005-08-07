@@ -26,7 +26,7 @@
 
 includes hardware;
 
-configuration PlatformLeds
+configuration PlatformLedsC
 {
     provides interface GeneralIO as Led0;
     provides interface GeneralIO as Led1;

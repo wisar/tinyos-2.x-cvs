@@ -26,30 +26,17 @@
 
 includes hardware;
 
-module PlatformM
-{
+configuration PlatformC {
   provides interface Init;
-  uses interface Init as MoteInit;
+  uses interface Init as SubInit;
 }
 implementation
 {
-  void power_init() {
-      atomic {
-	MCUCR = _BV(SE);      // Internal RAM, IDLE, rupt vector at 0x0002,
-			      // enable sleep instruction!
-      }
-  }
+  components PlatformP, MotePlatformC;
 
-  command error_t Init.init()
-  {
-    error_t ok = call MoteInit.init();
+  Init = PlatformM;
+  PlatformM.MoteInit -> MotePlatformC;
+  MotePlatformM.SubInit = SubInit;
 
-    if (ok != SUCCESS)
-      return ok;
-
-    power_init();
-
-    return SUCCESS;
-  }
 }
 

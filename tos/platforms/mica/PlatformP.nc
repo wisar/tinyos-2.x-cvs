@@ -26,17 +26,30 @@
 
 includes hardware;
 
-configuration Platform
+module PlatformP
 {
   provides interface Init;
+  uses interface Init as MoteInit;
 }
 implementation
 {
-  components PlatformM, MotePlatformC, HPLUARTM;
+  void power_init() {
+      atomic {
+	MCUCR = _BV(SE);      // Internal RAM, IDLE, rupt vector at 0x0002,
+			      // enable sleep instruction!
+      }
+  }
 
-  Init = PlatformM;
-  Init = HPLUARTM.UART0Init;
+  command error_t Init.init()
+  {
+    error_t ok = call MoteInit.init();
 
-  PlatformM.MoteInit -> MotePlatformC;
+    if (ok != SUCCESS)
+      return ok;
+
+    power_init();
+
+    return SUCCESS;
+  }
 }
 
