@@ -15,12 +15,15 @@
 configuration MotePlatformC
 {
   provides interface Init as PlatformInit;
+  uses interface Init as SubInit;
 }
 implementation {
   components MotePlatformP, HPLCC1000InitC, HPLGeneralIOC;
 
   PlatformInit = MotePlatformP;
   PlatformInit = HPLCC1000InitC;
-
+  
   MotePlatformP.SerialIdPin -> HPLGeneralIOC.PortA4;
+  SubInit = MotePlatformP.SubInit;
+  
 }

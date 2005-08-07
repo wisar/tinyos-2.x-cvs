@@ -16,6 +16,7 @@ module MotePlatformP
 {
   provides interface Init as PlatformInit;
   uses interface GeneralIO as SerialIdPin;
+  uses interface as SubInit;
 }
 implementation {
 
@@ -28,6 +29,10 @@ implementation {
     call SerialIdPin.makeInput(); 
     call SerialIdPin.clr();
 
+    return call SubInit.init();
+  }
+
+  default command error_t SubInit.init() {
     return SUCCESS;
   }
 }
