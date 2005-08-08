@@ -20,6 +20,7 @@
  * 
  * @author David Gay
  */
+
 #include "Adc.h"
 
 configuration AdcNowChannelArbiterC {
@@ -32,11 +33,11 @@ configuration AdcNowChannelArbiterC {
   }
 }
 implementation {
-  components AdcC, new AcquireDataNowRoundRobinM() as Arbiter, Main;
+  components AdcC, new AcquireDataNowRoundRobinC() as Arbiter, MainC;
 
   AcquireDataNow = Arbiter;
   Service = Arbiter;
   Resource = Arbiter;
 
-  Main.SoftwareInit -> AdcC;
+  MainC.SoftwareInit -> AdcC;
 }

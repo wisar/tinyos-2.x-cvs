@@ -51,14 +51,13 @@ implementation {
   
   Send = SerialDispatcherP;
   Receive = SerialDispatcherP;
-  SerialPacketInfo = SerialDispatcherM.PacketInfo;
+  SerialPacketInfo = SerialDispatcherP.PacketInfo;
   
   Init = SerialP;
   Init = HPLUARTM.UART0Init;
   Leds = SerialP;
   Leds = SerialDispatcherP;
   Leds = HdlcTranslateC;
-  Leds = HPLUARTM;
 
   SerialDispatcherP.ReceiveBytePacket -> SerialP;
   SerialDispatcherP.SendBytePacket -> SerialP;

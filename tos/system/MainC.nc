@@ -43,6 +43,8 @@
  * @date   August 6 2005
  */
 
+includes hardware;
+
 configuration MainC {
   provides interface Boot;
   uses interface Init as SoftwareInit;

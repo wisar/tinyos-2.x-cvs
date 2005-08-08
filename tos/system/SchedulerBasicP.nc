@@ -54,7 +54,7 @@ implementation
 {
   enum
   {
-    NUM_TASKS = uniqueCount("TinyScheduler.TaskBasic"),
+    NUM_TASKS = uniqueCount("TinySchedulerC.TaskBasic"),
     NO_TASK = 255,
   };
 

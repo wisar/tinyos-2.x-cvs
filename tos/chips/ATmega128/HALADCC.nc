@@ -48,8 +48,8 @@ configuration HALADCC
 }
 implementation
 {
-  components Main, HALADCM, HPLADCM,
-    new RoundRobinArbiter(ADC_RESOURCE) as ADCArbiter;
+  components HALADCM, HPLADCM,
+    new RoundRobinArbiterC(ADC_RESOURCE) as ADCArbiter;
 
   Init = HALADCM;
   Init = ADCArbiter;

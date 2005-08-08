@@ -13,6 +13,7 @@
  * 
  * @author David Gay
  */
+
 #include "Adc.h"
 
 generic configuration AdcChannelC(uint8_t port) {

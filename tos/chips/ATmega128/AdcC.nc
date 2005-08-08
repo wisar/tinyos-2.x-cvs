@@ -13,7 +13,7 @@
  *
  * @author David Gay
  */
-configuration ADCC {
+configuration AdcC {
   provides {
     interface Init;
     interface StdControl;

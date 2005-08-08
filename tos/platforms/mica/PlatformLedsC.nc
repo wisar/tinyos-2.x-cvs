@@ -34,11 +34,11 @@ configuration PlatformLedsC
 }
 implementation
 {
-    components HPLGeneralIO;
+    components HPLGeneralIOC;
     
-    Led0 = HPLGeneralIO.PortA2;  // Pin A2 = Red LED
-    Led1 = HPLGeneralIO.PortA1;  // Pin A1 = Green LED
-    Led2 = HPLGeneralIO.PortA0;  // Pin A0 = Yellow LED
+    Led0 = HPLGeneralIOC.PortA2;  // Pin A2 = Red LED
+    Led1 = HPLGeneralIOC.PortA1;  // Pin A1 = Green LED
+    Led2 = HPLGeneralIOC.PortA0;  // Pin A0 = Yellow LED
 
 }
 
