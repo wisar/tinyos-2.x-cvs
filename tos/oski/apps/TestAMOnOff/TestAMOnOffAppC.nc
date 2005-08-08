@@ -20,7 +20,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2002-2003 Intel Corporation
+ * Copyright (c) 2002-2005 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -30,64 +30,46 @@
  */
 
 /**
- *  Implementation of the OSKI TestAMService application.
+ *  This application has two versions: slave and master, which are set
+ *  by a command line -D: SERVICE_SLAVE or SERVICE_MASTER. A master is
+ *  always on, and transmits data packets at 1Hz. Every 5s, it
+ *  transmits a power message. When a slave hears a data message, it
+ *  toggles its red led; when it hears a power message, it turns off
+ *  its radio, which it turns back on in a few seconds. This
+ *  essentially tests whether the AMService is turning the radio off
+ *  appropriately.
  *
- *  @author Philip Levis
- *  @date   May 24 2005
- *
- **/
+ * @author Philip Levis
+ * @date   June 19 2005
+ */
 
-includes Timer;
-
-module TestAMServiceC {
-  uses {
-    interface Leds;
-    interface Boot;
-    interface Receive;
-    interface AMSend;
-    interface Timer<TMilli> as MilliTimer;
-    interface Service;
-    //interface ServiceNotify;
-  }
-}
+configuration TestAMOnOffAppC {}
 implementation {
-
-  message_t packet;
-
-  bool locked;
-  uint8_t counter = 0;
+  components MainC, TestAMOnOffC as App, LedsC;
+  components new AMSenderC(5) as PowerSend;
+  components new AMReceiverC(5) as PowerReceive;
+  components new AMSenderC(105) as DataSend;
+  components new AMReceiverC(105) as DataReceive;
+  components new OSKITimerMsC();
+  components new AMServiceNotifierC();
+  components new AMServiceC();
+  components new AMServiceC() as SecondServiceC;
   
-  event void Boot.booted() {
-    call Service.start();
-    call MilliTimer.startPeriodicNow(1000);
-  }
+  MainC.SoftwareInit -> LedsC;
   
-  event void MilliTimer.fired() {
-    counter++;
-    if (locked) {
-      return;
-     }
-    else if (call AMSend.send(AM_BROADCAST_ADDR, &packet, 0) == SUCCESS) {
-      call Leds.led0On();
-      locked = TRUE;
-    }
-  }
+  App.Boot -> MainC.Boot;
+  
+  App.PowerReceive -> PowerReceive;
+  App.PowerSend -> PowerSend;
+  App.DataReceive -> DataReceive;
+  App.DataSend -> DataSend;
 
-  event message_t* Receive.receive(message_t* bufPtr, 
-				   void* payload, uint8_t len) {
-    call Leds.led1Toggle();
-    return bufPtr;
-  }
-
-  event void AMSend.sendDone(message_t* bufPtr, error_t error) {
-    if (&packet == bufPtr) {
-      locked = FALSE;
-      call Leds.led0Off();
-    }
-  }
-
+  App.Service -> AMServiceC;
+  App.SecondService -> SecondServiceC;
+  App.ServiceNotify -> AMServiceNotifierC;
+  App.Leds -> LedsC;
+  App.MilliTimer -> OSKITimerMsC;
+  
 }
-
-
 
 
