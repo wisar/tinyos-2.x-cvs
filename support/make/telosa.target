@@ -9,6 +9,8 @@ MSP_MCU = msp430x149
 PFLAGS += -mdisable-hwmul
 OPTFLAGS += -O
 
+MSP_BSL ?= tos-bsl
+
 PFLAGS += \
 -I$(TOSDIR)/lib/CC2420Radio \
 -I$(TOSDIR)/lib/Flash

@@ -9,6 +9,7 @@ PLATFORM ?= telosb
 PFLAGS += -mdisable-hwmul
 OPTFLAGS += -O
 
+MSP_BSL ?= tos-bsl
 MSP_BSL_FLAGS = --telosb
 
 PFLAGS += \
