@@ -42,7 +42,7 @@ implementation {
   components MainC, RadioSenseToLedsC as App, LedsC, DemoSensorC;
   components new AMSenderC(AM_RADIOSENSEMSG);
   components new AMReceiverC(AM_RADIOSENSEMSG);
-  components new OSKITimerMsC();
+  components new OSKITimerMilliC();
   components new AMServiceC();
 
   MainC.SoftwareInit -> LedsC;
@@ -53,7 +53,7 @@ implementation {
   App.AMSend -> AMSenderC;
   App.Service -> AMServiceC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OSKITimerMsC;
+  App.MilliTimer -> OSKITimerMilliC;
   App.Packet -> AMSenderC;
   App.AcquireData -> DemoSensorC;
   App.SensorControl -> DemoSensorC;

@@ -44,7 +44,7 @@ implementation {
   components MainC, RadioCountToLedsC as App, LedsC;
   components new AMSenderC(AM_RADIOCOUNTMSG);
   components new AMReceiverC(AM_RADIOCOUNTMSG);
-  components new OSKITimerMsC();
+  components new OSKITimerMilliC();
   components new AMServiceC();
   
   MainC.SoftwareInit -> LedsC;
@@ -55,7 +55,7 @@ implementation {
   App.AMSend -> AMSenderC;
   App.Service -> AMServiceC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OSKITimerMsC;
+  App.MilliTimer -> OSKITimerMilliC;
   App.Packet -> AMSenderC;
 }
 

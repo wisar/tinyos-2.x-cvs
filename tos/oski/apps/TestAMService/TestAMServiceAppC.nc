@@ -42,7 +42,7 @@ implementation {
   components MainC, TestAMServiceC as App, LedsC;
   components new AMSenderC(5);
   components new AMReceiverC(5);
-  components new OSKITimerMsC();
+  components new OSKITimerMilliC();
   components new AMServiceC();
   
   MainC.SoftwareInit -> LedsC;
@@ -53,7 +53,7 @@ implementation {
   App.AMSend -> AMSenderC;
   App.Service -> AMServiceC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OSKITimerMsC;
+  App.MilliTimer -> OSKITimerMilliC;
   
 }
 
