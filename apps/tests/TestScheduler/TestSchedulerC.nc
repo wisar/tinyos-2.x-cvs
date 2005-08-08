@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2003 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -30,30 +30,72 @@
  */
 
 /**
- * @author Phil Buonadonna
- * @author Gilman Tolle
- * @author David Gay
- */
+ * Implementation for Blink application.  Toggle the red LED when a
+ * Timer fires.
+ **/
 
-configuration BaseStationC {
+includes Timer;
+
+module TestSchedulerC {
+  uses interface Leds;
+  uses interface Boot;
+  uses interface TaskBasic as TaskRed;
+  uses interface TaskBasic as TaskGreen;
+  uses interface TaskBasic as TaskBlue;
 }
 implementation {
-  components Main, BaseStationP, ActiveMessageC, SerialC, LedsC;
 
-  Main.Boot <- BaseStationP;
+  event void TaskRed.runTask() {
+    uint16_t i, j;
+    for (i= 0; i < 50; i++) {
+      for (j = 0; j < 10000; j++) {}
+    }
+    call Leds.led0Toggle();
 
-  Main.SoftwareInit -> ActiveMessageC;
-  Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> SerialC;
+    if (call TaskRed.postTask() == FAIL) {
+      call Leds.led0Off();
+    }
+    else {
+      call TaskRed.postTask();
+    }
+  }
 
-  BaseStationP.IOControl -> ActiveMessageC;
+  event void TaskGreen.runTask() {
+    uint16_t i, j;
+    for (i= 0; i < 25; i++) {
+      for (j = 0; j < 10000; j++) {}
+    }
+    call Leds.led1Toggle();
 
-  BaseStationP.UartSend -> SerialC;
-  BaseStationP.UartReceive -> SerialC;
-  BaseStationP.UartPacket -> SerialC;
-  BaseStationP.RadioSend -> ActiveMessageC;
-  BaseStationP.RadioReceive -> ActiveMessageC.Receive;
-  BaseStationP.RadioPacket -> ActiveMessageC;
+    if (call TaskGreen.postTask() == FAIL) {
+      call Leds.led1Off();
+    }
+  }
 
-  BaseStationP.Leds -> LedsC;
+  event void TaskBlue.runTask() {
+    uint16_t i, j;
+    for (i= 0; i < 5; i++) {
+      for (j = 0; j < 10000; j++) {}
+    }
+    call Leds.led2Toggle();
+
+    if (call TaskBlue.postTask() == FAIL) {
+      call Leds.led2Off();
+    }
+  }
+
+  
+  
+  /**
+   * Event from Main that TinyOS has booted: start the timer at 1Hz.
+   */
+  event void Boot.booted() {
+    call Leds.led2Toggle();
+    call TaskRed.postTask();
+    call TaskGreen.postTask();
+    call TaskBlue.postTask();
+  }
+
 }
+
+

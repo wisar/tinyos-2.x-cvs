@@ -20,7 +20,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2002-2005 Intel Corporation
+ * Copyright (c) 2002-2003 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -31,10 +31,14 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-configuration NullC{}
-implementation {
-  components Main, NullM;
-
-  Main.Boot <- NullM;
+module NullC
+{
+  uses interface Boot;
+}
+implementation
+{
+  event void Boot.booted()
+  {
+  }
 }
 

@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2003 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -20,7 +20,7 @@
  * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  *
- * Copyright (c) 2002-2003 Intel Corporation
+ * Copyright (c) 2002-2005 Intel Corporation
  * All rights reserved.
  *
  * This file is distributed under the terms in the attached INTEL-LICENSE     
@@ -30,30 +30,23 @@
  */
 
 /**
- * @author Phil Buonadonna
- * @author Gilman Tolle
- * @author David Gay
+ * TestScheduler is a simple scheduler test that posts three CPU
+ * intensive tasks of different durations.
+ *
+ * @author tinyos-help@millennium.berkeley.edu
  */
 
-configuration BaseStationC {
-}
+configuration TestSchedulerAppC {}
 implementation {
-  components Main, BaseStationP, ActiveMessageC, SerialC, LedsC;
+  components MainC, TestSchedulerC, LedsC, TinySchedulerC;
+  
+  MainC.SoftwareInit -> LedsC;
+  TestSchedulerC -> MainC.Boot;
 
-  Main.Boot <- BaseStationP;
+  TestSchedulerC.Leds -> LedsC;
 
-  Main.SoftwareInit -> ActiveMessageC;
-  Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> SerialC;
-
-  BaseStationP.IOControl -> ActiveMessageC;
-
-  BaseStationP.UartSend -> SerialC;
-  BaseStationP.UartReceive -> SerialC;
-  BaseStationP.UartPacket -> SerialC;
-  BaseStationP.RadioSend -> ActiveMessageC;
-  BaseStationP.RadioReceive -> ActiveMessageC.Receive;
-  BaseStationP.RadioPacket -> ActiveMessageC;
-
-  BaseStationP.Leds -> LedsC;
+  TestSchedulerC.TaskRed -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
+  TestSchedulerC.TaskGreen -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
+  TestSchedulerC.TaskBlue -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
 }
+

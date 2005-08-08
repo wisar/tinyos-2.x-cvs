@@ -1,7 +1,7 @@
 // $Id$
 
 /*									tab:4
- * "Copyright (c) 2000-2003 The Regents of the University  of California.  
+ * "Copyright (c) 2000-2005 The Regents of the University  of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -30,30 +30,65 @@
  */
 
 /**
- * @author Phil Buonadonna
+ * Test application for the UART, strictly byte-level.
+ *
  * @author Gilman Tolle
- * @author David Gay
- */
+ **/
 
-configuration BaseStationC {
+includes Timer;
+
+module TestSerialC { 
+  uses {
+    interface Leds;
+    interface Boot;
+    interface Receive;
+    interface Send;
+  }
 }
 implementation {
-  components Main, BaseStationP, ActiveMessageC, SerialC, LedsC;
 
-  Main.Boot <- BaseStationP;
+  message_t buf;
+  message_t *bufPtr = &buf;
+  bool locked = FALSE;
 
-  Main.SoftwareInit -> ActiveMessageC;
-  Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> SerialC;
+  event void Boot.booted() {
+    bufPtr = &buf;
+  }
 
-  BaseStationP.IOControl -> ActiveMessageC;
+  event message_t* Receive.receive(message_t* msg, 
+                                   void* payload, uint8_t len) {
+    message_t *swap;
+    
+    // net.tinyos.tools.Send 5 4 2 1 3 6 7
+    if ((msg->header.addr == 0x0504) &&
+        msg->header.length == 0x02 &&
+        msg->header.group == 0x01 &&
+        msg->header.type == 0x03 &&
+        msg->data[0] == 6 &&
+        msg->data[1] == 7) call Leds.led0Toggle();
 
-  BaseStationP.UartSend -> SerialC;
-  BaseStationP.UartReceive -> SerialC;
-  BaseStationP.UartPacket -> SerialC;
-  BaseStationP.RadioSend -> ActiveMessageC;
-  BaseStationP.RadioReceive -> ActiveMessageC.Receive;
-  BaseStationP.RadioPacket -> ActiveMessageC;
+    if (!locked) {
+      locked = TRUE;
+      swap = bufPtr;
+      bufPtr = msg;
+      if (call Send.send(bufPtr, len) == SUCCESS){
+        call Leds.led1Toggle();
+      }
+      return swap;
+    } 
+    else {
+      return msg;
+    }
+  }
+  
+  event void Send.sendDone(message_t* msg, error_t error) {
+    if (msg == bufPtr){
+      locked = FALSE;
+      call Leds.led2Toggle();
+    }
+  }
+}  
+  
 
-  BaseStationP.Leds -> LedsC;
-}
+
+
