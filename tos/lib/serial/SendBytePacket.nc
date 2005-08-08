@@ -20,8 +20,7 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-/**
- *
+ /**
  * This is an interface that a serial protocol (F) provides and a serial
  * dispatcher (D) uses.
  * Call sequence is this:
