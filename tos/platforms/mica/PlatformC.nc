@@ -34,9 +34,9 @@ implementation
 {
   components PlatformP, MotePlatformC;
 
-  Init = PlatformM;
-  PlatformM.MoteInit -> MotePlatformC;
-  MotePlatformM.SubInit = SubInit;
+  Init = PlatformP;
+  PlatformP.MoteInit -> MotePlatformC;
+  MotePlatformC.SubInit = SubInit;
 
 }
 
