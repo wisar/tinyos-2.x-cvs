@@ -52,7 +52,7 @@ elif plat[:3] == 'bsd' or  \
     def device(port):
         return '/dev/cuaa%d' % port
 
-elif plat[:4] == 'irix':     #IRIX® (not tested)
+elif plat[:4] == 'irix':     #IRIX (not tested)
     def device(port):
         return '/dev/ttyf%d' % port
 
@@ -60,11 +60,11 @@ elif plat[:2] == 'hp':       #HP-UX (not tested)
     def device(port):
         return '/dev/tty%dp0' % (port+1)
 
-elif plat[:5] == 'sunos':    #Solaris®/SunOS® (confirmed)
+elif plat[:5] == 'sunos':    #Solaris/SunOS (confirmed)
     def device(port):
         return '/dev/tty%c' % (ord('a')+port)
 
-elif plat[:3] == 'dgux':     #Digital UNIX® (not tested)
+elif plat[:3] == 'dgux':     #Digital UNIX (not tested)
     def device(port):
         return '/dev/tty0%d' % (port+1)
 

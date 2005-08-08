@@ -1,6 +1,11 @@
 $Id$
 @author Cory Sharp <cssharp@eecs.berkeley.edu>
 
+Follow these directions if you want a standalone msp430-bsl.exe for Windows
+(i.e., which will run outside the cygwin environment).
+
+--
+
 To build a binary executable msp430-bsl.exe for Windows, first download
 and install Python 2.3 for Windows [1][2], the version included with
 Cygwin is insufficient.  Then install py2exe [3][4].
@@ -10,12 +15,8 @@ Cygwin is insufficient.  Then install py2exe [3][4].
   [3] http://starship.python.net/crew/theller/py2exe/
   [4] http://prdownloads.sourceforge.net/py2exe/py2exe-0.5.3.win32-py2.3.exe?download
 
-To compile msp430-bsl, execute setup.py:
-
-  c:/Python23/python.exe setup.py py2exe
-
-When successful, that command creates a bin/ directory, which contains
-msp430-bsl.exe and its supporting files.  You must install bin/ and
-bin/lib/ all together, or it won't work.  I installed it into
-c:/mspgcc/bin, directly over the version that came with MSPGCC.
-
+To compile msp430-bsl, run make. When successful, that command creates a
+bin/ directory, which contains msp430-bsl.exe and its supporting files.
+You must install bin/ and bin/lib/ all together, or it won't work.  I
+installed it into c:/mspgcc/bin, directly over the version that came with
+MSPGCC.
