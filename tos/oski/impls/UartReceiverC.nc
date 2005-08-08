@@ -36,9 +36,9 @@
  * @date   January 5 2005
  */ 
 
-includes UART;
+includes Uart;
 
-generic configuration UARTReceiver(uart_id_t id) {  
+generic configuration UartReceiver(uart_id_t id) {  
   provides {
     interface Receive;
     interface Packet;
@@ -46,8 +46,8 @@ generic configuration UARTReceiver(uart_id_t id) {
 }
 
 implementation {
-  components UARTImpl;
+  components UartImpl;
 
-  Receive = UARTImpl.Receive[id];
-  Packet = UARTImpl;
+  Receive = UartImpl.Receive[id];
+  Packet = UartImpl;
 }

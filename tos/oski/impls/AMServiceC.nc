@@ -42,7 +42,7 @@ generic configuration AMServiceC() {
 }
 
 implementation {
-  components AMServiceImplC;
+  components AMServiceImplP;
 
-  Service = AMServiceImplC.Service[unique("OSKI.AMServiceImplC.Service")];
+  Service = AMServiceImplP.Service[unique("OSKI.AMServiceImplP.Service")];
 }

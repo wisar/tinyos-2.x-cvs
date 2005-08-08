@@ -30,19 +30,32 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The underlying configuration of OSKI UART dommunication. Wires the
+ * UART implementation (UARTPacketC) to the boot sequence, and
+ * exports the communication interfaces.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date   January 5 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
+includes Uart;
+
+configuration UartImplP {
+  provides {
+    interface Send[uart_id_t id];
+    interface Receive[uart_id_t id];
+    /* Need to consider what this interfaces means. - pal*/
+    /* interface RawSend[uart_id_t id]; */
+    interface Packet;
+  }
 }
 
 implementation {
-  components AMServiceImplP as Impl;
+  components UartPacketC, MainC;
 
-  Notify = Impl;
+  Main.SoftwareInit -> UartPacketC;
+
+  Send = UartPacketC;
+  Receive = UartPacketC;
+  Packet = UartPacketC;
 }

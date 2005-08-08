@@ -30,13 +30,13 @@
 
 
 /**
- * A generic status controller that follows an AND rule. The controller
+ * A generic status controller that follows an OR rule. The controller
  * provides access to the power/activity state of an underlying shared
  * service and coordinates the requirements of all of the services's
- * clients. It follows the rule that if all clients need the service
+ * clients. It follows the rule that if any client needs the service
  * to be active (through the Service.start() command), then it turns on
- * the service, or keeps it on. However, if any client needs the service
- * to be off (called stop() or not called start()), then
+ * the service, or keeps it on. However, if no clients need the service
+ * to be active (have all called stop() or not called start()), then
  * it turns it off. start() and stop() are both idempotent operations:
  * a client calling Service.start() twice has the same effect as
  * calling it once.
@@ -68,13 +68,14 @@
  * @date   May 16 2005
  */ 
 
-generic module ServiceAndControllerM(char* strID) {
+generic module ServiceOrMuxC(char strID[]) {
   provides {
     interface Service[uint8_t id];
     interface ServiceNotify;
   }
   uses {
-    interface SplitControl;
+    interface Service as SubService;
+    interface ServiceNotify as SubNotify;
   }
 }
 
@@ -85,10 +86,11 @@ implementation {
     STATUS_BYTES = (STATUS_BITS + 7) / 8,
   };
 
+  
   typedef struct {
     uint8_t busy:1;
-    uint8_t active:1;
-  } AndControllerService;
+    uint8_t subActive:1;
+  } OrControllerService;
   
   // Bits are stored big-endian. Bit 0 is the 0th bit of the last
   // element, while bit 18 is the 2nd bit of the third to last
@@ -98,28 +100,28 @@ implementation {
   // Assume that we are initially busy (the rest of TinyOS is
   // initializing the underlying service, but that it isn't started
   // (that's under our control).
-  AndControllerService status = {
-    TRUE,
-    FALSE
+  OrControllerService status = {
+    FALSE,
+    FALSE,
   };
   
-  enum {
-    STATUS_BITS = uniqueCount(strID),
-    STATUS_BYTES = (STATUS_BITS + 7) / 8,
-  };
   
-  bool isNotFull() {
+  bool isClear() {
     int i;
     for (i = 0; i < STATUS_BYTES; i++) {
-      if (bitmask[i] == 0) {
-	return TRUE;
+      if (bitmask[i] != 0) {
+	return FALSE;
       }
     }
-    return FALSE;
+    return TRUE;
   }
 
   uint8_t bitToByte(uint8_t bit) {
     return (STATUS_BYTES - (bit / 8) - 1);
+  }
+
+  bool getBit(uint8_t bit) {
+    return bitmask[bitToByte(bit)] & (1 << (bit % 8));
   }
   
   void setBit(uint8_t bit) {
@@ -132,31 +134,26 @@ implementation {
 
   void enactStateChange() {
     if (status.busy) {return;}
-    if (isNotFull() && status.active) {
-      if (call SplitControl.stop() == SUCCESS) {
-	status.busy = TRUE;
-      }
+    if (isClear() && status.subActive) {
+      call SubService.stop();
     }
-    if (!isNotFull() && !status.active) {
-      if (call SplitControl.start() == SUCCESS) {
-	status.busy = TRUE;
-      }
+    if (!isClear() && !status.subActive) {
+      call SubService.start();
     }
   }
 
-  command bool Service.isRunning() {
-    return (status.active)? TRUE:FALSE;
+  command bool Service.isRunning[uint8_t id]() {
+    return getBit(id);
   }
   
   command void Service.start[uint8_t id]() {
     setBit(id);
     enactStateChange();
+    return;
   }
 
-  event result_t SplitControl.startDone() {
-    status.busy = FALSE;
-    status.active = TRUE;
-    signal ServiceNotify.started();
+  event void SubNotify.started() {
+    status.subActive = TRUE;
     /* Invoke enactStateChange() in case clients tried to stop the
      * service while it was being started. */
     enactStateChange();
@@ -167,20 +164,8 @@ implementation {
     enactStateChange();
   }
 
-  event result_t SplitControl.stopDone() {
-    status.busy = FALSE;
-    status.active = FALSE;
-    signal ServiceNotify.stopped();
-    /* Invoke enactStateChange() in case clients tried to start the
-     * service while it was being stopped. */
-    enactStateChange();            
-  }
-  
-  event result_t SplitControl.initDone() {
-    status.busy = FALSE;
-    /* Invoke enactStateChange() in case there are pending requests
-     * to start the service. */
+  event void SubNotify.stopped() {
+    status.subActive = FALSE;
     enactStateChange();
-  }
-  
+  }  
 }

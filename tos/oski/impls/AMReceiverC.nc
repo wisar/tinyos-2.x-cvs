@@ -47,7 +47,7 @@ generic configuration AMReceiverC(am_id_t AMId) {
 }
 
 implementation {
-  components ActiveMessageImplC as Impl;
+  components ActiveMessageImplP as Impl;
 
   Receive = Impl.Receive[AMId];
   Packet = Impl;

@@ -30,24 +30,39 @@
 
 
 /**
- * The OSKI send queue abstraction, following a FIFO policy.
+ * Components should never wire directly to this component: use
+ * BroadcastSenderC and BroadcastReceiverC instead. This is the
+ * configuration for OSKI broadcasts, which wires the broadcast module
+ * to its underlying components.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @date   May 16 2005
  */ 
 
-generic module SendQueueFIFO(uint8_t depth) {
+includes Broadcast;
+
+configuration BroadcastP {
   provides {
-    interface Send;
-  }
-  uses {
-    interface Send;
+    interface Service;
+    interface Send[uint8_t id];
+    interface Receive[uint8_t id];
+    interface Packet;
   }
 }
 
 implementation {
-  components UARTImpl;
+  components BroadcastImplP, ActiveMessageImplP as AM;
+  components new AMSenderC(TOS_BCAST_AM_ID) as Sender;
+  components new AMReceiverC(TOS_BCAST_AM_ID) as Receiver;
+  components new AMServiceC();
+  
+  BroadcastImplP.AMSend -> Sender;
+  BroadcastImplP.SubReceive -> Receiver;
+  BroadcastImplP.SubPacket -> Sender;
+  BroadcastImplP.AMPacket -> Sender;
 
-  Send = UARTImpl.Send[id];
-  Packet = UARTImpl;
+  Send = BroadcastImplP;
+  Receive = BroadcastImplP;
+  Packet = BroadcastImplP;
+  Service = AMServiceC;
 }

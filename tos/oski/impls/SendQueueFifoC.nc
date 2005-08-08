@@ -30,19 +30,75 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The OSKI send queue abstraction, following a FIFO policy.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date  July 13 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
+generic module SendQueueFifoM(uint8_t depth) {
+  provides interface Source;
+  uses interface Sink;
 }
 
 implementation {
-  components AMServiceImplP as Impl;
 
-  Notify = Impl;
-}
+  typedef struct SendQueueFifoMEntry {
+    message_t* msg;
+    uint8_t len;
+  } SendQueueFifoMEntry;
+  
+  SendQueueFifoMEntry queue[depth];
+  uint8_t cancelled[((depth + 7) / 8)];
+  uint8_t head = 0;
+  uint8_t tail = 0;
+  uint8_t busy = FALSE;
+  
+  bool isFull() {
+    return queue[tail].msg != NULL;
+  }
+
+  bool isEmpty() {
+    return queue[head].msg == NULL;
+  }
+
+  void clearCancel(uint8_t index) {
+    cancelled[index / 8] &= (~(0x80 >> (index % 8)));
+  }
+  
+  void setCancel(uint8_t index) {
+    cancelled[index / 8] |= (0x80 >> (index % 8));
+  }
+
+  bool isCancelled(uint8_t index) {
+    return (cancelled[index / 8] & (0x80 >> (index % 8)));
+  }
+  
+  command error_t Source.send(message_t* msg, uint8_t len) {
+    // If there's no space (next free slot is in use), return EBUSY
+    if (isFull()) {
+      return EBUSY;
+    }
+    // Otherwise, put the message in the queue.
+    else {
+      queue[tail].msg = msg;
+      queue[tail].len = len;
+      clearCancel(tail);
+      tail = ((tail + 1) % depth);
+      post sendTask();
+    }
+  }
+
+  command error_t cancel(message_t* msg) {
+    uint8_t i;
+    for (i = 0; i < depth; i++) {
+      if (queue[i].msg == msg) {
+	setCancel(i);
+      }
+    }
+  }
+
+  event void Sink.sendDone(message_t* msg, error_t err) {
+    if
+  }
+  

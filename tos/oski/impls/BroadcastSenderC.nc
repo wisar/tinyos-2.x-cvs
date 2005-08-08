@@ -46,8 +46,8 @@ generic configuration BroadcastSenderC(bcast_id_t id) {
 }
 
 implementation {
-  components BroadcastImplC;
+  components BroadcastImplP;
 
-  Send = BroadcastImplC.Send[id];
-  Packet = BroadcastImplC;
+  Send = BroadcastImplP.Send[id];
+  Packet = BroadcastImplP;
 }

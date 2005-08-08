@@ -42,8 +42,8 @@ configuration UARTServiceImpl {
 }
 implementation {
   components UARTImpl;
-  components new ServiceOrControllerP("OSKI.UARTServiceImpl.Service");
+  components new ServiceOrControllerC("OSKI.UARTServiceImpl.Service");
   
-  Service = ServiceOrControllerP;
-  ServiceOrControllerP.SplitControl -> UARTImpl;  
+  Service = ServiceOrControllerC;
+  ServiceOrControllerC.SplitControl -> UARTImpl;  
 }

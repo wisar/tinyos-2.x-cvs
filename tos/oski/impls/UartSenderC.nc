@@ -30,19 +30,24 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The OSKI presentation of sending over a UART.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date   January 5 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
+includes Uart;
+
+generic configuration UartSender(uart_id_t id) {
+  provides {
+    interface Send;
+    interface Packet;
+  }
 }
 
 implementation {
-  components AMServiceImplP as Impl;
+  components UartImpl;
 
-  Notify = Impl;
+  Send = UartImpl.Send[id];
+  Packet = UartImpl;
 }

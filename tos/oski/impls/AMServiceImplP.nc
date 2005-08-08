@@ -30,24 +30,22 @@
 
 
 /**
- * The OSKI presentation of sending over a UART.
+ * The OSKI presentation of the operating status of the Active Message
+ * subsystem.
  *
  * @author Philip Levis
  * @date   January 5 2005
  */ 
 
-includes UART;
-
-generic configuration UARTSender(uart_id_t id) {
-  provides {
-    interface Send;
-    interface Packet;
-  }
+configuration AMServiceImplP {
+  provides interface Service[uint8_t id];
+  provides interface ServiceNotify;
 }
-
 implementation {
-  components UARTImpl;
-
-  Send = UARTImpl.Send[id];
-  Packet = UARTImpl;
+  components ActiveMessageImplP;
+  components new ServiceOrControllerC("OSKI.AMServiceImplP.Service");
+  
+  Service = ServiceOrControllerC;
+  ServiceOrControllerC.SplitControl -> ActiveMessageImplP;
+  ServiceNotify = ServiceOrControllerC;
 }

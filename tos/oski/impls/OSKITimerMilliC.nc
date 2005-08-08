@@ -30,19 +30,19 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The OSKI presentation of a timer with millisecond granularity.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date   January 5 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
-}
+includes Timer;
 
+generic configuration OSKITimerMilliC() {
+  provides interface Timer<TMilli>;
+}
 implementation {
-  components AMServiceImplP as Impl;
-
-  Notify = Impl;
+  components TimerMilliImplP;
+  Timer = TimerMilliImplP.TimerMilli[unique("TimerMilli")];
 }
+

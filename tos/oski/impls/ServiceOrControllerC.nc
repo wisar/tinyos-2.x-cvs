@@ -68,7 +68,7 @@
  * @date   May 16 2005
  */ 
 
-generic module ServiceOrControllerM(char strID[]) {
+generic module ServiceOrControllerC(char strID[]) {
   provides {
     interface Service[uint8_t id];
     interface ServiceNotify;

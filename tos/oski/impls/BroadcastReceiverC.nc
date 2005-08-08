@@ -46,8 +46,8 @@ generic configuration BroadcastReceiverC(bcast_id_t id) {
 }
 
 implementation {
-  components BroadcastImplC;
+  components BroadcastImplP;
 
-  Receive = BroadcastImplC.Receive[id];
-  Packet = BroadcastImplC;
+  Receive = BroadcastImplP.Receive[id];
+  Packet = BroadcastImplP;
 }

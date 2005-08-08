@@ -47,7 +47,7 @@ generic configuration AMSenderC(am_id_t AMId) {
 }
 
 implementation {
-  components ActiveMessageImplC as Impl;
+  components ActiveMessageImplP as Impl;
 
   AMSend = Impl.AMSend[AMId];
   Packet = Impl;

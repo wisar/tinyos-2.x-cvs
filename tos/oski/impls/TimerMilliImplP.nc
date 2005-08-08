@@ -30,73 +30,24 @@
 
 
 /**
- * The OSKI send queue abstraction, following a FIFO policy.
+ * Components should never wire to this component. This is the
+ * underlying configuration of the OSKI timers. Wires the timer
+ * implementation (TimerC) to the boot sequence and exports the
+ * various Timer interfaces.
  *
  * @author Philip Levis
- * @date   January 5 2005
+ * @author Cory Sharp
+ * @date   May 16 2005
  */ 
 
-generic module SendQueueFIFOP(uint8_t depth) {
-  provides {
-    interface Send;
-  }
-  uses {
-    interface Send as SubSend;
-  }
-}
+includes Timer;
 
+configuration TimerMilliImplP {
+  provides interface Timer<TMilli> as TimerMilli[uint8_t id];
+}
 implementation {
-
-  typedef struct SendQueueEntry {
-    TOSMsg* msg;
-    uint8_t len;
-    bool cancelled;
-  }
-  
-  TOSMsg* queue[depth];
-  uint8_t head = 0;
-  uint8_t tail = 0;
-  bool busy = FALSE;
-  
-  task void sendTask() {
-
-  }
-
-  command error_t Send.send(TOSMsg* msg, uint8_t len) {
-    // If there's no space (next free slot is in use), return EBUSY
-    if (((tail + 1) % depth) == head) {
-      return EBUSY;
-    }
-    // Otherwise, put the message in the queue.
-    else {
-      queue[tail].msg = msg;
-      queue[tail].len = len;
-      queue[tail].cancelled = FALSE;
-      if (!busy) {
-	post sendTask();
-      }
-      tail = ((tail + 1) % depth);
-    }
-  }
-
-  command error_t Send.cancel(TOSMsg* msg) {
-    uint8_t i;
-    // See if the message is still in the queue.
-    for (i = head; i != tail; i = ((i + 1) % depth)) {
-      if (queue[i].msg == msg) {
-	// If so, then cancel it and post a cancelling task
-	queue[i].cancelled = TRUE;
-	post cancelTask();
-	return SUCCESS;
-      }
-    }
-    else {
-      return FALSE;
-    }
-  }
-
-  event void SubSend.sendDone(TOSMsg* msg, error_t error) {
-
-  }
-
+  components TimerMilliC, MainC;
+  MainC.SoftwareInit -> TimerMilliC;
+  TimerMilli = TimerMilliC;
 }
+

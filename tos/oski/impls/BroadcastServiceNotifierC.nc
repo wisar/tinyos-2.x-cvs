@@ -42,7 +42,7 @@ generic configuration BroadcastServiceNotifierC {
 }
 
 implementation {
-  components BroadcastServiceImpl;
+  components BroadcastServiceImplP;
 
-  Notify = BroadcastServiceImpl;
+  Notify = BroadcastServiceImplP;
 }

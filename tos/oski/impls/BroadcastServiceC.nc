@@ -42,7 +42,7 @@ generic configuration BroadcastServiceC() {
 }
 
 implementation {
-  components BroadcastServiceImplC;
+  components BroadcastServiceImplP;
 
-  Service = BroadcastServiceImplC.Service[unique("OSKI.BroadcastServiceImpl.Service")];
+  Service = BroadcastServiceImplP.Service[unique("OSKI.BroadcastServiceImpl.Service")];
 }

@@ -30,19 +30,36 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The underlying configuration of OSKI Active Messages. Wires the AM
+ * implementation (ActiveMessageC) to the boot sequence, and exports
+ * the AM interfaces.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date   January 5 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
+includes AM;
+
+configuration ActiveMessageImplP {
+  provides {
+    interface SplitControl;      
+    interface AMSend[am_id_t id];
+    interface Receive[am_id_t id];
+    interface Receive as Snoop[am_id_t id];
+    interface Packet;
+    interface AMPacket;
+  }
 }
 
 implementation {
-  components AMServiceImplP as Impl;
+  components ActiveMessageC, MainC;
 
-  Notify = Impl;
+  MainC.SoftwareInit -> ActiveMessageC;
+
+  SplitControl = ActiveMessageC;
+  AMSend = ActiveMessageC;
+  Receive = ActiveMessageC.Receive;
+  Snoop = ActiveMessageC.Snoop;
+  Packet = ActiveMessageC;
+  AMPacket = ActiveMessageC;
 }

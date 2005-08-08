@@ -45,7 +45,7 @@
 
 includes Broadcast;
 
-module BroadcastM {
+module BroadcastImplP {
   provides {
     interface Send[uint8_t id];
     interface Receive[uint8_t id];

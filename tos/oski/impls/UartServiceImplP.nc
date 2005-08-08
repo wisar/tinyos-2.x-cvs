@@ -30,19 +30,20 @@
 
 
 /**
- * The OSKI presentation of notification that the status of the Active
- * Message service has changed. Also see see AMService.
+ * The OSKI implementation of the operating status of the UART
+ * subsystem.
  *
  * @author Philip Levis
- * @date   May 16 2005
+ * @date   January 5 2005
  */ 
 
-generic configuration AMServiceNotifierC() {
-  provides interface ServiceNotify as Notify;
+configuration UartServiceImplP {
+  provides interface Service[uint8_t id];
 }
-
 implementation {
-  components AMServiceImplP as Impl;
-
-  Notify = Impl;
+  components UartImplP;
+  components new ServiceOrControllerC("OSKI.UartServiceImplP.Service");
+  
+  Service = ServiceOrControllerC;
+  ServiceOrControllerC.SplitControl -> UartImplP;  
 }
