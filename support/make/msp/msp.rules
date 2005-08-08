@@ -29,7 +29,7 @@ HELP += $(MSP_HELP)
 
 OBJCOPY = msp430-objcopy
 OBJDUMP = msp430-objdump
-SET_ID = $(TINYOS_MAKE_PATH)/msp/set-mote-id
+SET_ID = tos-set-symbols
 NCC = ncc
 LIBS = -lm
 

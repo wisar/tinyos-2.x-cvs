@@ -25,7 +25,7 @@ HELP += $(AVR_HELP)
 
 OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
-SET_ID = set-mote-id
+SET_ID = tos-set-symbols
 PROGRAMMER = uisp
 NCC = ncc
 LIBS = -lm
