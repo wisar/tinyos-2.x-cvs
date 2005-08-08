@@ -16,7 +16,7 @@ module MotePlatformP
 {
   provides interface Init as PlatformInit;
   uses interface GeneralIO as SerialIdPin;
-  uses interface as SubInit;
+  uses interface Init as SubInit;
 }
 implementation {
 
