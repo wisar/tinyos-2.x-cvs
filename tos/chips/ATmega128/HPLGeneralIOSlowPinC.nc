@@ -30,7 +30,7 @@
  * sbi, cbi instructions cannot be used). This can be used for ports F-G.
  */
 
-generic module HPLGeneralIOSlowPinM (uint8_t port_addr, 
+generic module HPLGeneralIOSlowPinC (uint8_t port_addr, 
 				     uint8_t ddr_addr, 
 				     uint8_t pin_addr,
 				     uint8_t bit)
