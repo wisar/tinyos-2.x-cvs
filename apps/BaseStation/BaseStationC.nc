@@ -30,21 +30,26 @@
  */
 
 /**
+ * The TinyOS 2.x base station that forwards packets between the UART
+ * and radio.
+ *
  * @author Phil Buonadonna
  * @author Gilman Tolle
  * @author David Gay
+ * @author Philip Levis
+ * @date August 10 2005
  */
 
 configuration BaseStationC {
 }
 implementation {
-  components Main, BaseStationP, ActiveMessageC, SerialC, LedsC;
+  components MainC, BaseStationP, ActiveMessageC, SerialC, LedsC;
 
-  Main.Boot <- BaseStationP;
+  MainC.Boot <- BaseStationP;
 
-  Main.SoftwareInit -> ActiveMessageC;
-  Main.SoftwareInit -> LedsC;
-  Main.SoftwareInit -> SerialC;
+  MainC.SoftwareInit -> ActiveMessageC;
+  MainC.SoftwareInit -> LedsC;
+  MainC.SoftwareInit -> SerialC;
 
   BaseStationP.IOControl -> ActiveMessageC;
 
