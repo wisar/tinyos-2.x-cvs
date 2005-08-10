@@ -37,6 +37,7 @@ configuration SerialC {
     interface Init;
     interface Receive;
     interface Send;
+    interface Packet;
   }
   uses {
     interface Leds;
@@ -47,7 +48,7 @@ implementation {
   
   Init = SerialActiveMessageC;
   Leds = SerialActiveMessageC;
-
+  Packet = SerialActiveMessageC;
   Receive = SerialActiveMessageC;
   Send = SerialActiveMessageC;
 }

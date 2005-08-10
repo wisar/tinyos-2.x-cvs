@@ -35,6 +35,8 @@ configuration SerialActiveMessageC {
     interface Init;
     interface Send;
     interface Receive;
+    interface Packet;
+    interface AMPacket;
   }
   uses interface Leds;
 }
@@ -46,4 +48,6 @@ implementation {
   Send = SerialDispatcherC.Send[TOS_SERIAL_ACTIVE_MESSAGE_ID];
   Receive = SerialDispatcherC.Receive[TOS_SERIAL_ACTIVE_MESSAGE_ID];
   SerialDispatcherC.SerialPacketInfo[TOS_SERIAL_ACTIVE_MESSAGE_ID] -> Info;
+  Packet = Info;
+  AMPacket = Info;
 }

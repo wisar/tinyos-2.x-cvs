@@ -96,7 +96,7 @@ implementation {
   uint8_t receiveTaskWhich;
   message_t *receiveTaskBuf = NULL;
   uint8_t receiveTaskSize = 0;
-  
+
   command error_t Send.send[uint8_t id](message_t* msg, uint8_t len) {
     uint8_t myState;
     atomic {
