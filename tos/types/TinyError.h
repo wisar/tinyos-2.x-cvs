@@ -33,7 +33,8 @@ enum {
   ESIZE          = 2,           // Parameter passed in was too big.
   ECANCEL        = 3,           // Operation cancelled by a call.
   EOFF           = 4,           // Subsystem is not active
-  EBUSY          = 5,           // The posted task has already been posted
+  EBUSY          = 5,           // The underlying system is busy; retry later
+  EINVAL         = 6,           // An invalid parameter was passed
 };
 
 typedef uint8_t error_t __attribute__((combine(ecombine)));

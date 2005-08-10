@@ -41,7 +41,7 @@ implementation
 {
   components TimerMilliAlarmC as AlarmMilliC
 	   , new AlarmToTimerC(TMilli)
-	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilli"))
+	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilliC.TimerMilli"))
 	   ;
 
   Init = AlarmMilliC;

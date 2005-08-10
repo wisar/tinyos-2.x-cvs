@@ -34,7 +34,11 @@
  */
 
 /**
- * Switches first two LEDs on if test is successful.
+ * The implementation of the TestAdc application. Switches first two
+ * LEDs on if test is successful.
+ *
+ * Author: Jan Hauer
+ * Date: August 8, 2005
  **/
 module TestAdcC
 {

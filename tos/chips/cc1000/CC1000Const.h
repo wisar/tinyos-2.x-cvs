@@ -233,7 +233,7 @@ enum {
 #endif
 
 #ifndef CC1K_DEF_PRESET
-#define CC1K_DEF_PRESET	(CC1K_433_002_MHZ)
+#define CC1K_DEF_PRESET	(CC1K_434_845_MHZ)
 #endif 
 
 

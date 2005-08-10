@@ -33,7 +33,7 @@ implementation {
   components Main
     , TestCC2420SendM as Impl
     , LedsC
-    , new OSKITimerMsC() as TimerC
+    , new OskiTimerMsC() as TimerC
     , RadioC;
   
   Main.SoftwareInit -> LedsC;

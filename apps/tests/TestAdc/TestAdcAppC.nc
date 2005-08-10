@@ -33,8 +33,17 @@
  * ========================================================================
  */
 
-configuration TestAdcAppC
-{
+/**
+ * This application tests the ADC subsystem: if the test is successful,
+ * it turns on LED0 and LED1. LED0 denotes whether the call to acquire
+ * an ADC sample succeeded, and LED1 denotes whether the ADC successfully
+ * delivered a sample. 
+ * 
+ * Author: Jan Hauer
+ * Date:   Aug 8, 2005
+ */
+
+configuration TestAdcAppC {
 }
 implementation
 {
