@@ -66,6 +66,7 @@
 
 #ifndef SERIAL_H
 #define SERIAL_H
+#include "AM.h"
 
 typedef uint8_t uart_id_t;
 
