@@ -105,11 +105,16 @@ typedef struct radio_stats {
   uint16_t serial_proto_drops;
 } radio_stats_t;
 
-typedef struct SerialAMHeader {
+typedef nx_struct SerialAMHeader {
   nx_am_addr_t addr;
   nx_uint8_t length;
   nx_am_group_t group;
   nx_am_id_t type;
 } SerialAMHeader;
+
+typedef nx_struct SerialAMPacket {
+  SerialAMHeader header;
+  nx_uint8_t data[];
+} SerialAMPacket;
 
 #endif
