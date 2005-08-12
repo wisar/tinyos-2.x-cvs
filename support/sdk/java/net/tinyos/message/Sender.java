@@ -86,6 +86,7 @@ public class Sender {
 	}
 
 	TOSMsg packet = messageFactory.createTOSMsg(data.length);
+	packet = messageFactory.createTOSMsg(packet.offset_data(0) + data.length);
 	packet.set_addr(moteId);
 	packet.set_type((short)amType);
 	packet.set_length((short)data.length);

@@ -287,7 +287,7 @@ public class Message implements Cloneable {
     // Check that length bits from offset are in bounds
     private void checkBounds(int offset, int length) {
 	if (offset < 0 || length <= 0 || offset + length > (data_length * 8))
-	    throw new ArrayIndexOutOfBoundsException("Message.checkBounds: bad offset ("+offset+") or length ("+length+"), for data_length "+data_length);
+	  throw new ArrayIndexOutOfBoundsException("Message.checkBounds: bad offset ("+offset+") or length ("+length+"), for data_length "+data_length+ " in class " + this.getClass());
     }
 
     // Check that value is valid for a bitfield of length length
