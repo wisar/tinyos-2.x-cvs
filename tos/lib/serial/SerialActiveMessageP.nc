@@ -67,6 +67,13 @@ implementation {
     signal AMSend.sendDone[call AMPacket.type(msg)](msg, result);
   }
 
+ default event void AMSend.sendDone[uint8_t id](message_t* msg, error_t result) {
+   return;
+ }
+
+ default event message_t* Receive.receive[uint8_t id](message_t* msg, void* payload, uint8_t len) {
+   return msg;
+ }
   
   event message_t* SubReceive.receive(message_t* msg, void* payload, uint8_t len) {
     return signal Receive.receive[call AMPacket.type(msg)](msg, payload, len);
