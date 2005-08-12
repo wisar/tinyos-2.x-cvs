@@ -30,26 +30,21 @@
  */
 
 /**
- * TestScheduler is a simple scheduler test that posts three CPU
- * intensive tasks of different durations. It is not intended to be
- * of great use to TinyOS programmers; rather, it is a sanity check
- * for schedulers.
+ * This application turns on LED 0 when the mote boots successfully
+ * (MainC signals the <tt>booted</tt> event). It is a useful sanity 
+ * test when developing a new platform.
  *
- * @author Philip Levis
- * @date Aug 10 2005
+ * @author Cory Sharp 
+ * @date   Aug 12 2005
+ *
  */
 
-configuration TestSchedulerAppC {}
+configuration PowerupAppC{}
 implementation {
-  components MainC, TestSchedulerC, LedsC, TinySchedulerC;
+  components MainC, PowerupC, LedsC;
+
+  MainC.Boot <- PowerupC;
   
-  MainC.SoftwareInit -> LedsC;
-  TestSchedulerC -> MainC.Boot;
-
-  TestSchedulerC.Leds -> LedsC;
-
-  TestSchedulerC.TaskRed -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
-  TestSchedulerC.TaskGreen -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
-  TestSchedulerC.TaskBlue -> TinySchedulerC.TaskBasic[unique("TinySchedulerC.TaskBasic")];
+  PowerupC -> LedsC.Leds;
 }
 
