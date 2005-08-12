@@ -107,9 +107,9 @@ typedef struct radio_stats {
 
 typedef struct SerialAMHeader {
   nx_am_addr_t addr;
+  nx_uint8_t length;
   nx_am_group_t group;
   nx_am_id_t type;
-  nx_uint8_t length;
 } SerialAMHeader;
 
 #endif

@@ -56,9 +56,12 @@ implementation {
   BaseStationP.UartSend -> SerialC;
   BaseStationP.UartReceive -> SerialC;
   BaseStationP.UartPacket -> SerialC;
+  BaseStationP.UartAMPacket -> SerialC;
+  
   BaseStationP.RadioSend -> ActiveMessageC;
   BaseStationP.RadioReceive -> ActiveMessageC.Receive;
   BaseStationP.RadioPacket -> ActiveMessageC;
-
+  BaseStationP.RadioAMPacket -> ActiveMessageC;
+  
   BaseStationP.Leds -> LedsC;
 }

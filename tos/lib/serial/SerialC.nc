@@ -35,9 +35,10 @@ includes Serial;
 configuration SerialC {
   provides {
     interface Init;
-    interface Receive;
-    interface Send;
+    interface Receive[am_id_t];
+    interface AMSend[am_id_t];
     interface Packet;
+    interface AMPacket;
   }
   uses {
     interface Leds;
@@ -49,7 +50,9 @@ implementation {
   Init = SerialActiveMessageC;
   Leds = SerialActiveMessageC;
   Packet = SerialActiveMessageC;
+  AMPacket = SerialActiveMessageC;
   Receive = SerialActiveMessageC;
-  Send = SerialActiveMessageC;
+  AMSend = SerialActiveMessageC;
+  
 }
 
