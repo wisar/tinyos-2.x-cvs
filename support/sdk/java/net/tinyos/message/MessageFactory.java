@@ -101,12 +101,6 @@ public class MessageFactory {
 	return m;
     }
 
-/*    public TOSMsg createTOSMsg(net.tinyos.message.Message msg, int base_offset) {
-	TOSMsg m = instantiateTOSMsg();
-	m.init(msg, base_offset);
-	return m;
-    }
-*/
     public TOSMsg createTOSMsg(net.tinyos.message.Message msg, int base_offset, int data_length) { 
 	TOSMsg m = instantiateTOSMsg();
 	m.init(msg, base_offset, data_length);
