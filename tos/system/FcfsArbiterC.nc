@@ -49,7 +49,7 @@
  * @author Philip Levis
  */
  
-generic module FCFSArbiterC(char resourceName[]) {
+generic module FcfsArbiterC(char resourceName[]) {
   provides {
     interface Init;
     interface Resource[uint8_t id];
