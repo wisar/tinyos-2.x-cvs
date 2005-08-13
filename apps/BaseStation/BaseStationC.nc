@@ -43,25 +43,26 @@
 configuration BaseStationC {
 }
 implementation {
-  components MainC, BaseStationP, ActiveMessageC, SerialC, LedsC;
+  components MainC, BaseStationP, LedsC;
+  components ActiveMessageC as Radio, SerialActiveMessageC as Serial;
 
   MainC.Boot <- BaseStationP;
 
-  MainC.SoftwareInit -> ActiveMessageC;
+  MainC.SoftwareInit -> Radio;
   MainC.SoftwareInit -> LedsC;
-  MainC.SoftwareInit -> SerialC;
+  MainC.SoftwareInit -> Serial;
 
-  BaseStationP.IOControl -> ActiveMessageC;
+  BaseStationP.IOControl -> Radio;
 
-  BaseStationP.UartSend -> SerialC;
-  BaseStationP.UartReceive -> SerialC;
-  BaseStationP.UartPacket -> SerialC;
-  BaseStationP.UartAMPacket -> SerialC;
+  BaseStationP.UartSend -> Serial;
+  BaseStationP.UartReceive -> Serial;
+  BaseStationP.UartPacket -> Serial;
+  BaseStationP.UartAMPacket -> Serial;
   
-  BaseStationP.RadioSend -> ActiveMessageC;
-  BaseStationP.RadioReceive -> ActiveMessageC.Receive;
-  BaseStationP.RadioPacket -> ActiveMessageC;
-  BaseStationP.RadioAMPacket -> ActiveMessageC;
+  BaseStationP.RadioSend -> Radio;
+  BaseStationP.RadioReceive -> Radio.Receive;
+  BaseStationP.RadioPacket -> Radio;
+  BaseStationP.RadioAMPacket -> Radio;
   
   BaseStationP.Leds -> LedsC;
 }
