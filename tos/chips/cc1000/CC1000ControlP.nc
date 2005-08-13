@@ -45,7 +45,7 @@ module CC1000ControlP {
     interface CC1000Control;
   }
   uses {
-    interface HPLCC1000 as CC;
+    interface HplCC1000 as CC;
   }
 }
 implementation
