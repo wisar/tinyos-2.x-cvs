@@ -22,6 +22,7 @@
 
 /**
  * @author Phil Levis
+ * @author David Gay
  * Revision:  $Revision$
  *
  * Defines global error codes for error_t in TinyOS.
