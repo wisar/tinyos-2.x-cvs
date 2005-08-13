@@ -34,5 +34,5 @@ implementation
   
   StdControl  = VoltageP;  
   AcquireData = VoltageChannel;
-  VoltageP.BAT_MON -> HPLGeneralIOC.PortA5;
+  VoltageP.BAT_MON -> HplGeneralIOC.PortA5;
 }
