@@ -41,8 +41,8 @@
 #ifndef HARDWARE_H
 #define HARDWARE_H
 
-#include <atmega128hardware.h>
-#include <ATm128ADC.h>
+#include <atm128hardware.h>
+#include <Atm128Adc.h>
 
 // A/D constants (channels, etc)
 enum {

@@ -28,17 +28,15 @@ includes hardware;
 
 configuration PlatformLedsC
 {
-    provides interface GeneralIO as Led0;
-    provides interface GeneralIO as Led1;
-    provides interface GeneralIO as Led2;
+  provides interface GeneralIO as Led0;
+  provides interface GeneralIO as Led1;
+  provides interface GeneralIO as Led2;
 }
 implementation
 {
-    components HPLGeneralIOC;
+  components HplGeneralIOC;
     
-    Led0 = HPLGeneralIOC.PortA2;  // Pin A2 = Red LED
-    Led1 = HPLGeneralIOC.PortA1;  // Pin A1 = Green LED
-    Led2 = HPLGeneralIOC.PortA0;  // Pin A0 = Yellow LED
-
+  Led0 = HplGeneralIOC.PortA2;  // Pin A2 = Red LED
+  Led1 = HplGeneralIOC.PortA1;  // Pin A1 = Green LED
+  Led2 = HplGeneralIOC.PortA0;  // Pin A0 = Yellow LED
 }
-

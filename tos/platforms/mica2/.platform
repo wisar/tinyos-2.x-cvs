@@ -14,9 +14,12 @@ push( @includes, qw(
   %T/platforms/mica2
   %T/platforms/mica
   %T/chips/cc1000
-  %T/chips/ATmega128
-  %T/chips/ATmega128/timer
-  %T/chips/ATmega128/spi
+  %T/chips/atm128
+  %T/chips/atm128/adc
+  %T/chips/atm128/pins
+  %T/chips/atm128/spi
+  %T/chips/atm128/timer
+  %T/lib/adc
   %T/lib/timer
   %T/lib/serial
 

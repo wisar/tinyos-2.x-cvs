@@ -31,7 +31,7 @@ implementation
 {
     components HPLTimerM, new HALCaptureM() as CaptureSFD;
 
-    // Timer1 capture is tied to ATm128 pin D4, a.k.a. CC2420 pin SFD
+    // Timer1 capture is tied to Atm128 pin D4, a.k.a. CC2420 pin SFD
     Capture = CaptureSFD;  
     //CaptureSFD.Timer -> HPLTimerM.Timer1;
     CaptureSFD.HPLCapture -> HPLTimerM.Capture1;

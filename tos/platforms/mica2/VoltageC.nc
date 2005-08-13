@@ -30,7 +30,7 @@ configuration VoltageC
 }
 implementation
 {
-  components VoltageP, new AdcChannelC(CHANNEL_BATTERY) as VoltageChannel, HPLGeneralIOC;
+  components VoltageP, new AdcChannelC(CHANNEL_BATTERY) as VoltageChannel, HplGeneralIOC;
   
   StdControl  = VoltageP;  
   AcquireData = VoltageChannel;

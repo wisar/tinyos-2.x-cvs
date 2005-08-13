@@ -41,9 +41,9 @@
  */
 
 
-module HPLCC1000SpiC {
+module HplCC1000SpiP {
   provides interface Init as PlatformInit;
-  provides interface HPLCC1000Spi;
+  provides interface HplCC1000Spi;
   //uses interface PowerManagement;
   uses {
     interface GeneralIO as SpiSck;
@@ -59,45 +59,45 @@ implementation
   command error_t PlatformInit.init() {
     call SpiSck.makeInput();
     call OC1C.makeInput();
-    call HPLCC1000Spi.rxMode();
+    call HplCC1000Spi.rxMode();
     return SUCCESS;
   }
 
   AVR_ATOMIC_HANDLER(SIG_SPI) {
     register uint8_t temp = SPDR;
     SPDR = outgoingByte;
-    signal HPLCC1000Spi.dataReady(temp);
+    signal HplCC1000Spi.dataReady(temp);
   }
-  default async event void HPLCC1000Spi.dataReady(uint8_t data) { }
+  default async event void HplCC1000Spi.dataReady(uint8_t data) { }
   
 
-  async command void HPLCC1000Spi.writeByte(uint8_t data) {
+  async command void HplCC1000Spi.writeByte(uint8_t data) {
     atomic outgoingByte = data;
   }
 
-  async command bool HPLCC1000Spi.isBufBusy() {
+  async command bool HplCC1000Spi.isBufBusy() {
     return bit_is_clear(SPSR,SPIF);
   }
 
-  async command uint8_t HPLCC1000Spi.readByte() {
+  async command uint8_t HplCC1000Spi.readByte() {
     return SPDR;
   }
 
-  async command void HPLCC1000Spi.enableIntr() {
+  async command void HplCC1000Spi.enableIntr() {
     //sbi(SPCR,SPIE);
     SPCR = 0xc0;
     CLR_BIT(DDRB, 0);
     //call PowerManagement.adjustPower();
   }
 
-  async command void HPLCC1000Spi.disableIntr() {
+  async command void HplCC1000Spi.disableIntr() {
     CLR_BIT(SPCR, SPIE);
     SET_BIT(DDRB, 0);
     CLR_BIT(PORTB, 0);
     //call PowerManagement.adjustPower();
   }
 
-  async command void HPLCC1000Spi.initSlave() {
+  async command void HplCC1000Spi.initSlave() {
     atomic {
       CLR_BIT(SPCR, CPOL);		// Set proper polarity...
       CLR_BIT(SPCR, CPHA);		// ...and phase
@@ -106,12 +106,12 @@ implementation
     } 
   }
 	
-  async command void HPLCC1000Spi.txMode() {
+  async command void HplCC1000Spi.txMode() {
     call SpiMiso.makeOutput();
     call SpiMosi.makeOutput();
   }
 
-  async command void HPLCC1000Spi.rxMode() {
+  async command void HplCC1000Spi.rxMode() {
     call SpiMiso.makeInput();
     call SpiMosi.makeInput();
   }

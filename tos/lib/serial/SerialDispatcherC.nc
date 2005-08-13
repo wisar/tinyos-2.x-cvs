@@ -47,14 +47,14 @@ configuration SerialDispatcherC {
 implementation {
   components SerialP, new SerialDispatcherP(), 
     HdlcTranslateC, 
-    HPLUARTM;
+    HplUartC;
   
   Send = SerialDispatcherP;
   Receive = SerialDispatcherP;
   SerialPacketInfo = SerialDispatcherP.PacketInfo;
   
   Init = SerialP;
-  Init = HPLUARTM.UART0Init;
+  Init = HplUartC.Uart0Init;
   Leds = SerialP;
   Leds = SerialDispatcherP;
   Leds = HdlcTranslateC;
@@ -63,6 +63,6 @@ implementation {
   SerialDispatcherP.SendBytePacket -> SerialP;
 
   SerialP.SerialFrameComm -> HdlcTranslateC;
-  HdlcTranslateC.SerialByteComm -> HPLUARTM.UART0;
+  HdlcTranslateC.SerialByteComm -> HplUartC.Uart0;
   
 }

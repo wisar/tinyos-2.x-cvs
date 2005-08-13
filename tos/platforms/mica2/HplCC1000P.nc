@@ -41,10 +41,10 @@
  * @author Philip Buonadonna
  */
 
-module HPLCC1000P {
+module HplCC1000P {
   provides {
     interface Init as PlatformInit;
-    interface HPLCC1000;
+    interface HplCC1000;
   }
   uses {
     /* These are the CC1000 pin names */
@@ -67,7 +67,7 @@ implementation
     return SUCCESS;
   }
   
-  command void HPLCC1000.init() {
+  command void HplCC1000.init() {
   }
 
   //********************************************************/
@@ -83,7 +83,7 @@ implementation
   // Input:  7 bit address, 8 bit data                     */
   //********************************************************/
 
-  async command void HPLCC1000.write(uint8_t addr, uint8_t data) {
+  async command void HplCC1000.write(uint8_t addr, uint8_t data) {
     char cnt = 0;
 
     // address cycle starts here
@@ -135,7 +135,7 @@ implementation
   // Output:  8 bit data                                   */
   //********************************************************/
 
-  async command uint8_t HPLCC1000.read(uint8_t addr) {
+  async command uint8_t HplCC1000.read(uint8_t addr) {
     int cnt;
     uint8_t din;
     uint8_t data = 0;
@@ -180,7 +180,7 @@ implementation
   }
 
 
-  async command bool HPLCC1000.getLOCK() {
+  async command bool HplCC1000.getLOCK() {
     return call CHP_OUT.get();
   }
 }
