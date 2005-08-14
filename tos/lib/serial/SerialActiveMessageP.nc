@@ -76,7 +76,7 @@ implementation {
  }
   
   event message_t* SubReceive.receive(message_t* msg, void* payload, uint8_t len) {
-    return signal Receive.receive[call AMPacket.type(msg)](msg, payload, len);
+    return signal Receive.receive[call AMPacket.type(msg)](msg, msg->data, len);
   }
 
   command void Packet.clear(message_t* msg) {
