@@ -477,9 +477,6 @@ implementation {
         if (signal ReceiveBytePacket.startPacket() != SUCCESS){
           goto nosync;
         }
-        //signal ReceiveBytePacket.byteReceived(RxProto);
-        //TODO: SerialForwarder should be sending this:
-        signal ReceiveBytePacket.byteReceived(TOS_SERIAL_ACTIVE_MESSAGE_ID);
       }      
       break;
       
@@ -513,13 +510,13 @@ implementation {
             stats.serial_short_packets++;
             goto nosync;
           }
-       }
+	}
         else { /* handle new bytes to save */
           if (RxByteCnt >= 2){ 
             signal ReceiveBytePacket.byteReceived(rx_buffer_top());
             RxCRC = crcByte(RxCRC,rx_buffer_pop());
           }
-          rx_buffer_push(data);
+	  rx_buffer_push(data);
           RxByteCnt++;
         }
       }

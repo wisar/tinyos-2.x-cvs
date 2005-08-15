@@ -40,7 +40,7 @@ module SerialPacketInfoActiveMessageP {
 implementation {
 
   async command uint8_t Info.offset() {
-    return sizeof(TOSRadioHeader) - sizeof(SerialAMHeader);
+    return (uint8_t)(sizeof(TOSRadioHeader) - sizeof(SerialAMHeader));
   }
   async command uint8_t Info.dataLinkLength(message_t* msg, uint8_t upperLen) {
     return upperLen + sizeof(SerialAMHeader);
