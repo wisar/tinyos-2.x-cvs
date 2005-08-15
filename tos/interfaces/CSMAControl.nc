@@ -61,5 +61,5 @@ interface CSMAControl
    * @return NULL if nothing was being sent or the command failed,
    *         otherwise a message_t* pointer to the message being sent
    */
-  async command message_t* HaltTx();
+  async command message_t* haltTx();
 }

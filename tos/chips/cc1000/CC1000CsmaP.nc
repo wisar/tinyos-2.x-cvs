@@ -459,7 +459,7 @@ implementation
   /* Options */
   /*---------*/
 
-  async command message_t* CSMAControl.HaltTx() {
+  async command message_t* CSMAControl.haltTx() {
     /* We simply ignore cancellations. */
     return NULL;
   }
