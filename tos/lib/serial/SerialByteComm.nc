@@ -31,7 +31,20 @@
  */
 
 interface SerialByteComm {
+
+  /** 
+   * Put a single byte to the serial port.
+   */
   async command error_t put(uint8_t data);
+
+  /** 
+   * Receive a single byte from the serial port.
+   */
   async event void get(uint8_t data);
+
+  /** 
+   * Split phase event to indicate that the last put request
+   * has completed.
+   */
   async event void putDone();
 }
