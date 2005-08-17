@@ -15,10 +15,12 @@ push( @includes, qw(
   %T/platforms/mica
   %T/platforms/micaz/chips/cc2420
   %T/chips/cc2420
-  %T/chips/ATmega128
-  %T/chips/ATmega128/timer
-  %T/chips/ATmega128/spi
-  %T/lib/gpio
+  %T/chips/atm128
+  %T/chips/atm128/adc
+  %T/chips/atm128/pins
+  %T/chips/atm128/spi
+  %T/chips/atm128/timer
+  %T/lib/adc
   %T/lib/timer
   %T/lib/serial
 
@@ -30,7 +32,7 @@ push( @includes, qw(
   -mmcu=atmega128
   -fnesc-target=avr
   -fnesc-no-debug
-  -fnesc-scheduler=TinyScheduler,TinyScheduler.TaskBasic,TaskBasic,TaskBasic,runTask,postTask
+  -fnesc-scheduler=TinySchedulerC,TinySchedulerC.TaskBasic,TaskBasic,TaskBasic,runTask,postTask
 
 );
 
