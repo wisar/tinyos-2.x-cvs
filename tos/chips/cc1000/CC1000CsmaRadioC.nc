@@ -91,7 +91,7 @@ implementation {
   Csma.CC1000Control -> Control;
   Csma.Random -> RandomC;
   Csma.CC1000Squelch -> Squelch;
-  Csma.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilli")];
+  Csma.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilliC.TimerMilli")];
   Csma.ByteRadio -> SendReceive;
   Csma.ByteRadioInit -> SendReceive;
   Csma.ByteRadioControl -> SendReceive;
