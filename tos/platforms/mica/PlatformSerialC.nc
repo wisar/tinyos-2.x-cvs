@@ -32,11 +32,12 @@
  */
 
 configuration PlatformSerialC {
+  provides interface Init;
   provides interface SerialByteComm;
 }
 implementation {
-  components HPLUARTM, PlatformC;
+  components HplUartC, PlatformC;
 
-  SerialByteComm = HPLUARTM.UART0;
-  PlatformC.SubInit -> HPLUARTM;
+  SerialByteComm = HplUartC.Uart0;
+  Init = HplUartC.Uart0Init;
 }
