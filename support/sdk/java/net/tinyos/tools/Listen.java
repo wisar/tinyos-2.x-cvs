@@ -41,11 +41,12 @@ public class Listen {
     public static void main(String args[]) throws IOException {
         String source = null;
         PacketSource reader;
-        if (args[0].equals("-comm")) {
+        if (args.length == 2 && args[0].equals("-comm")) {
           source = args[1];
         }
 	else if (args.length > 0) {
-	    System.err.println("usage: java net.tinyos.tools.Listen");
+	    System.err.println("usage: java net.tinyos.tools.Listen [-comm PACKETSOURCE]");
+	    System.err.println("       (default packet source from MOTECOM environment variable)");
 	    System.exit(2);
 	}
         if (source == null) {	
