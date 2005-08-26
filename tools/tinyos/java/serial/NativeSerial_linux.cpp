@@ -504,7 +504,7 @@ note( "close end" );
   static std::string getTOSCommMap()
   {
     const char* env = getenv( "TOSCOMMMAP" );
-    return (env == NULL) ? "com0=/dev/ttyS0:usb0=/dev/usb/tts/0" : env;
+    return (env == NULL) ? "com1=/dev/ttyS0:usb1=/dev/ttyUSB0" : env;
   }
 };
 
