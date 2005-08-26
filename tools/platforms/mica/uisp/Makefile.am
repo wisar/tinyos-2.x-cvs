@@ -39,8 +39,12 @@ EXTRA_DIST           = bootstrap config acconfig.h \
 
 AUTOMAKE_OPTIONS     = foreign
 
+if CYGWIN
+SUBDIRS              = src kernel
+else
 SUBDIRS              = src
-DIST_SUBDIRS         = src
+endif
+DIST_SUBDIRS         = $(SUBDIRS)
 
 MAINTAINERCLEANFILES = Makefile.in aclocal.m4 configure src/config-h.in \
                        src/stamp-h.in $(AUX_DIST)
