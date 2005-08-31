@@ -83,8 +83,8 @@ configuration CC2420RadioC
     interface Send as Send;
     interface Receive as Receive;
     interface CC2420Control;
-    interface MacControl;
-    interface MacBackoff;
+    interface AckControl;
+    interface CSMABackoff;
     interface RadioCoordinator as RadioReceiveCoordinator;
     interface RadioCoordinator as RadioSendCoordinator;
   }
@@ -94,21 +94,19 @@ implementation
   components CC2420RadioM, CC2420ControlM, HPLCC2420C, HPLCC2420M;
   components HplCC2420PinsC;
   
-  components new Atm128AlarmP(T32khz,uint16_t) as HALAlarm;
+  components CC2420PlatformAlarmC as HALAlarm;
   components HplTimerC;
   
   components RandomC, LedsC;
 
   Init = HALAlarm;
-  HALAlarm.HplTimer -> HplTimerC.Timer1;
-  HALAlarm.HplCompare -> HplTimerC.Compare1A;
   
   Init = CC2420RadioM;
   SplitControl = CC2420RadioM;
   Send = CC2420RadioM;
   Receive = CC2420RadioM;
-  MacControl = CC2420RadioM;
-  MacBackoff = CC2420RadioM;
+  CSMABackoff = CC2420RadioM;
+  AckControl = CC2420RadioM.AckControl;
   CC2420Control = CC2420ControlM;
   RadioReceiveCoordinator = CC2420RadioM.RadioReceiveCoordinator;
   RadioSendCoordinator = CC2420RadioM.RadioSendCoordinator;
