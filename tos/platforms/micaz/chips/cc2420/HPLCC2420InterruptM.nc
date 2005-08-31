@@ -70,6 +70,7 @@ implementation
   
   norace uint8_t CCAWaitForState;
   norace uint8_t CCALastState;
+  bool ccaTimerDisabled = FALSE;
   // Add stdcontrol.init/.start to setup TimerCapture timebase
 
   // ************* FIFOP Interrupt handlers and dispatch *************
@@ -165,6 +166,7 @@ implementation
   
   async command error_t CCA.startWait(bool low_to_high) {
     atomic CCAWaitForState = low_to_high; //save the state we are waiting for
+    atomic ccaTimerDisabled = FALSE;
     CCALastState = call CC_CCA.get(); //get current state
     post CCATask();
     return SUCCESS;
@@ -173,8 +175,16 @@ implementation
   /**
    * disables CCA interrupts
    */
+  void task stopTask() {
+    atomic{
+      if (ccaTimerDisabled) {
+	call CCATimer.stop();
+      }
+    }
+  }
   async command error_t CCA.disable() {
-    call CCATimer.stop();
+    atomic ccaTimerDisabled = TRUE;
+    post stopTask();
     return SUCCESS;
   }
 
@@ -184,6 +194,11 @@ implementation
   event void CCATimer.fired() {
     uint8_t CCAState;
     error_t val = SUCCESS;
+    atomic {
+      if (ccaTimerDisabled) {
+	return;
+      }
+    }
     //check CCA state
     CCAState = call CC_CCA.get(); //get current state
     //here if waiting for an edge
