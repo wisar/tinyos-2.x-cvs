@@ -73,7 +73,7 @@ implementation
   }
 
   default async event void IntSig6.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT6 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT6 ) {
     signal IntSig6.fired();
   }
 
