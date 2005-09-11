@@ -1,4 +1,25 @@
-/**
+/*
+ * "Copyright (c) 2005 Stanford University. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this software and
+ * its documentation for any purpose, without fee, and without written
+ * agreement is hereby granted, provided that the above copyright
+ * notice, the following two paragraphs and the author appear in all
+ * copies of this software.
+ * 
+ * IN NO EVENT SHALL STANFORD UNIVERSITY BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
+ * ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN
+ * IF STANFORD UNIVERSITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ * 
+ * STANFORD UNIVERSITY SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE
+ * PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND STANFORD UNIVERSITY
+ * HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
+ * ENHANCEMENTS, OR MODIFICATIONS."
+ *
  *  Copyright (c) 2004-2005 Crossbow Technology, Inc.
  *  Copyright (c) 2000-2005 The Regents of the University  of California.
  *  All rights reserved.
@@ -23,31 +44,36 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
  *  THE POSSIBILITY OF SUCH DAMAGE.
  *
- *  @author Joe Polastre
- *  @author Martin Turon <mturon@xbow.com>
- *
- *  $Id$
  */
 
-generic configuration SPIC() {
+/**
+ * The HAL of the SPI bus on the atm128.
+ *
+ * <pre>
+ *  $Id$
+ * </pre>
+ *
+ *
+ * @author Philip Levis
+ * @author Martin Turon
+ * @author Joe Polastre
+ * @date   September 7 2005
+ */
+
+configuration Atm128SpiC {
   provides interface Init;
-  provides interface BusArbitration;
+  provides interface StdControl;
   provides interface SPIByte;
   provides interface SPIPacket;
-  provides interface SPIPacketAdvanced;
 }
 implementation {
-  components HalSpiMasterM as SpiMaster, HPLSPIC;
-
-  enum {
-    SPI_BUS_ID = unique("Bus.HPLSPI"),
-  };
-
+  components HalSpiMasterM as SpiMaster, HplGeneralIOC as IO;
+  components HPLSPIC;
+  
   Init = SpiMaster;
-  SPIByte = SpiMaster.SPIByte[SPI_BUS_ID];
-  SPIPacket = SpiMaster.SPIPacket[SPI_BUS_ID];
-  SPIPacketAdvanced = SpiMaster.SPIPacketAdvanced[SPI_BUS_ID];
-  BusArbitration = SpiMaster.BusArbitration[SPI_BUS_ID];
+  StdControl = SpiMaster;
+  SPIByte = SpiMaster;
+  SPIPacket = SpiMaster;
 
-  SpiMaster.SpiBus -> HPLSPIC;
+  SpiMaster.Spi -> HPLSPIC;
 }
