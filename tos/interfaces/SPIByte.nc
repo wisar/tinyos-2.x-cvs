@@ -28,5 +28,5 @@ interface SPIByte
   /**
    * Synchronous transmit and receive (can be in interrupt context)
    */
-  async command uint8_t tx(uint8_t val);
+  async command uint8_t write(uint8_t val);
 }
