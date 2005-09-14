@@ -65,15 +65,19 @@ configuration Atm128SpiC {
   provides interface StdControl;
   provides interface SPIByte;
   provides interface SPIPacket;
+  provides interface Resource[uint8_t id];
 }
 implementation {
   components HalSpiMasterM as SpiMaster, HplGeneralIOC as IO;
-  components HPLSPIC;
+  components HPLSPIC, new RoundRobinArbiterC("Atm128SpiC.Resource");
   
-  Init = SpiMaster;
-  StdControl = SpiMaster;
-  SPIByte = SpiMaster;
-  SPIPacket = SpiMaster;
-
+  Init         = SpiMaster;
+  Init         = RoundRobinArbiterC;
+  
+  StdControl   = SpiMaster;
+  SPIByte      = SpiMaster;
+  SPIPacket    = SpiMaster;
+  Resource     = RoundRobinArbiterC;
+  
   SpiMaster.Spi -> HPLSPIC;
 }

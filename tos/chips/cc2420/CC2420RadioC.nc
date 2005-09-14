@@ -100,6 +100,7 @@ implementation
   Radio.CC2420SplitControl -> Control;
   Radio.CC2420Control      -> Control;
   Radio.CC2420Fifo         -> CC2420Platform;
+  Radio.SpiBus             -> CC2420Platform;
   Radio.FIFOP              -> CC2420Platform.InterruptFIFOP;
   Radio.SFD                -> CC2420Platform.CaptureSFD;
   Radio.RXFIFO             -> CC2420Platform.RXFIFO;
