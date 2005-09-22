@@ -18,11 +18,14 @@ configuration MotePlatformC
   uses interface Init as SubInit;
 }
 implementation {
-  components MotePlatformP, CC2420C, HplGeneralIOC, TimerMilliC;
+  components MotePlatformP, CC2420RadioC, HplGeneralIOC, TimerMilliC;
+  components HplTimerC, RealMainP;
 
   PlatformInit = MotePlatformP;
-  PlatformInit = CC2420C;
-  PlatformInit = TimerMilliC;
+  PlatformInit = HplTimerC;
+  
+  RealMainP.SoftwareInit -> CC2420RadioC;
+  RealMainP.SoftwareInit -> TimerMilliC;
   
   MotePlatformP.SerialIdPin -> HplGeneralIOC.PortA4;
   SubInit = MotePlatformP.SubInit;
