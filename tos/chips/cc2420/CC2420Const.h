@@ -142,7 +142,7 @@ enum {
  
 // delay when waiting for the ack
 #ifndef CC2420_ACK_DELAY
-  CC2420_ACK_DELAY =           75,
+  CC2420_ACK_DELAY =           24,
 #endif
 
 #ifndef CC2420_XOSC_TIMEOUT

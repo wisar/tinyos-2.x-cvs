@@ -482,9 +482,13 @@ implementation
   async event void Ram.writeDone(uint16_t addr, uint8_t* buf, uint8_t length, error_t err) {}
 
   async event void CCA.fired() {
+    uint8_t oldState;
     // reset the CCA pin back to the CCA function
     call IOCFG1.write(0);
-    post PostOscillatorOn();
+    atomic oldState = state;
+    if (oldState == START_STATE) {
+      post PostOscillatorOn();
+    }
     return;
   }
 	
