@@ -34,11 +34,11 @@ configuration Timer32khzAlarmC
 implementation
 {
   components HplTimerC,
-      new Atm128AlarmP(T32khz,uint8_t) as HalAlarm,
-      new TransformAlarmC(T32khz,uint16_t,T32khz,uint8_t,0) as Transform16,
-      new TransformAlarmC(T32khz,uint32_t,T32khz,uint16_t,0) as Transform32,
-      Timer32khzCounterC as Counter
-      ;
+    new Atm128AlarmP(T32khz, uint8_t, ATM128_CLK8_NORMAL) as HalAlarm,
+    new TransformAlarmC(T32khz,uint16_t,T32khz,uint8_t,0) as Transform16,
+    new TransformAlarmC(T32khz,uint32_t,T32khz,uint16_t,0) as Transform32,
+    Timer32khzCounterC as Counter
+    ;
 
   // Top-level interface wiring
   Alarm32khz16 = Transform16;

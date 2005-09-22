@@ -25,10 +25,11 @@
 /// @author Martin Turon <mturon@xbow.com>
 
 generic module Atm128AlarmP(typedef frequency_tag, 
-			    typedef timer_size @integer())
+			     typedef timer_size @integer(),
+			     uint8_t prescalar)
 {
   provides interface Init;
-  provides interface Alarm<frequency_tag,timer_size> as Alarm;
+  provides interface Alarm<frequency_tag, timer_size> as Alarm;
 
   uses interface HplTimer<timer_size>;
   uses interface HplCompare<timer_size>;
@@ -38,12 +39,9 @@ implementation
   command error_t Init.init() {
     atomic {
       call HplCompare.stop();
-
-      SET_BIT(ASSR, AS0);  // set Timer/Counter0 to use 32,768khz crystal
-      call HplTimer.setScale(AVR_CLOCK_OFF);
       call HplTimer.set(0);
       call HplTimer.start();
-      call HplTimer.setScale(ATM128_CLK8_NORMAL);
+      call HplTimer.setScale(prescalar);
     }
     return SUCCESS;
   }
