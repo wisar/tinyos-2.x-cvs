@@ -33,9 +33,9 @@
 
 configuration PowerupC{}
 implementation {
-  components Main, PowerupM, LedsC;
+  components MainC, PowerupM, LedsC;
 
-  Main.Boot <- PowerupM;
+  MainC.Boot <- PowerupM;
   
   PowerupM -> LedsC.Leds;
 }

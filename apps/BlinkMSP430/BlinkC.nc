@@ -5,7 +5,7 @@ configuration BlinkC
 }
 implementation
 {
-  components Main, BlinkM, LedsC, MSP430TimerC;
+  components MainC as Main, BlinkM, LedsC, MSP430TimerC;
   BlinkM.Boot -> Main;
   Main.SoftwareInit -> LedsC;
   BlinkM.Leds -> LedsC;
