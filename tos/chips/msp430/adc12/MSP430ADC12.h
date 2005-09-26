@@ -36,7 +36,6 @@
 #ifndef MSP430ADC12_H
 #define MSP430ADC12_H
 #include "RefVoltGenerator.h"
-#include "ADC.h"
 
 typedef enum
 {
