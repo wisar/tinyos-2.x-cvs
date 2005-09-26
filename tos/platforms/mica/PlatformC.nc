@@ -33,7 +33,7 @@ configuration PlatformC {
 implementation
 {
   components PlatformP, MotePlatformC;
-
+  
   Init = PlatformP;
   PlatformP.MoteInit -> MotePlatformC;
   MotePlatformC.SubInit = SubInit;

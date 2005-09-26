@@ -21,21 +21,32 @@
  */
 
 /**
- * @author Joe Polastre and Cory Sharp
+ * @author Joe Polastre
  */
 includes hardware;
 
-configuration Platform
-{
-  provides interface Init;
+configuration PlatformLedsC {
+  provides interface GeneralIO as Led0;
+  provides interface GeneralIO as Led1;
+  provides interface GeneralIO as Led2;
 }
 implementation
 {
-  components PlatformM
-    , MSP430ClockC
+  components 
+    MSP430GeneralIOC
+    , new GeneralIOM() as Led0Impl
+    , new GeneralIOM() as Led1Impl
+    , new GeneralIOM() as Led2Impl
     ;
 
-  Init = PlatformM;
-  PlatformM.MSP430ClockInit -> MSP430ClockC.Init;
+  Led0 = Led0Impl;
+  Led0Impl -> MSP430GeneralIOC.Port54;
+
+  Led1 = Led1Impl;
+  Led1Impl -> MSP430GeneralIOC.Port55;
+
+  Led2 = Led2Impl;
+  Led2Impl -> MSP430GeneralIOC.Port56;
+
 }
 
