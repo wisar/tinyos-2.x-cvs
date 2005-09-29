@@ -29,19 +29,21 @@
 configuration HPLUSART1C
 {
   provides {
-    interface Init;
+//    interface Init;
     interface HPLUSARTControl;
     interface HPLUSARTFeedback;
-    interface BusArbitration[uint8_t id];
+//    interface BusArbitration[uint8_t id];
   }
 }
 implementation
 {
-  components HPLUSART1M, new BusArbitrationC("Bus.HPLUSART1") as BA, MSP430GeneralIOC as IO;
+  components HPLUSART1M;
+//  components new BusArbitrationC("Bus.HPLUSART1") as BA;
+  components MSP430GeneralIOC as IO;
 
-  Init = BA;
+//  Init = BA;
 
-  BusArbitration = BA;
+//  BusArbitration = BA;
 
   HPLUSARTControl = HPLUSART1M;
   HPLUSARTFeedback = HPLUSART1M;
