@@ -32,6 +32,8 @@
 // all platforms, and that this configuration only specifies (implicitly or
 // explicitly) how precisely to use the hardware resources.
 
+includes Timer;
+
 configuration TimerMilliC
 {
   provides interface Init;
