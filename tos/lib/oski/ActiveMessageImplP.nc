@@ -48,6 +48,7 @@ configuration ActiveMessageImplP {
     interface Receive as Snoop[am_id_t id];
     interface Packet;
     interface AMPacket;
+    interface PacketAcknowledgements;
   }
 }
 
@@ -62,4 +63,5 @@ implementation {
   Snoop = ActiveMessageC.Snoop;
   Packet = ActiveMessageC;
   AMPacket = ActiveMessageC;
+  PacketAcknowledgements = ActiveMessageC;
 }

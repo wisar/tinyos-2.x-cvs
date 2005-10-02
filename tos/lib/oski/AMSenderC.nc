@@ -43,6 +43,7 @@ generic configuration AMSenderC(am_id_t AMId) {
     interface AMSend;
     interface Packet;
     interface AMPacket;
+    interface PacketAcknowledgements as Acks;
   }
 }
 
@@ -52,4 +53,5 @@ implementation {
   AMSend = Impl.AMSend[AMId];
   Packet = Impl;
   AMPacket = Impl;
+  Acks = Impl;
 }

@@ -33,6 +33,7 @@ includes Serial;
 configuration SerialActiveMessageC {
   provides {
     interface Init;
+    interface SplitControl;
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];
     interface Packet;
@@ -46,7 +47,8 @@ implementation {
 
   Init = SerialDispatcherC;
   Leds = SerialDispatcherC;
-
+  SplitControl = SerialDispatcherC;
+  
   AMSend = AM;
   Receive = AM;
   Packet = AM;

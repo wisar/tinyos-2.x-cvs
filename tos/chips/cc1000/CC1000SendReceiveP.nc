@@ -287,7 +287,7 @@ implementation
     sendNextByte();
     nextTxByte = SYNC_BYTE2;
     enterTxDataState();
-    signal RadioTimeStamping.txSFD(0, txBufPtr); 
+    signal RadioTimeStamping.transmittedSFD(0, txBufPtr); 
   }
 
   void txData() {
@@ -454,7 +454,7 @@ implementation
 		enterRxState();
 		signal ByteRadio.rx();
 		f.rxBitOffset = 7 - i;
-		signal RadioTimeStamping.rxSFD(0, rxBufPtr);
+		signal RadioTimeStamping.receivedSFD(0, rxBufPtr);
 		call RssiRx.getData();
 	      }
 	  }
@@ -634,6 +634,6 @@ implementation
   }
   // Default events for radio send/receive coordinators do nothing.
   // Be very careful using these, or you'll break the stack.
-  default async event void RadioTimeStamping.txSFD(uint32_t time, message_t* msgBuff) { }
-  default async event void RadioTimeStamping.rxSFD(uint32_t time, message_t* msgBuff) { }
+  default async event void RadioTimeStamping.transmittedSFD(uint16_t time, message_t* msgBuff) { }
+  default async event void RadioTimeStamping.receivedSFD(uint16_t time, message_t* msgBuff) { }
 }

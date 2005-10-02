@@ -33,6 +33,7 @@
 
 configuration PlatformSerialC {
   provides interface Init;
+  provides interface StdControl;
   provides interface SerialByteComm;
 }
 implementation {
@@ -40,4 +41,6 @@ implementation {
 
   SerialByteComm = HplUartC.Uart0;
   Init = HplUartC.Uart0Init;
+  StdControl = HplUartC.Uart0RxControl;
+  StdControl = HplUartC.Uart0TxControl;
 }

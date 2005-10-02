@@ -52,6 +52,7 @@ includes TestSerial;
 
 module TestSerialC {
   uses {
+    interface SplitControl as Control;
     interface Leds;
     interface Boot;
     interface Receive;
@@ -68,7 +69,7 @@ implementation {
   uint16_t counter = 0;
   
   event void Boot.booted() {
-    call MilliTimer.startPeriodicNow(1000);
+    call Control.start();
   }
   
   event void MilliTimer.fired() {
@@ -122,6 +123,12 @@ implementation {
     }
   }
 
+  event void Control.startDone(error_t err) {
+    if (err == SUCCESS) {
+      call MilliTimer.startPeriodicNow(1000);
+    }
+  }
+  event void Control.stopDone(error_t err) {}
 }
 
 

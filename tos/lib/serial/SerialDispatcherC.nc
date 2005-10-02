@@ -36,6 +36,7 @@
 configuration SerialDispatcherC {
   provides {
     interface Init;
+    interface SplitControl;
     interface Receive[uart_id_t];
     interface Send[uart_id_t];
   }
@@ -52,6 +53,7 @@ implementation {
   Send = SerialDispatcherP;
   Receive = SerialDispatcherP;
   SerialPacketInfo = SerialDispatcherP.PacketInfo;
+  SplitControl = SerialP;
   
   Init = SerialP;
   Init = PlatformSerialC;
@@ -61,8 +63,10 @@ implementation {
 
   SerialDispatcherP.ReceiveBytePacket -> SerialP;
   SerialDispatcherP.SendBytePacket -> SerialP;
-
+  
   SerialP.SerialFrameComm -> HdlcTranslateC;
+  SerialP.SerialControl -> PlatformSerialC;
+  
   HdlcTranslateC.SerialByteComm -> PlatformSerialC;
   
 }

@@ -60,7 +60,7 @@ implementation {
   MainC.SoftwareInit -> AM;
   
   App.Boot -> MainC.Boot;
-  
+  App.Control -> AM;
   App.Receive -> AM.Receive[AM_TESTSERIALMSG];
   App.AMSend -> AM.AMSend[AM_TESTSERIALMSG];
   App.Leds -> LedsC;
