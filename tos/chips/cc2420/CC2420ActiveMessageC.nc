@@ -47,6 +47,7 @@ configuration CC2420ActiveMessageC {
     interface Receive as Snoop[am_id_t id];
     interface AMPacket;
     interface Packet;
+    interface CSMABackoff;
     interface PacketAcknowledgements;
   }
 }
@@ -64,6 +65,7 @@ implementation {
   Snoop    = AM.Snoop;
   AMPacket = AM;
   PacketAcknowledgements = Radio;
+  CSMABackoff = Radio;
   
   AM.SubSend    -> Radio.Send;
   AM.SubReceive -> Radio.Receive;
