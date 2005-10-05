@@ -155,6 +155,7 @@ implementation
   void enterSyncState() {
     radioState = SYNC_STATE;
     count = 0;
+    rxShiftBuf = 0;
   }
 
   void enterRxState() {
