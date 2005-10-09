@@ -41,9 +41,19 @@
 #define RADIO_TOS_MSG_H
 
 #include "CC1000Msg.h"
+#include "Serial.h"
 
-typedef CC1KHeader TOSRadioHeader;
-typedef CC1KFooter TOSRadioFooter;
-typedef CC1KMetadata TOSRadioMetadata;
+typedef union TOSRadioHeader {
+  CC1KHeader cc1k;
+  SerialAMHeader serial;
+} TOSRadioHeader;
+
+typedef union TOSRadioFooter {
+  CC1KFooter cc1k;
+} TOSRadioFooter;
+
+typedef union TOSRadioMetadata {
+  CC1KMetadata cc1k;
+} TOSRadioMetadata;
 
 #endif

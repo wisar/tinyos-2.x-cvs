@@ -635,15 +635,17 @@ implementation
     return (void*)msg->data;
   }
 
-  command error_t PacketAcknowledgements.enable() {
-    return ByteRadio.setAck(TRUE);
+  async command error_t PacketAcknowledgements.enable() {
+    call ByteRadio.setAck(TRUE);
+    return SUCCESS;
   }
 
-  command error_t PacketAcknowledgements.disable() {
-    return ByteRadio.setAck(FALSE);
+  async command error_t PacketAcknowledgements.disable() {
+    call ByteRadio.setAck(FALSE);
+    return SUCCESS;
   }
 
-  command bool PacketAcknowledgements.wasAcked(message_t* msg) {
+  async command bool PacketAcknowledgements.wasAcked(message_t* msg) {
     CC1KMetadata* md = getMetadata(msg);
     return md->ack;
   }
