@@ -60,6 +60,7 @@ configuration CC1000CsmaRadioC {
     interface CSMAControl;
     interface CSMABackoff;
     interface RadioTimeStamping;
+    interface PacketAcknowledgments;
 
     interface LowPowerListening;
   }
@@ -87,6 +88,7 @@ implementation {
   CSMABackoff = Csma;
   LowPowerListening = Csma;
   RadioTimeStamping = SendReceive;
+  PacketAcknowledgments = SendReceive;
 
   Csma.CC1000Control -> Control;
   Csma.Random -> RandomC;
