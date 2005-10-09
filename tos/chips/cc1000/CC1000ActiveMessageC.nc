@@ -56,7 +56,7 @@ configuration CC1000ActiveMessageC {
     interface Receive as Snoop[am_id_t id];
     interface AMPacket;
     interface Packet;
-    interface PacketAcknowledgments;
+    interface PacketAcknowledgements;
   }
 }
 implementation {
@@ -67,7 +67,7 @@ implementation {
   Init         = Radio;
   SplitControl = Radio;
   Packet       = Radio;
-  PacketAcknowledgments = Radio;
+  PacketAcknowledgements = Radio;
 
   AMSend   = AM;
   Receive  = AM.Receive;

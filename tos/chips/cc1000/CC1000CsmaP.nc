@@ -53,6 +53,7 @@ module CC1000CsmaP {
   provides {
     interface Init;
     interface SplitControl;
+    interface TransmitControl;
     interface CSMAControl;
     interface CSMABackoff;
     interface LowPowerListening;
@@ -459,19 +460,9 @@ implementation
   /* Options */
   /*---------*/
 
-  async command message_t* CSMAControl.haltTx() {
+  async command message_t* TransmitControl.haltTx() {
     /* We simply ignore cancellations. */
     return NULL;
-  }
-
-  async command error_t CSMAControl.enableAck() {
-    call ByteRadio.setAck(TRUE);
-    return SUCCESS;
-  }
-
-  async command error_t CSMAControl.disableAck() {
-    call ByteRadio.setAck(FALSE);
-    return SUCCESS;
   }
 
   async command error_t CSMAControl.enableCCA() {

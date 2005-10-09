@@ -61,7 +61,7 @@ module CC1000SendReceiveP {
     interface RadioTimeStamping;
     interface Packet;
     interface ByteRadio;
-    interface PacketAcknowledgments;
+    interface PacketAcknowledgements;
   }
   uses {
     //interface PowerManagement;
@@ -635,15 +635,15 @@ implementation
     return (void*)msg->data;
   }
 
-  command error_t PacketAcknowledgments.enable() {
-    return SUCCESS;
+  command error_t PacketAcknowledgements.enable() {
+    return ByteRadio.setAck(TRUE);
   }
 
-  command error_t PacketAcknowledgments.disable() {
-    return FAIL;
+  command error_t PacketAcknowledgements.disable() {
+    return ByteRadio.setAck(FALSE);
   }
 
-  command bool PacketAcknowledgments.wasAcked(message_t* msg) {
+  command bool PacketAcknowledgements.wasAcked(message_t* msg) {
     CC1KMetadata* md = getMetadata(msg);
     return md->ack;
   }
