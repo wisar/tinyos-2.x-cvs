@@ -25,17 +25,17 @@
  */
 includes hardware;
 
-configuration Platform
+configuration PlatformC
 {
   provides interface Init;
 }
 implementation
 {
-  components PlatformM
+  components PlatformP
     , MSP430ClockC
     ;
 
-  Init = PlatformM;
-  PlatformM.MSP430ClockInit -> MSP430ClockC.Init;
+  Init = PlatformP;
+  PlatformP.MSP430ClockInit -> MSP430ClockC.Init;
 }
 
