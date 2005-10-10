@@ -49,7 +49,7 @@ implementation
   HALCounterMicro.Timer -> HplTimerC.Timer3;   // wire async timer to Timer 0
 
   // Counter Transform Wiring
-  Transform32.CounterFrom -> Transform16;
+  Transform32.CounterFrom -> HALCounterMicro;
 
   CounterToLocalTimeC.Counter -> Transform32;
 }
