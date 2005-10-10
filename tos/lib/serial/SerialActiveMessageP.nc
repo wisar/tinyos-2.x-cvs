@@ -44,6 +44,7 @@ generic module SerialActiveMessageP () {
 }
 implementation {
 
+  bool sent;
   SerialAMHeader* getHeader(message_t* msg) {
     return (SerialAMHeader*)(msg->data - sizeof(SerialAMHeader));
   }
@@ -52,6 +53,7 @@ implementation {
 					  message_t* msg,
 					  uint8_t len) {
     SerialAMHeader* header = getHeader(msg);
+    sent = 1;
     header->addr = dest;
     header->type = id;
     header->length = len;
@@ -64,6 +66,7 @@ implementation {
   }
 
   event void SubSend.sendDone(message_t* msg, error_t result) {
+    sent = 0;
     signal AMSend.sendDone[call AMPacket.type(msg)](msg, result);
   }
 
