@@ -58,5 +58,3 @@ implementation {
   App.AcquireData -> DemoSensorC;
   App.SensorControl -> DemoSensorC;
 }
-
-
