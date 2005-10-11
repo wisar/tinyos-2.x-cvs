@@ -555,7 +555,9 @@ implementation {
     /* Refer to page 26 of the CC2420 Preliminary Datasheet. Send the RXFIFO
        and then keep on reading. */
     err = call SpiByte.write(CC2420_RXFIFO | 0x40);
-    call SpiPacket.send(NULL, buffer, length);
+    length = call SpiByte.write( 0 );
+    buffer[ 0 ] = length;
+    call SpiPacket.send(NULL, buffer+1, length);
     return SUCCESS;
   }
   
