@@ -91,7 +91,7 @@ implementation {
   enum {
     SPI_IDLE,
     SPI_BUSY,
-    SPI_ATOMIC_SIZE = 5,
+    SPI_ATOMIC_SIZE = 10,
   };
 
   command error_t Init.init() {
@@ -260,6 +260,10 @@ implementation {
        rx = rxBuffer;
        tx = txBuffer;
        myLen = len;
+       rxBuffer = NULL;
+       txBuffer = NULL;
+       len = 0;
+       pos = 0;
      }
      discard = call Spi.read();
 	 

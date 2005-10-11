@@ -149,13 +149,13 @@ inline void TOSH_wait(void)
 
 #define TOSH_CYCLE_TIME_NS 250
 
-inline void TOSH_wait_250ns(void)
+inline void wait_250ns(void)
 {
   // 4 MHz clock == 1 cycle per 250 ns
   nop();
 }
 
-inline void TOSH_uwait(uint16_t u) 
+inline void uwait(uint16_t u) 
 { 
   /*
   uint16_t i;

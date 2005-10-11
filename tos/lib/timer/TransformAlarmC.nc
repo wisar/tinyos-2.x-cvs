@@ -103,11 +103,11 @@ implementation
 	m_t0 += m_dt;
 	m_dt = 0;
       }
-    call AlarmFrom.start((from_size_type)now << bit_shift_right,
+    call AlarmFrom.startAt((from_size_type)now << bit_shift_right,
 			 (from_size_type)remaining << bit_shift_right);
   }
 
-  async command void Alarm.start( to_size_type t0, to_size_type dt )
+  async command void Alarm.startAt( to_size_type t0, to_size_type dt )
   {
     atomic
     {
@@ -117,9 +117,9 @@ implementation
     }
   }
 
-  async command void Alarm.startNow( to_size_type dt )
+  async command void Alarm.start( to_size_type dt )
   {
-    call Alarm.start( call Alarm.getNow(), dt );
+    call Alarm.startAt( call Alarm.getNow(), dt );
   }
 
   async event void AlarmFrom.fired()

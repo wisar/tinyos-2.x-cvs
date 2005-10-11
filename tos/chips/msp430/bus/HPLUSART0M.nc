@@ -62,6 +62,11 @@ implementation
   uint8_t l_mctl;
   uint8_t l_ssel;
 
+  enum {
+    I2C = 0x20,
+    I2CEN = 0x01,
+  };
+  
   TOSH_SIGNAL(UART0RX_VECTOR) {
     uint8_t temp;
     if (U0RCTL & OE)

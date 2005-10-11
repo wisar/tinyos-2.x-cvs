@@ -40,7 +40,7 @@ implementation
     m_t0 = t0;
     m_dt = dt;
     m_oneshot = oneshot;
-    call Alarm.start( t0, dt );
+    call Alarm.startAt( t0, dt );
   }
 
   command void Timer.startPeriodic( uint32_t dt )

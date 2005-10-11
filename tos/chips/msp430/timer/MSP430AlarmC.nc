@@ -43,9 +43,9 @@ implementation
     return SUCCESS;
   }
   
-  async command void Alarm.startNow( uint16_t dt )
+  async command void Alarm.start( uint16_t dt )
   {
-    call Alarm.start( call Alarm.getNow(), dt );
+    call Alarm.startAt( call Alarm.getNow(), dt );
   }
 
   async command void Alarm.stop()
@@ -64,7 +64,7 @@ implementation
     return call MSP430TimerControl.areEventsEnabled();
   }
 
-  async command void Alarm.start( uint16_t t0, uint16_t dt )
+  async command void Alarm.startAt( uint16_t t0, uint16_t dt )
   {
     atomic
     {
