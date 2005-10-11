@@ -48,9 +48,9 @@ implementation
 {
   event void Boot.booted()
   {
-    call Timer0.startPeriodicNow( 250 );
-    call Timer1.startPeriodicNow( 500 );
-    call Timer2.startPeriodicNow( 1000 );
+    call Timer0.startPeriodic( 250 );
+    call Timer1.startPeriodic( 500 );
+    call Timer2.startPeriodic( 1000 );
   }
 
   event void Timer0.fired()

@@ -92,7 +92,7 @@ implementation {
   }
   
   event void ServiceNotify.started() {
-    call Timer.startPeriodicNow(1000);
+    call Timer.startPeriodic(1000);
     call Acks.enable();
   }
 

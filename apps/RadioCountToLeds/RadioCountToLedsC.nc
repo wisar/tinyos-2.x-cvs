@@ -62,7 +62,7 @@ implementation {
   
   event void Boot.booted() {
     call Service.start();
-    call MilliTimer.startPeriodicNow(1000);
+    call MilliTimer.startPeriodic(1000);
   }
   
   event void MilliTimer.fired() {

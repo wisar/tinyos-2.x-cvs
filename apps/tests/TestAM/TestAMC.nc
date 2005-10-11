@@ -85,7 +85,7 @@ implementation {
   }
 
   event void SplitControl.startDone(error_t err) {
-    call MilliTimer.startPeriodicNow(1000);
+    call MilliTimer.startPeriodic(1000);
   }
 
   event void SplitControl.stopDone(error_t err) {

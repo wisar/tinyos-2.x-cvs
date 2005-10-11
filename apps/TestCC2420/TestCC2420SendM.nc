@@ -49,7 +49,7 @@ implementation {
   }
 
   event void SplitControl.startDone(error_t error) { 
-    call Timer1.startPeriodicNow(1024);
+    call Timer1.startPeriodic(1024);
   }
   event void SplitControl.stopDone(error_t error) { }
 

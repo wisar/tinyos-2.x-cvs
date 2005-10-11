@@ -125,7 +125,7 @@ implementation {
 
   event void Control.startDone(error_t err) {
     if (err == SUCCESS) {
-      call MilliTimer.startPeriodicNow(1000);
+      call MilliTimer.startPeriodic(1000);
     }
   }
   event void Control.stopDone(error_t err) {}
