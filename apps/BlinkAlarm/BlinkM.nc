@@ -17,7 +17,7 @@ implementation
     atomic
     {
       call Leds.led1On();
-      call Alarm.startNow( DELAY_MILLI );
+      call Alarm.start( DELAY_MILLI );
     }
   }
 
@@ -26,7 +26,7 @@ implementation
     atomic
     {
       // this usage produces a periodic alarm with no frequency skew
-      call Alarm.start( call Alarm.getAlarm(), DELAY_MILLI );
+      call Alarm.startAt( call Alarm.getAlarm(), DELAY_MILLI );
       call Leds.led0Toggle();
     }
   }

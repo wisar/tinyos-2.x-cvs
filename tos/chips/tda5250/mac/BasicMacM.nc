@@ -165,7 +165,7 @@ implementation
   
    async event void TDA5250PhyPacketRx.recvHeaderDone(uint8_t length_value) {
      atomic rxBusy = TRUE;
-     call RxTimeoutTimer.startOneShotNow((((TOSH_DATA_LENGTH+2)*100)/(384)+1));
+     call RxTimeoutTimer.startOneShot((((TOSH_DATA_LENGTH+2)*100)/(384)+1));
      signal PhyPacketRx.recvHeaderDone(length_value);
    }  
    

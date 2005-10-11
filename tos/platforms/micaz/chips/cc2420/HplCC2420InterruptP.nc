@@ -132,7 +132,7 @@ implementation {
     
     atomic FIFOWaitForState = low_to_high; //save the state we are waiting for
     FIFOLastState = call CC_FIFO.get(); //get current state
-    call FIFOTimer.startOneShotNow(1); //wait 1msec
+    call FIFOTimer.startOneShot(1); //wait 1msec
     return SUCCESS;
    } //.startWait
 
@@ -150,7 +150,7 @@ implementation {
     }//if FIFO Pin
     //restart timer and try again
     FIFOLastState = FIFOState;
-    call FIFOTimer.startOneShotNow(1); //wait 1msec
+    call FIFOTimer.startOneShot(1); //wait 1msec
   }//FIFOTimer.fired
 
 
@@ -174,7 +174,7 @@ implementation {
   task void CCATask() {
     atomic {
       if (!ccaTimerDisabled) 
-	call CCATimer.startOneShotNow(100);
+	call CCATimer.startOneShot(100);
     }
   }
   

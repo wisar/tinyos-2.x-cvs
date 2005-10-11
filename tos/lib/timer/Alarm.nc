@@ -29,13 +29,13 @@ includes Timer;
 interface Alarm<precision_tag,size_type>
 {
   // basic interface
-  async command void startNow( size_type dt );
+  async command void start( size_type dt );
   async command void stop();
   async event void fired();
 
   // extended interface
   async command bool isRunning();
-  async command void start( size_type t0, size_type dt );
+  async command void startAt( size_type t0, size_type dt );
   async command size_type getNow();
   async command size_type getAlarm();
 }

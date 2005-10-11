@@ -238,22 +238,22 @@ implementation
 	if (call CC1000Squelch.settled())
 	  {
 	    if (lplRxPower == 0 || f.txPending)
-	      call WakeupTimer.startOneShotNow(CC1K_SquelchIntervalSlow);
+	      call WakeupTimer.startOneShot(CC1K_SquelchIntervalSlow);
 	    else
 	      // timeout for receiving a message after an lpl check
 	      // indicates channel activity.
-	      call WakeupTimer.startOneShotNow(TIME_AFTER_CHECK);
+	      call WakeupTimer.startOneShot(TIME_AFTER_CHECK);
 	  }
 	else
-	  call WakeupTimer.startOneShotNow(CC1K_SquelchIntervalFast);
+	  call WakeupTimer.startOneShot(CC1K_SquelchIntervalFast);
 	break;
       case PULSECHECK_STATE:
 	// Radio warm-up time.
-	call WakeupTimer.startOneShotNow(1);
+	call WakeupTimer.startOneShot(1);
 	break;
       case POWERDOWN_STATE:
 	// low-power listening check interval
-	call WakeupTimer.startOneShotNow(sleepTime);
+	call WakeupTimer.startOneShot(sleepTime);
 	break;
       }
   }

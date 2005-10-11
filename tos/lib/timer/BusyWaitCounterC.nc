@@ -45,17 +45,16 @@ implementation
       // comparisons are <= to guarantee a wait at least as long as dt
 
       size_type t0 = call Counter.get();
-      if( dt <= HALF_MAX_SIZE_TYPE )
+
+      if( dt > HALF_MAX_SIZE_TYPE )
       {
+        dt -= HALF_MAX_SIZE_TYPE;
 	while( (call Counter.get() - t0) <= dt );
+        t0 += dt;
+        dt = HALF_MAX_SIZE_TYPE;
       }
-      else
-      {
-	dt -= HALF_MAX_SIZE_TYPE;
-	while( (call Counter.get() - t0) <= dt );
-	t0 += dt;
-	while( (call Counter.get() - t0) <= HALF_MAX_SIZE_TYPE );
-      }
+
+      while( (call Counter.get() - t0) <= dt );
     }
   }
 

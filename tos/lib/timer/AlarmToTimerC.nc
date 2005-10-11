@@ -43,10 +43,10 @@ implementation
     call Alarm.start( t0, dt );
   }
 
-  command void Timer.startPeriodicNow( uint32_t dt )
+  command void Timer.startPeriodic( uint32_t dt )
   { start( call Alarm.getNow(), dt, FALSE ); }
 
-  command void Timer.startOneShotNow( uint32_t dt )
+  command void Timer.startOneShot( uint32_t dt )
   { start( call Alarm.getNow(), dt, TRUE ); }
 
   command void Timer.stop()
@@ -68,10 +68,10 @@ implementation
   command bool Timer.isOneShot()
   { return m_oneshot; }
 
-  command void Timer.startPeriodic( uint32_t t0, uint32_t dt )
+  command void Timer.startPeriodicAt( uint32_t t0, uint32_t dt )
   { start( t0, dt, FALSE ); }
 
-  command void Timer.startOneShot( uint32_t t0, uint32_t dt )
+  command void Timer.startOneShotAt( uint32_t t0, uint32_t dt )
   { start( t0, dt, TRUE ); }
 
   command uint32_t Timer.getNow()

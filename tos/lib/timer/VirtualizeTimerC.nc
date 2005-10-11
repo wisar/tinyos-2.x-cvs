@@ -154,12 +154,12 @@ implementation
     post executeTimersNow();
   }
 
-  command void Timer.startPeriodicNow[ uint8_t num ]( uint32_t dt )
+  command void Timer.startPeriodic[ uint8_t num ]( uint32_t dt )
   {
     startTimer( num, call TimerFrom.getNow(), dt, FALSE );
   }
 
-  command void Timer.startOneShotNow[ uint8_t num ]( uint32_t dt )
+  command void Timer.startOneShot[ uint8_t num ]( uint32_t dt )
   {
     startTimer( num, call TimerFrom.getNow(), dt, TRUE );
   }
@@ -179,12 +179,12 @@ implementation
     return m_flags[num].isoneshot;
   }
 
-  command void Timer.startPeriodic[ uint8_t num ]( uint32_t t0, uint32_t dt )
+  command void Timer.startPeriodicAt[ uint8_t num ]( uint32_t t0, uint32_t dt )
   {
     startTimer( num, t0, dt, FALSE );
   }
 
-  command void Timer.startOneShot[ uint8_t num ]( uint32_t t0, uint32_t dt )
+  command void Timer.startOneShotAt[ uint8_t num ]( uint32_t t0, uint32_t dt )
   {
     startTimer( num, t0, dt, TRUE );
   }

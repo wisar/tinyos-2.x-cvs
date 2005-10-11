@@ -126,7 +126,7 @@ implementation
   }
         
   task void switchOnDelay(){
-    call SwitchOnTimer.startOneShotNow(STABILIZE_INTERVAL);
+    call SwitchOnTimer.startOneShot(STABILIZE_INTERVAL);
   }
 
   event void SwitchOnTimer.fired() {
@@ -189,12 +189,12 @@ implementation
             
   task void switchOffDelay(){
     if(switchOff == TRUE)
-      call SwitchOffTimer.startOneShotNow(SWITCHOFF_INTERVAL); 
+      call SwitchOffTimer.startOneShot(SWITCHOFF_INTERVAL); 
   }
   
   task void switchOffRetry(){
     if(switchOff == TRUE)
-      call SwitchOffTimer.startOneShotNow(SWITCHOFF_RETRY); 
+      call SwitchOffTimer.startOneShot(SWITCHOFF_RETRY); 
   }
              
   event void SwitchOffTimer.fired() {
