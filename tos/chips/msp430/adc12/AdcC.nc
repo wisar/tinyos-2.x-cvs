@@ -38,7 +38,7 @@
  * DO NOT wire to this configuration, use generic channel wrappers in
  * tinyos-2.x/tos/lib/adc instead.
  */
-configuration ADCC { 
+configuration AdcC { 
   provides {
     interface Init;
     interface StdControl;

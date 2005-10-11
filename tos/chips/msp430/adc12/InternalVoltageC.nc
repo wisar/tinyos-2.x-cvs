@@ -34,12 +34,14 @@
 
 configuration InternalVoltageC
 {
+  provides interface StdControl;
   provides interface AcquireData;
 }
 implementation
 {
   // channel 11: (AVCC – AVSS) / 2
-  components new ADCChannelC(11) as InternalVoltageChannel;
+  components new AdcChannelC(11) as InternalVoltageChannel, AdcC;
   
+  StdControl = AdcC;
   AcquireData = InternalVoltageChannel;
 }

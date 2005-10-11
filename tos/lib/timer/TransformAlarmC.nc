@@ -104,7 +104,7 @@ implementation
 	m_dt = 0;
       }
     call AlarmFrom.startAt((from_size_type)now << bit_shift_right,
-			 (from_size_type)remaining << bit_shift_right);
+			   (from_size_type)remaining << bit_shift_right);
   }
 
   async command void Alarm.startAt( to_size_type t0, to_size_type dt )

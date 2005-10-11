@@ -143,7 +143,7 @@ implementation
 {
   components CC2420P, HplCC2420InterruptP;
   components HplCC2420PinsC as CC2420Pins;
-  components Atm128SpiC, HplTimerC, HplInterruptC;
+  components Atm128SpiC, HplTimer1C, HplInterruptC;
   components TimerMilliC;
     
   
@@ -224,7 +224,7 @@ implementation
   //HPCLCC2420InterruptM wiring
   //StdControl = TimerSvc;
   Init = TimerMilliC;
-  HplCC2420InterruptP.SFDCapture -> HplTimerC.Capture1;
+  HplCC2420InterruptP.SFDCapture -> HplTimer1C.Capture1;
   HplCC2420InterruptP.FIFOTimer -> TimerMilliC.TimerMilli[unique("TimerMilliC.TimerMilli")];
   HplCC2420InterruptP.CCATimer -> TimerMilliC.TimerMilli[unique("TimerMilliC.TimerMilli")];
 

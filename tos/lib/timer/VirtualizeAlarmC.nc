@@ -87,9 +87,9 @@ implementation
   }
   
   // basic interface
-  async command void Alarm.startNow[int id]( size_type dt )
+  async command void Alarm.start[int id]( size_type dt )
   {
-    call Alarm.start[id]( call AlarmFrom.getNow(), dt );
+    call Alarm.startAt[id]( call AlarmFrom.getNow(), dt );
   }
 
   async command void Alarm.stop[int id]()
@@ -124,7 +124,7 @@ implementation
     return m_isset[id];
   }
 
-  async command void Alarm.start[int id]( size_type t0, size_type dt )
+  async command void Alarm.startAt[int id]( size_type t0, size_type dt )
   {
     atomic
     {

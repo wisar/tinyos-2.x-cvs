@@ -35,11 +35,13 @@
 
 configuration DemoSensorC
 {
+  provides interface StdControl;
   provides interface AcquireData;
 }
 implementation
 {
   components InternalVoltageC as DemoChannel;
   
+  StdControl = DemoChannel;
   AcquireData = DemoChannel;
 }

@@ -47,7 +47,6 @@ implementation
 	   ;
 
   Init = AlarmMilliC;
-  Init = VirtualizeTimerC;
   TimerMilli = VirtualizeTimerC;
 
   VirtualizeTimerC.TimerFrom -> AlarmToTimerC;

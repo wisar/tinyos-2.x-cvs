@@ -8,20 +8,12 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * The porttion of a mica-family initialisation that is mote-specific.
- * 
  * @author David Gay
  */
-configuration MotePlatformC
-{
-  provides interface Init as PlatformInit;
-  uses interface Init as SubInit;
-}
-implementation {
-  components MotePlatformP, HplGeneralIOC;
+#ifndef ADC_H
+#define ADC_H
 
-  PlatformInit = MotePlatformP;
-  
-  MotePlatformP.SerialIdPin -> HplGeneralIOC.PortA4;
-  SubInit = MotePlatformP.SubInit;
-}
+// The unique string for allocating ADC resource interfaces
+#define ADC_RESOURCE "ADC.resource"
+
+#endif

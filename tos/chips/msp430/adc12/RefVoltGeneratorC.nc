@@ -39,12 +39,14 @@ configuration RefVoltGeneratorC
 
 implementation
 {
-  components RefVoltGeneratorM, new TimerMilli() as TimerC, HPLADC12M;
+  components RefVoltGeneratorM, TimerMilliC, HPLADC12M;
+
+  enum { TIMER_ID = unique("TimerMilliC.TimerMilli") };
   
   RefVoltGenerator = RefVoltGeneratorM;
   
-  RefVoltGeneratorM.SwitchOnTimer -> TimerC;
-  RefVoltGeneratorM.SwitchOffTimer -> TimerC;
+  RefVoltGeneratorM.SwitchOnTimer -> TimerMilliC.TimerMilli[TIMER_ID];
+  RefVoltGeneratorM.SwitchOffTimer -> TimerMilliC.TimerMilli[TIMER_ID];
   RefVoltGeneratorM.HPLADC12 -> HPLADC12M;
 }
 

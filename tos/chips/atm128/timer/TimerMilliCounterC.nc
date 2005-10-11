@@ -32,8 +32,7 @@ configuration TimerMilliCounterC
 }
 implementation
 {
-    components HplTimerC,
-	//new HALCounterM(T32khz, uint8_t) as HALCounter32khz, 
+    components 
 	Timer32khzCounterC as HALCounter32khz, 
 	new TransformCounterC(TMilli, uint32_t, T32khz, uint32_t,
 			      5, uint32_t) as Transform,
@@ -46,7 +45,5 @@ implementation
   Transform.CounterFrom -> HALCounter32khz;
 
   CounterToLocalTimeC.Counter -> Transform;
-
-  //HALCounter32khz.Timer -> HplTimerC.Timer0;   // wire async timer to Timer 0
 }
 
