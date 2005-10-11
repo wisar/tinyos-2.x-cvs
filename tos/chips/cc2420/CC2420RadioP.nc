@@ -662,7 +662,7 @@ implementation {
 	}
       }
     }
-    TOSH_TOGGLE_GREEN_LED_PIN();
+
     return FAIL;
   }
 
