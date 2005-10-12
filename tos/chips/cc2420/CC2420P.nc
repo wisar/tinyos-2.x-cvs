@@ -561,7 +561,7 @@ implementation {
       readBuffer = buffer;
       buffer[ 0 ] = len;
     }
-    call SpiPacket.send(NULL, buffer+1, length-1);
+    call SpiPacket.send(NULL, buffer+1, length);
     return SUCCESS;
   }
   
