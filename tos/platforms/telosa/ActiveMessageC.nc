@@ -60,6 +60,7 @@ configuration ActiveMessageC {
 }
 implementation {
   components CC2420ActiveMessageC as AM;
+  components CC2420RadioC, RealMainP;
 
   Init         = AM;
   SplitControl = AM;
@@ -70,4 +71,6 @@ implementation {
   Packet       = AM;
   AMPacket     = AM;
   PacketAcknowledgements = AM;
+
+  RealMainP.SoftwareInit -> CC2420RadioC;
 }
