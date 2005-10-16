@@ -148,7 +148,7 @@ atomic {
 
 
  // wait 12ms for the radio to start
-  TOSH_uwait(1024*12);
+  uwait(1024*12);
 
   TOSH_SET_TDA_ENTDA_PIN(); // deselect the radio
   TOSH_SET_FLASH_CS_PIN(); // put flash in standby mode

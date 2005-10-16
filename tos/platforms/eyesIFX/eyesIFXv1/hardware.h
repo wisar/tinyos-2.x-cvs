@@ -189,7 +189,7 @@ atomic {
   P2IE = 0;
 
   // wait 12ms for the radio and flash to start
-  TOSH_uwait(1024*12);
+  uwait(1024*12);
    //
   // Put the flash in deep sleep state
   TOSH_FLASH_M25P_DP();
