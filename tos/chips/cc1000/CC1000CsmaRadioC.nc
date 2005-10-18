@@ -76,6 +76,7 @@ implementation {
   components RandomC, TimerMilliC, ActiveMessageAddressC;
 
   Init = Csma;
+  Init = Squelch;
   Init = TimerMilliC;
   Init = RandomC;
 
