@@ -79,6 +79,7 @@ implementation {
   Init = Squelch;
   Init = TimerMilliC;
   Init = RandomC;
+  Init = SendReceive;
 
   SplitControl = Csma;
   Send = SendReceive;
