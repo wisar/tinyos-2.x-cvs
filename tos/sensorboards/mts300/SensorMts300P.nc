@@ -174,7 +174,7 @@ implementation
 
 	    case STATE_IDLE: 
 		// Okay, grab the sensor.
-		switchLightOn();
+		switchTempOn();
 		return;
 		
 	    case STATE_TEMP_WARMING:
@@ -183,7 +183,7 @@ implementation
 
 	    case STATE_TEMP_READY:
 		// Start the sample.
-		atomic { g_flags.bits.state = STATE_LIGHT_SAMPLING; }
+		atomic { g_flags.bits.state = STATE_TEMP_SAMPLING; }
 		call SensorADC.getData();
 		return;
 
