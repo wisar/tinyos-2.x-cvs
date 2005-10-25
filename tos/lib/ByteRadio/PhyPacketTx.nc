@@ -43,7 +43,7 @@
  
 interface PhyPacketTx {
   async command error_t cancel();
-  async command void sendHeader(uint8_t length_value);
+  async command void sendHeader(uint8_t length_value); //VH: remove parameter
   async event void sendHeaderDone(error_t error);
   async command void sendFooter();
   async event void sendFooterDone(error_t error);  
