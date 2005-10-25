@@ -56,17 +56,19 @@ configuration ActiveMessageC {
 
     interface Packet;
     interface AMPacket;
+    
   }
 }
 implementation {
   components TDA5250ActiveMessageC as AM;
-
+  components TDA5250RadioC, RealMainP
   Init         = AM;
   SplitControl = AM;
-  
   AMSend       = AM;
   Receive      = AM.Receive;
   Snoop        = AM.Snoop;
   Packet       = AM;
   AMPacket     = AM;
+
+  RealMainP->SoftwareInit->TDA5250C;
 }
