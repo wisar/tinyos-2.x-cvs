@@ -33,7 +33,7 @@ configuration TimerMilliAlarmC
 implementation
 {
     components 
-	Timer32khzAlarmC as HALAlarm,
+	Timer32khzAlarmCounterC as HALAlarm,
 	new TransformAlarmC(TMilli,uint32_t,T32khz,uint32_t,5) as Transform,
 	TimerMilliCounterC as Counter
 	;

@@ -33,7 +33,7 @@ configuration TimerMilliCounterC
 implementation
 {
     components 
-	Timer32khzCounterC as HALCounter32khz, 
+	Timer32khzAlarmCounterC as HALCounter32khz, 
 	new TransformCounterC(TMilli, uint32_t, T32khz, uint32_t,
 			      5, uint32_t) as Transform,
 	new CounterToLocalTimeC(TMilli)

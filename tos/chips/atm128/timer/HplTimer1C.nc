@@ -38,7 +38,7 @@ configuration HplTimer1C
 }
 implementation
 {
-  components HplTimer0C, HplTimer1P;
+  components HplTimer0AsyncC, HplTimer1P;
 
   Timer1 = HplTimer1P;
   Timer1Ctrl = HplTimer1P;
@@ -47,5 +47,5 @@ implementation
   Compare1B = HplTimer1P.Compare1B;
   Compare1C = HplTimer1P.Compare1C;
 
-  HplTimer1P.Timer0Ctrl -> HplTimer0C;
+  HplTimer1P.Timer0Ctrl -> HplTimer0AsyncC;
 }

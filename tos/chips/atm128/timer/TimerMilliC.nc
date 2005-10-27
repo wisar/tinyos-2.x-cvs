@@ -37,19 +37,17 @@ includes Timer;
 configuration TimerMilliC
 {
   provides interface Init;
-  provides interface Timer<TMilli> as TimerMilli[ uint8_t num ];
+  provides interface Timer<TMilli> as TimerMilli[uint8_t num];
 }
 implementation
 {
-  components TimerMilliAlarmC as AlarmMilliC
-	   , new AlarmToTimerC(TMilli)
-	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilliC.TimerMilli"))
-	   ;
+  components AlarmCounterMilliC, new AlarmToTimerC(TMilli),
+    new VirtualizeTimerC(TMilli,uniqueCount("TimerMilliC.TimerMilli"));
 
-  Init = AlarmMilliC;
+  Init = AlarmCounterMilliC;
   TimerMilli = VirtualizeTimerC;
 
   VirtualizeTimerC.TimerFrom -> AlarmToTimerC;
-  AlarmToTimerC.Alarm -> AlarmMilliC;
+  AlarmToTimerC.Alarm -> AlarmCounterMilliC;
 }
 

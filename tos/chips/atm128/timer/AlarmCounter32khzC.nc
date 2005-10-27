@@ -23,31 +23,39 @@
  */
 
 /// @author Martin Turon <mturon@xbow.com>
+/// @author David Gay <dgay@intel-research.net>
 
 // Glue hardware timers into Alarm32khzC.
-configuration Timer32khzAlarmC
+configuration AlarmCounter32khzC
 {
   provides interface Init;
   provides interface Alarm<T32khz,uint32_t> as Alarm32khz32;
+  provides interface Counter<T32khz,uint32_t> as Counter32khz32;
+  provides interface LocalTime<T32khz> as LocalTime32khz;
 }
 implementation
 {
   components HplTimer0C,
-    new Atm128AlarmP(T32khz, uint8_t, ATM128_CLK8_NORMAL) as HalAlarm,
-    new TransformAlarmC(T32khz,uint32_t,T32khz,uint8_t,0) as Transform32,
-    Timer32khzCounterC as Counter
+    new Atm128AlarmC(T32khz, uint8_t, ATM128_CLK8_NORMAL, 2) as HalAlarm,
+    new Atm128CounterC(T32khz, uint8_t) as HalCounter, 
+    new TransformAlarmCounterC(T32khz, uint32_t, T32khz, uint8_t, 0, uint32_t) 
+      as Transform32,
+    new CounterToLocalTimeC(T32khz)
     ;
 
   // Top-level interface wiring
   Alarm32khz32 = Transform32;
+  Counter32khz32 = Transform32;
+  LocalTime32khz = CounterToLocalTimeC;
 
   // Strap in low-level hardware timer (Timer0)
   Init = HalAlarm;
-  HalAlarm.HplTimer -> HplTimer0C.Timer0;      // assign HW resource : TIMER0
-  HalAlarm.HplCompare -> HplTimer0C.Compare0;  // assign HW resource : COMPARE0
+  HalAlarm.HplTimer -> HplTimer0C.Timer0;
+  HalAlarm.HplCompare -> HplTimer0C.Compare0;
+  HalCounter.Timer -> HplTimer0C.Timer0;
 
   // Alarm Transform Wiring
-  Transform32.AlarmFrom -> HalAlarm;      // start with 8-bit hardware alarm
-  Transform32.Counter -> Counter;         // uses 32-bit virtualized counter
+  Transform32.AlarmFrom -> HalAlarm;
+  Transform32.CounterFrom -> HalCounter;
+  CounterToLocalTimeC.Counter -> Transform32;
 }
-
