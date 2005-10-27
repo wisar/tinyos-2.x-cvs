@@ -488,10 +488,8 @@ implementation
     atomic oldState = state;
     if (oldState == START_STATE) {
       post PostOscillatorOn();
-      //call CCA.disable();
     }
-    return;
+    call CCA.disable();
   }
-	
 }
 
