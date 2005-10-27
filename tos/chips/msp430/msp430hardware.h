@@ -198,14 +198,14 @@ bool are_interrupts_enabled()
 
 typedef bool __nesc_atomic_t;
 
-__nesc_atomic_t __nesc_atomic_start(void)
+__nesc_atomic_t __nesc_atomic_start(void) __attribute__((spontaneous))
 {
   __nesc_atomic_t result = are_interrupts_enabled();
   __nesc_disable_interrupt();
   return result;
 }
 
-void __nesc_atomic_end( __nesc_atomic_t reenable_interrupts )
+void __nesc_atomic_end( __nesc_atomic_t reenable_interrupts ) __attribute__((spontaneous))
 {
   if( reenable_interrupts )
     __nesc_enable_interrupt();
