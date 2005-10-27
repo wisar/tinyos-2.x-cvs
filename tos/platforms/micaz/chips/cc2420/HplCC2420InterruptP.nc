@@ -174,7 +174,7 @@ implementation {
   task void CCATask() {
     atomic {
       if (!ccaTimerDisabled) 
-	call CCATimer.startOneShot(100);
+	call CCATimer.startOneShot(1);
     }
   }
   
