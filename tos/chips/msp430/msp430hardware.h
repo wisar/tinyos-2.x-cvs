@@ -268,6 +268,20 @@ inline void TOSH_sleep() {
   }
 }
 
+typedef uint8_t mcu_power_t __attribute__((combine(mcombine)));
+enum {
+  MSP430_POWER_ACTIVE = 0,
+  MSP430_POWER_LPM0   = 1,
+  MSP430_POWER_LPM1   = 2,
+  MSP430_POWER_LPM2   = 3,
+  MSP430_POWER_LPM3   = 4,
+  MSP430_POWER_LPM4   = 5
+};
+/** Combine function.  */
+mcu_power_t mcombine(mcu_power_t m1, mcu_power_t m2) {
+  return (m1 < m2)? m1: m2;
+}
+
 void __nesc_atomic_sleep()
 {
   TOSH_sleep(); // XXX fixme XXX
