@@ -206,7 +206,9 @@ implementation {
       atomic bPacketReceiving = FALSE;
       atomic rxFlushPending = FALSE;
     }
-    call FIFOP.startWait(FALSE);      
+    if (stateRadio != DISABLED_STATE) {
+      call FIFOP.startWait(FALSE);
+    }
   }
   
 
@@ -305,7 +307,9 @@ implementation {
      }
      atomic {
        flushRXFIFO();
-       call FIFOP.startWait(FALSE);
+       if (stateRadio != DISABLED_STATE) {
+	 call FIFOP.startWait(FALSE);
+       }	 
        if (stateRadio == IDLE_STATE) {
 	 bReceptionPending = FALSE;
 	 releaseBus();
