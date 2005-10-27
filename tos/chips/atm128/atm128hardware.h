@@ -108,4 +108,23 @@ __nesc_atomic_sleep()
   asm volatile ("sleep");
 }
 
+/* Defines the mcu_power_t type for atm128 power management. */
+typedef uint8_t mcu_power_t __attribute__((combine(mcombine)));
+
+
+enum {
+  ATM128_POWER_IDLE        = 0,
+  ATM128_POWER_ADC_NR      = 1,
+  ATM128_POWER_EXT_STANDBY = 2,
+  ATM128_POWER_SAVE        = 3,
+  ATM128_POWER_STANDBY     = 4,
+  ATM128_POWER_DOWN        = 5, 
+};
+
+/** Combine function.  */
+mcu_power_t mcombine(mcu_power_t m1, mcu_power_t m2) {
+  return (m1 < m2)? m1: m2;
+}
+
+
 #endif //_H_atmega128hardware_H

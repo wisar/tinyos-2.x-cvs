@@ -37,7 +37,9 @@ configuration TinySchedulerC {
 }
 implementation {
   components SchedulerBasicP as Sched;
+  components McuSleepC as Sleep;
   Scheduler = Sched;
   TaskBasic = Sched;
+  Sched.McuSleep -> Sleep;
 }
 

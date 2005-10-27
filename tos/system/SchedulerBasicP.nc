@@ -49,6 +49,7 @@ includes hardware;
 module SchedulerBasicP {
   provides interface Scheduler;
   provides interface TaskBasic[uint8_t id];
+  uses interface McuSleep;
 }
 implementation
 {
@@ -134,7 +135,7 @@ implementation
       if( nextTask == NO_TASK )
       {
 	if( sleep )
-	  __nesc_atomic_sleep();
+	  call McuSleep.sleep();
 	return FALSE;
       }
     }
