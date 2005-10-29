@@ -21,30 +21,36 @@
  */
 
 /**
+ * @author Jonathan Hui
  * @author Joe Polastre
  */
 
-generic module InterruptM() {
-  provides interface Interrupt;
+generic module GpioInterruptC() {
+
+  provides interface GpioInterrupt as Interrupt;
   uses interface MSP430Interrupt;
+
 }
+
 implementation {
-  /**
-   * enable an edge interrupt on the Interrupt pin
-   */
-  async command error_t Interrupt.startWait(bool low_to_high) {
+
+  error_t enable( bool rising ) {
     atomic {
-      call MSP430Interrupt.disable();
-      call MSP430Interrupt.clear();
-      call MSP430Interrupt.edge(low_to_high);
+      call Interrupt.disable();
+      call MSP430Interrupt.edge( rising );
       call MSP430Interrupt.enable();
     }
     return SUCCESS;
   }
 
-  /**
-   * disables Interrupt interrupts
-   */
+  async command error_t Interrupt.enableRisingEdge() {
+    return enable( TRUE );
+  }
+
+  async command error_t Interrupt.enableFallingEdge() {
+    return enable( FALSE );
+  }
+
   async command error_t Interrupt.disable() {
     atomic {
       call MSP430Interrupt.disable();
@@ -53,13 +59,9 @@ implementation {
     return SUCCESS;
   }
 
-  /**
-   * Event fired by lower level interrupt dispatch for Interrupt
-   */
   async event void MSP430Interrupt.fired() {
     call MSP430Interrupt.clear();
     signal Interrupt.fired();
   }
 
-  default async event void Interrupt.fired() { }
 }
