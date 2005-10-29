@@ -204,7 +204,7 @@ implementation {
     //in FCFS order after release of the resource
   bool QueueRequest(uint8_t id) {
     atomic {
-      if((resQ[id] == NO_RES) || (qTail != id)) {
+      if((resQ[id] == NO_RES) && (qTail != id)) {
 	if(qHead == NO_RES ) {
 	  qHead = id;
 	  qTail = id;
