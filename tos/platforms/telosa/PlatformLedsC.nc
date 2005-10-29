@@ -34,9 +34,9 @@ implementation
 {
   components 
     MSP430GeneralIOC
-    , new GeneralIOM() as Led0Impl
-    , new GeneralIOM() as Led1Impl
-    , new GeneralIOM() as Led2Impl
+    , new GpioC() as Led0Impl
+    , new GpioC() as Led1Impl
+    , new GpioC() as Led2Impl
     ;
 
   Led0 = Led0Impl;
