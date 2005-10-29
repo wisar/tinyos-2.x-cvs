@@ -24,7 +24,7 @@
  * @author Joe Polastre
  */
 
-generic module GeneralIOM() {
+generic module GpioC() {
   provides interface GeneralIO;
   uses interface MSP430GeneralIO;
 }
