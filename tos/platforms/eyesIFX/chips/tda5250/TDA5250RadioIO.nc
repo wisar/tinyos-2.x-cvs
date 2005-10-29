@@ -49,11 +49,11 @@ configuration TDA5250RadioIO
 implementation {
   components
       MSP430GeneralIOC as MSPGeneralIO
-    , new GeneralIOM() as rBUSM
-    , new GeneralIOM() as rENTDA
-    , new GeneralIOM() as rTXRX
-    , new GeneralIOM() as rDATA
-    , new GeneralIOM() as rPWDD
+    , new GpioC() as rBUSM
+    , new GpioC() as rENTDA
+    , new GpioC() as rTXRX
+    , new GpioC() as rDATA
+    , new GpioC() as rPWDD
     ;
 
   TDA5250RadioBUSM = rBUSM;

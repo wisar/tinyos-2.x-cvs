@@ -46,8 +46,8 @@ configuration AD5200PotIO
 implementation {
   components
       MSP430GeneralIOC as MSPGeneralIO
-    , new GeneralIOM() as rENPOT
-    , new GeneralIOM() as rSDPOT
+    , new GpioC() as rENPOT
+    , new GpioC() as rSDPOT
     ;
 
   AD5200PotENPOT = rENPOT;
