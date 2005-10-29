@@ -50,6 +50,8 @@ interface Packet {
 
   command void clear(message_t* msg);
 
+  command void setPayloadLength(message_t* msg, uint8_t length);
+
   /**
     * Return the length of the payload of msg. This value may be less
     * than what maxPayloadLength() returns, if the packet is smaller than
