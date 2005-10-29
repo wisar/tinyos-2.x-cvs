@@ -123,10 +123,11 @@ implementation {
     return SUCCESS;
   }
   
-  async command uint8_t SPIByte.write(uint8_t value) {
-    call Spi.write(value);
-    while (!(SPSR & 0x80));
-    return call Spi.read();
+  async command error_t SPIByte.write( uint8_t tx, uint8_t* rx ) {
+    call Spi.write( tx );
+    while ( !( SPSR & 0x80 ) );
+    *rx = call Spi.read();
+    return SUCCESS;
   }
 
 
@@ -173,9 +174,9 @@ implementation {
     for (;tmpPos < (end - 1) ; tmpPos++) {
       uint8_t val;
       if (tx != NULL) 
-	val = call SPIByte.write(tx[tmpPos]);
+	call SPIByte.write( tx[tmpPos], &val );
       else
-	val = call SPIByte.write(0);
+	call SPIByte.write( 0, &val );
     
       if (rx != NULL) {
 	rx[tmpPos] = val;
