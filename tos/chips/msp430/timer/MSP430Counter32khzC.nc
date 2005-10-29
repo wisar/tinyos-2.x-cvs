@@ -25,6 +25,9 @@
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
 // MSP430Counter32khC provides the standard 32khz counter for the MSP430.
+
+includes Timer;
+
 configuration MSP430Counter32khzC
 {
   provides interface Counter<T32khz,uint16_t> as MSP430Counter32khz;

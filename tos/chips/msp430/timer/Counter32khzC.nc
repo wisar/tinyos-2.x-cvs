@@ -25,6 +25,9 @@
 // The TinyOS Timer interfaces are discussed in TEP 102.
 
 // Counter32khzC is the counter to be used for all 32khzs.
+
+includes Timer;
+
 configuration Counter32khzC
 {
   provides interface Counter<T32khz,uint16_t> as Counter32khz16;
