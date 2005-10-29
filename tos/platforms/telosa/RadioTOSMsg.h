@@ -40,20 +40,18 @@
 #ifndef RADIO_TOS_MSG_H
 #define RADIO_TOS_MSG_H
 
-#include "CC2420Const.h"
-#include "Serial.h"
+#include "CC2420.h"
 
 typedef union TOSRadioHeader {
-  CC2420Header cc2420;
-  SerialAMHeader serial;
+  cc2420_header_t cc2420;
 } TOSRadioHeader;
 
 typedef union TOSRadioFooter {
-  CC2420Footer cc2420;
+  cc2420_footer_t cc2420;
 } TOSRadioFooter;
 
 typedef union TOSRadioMetadata {
-  CC2420Metadata cc2420;
+  cc2420_metadata_t cc2420;
 } TOSRadioMetadata;
 
 #endif
