@@ -56,11 +56,11 @@ configuration ActiveMessageC {
     interface Packet;
     interface AMPacket;
     interface PacketAcknowledgements;
+    interface LinkStats;
   }
 }
 implementation {
   components CC2420ActiveMessageC as AM;
-  components CC2420RadioC, RealMainP;
 
   Init         = AM;
   SplitControl = AM;
@@ -71,6 +71,5 @@ implementation {
   Packet       = AM;
   AMPacket     = AM;
   PacketAcknowledgements = AM;
-
-  RealMainP.SoftwareInit -> CC2420RadioC;
+  LinkStats    = AM;
 }
