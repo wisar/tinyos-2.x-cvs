@@ -70,8 +70,7 @@
  *
  */
 
-module HalSpiMasterM
-{
+module Atm128SpiP {
   provides {
     interface Init;
     interface SPIByte;
@@ -79,7 +78,7 @@ module HalSpiMasterM
     interface Resource[uint8_t id];
   }
   uses {
-    interface HPLSPI as Spi;
+    interface Atm128Spi as Spi;
     interface Resource as ResourceArbiter[uint8_t id];
     interface ResourceUser;
     interface McuPowerState;
