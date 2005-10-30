@@ -62,22 +62,24 @@
 
 configuration Atm128SpiC {
   provides interface Init;
-  provides interface StdControl;
   provides interface SPIByte;
   provides interface SPIPacket;
   provides interface Resource[uint8_t id];
 }
 implementation {
   components HalSpiMasterM as SpiMaster, HplGeneralIOC as IO;
-  components HPLSPIC, new RoundRobinArbiterC("Atm128SpiC.Resource");
+  components HPLSPIC, new FcfsArbiterC("Atm128SpiC.Resource") as Arbiter;
+  components McuSleepC;
   
   Init         = SpiMaster;
-  Init         = RoundRobinArbiterC;
+  Init         = Arbiter;
   
-  StdControl   = SpiMaster;
   SPIByte      = SpiMaster;
   SPIPacket    = SpiMaster;
-  Resource     = RoundRobinArbiterC;
-  
-  SpiMaster.Spi -> HPLSPIC;
+  Resource     = SpiMaster;
+
+  SpiMaster.ResourceArbiter -> Arbiter;
+  SpiMaster.ResourceUser    -> Arbiter;
+  SpiMaster.Spi             -> HPLSPIC;
+  SpiMaster.McuPowerState   -> McuSleepC;
 }

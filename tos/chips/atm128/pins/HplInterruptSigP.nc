@@ -43,32 +43,32 @@ module HplInterruptSigP
 implementation
 {
   default async event void IntSig0.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT0 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT0 ) {
     signal IntSig0.fired();
   }
 
   default async event void IntSig1.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT1 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT1 ) {
     signal IntSig1.fired();
   }
 
   default async event void IntSig2.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT2 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT2 ) {
     signal IntSig2.fired();
   }
 
   default async event void IntSig3.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT3 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT3 ) {
     signal IntSig3.fired();
   }
 
   default async event void IntSig4.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT4 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT4 ) {
     signal IntSig4.fired();
   }
 
   default async event void IntSig5.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT5 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT5 ) {
     signal IntSig5.fired();
   }
 
@@ -78,7 +78,7 @@ implementation
   }
 
   default async event void IntSig7.fired() { }
-  AVR_NONATOMIC_HANDLER( SIG_INTERRUPT7 ) {
+  AVR_ATOMIC_HANDLER( SIG_INTERRUPT7 ) {
     signal IntSig7.fired();
   }
 }
