@@ -2,10 +2,5 @@
 #$Id$
 
 NODEID = $(INSTALL)
-BUILD_DEPS = ihex bytes program
+BUILD_DEPS = setid bin bytes program
 
-ifdef TINYOS_NP
-  ifeq ($(TINYOS_NP),BNP)
-    BUILD_DEPS = ihex bytes program_bl program_no_e
-  endif
-endif
