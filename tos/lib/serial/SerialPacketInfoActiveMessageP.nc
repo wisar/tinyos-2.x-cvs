@@ -62,11 +62,6 @@ implementation {
     return header->length;
   }
 
-  command void Packet.setPayloadLength(message_t* msg, uint8_t length) {
-    SerialAMHeader* header = getHeader(msg);    
-    header->length = length;
-  }
-
   command uint8_t Packet.maxPayloadLength() {
     return TOSH_DATA_LENGTH;
   }
@@ -86,11 +81,6 @@ implementation {
   command am_addr_t AMPacket.destination(message_t* amsg) {
     SerialAMHeader* header = getHeader(amsg);
     return header->addr;
-  }
-
-  command void AMPacket.setDestination(am_addr_t dest, message_t* amsg) {
-    SerialAMHeader* header = getHeader(amsg);
-    header->addr = dest;
   }
 
   command bool AMPacket.isForMe(message_t* amsg) {

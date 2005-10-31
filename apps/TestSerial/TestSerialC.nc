@@ -39,15 +39,15 @@ includes Timer;
 
 configuration TestSerialC {}
 implementation {
-  components MainC, TestSerialM, SerialC, LedsC;
+  components MainC, TestSerialM, SerialActiveMessageC, LedsC;
 
   MainC.SoftwareInit -> LedsC;
-  MainC.SoftwareInit -> SerialC;
+  MainC.SoftwareInit -> SerialActiveMessageC;
 
   TestSerialM.Boot -> MainC.Boot;
 
-  TestSerialM.Receive -> SerialC.Receive[0];
-  TestSerialM.Send -> SerialC.AMSend[0];
+  TestSerialM.Receive -> SerialActiveMessageC.Receive[0];
+  TestSerialM.Send -> SerialActiveMessageC.AMSend[0];
 
   TestSerialM.Leds -> LedsC;
 }

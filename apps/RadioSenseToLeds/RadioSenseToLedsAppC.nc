@@ -44,6 +44,7 @@ implementation {
   components new AMReceiverC(AM_RADIOSENSEMSG);
   components new OskiTimerMilliC();
   components new AMServiceC();
+  components new AMServiceNotifierC();
 
   MainC.SoftwareInit -> LedsC;
   
@@ -52,6 +53,7 @@ implementation {
   App.Receive -> AMReceiverC;
   App.AMSend -> AMSenderC;
   App.Service -> AMServiceC;
+  App.ServiceNotify -> AMServiceNotifierC;
   App.Leds -> LedsC;
   App.MilliTimer -> OskiTimerMilliC;
   App.Packet -> AMSenderC;

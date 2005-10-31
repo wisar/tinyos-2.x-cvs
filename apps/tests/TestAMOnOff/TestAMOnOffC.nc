@@ -73,6 +73,7 @@ implementation {
   }
   
   event void MilliTimer.fired() {
+    call Leds.led2Toggle();
     counter++;
 #ifdef SERVICE_SLAVE
     if ((counter % 7) == 0) {
