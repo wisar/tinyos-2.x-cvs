@@ -34,7 +34,7 @@
  * @author David Gay
  */
 
-#include "Adc.h"
+#include "Atm128Adc.h"
 
 configuration Atm128AdcC
 {

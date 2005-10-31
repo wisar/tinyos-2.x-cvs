@@ -14,6 +14,6 @@
 #define ADC_H
 
 // The unique string for allocating ADC resource interfaces
-#define ADC_RESOURCE "ADC.resource"
+#include <Atm128Adc.h>
 
 #endif
