@@ -26,7 +26,7 @@
 
 #include <Atm128Uart.h>
 
-module HplUartC
+module HplAtm128UartC
 {
   provides {
     interface Init as Uart0Init;
