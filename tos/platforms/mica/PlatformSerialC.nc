@@ -37,10 +37,10 @@ configuration PlatformSerialC {
   provides interface SerialByteComm;
 }
 implementation {
-  components HplUartC, PlatformC;
+  components HplAtm128UartC as UART, PlatformC;
 
-  SerialByteComm = HplUartC.Uart0;
-  Init = HplUartC.Uart0Init;
-  StdControl = HplUartC.Uart0RxControl;
-  StdControl = HplUartC.Uart0TxControl;
+  SerialByteComm = UART.Uart0;
+  Init = UART.Uart0Init;
+  StdControl = UART.Uart0RxControl;
+  StdControl = UART.Uart0TxControl;
 }
