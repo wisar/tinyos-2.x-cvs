@@ -57,8 +57,6 @@ interface AMPacket {
   
   command am_addr_t destination(message_t* amsg);
 
-  command void setDestination(am_addr_t dest, message_t* amsg);
-
   /**
    * Return whether <tt>amsg</tt> is destined for this mote. This is
    * partially a shortcut for testing whether the return value of
