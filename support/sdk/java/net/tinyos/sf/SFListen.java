@@ -49,7 +49,6 @@ package net.tinyos.sf;
 
 import java.net.*;
 import java.io.*;
-import javax.comm.*;
 import java.util.*;
 import net.tinyos.packet.*;
 

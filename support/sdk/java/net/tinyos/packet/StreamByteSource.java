@@ -34,7 +34,6 @@ package net.tinyos.packet;
 
 import java.util.*;
 import java.io.*;
-import javax.comm.*;
 
 abstract public class StreamByteSource implements ByteSource
 {

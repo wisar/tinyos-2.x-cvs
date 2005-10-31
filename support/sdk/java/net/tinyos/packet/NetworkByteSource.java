@@ -34,7 +34,6 @@ package net.tinyos.packet;
 
 import java.util.*;
 import java.io.*;
-import javax.comm.*;
 import java.net.*;
 
 /**
