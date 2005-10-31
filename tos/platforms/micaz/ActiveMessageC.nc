@@ -61,7 +61,7 @@ configuration ActiveMessageC {
 }
 implementation {
   components CC2420ActiveMessageC as AM;
-
+  
   Init         = AM;
   SplitControl = AM;
   

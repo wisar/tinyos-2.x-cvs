@@ -21,7 +21,13 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR 
  * MODIFICATIONS.
  */
-/// @author Hu Siquan <husq@xbow.com>
+/**
+ * The micaZ Voltage sensor seems to have a few issues, so the default
+ * micaZ sensor returns a constant value of 0xbeef.
+ *
+ * @author Philip Levis
+ * @author Hu Siquan <husq@xbow.com>
+ */
 
 configuration DemoSensorC
 {
@@ -30,7 +36,7 @@ configuration DemoSensorC
 }
 implementation
 {
-  components VoltageC as DemoChannel;
+  components new ConstantSensorC(0xbeef) as DemoChannel;
 
   StdControl  = DemoChannel;    
   AcquireData = DemoChannel;

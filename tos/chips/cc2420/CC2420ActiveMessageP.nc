@@ -99,10 +99,10 @@ implementation {
     return header->dest;
   }
 
-  command void AMPacket.setDestination(am_addr_t dest, message_t* amsg){
-    cc2420_header_t* header = getHeader(amsg);
-    header->dest = dest;
-  }
+  //command void AMPacket.setDestination(am_addr_t dest, message_t* amsg){
+  //  cc2420_header_t* header = getHeader(amsg);
+  //  header->dest = dest;
+  //}
 
   command bool AMPacket.isForMe(message_t* amsg) {
     return (call AMPacket.destination(amsg) == call AMPacket.address() ||
@@ -133,9 +133,9 @@ implementation {
    return getHeader(msg)->length - CC2420_SIZE;
  }
 
- command void Packet.setPayloadLength(message_t* msg, uint8_t length){
-   getHeader(msg)->length = CC2420_SIZE + length;
- }
+ //command void Packet.setPayloadLength(message_t* msg, uint8_t length){
+ //  getHeader(msg)->length = CC2420_SIZE + length;
+ // }
  
  command uint8_t Packet.maxPayloadLength() {
    return TOSH_DATA_LENGTH;

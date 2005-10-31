@@ -48,7 +48,7 @@ configuration Atm128AdcC
 }
 implementation
 {
-  components Atm128AdcP, HplAdcC,
+  components Atm128AdcP, HplAtm128AdcC,
     new RoundRobinArbiterC(ADC_RESOURCE) as AdcArbiter;
 
   Init = Atm128AdcP;
@@ -59,5 +59,5 @@ implementation
   Atm128AdcSingle = Atm128AdcP;
   Atm128AdcMultiple = Atm128AdcP;
 
-  Atm128AdcP.HplAdc -> HplAdcC;
+  Atm128AdcP.HplAtm128Adc -> HplAtm128AdcC;
 }

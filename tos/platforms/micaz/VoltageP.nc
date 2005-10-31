@@ -30,13 +30,13 @@ module VoltageP {
 implementation {
   
   command error_t StdControl.start() {
-    call BAT_MON.makeOutput();
-    call BAT_MON.set();
+    //call BAT_MON.makeOutput();
+    //    call BAT_MON.set();
     return SUCCESS;
   }
 
   command error_t StdControl.stop() {
-	call BAT_MON.clr();
+    //call BAT_MON.clr();
     return SUCCESS;
   }	
 

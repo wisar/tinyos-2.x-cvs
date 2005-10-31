@@ -36,6 +36,7 @@ enum {
   EOFF           = 4,           // Subsystem is not active
   EBUSY          = 5,           // The underlying system is busy; retry later
   EINVAL         = 6,           // An invalid parameter was passed
+  ERETRY         = 7,           // A rare and transient failure: can retry
 };
 
 typedef uint8_t error_t __attribute__((combine(ecombine)));
