@@ -13,6 +13,9 @@
  *
  * @author David Gay
  */
+
+includes Atm128Adc;
+
 configuration AdcC {
   provides {
     interface Init;
