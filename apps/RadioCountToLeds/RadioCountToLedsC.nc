@@ -67,7 +67,6 @@ implementation {
   
   event void MilliTimer.fired() {
     counter++;
-    call Leds.led0Toggle();
     if (locked) {
       return;
     }
