@@ -123,7 +123,7 @@ implementation
     if (hal1Result != MSP430ADC12_SUCCESS && hal1Result != MSP430ADC12_DELAYED)
       return EBUSY;
     else {
-      currentClientID = port;
+      atomic currentClientID = port;
       if (now)
         atomic request = ACQUIRE_DATA_NOW;
       else
@@ -211,7 +211,9 @@ implementation
   
   void task signalSingleDataReady()
   {
-    signal AcquireData.dataReady[currentClientID](conversionResult);
+    uint16_t result;
+    atomic result = conversionResult;
+    signal AcquireData.dataReady[currentClientID](result);
   }
   
   async event uint16_t* SingleChannel.multipleDataReady(uint16_t *buf, uint16_t length)

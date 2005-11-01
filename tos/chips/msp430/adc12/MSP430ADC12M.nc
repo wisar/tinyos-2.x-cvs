@@ -333,9 +333,11 @@ implementation
   
   void configureAdcPin( uint8_t inch )
   {
-    if( inch <= 7 ){
-      P6SEL |= (1 << inch); //adc function (instead of general IO)
-      P6DIR &= ~(1 << inch); //input (instead of output)
+    atomic {
+      if( inch <= 7 ){
+	P6SEL |= (1 << inch); //adc function (instead of general IO)
+	P6DIR &= ~(1 << inch); //input (instead of output)
+      }
     }
   }
 
