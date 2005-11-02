@@ -15,6 +15,7 @@ push ( @includes, qw(
   %T/chips/cc2420
   %T/chips/pxa27x
   %T/chips/pxa27x/lib
+  %T/chips/pxa27x/timer
   %T/lib/timer
   %T/lib/serial
 
@@ -24,7 +25,6 @@ push ( @includes, qw(
 
   -gcc=xscale-elf-gcc
   -nostartfiles
-  -T%T/platform/intelmote2/tos.x
   -fnesc-target=env
   -fnesc-no-debug
   -fnesc-scheduler=TinySchedulerC,TinySchedulerC.TaskBasic,TaskBasic,TaskBasic,runTask,postTask
