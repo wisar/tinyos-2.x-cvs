@@ -50,14 +50,14 @@
  * @author: Philip Buonadonna
  */
 
-interface HplPXA27XInterrupt
+interface HplPXA27xInterrupt
 {
   /** 
    * Allocates a given peripheral interrupt with the PXA27X interrupt manager.
    * Specifically, it establishes the interrupt level (IRQ or FIQ) and the 
    * priority. 
    */
-  async command result_t allocate();
+  async command error_t allocate();
 
   /**
    * Enables a periperhal interrupt.

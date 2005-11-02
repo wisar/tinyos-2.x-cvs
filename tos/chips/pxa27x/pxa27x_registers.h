@@ -1045,7 +1045,7 @@
 // OS Timer Register Shortcuts
 #define OSCR(_ch) *(((_ch) == 0) ? (&OSCR0) : (&_PXAREG_OFFSET(&OSCR4,(((_ch) - 4) << 2)))) 
 #define OSMR(_ch) *(((_ch) < 4) ? (&_PXAREG_OFFSET(&OSMR0,((_ch) << 2))) \
-				: (&_PXAREG_OFFSET(&OSRM4,(((_ch) - 4) << 2)))) \
+				: (&_PXAREG_OFFSET(&OSMR4,(((_ch) - 4) << 2))))
 #define OMCR(_ch) _PXAREG_OFFSET(&OMCR4,(((_ch) - 4) << 2))
 
 #define OMCR_N		(1 << 9)	/* Channel 9 & 11 Snapshot Mode */
