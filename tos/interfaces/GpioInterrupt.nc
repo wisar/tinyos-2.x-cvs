@@ -36,8 +36,6 @@ interface GpioInterrupt {
    * not cumulative: only the transition type of the last called function
    * will be monitored for.
    *
-   * @param low_to_high TRUE if the edge interrupt should occur on
-   *        a low to high transition, FALSE for high to low.
    *
    * @return SUCCESS if the interrupt has been enabled
    */
