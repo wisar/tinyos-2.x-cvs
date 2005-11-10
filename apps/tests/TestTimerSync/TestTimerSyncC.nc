@@ -51,6 +51,8 @@ module TestTimerSyncC {
   }
 }
 implementation {
+  #define PERIOD 500
+
   message_t syncMsg;
 
   event void Boot.booted() {
@@ -69,19 +71,19 @@ implementation {
   event void AMSend.sendDone(message_t* msg, error_t error) {
     if(error == SUCCESS) {
       call Leds.led2Toggle();
-      call MilliTimer.startOneShot(1000);
+      call MilliTimer.startOneShot(PERIOD);
     }
   }
 
   event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len) {
     call Leds.led2Toggle();
-    call MilliTimer.startOneShot(1000);
+    call MilliTimer.startOneShot(PERIOD);
     return msg;
   }
 
   event void MilliTimer.fired() {
     call Leds.led2Toggle();
-    call MilliTimer.startOneShot(1000);
+    call MilliTimer.startOneShot(PERIOD);
   }
 }
 
