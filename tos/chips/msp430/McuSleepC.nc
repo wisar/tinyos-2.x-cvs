@@ -80,7 +80,7 @@ implementation {
 	 || ((U0CTLnr & I2CEN) && (I2CTCTLnr & SSEL1) &&
 	     (I2CDCTLnr & I2CBUSY) && (U0CTLnr & SYNC) && (U0CTLnr & I2C))
 #endif
-	 )
+	)
       pState = MSP430_POWER_LPM1;
     // ADC12 check
     if (ADC12CTL1 & ADC12BUSY){
@@ -111,7 +111,8 @@ implementation {
       //dirty = 0;
     }
     temp = msp430PowerBits[powerState] | SR_GIE;
-    __asm__ __volatile__( "bis  %0, r2" : : "m" ((uint16_t)temp) );   
+    __asm__ __volatile__( "bis  %0, r2" : : "m" (temp) );
+    __nesc_disable_interrupt();
   }
 
   async command void McuPowerState.update() {
