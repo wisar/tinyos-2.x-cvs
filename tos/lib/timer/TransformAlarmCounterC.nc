@@ -135,12 +135,12 @@ implementation
     atomic
     {
 
-      if (m_skip_overflows && !--m_skip_overflows)
-	set_alarm();
-
       m_upper++;
       if( (m_upper & OVERFLOW_MASK) == 0 )
 	signal Counter.overflow();
+
+      if (m_skip_overflows && !--m_skip_overflows)
+	set_alarm();
     }
   }
 
