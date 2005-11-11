@@ -157,7 +157,7 @@ implementation
 	   we'll just spin when setting the next deadline. Try and reduce
 	   the likelihood by delaying the interrupt...
 	*/
-	if (t == 0 || t == 0xfe)
+	if (t == 0 || t >= 0xfe)
 	  t = 1;
 
 	OCR0 = t; 
