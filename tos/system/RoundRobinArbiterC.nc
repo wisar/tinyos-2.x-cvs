@@ -107,19 +107,24 @@ implementation {
      be returned to the caller.
   */
   async command error_t Resource.request[uint8_t id]() {
-    atomic
-      {
-	if(state == RES_IDLE)
-	  {
-	    state = RES_BUSY;
-	    reqResId = id;
-	    post grantedTask();
-	    return SUCCESS;
-	  }
+    
+    error_t error;
+    
+    atomic {
+      error = requested( id ) ? EBUSY : SUCCESS;
+      if(state == RES_IDLE) {
+	state = RES_BUSY;
+	reqResId = id;
+	post grantedTask();
+      }
+      else {
 	queueRequest(id);
       }
-    return EBUSY;
-  }  
+    }
+    
+    return error;
+    
+  } 
   
   /**
    * Request immediate access to the shared resource.  Requests are
