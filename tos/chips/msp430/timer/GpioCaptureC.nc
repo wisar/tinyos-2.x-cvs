@@ -38,6 +38,7 @@ implementation {
 
   error_t enableCapture( uint8_t mode ) {
     atomic {
+      call MSP430TimerControl.disableEvents();
       call MSP430GeneralIO.selectModuleFunc();
       call MSP430TimerControl.clearPendingInterrupt();
       call MSP430Capture.clearOverflow();
