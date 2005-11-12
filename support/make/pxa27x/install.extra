@@ -2,5 +2,5 @@
 #$Id$
 
 NODEID = $(INSTALL)
-BUILD_DEPS = setid bin bytes program
+BUILD_DEPS = bin bytes setid program
 
