@@ -42,7 +42,7 @@
  */ 
 interface PhyPacketRx {
   async command void recvHeader();
-  async event void recvHeaderDone(uint8_t length_value); //VH: remove length parameter
+  async event void recvHeaderDone();
   async command void recvFooter();
   async event void recvFooterDone(bool error);
 }
