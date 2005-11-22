@@ -43,7 +43,6 @@
 #include <string.h> // For memcpy(3)
 #include <stdlib.h> // for rand(3)
 #include <stdio.h>  // For printf(3)
-#include <dbg.h>
 
 const int STARTING_SIZE = 511;
 

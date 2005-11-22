@@ -40,7 +40,6 @@
  */
 
 /**
- * @author pal
  * @author Philip Levis
  */
 

@@ -1,4 +1,4 @@
-/*									tab:4
+/*
  * "Copyright (c) 2005 Stanford University. All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and
@@ -6,13 +6,13 @@
  * agreement is hereby granted, provided that the above copyright
  * notice, the following two paragraphs and the author appear in all
  * copies of this software.
- *
+ * 
  * IN NO EVENT SHALL STANFORD UNIVERSITY BE LIABLE TO ANY PARTY FOR
  * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
  * ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN
  * IF STANFORD UNIVERSITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
- *
+ * 
  * STANFORD UNIVERSITY SPECIFICALLY DISCLAIMS ANY WARRANTIES,
  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE
@@ -22,21 +22,26 @@
  */
 
 /**
- * The default simulation platform, which does nothing.
+ * Simple example C++ driver for a TOSSIM simulation.
  *
- * @author Phil Levis
- * @date   November 22 2005
+ * @author Philip Levis
+ * @date   Nov 22 2005
  */
 
 // $Id$
 
-module PlatformC {
-  provides interface Init;
-}
-implementation {
-  command error_t Init.init() {
-    dbg("PlatformC", "Initialized mote.\n");
-    return SUCCESS;
+#include <tossim.h>
+
+int main() {
+  Tossim* t = new Tossim();
+
+  // Boot 20 nodes at time 1, 501, 1001 ... 9501
+  for (int i = 0; i < 20; i++) {
+    Mote* m = t->getNode(i);
+    m->bootAtTime(500 * i + 1);
+  }
+
+  while (t->runNextEvent()) {
+
   }
 }
-

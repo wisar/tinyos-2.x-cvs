@@ -1,4 +1,4 @@
-/*									tab:4
+/*
  * "Copyright (c) 2005 Stanford University. All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and
@@ -6,13 +6,13 @@
  * agreement is hereby granted, provided that the above copyright
  * notice, the following two paragraphs and the author appear in all
  * copies of this software.
- *
+ * 
  * IN NO EVENT SHALL STANFORD UNIVERSITY BE LIABLE TO ANY PARTY FOR
  * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
  * ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN
  * IF STANFORD UNIVERSITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
- *
+ * 
  * STANFORD UNIVERSITY SPECIFICALLY DISCLAIMS ANY WARRANTIES,
  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE
@@ -22,21 +22,45 @@
  */
 
 /**
- * The default simulation platform, which does nothing.
+ * Implementation of all of the basic TOSSIM primitives and utility
+ * functions.
  *
- * @author Phil Levis
- * @date   November 22 2005
+ * @author Philip Levis
+ * @date   Nov 22 2005
  */
 
 // $Id$
 
-module PlatformC {
-  provides interface Init;
-}
-implementation {
-  command error_t Init.init() {
-    dbg("PlatformC", "Initialized mote.\n");
-    return SUCCESS;
-  }
-}
+#ifndef SIM_TOSSIM_H_INCLUDED
+#define SIM_TOSSIM_H_INCLUDED
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void sim_init();
+void sim_start();
+void sim_end();
+
+sim_time_t sim_time();
+void sim_set_time(sim_time_t time);
+sim_time_t sim_ticks_per_sec();
+  
+unsigned long sim_node();
+void sim_set_node(unsigned long node);
+
+int sim_print_time(char* buf, int bufLen, sim_time_t time);
+int sim_print_now(char* buf, int bufLen);
+char* sim_current_time();
+
+bool sim_add_channel(char* channel, FILE* file);
+bool sim_remove_channel(char* channel, FILE* file);
+  
+bool sim_run_next_event();
+
+  
+#ifdef __cplusplus
+}
+#endif
+  
+#endif // SIM_TOSSIM_H_INCLUDED
