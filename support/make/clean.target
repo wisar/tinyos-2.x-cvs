@@ -3,4 +3,5 @@
 
 clean: FORCE
 	rm -rf build
+	rm -rf _TOSSIMmodule.so TOSSIM.pyc TOSSIM.py
 
