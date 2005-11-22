@@ -34,7 +34,7 @@
  * ========================================================================
  */
  
-module TDA5250RegCommM {
+module TDA5250RegCommP {
   provides {
     interface Init;
     interface TDA5250RegComm;

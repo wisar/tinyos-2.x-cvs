@@ -35,7 +35,7 @@
  * ========================================================================
  */
  
-module TDA5250RadioM {
+module TDA5250RadioP {
   provides {
     interface Init;
     interface SplitControl;
@@ -45,7 +45,7 @@ module TDA5250RadioM {
   uses {
     interface HPLTDA5250Config;
     interface HPLTDA5250Data;
-		interface Resource as ConfigResource;
+    interface Resource as ConfigResource;
     interface Resource as DataResource;
   }
 }

@@ -37,7 +37,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
  
-module HPLTDA5250DataM {
+module HPLTDA5250DataP {
   provides {
     interface Init;
     interface HPLTDA5250Data;

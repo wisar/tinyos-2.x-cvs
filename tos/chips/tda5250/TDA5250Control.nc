@@ -51,10 +51,10 @@ interface TDA5250Control {
 	 
    async event void TimerModeDone();
    async event void SelfPollingModeDone();
-	 async event void TxModeDone();
-	 async event void RxModeDone();
+   async event void TxModeDone();
+   async event void RxModeDone();
    async event void CCAModeDone();
-	 async event void SleepModeDone();
+   async event void SleepModeDone();
 	 
    /**
       Interrupt avialable on the PWD_DD pin when in 

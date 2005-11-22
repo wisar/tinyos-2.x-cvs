@@ -33,6 +33,7 @@
  
 /*
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
+ * should be in platform dir.
  */
  
 #ifndef RADIOTOSMSG_H

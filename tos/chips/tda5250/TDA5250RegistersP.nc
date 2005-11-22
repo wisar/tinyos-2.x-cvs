@@ -37,7 +37,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
-module TDA5250RegistersM {
+module TDA5250RegistersP {
   provides {
     interface Init;
     interface TDA5250WriteReg<TDA5250_REG_TYPE_CONFIG>      as CONFIG;
@@ -57,9 +57,9 @@ module TDA5250RegistersM {
     interface TDA5250ReadReg<TDA5250_REG_TYPE_ADC>          as ADC;
   }
   uses {  
-    interface TDA5250RegComm; 
-		interface Pot;
-    interface GeneralIO as ENTDA;
+	interface TDA5250RegComm; 
+	interface Pot;
+	interface GeneralIO as ENTDA;
   }  
 }
 implementation {

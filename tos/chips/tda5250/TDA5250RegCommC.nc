@@ -45,15 +45,15 @@ configuration TDA5250RegCommC {
 }
 implementation {
   components new SPIC() as SPI
-           , TDA5250RegCommM
+           , TDA5250RegCommP
            , TDA5250RadioIO
            ;      
    
   Init = SPI;
-  Init = TDA5250RegCommM;
-  TDA5250RegComm = TDA5250RegCommM; 	
+  Init = TDA5250RegCommP;
+  TDA5250RegComm = TDA5250RegCommP; 	
   Resource = SPI.Resource;
   
-  TDA5250RegCommM.BUSM -> TDA5250RadioIO.TDA5250RadioBUSM;
-  TDA5250RegCommM.SPIByte -> SPI;
+  TDA5250RegCommP.BUSM -> TDA5250RadioIO.TDA5250RadioBUSM;
+  TDA5250RegCommP.SPIByte -> SPI;
 }
