@@ -40,16 +40,16 @@
  */
 configuration TDA5250RadioInterruptPWDDD
 {
-  provides interface Interrupt;
+  provides interface GpioInterrupt;
 }
 implementation
 {
   components 
       MSP430InterruptPort1C
-    , new InterruptM()
+    , new GpioInterruptC()
     ;
 
-  Interrupt = InterruptM.Interrupt;
-  InterruptM.MSP430Interrupt -> MSP430InterruptPort1C.Port10;
+    GpioInterrupt = GpioInterruptC.Interrupt;
+    GpioInterruptC.MSP430Interrupt -> MSP430InterruptPort1C.Port10;
 }
 
