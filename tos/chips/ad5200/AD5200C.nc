@@ -33,28 +33,28 @@
  */
 
 /**
- * AD5200C configuration
- *
- * @author Kevin Klues <klues@tkn.tu-berlin.de>
- */  
+* AD5200C configuration
+*
+* @author Kevin Klues <klues@tkn.tu-berlin.de>
+*/  
 
 configuration AD5200C {
-    provides {
-		  interface Pot;
-			interface Resource;
-	  }
+provides {
+		interface Pot;
+		interface Resource;
+	}
 }
 
 implementation {
-    components AD5200M 
-             , AD5200SpiC
-             , AD5200PotIO						 
-						 ;
+components AD5200P 
+	, AD5200SpiC
+	, AD5200PotIO						 
+	;
 					
-    Pot = AD5200M;
-		Resource = AD5200SpiC;
-		
-    AD5200M.ENPOT -> AD5200PotIO.AD5200PotENPOT;
-    AD5200M.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
-    AD5200M.SPIByte -> AD5200SpiC;    
+	Pot = AD5200P;
+	Resource = AD5200SpiC;
+
+	AD5200P.ENPOT -> AD5200PotIO.AD5200PotENPOT;
+	AD5200P.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
+	AD5200P.SPIByte -> AD5200SpiC;    
 }
