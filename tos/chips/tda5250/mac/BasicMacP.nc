@@ -83,6 +83,7 @@ implementation
 	command error_t SplitControl.stop(){
 		call RxTimeoutTimer.stop();
 		call RadioSplitControl.stop();
+		return SUCCESS;
 	}    
    
 	event void RadioSplitControl.startDone(error_t error) {
