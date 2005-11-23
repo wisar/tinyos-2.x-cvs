@@ -202,7 +202,6 @@ implementation {
 	}  
 
 	async event void RadioByteComm.rxByteReady(uint8_t data) {
-		post ReceiveTask();
 		ReceiveNextByte(data);
 	}   
 
