@@ -37,7 +37,7 @@
  * ========================================================================
  */
 
-module HPLUSART1M {
+module HPLUSART1P {
   provides {
     interface HPLUSARTControl as USARTControl;
     interface HPLUSARTFeedback as USARTData;

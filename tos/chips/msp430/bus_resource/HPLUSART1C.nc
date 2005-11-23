@@ -39,7 +39,7 @@ configuration HPLUSART1C
 }
 implementation
 {
-  components HPLUSART1M
+  components HPLUSART1P
            , new FCFSArbiter(MSP430_HPLUSART1_RESOURCE) as ResourceArbiter
            , MSP430GeneralIOC as IO;
 
@@ -48,8 +48,8 @@ implementation
   Resource = ResourceArbiter;
   ResourceUser = ResourceArbiter;
 
-  HPLUSARTControl = HPLUSART1M;
-  HPLUSARTFeedback = HPLUSART1M;
+  HPLUSARTControl = HPLUSART1P;
+  HPLUSARTFeedback = HPLUSART1P;
 
   HPLUSART1M.PinUTXD1 -> IO.UTXD1;
   HPLUSART1M.PinURXD1 -> IO.URXD1;

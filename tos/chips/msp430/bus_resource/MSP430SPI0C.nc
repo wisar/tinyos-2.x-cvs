@@ -40,17 +40,17 @@ configuration MSP430SPI0C
 implementation
 {
   components HPLUSART0C
-           , new MSP430SPIM() as SPIM;
+           , new MSP430SPIP() as SPIP;
 
   Init = HPLUSART0C;
-  Init = SPIM;
-  SPIByte = SPIM;
-  SPIPacket = SPIM;
-  SPIPacketAdvanced = SPIM;
-  Resource = SPIM;
+  Init = SPIP;
+  SPIByte = SPIP;
+  SPIPacket = SPIP;
+  SPIPacketAdvanced = SPIP;
+  Resource = SPIP;
 
-  SPIM.Resource -> HPLUSART0C.Resource;
-  SPIM.ResourceUser -> HPLUSART0C.ResourceUser;
-  SPIM.USARTControl -> HPLUSART0C.HPLUSARTControl;
-  SPIM.USARTFeedback -> HPLUSART0C.HPLUSARTFeedback;
+  SPIP.Resource -> HPLUSART0C.Resource;
+  SPIP.ResourceUser -> HPLUSART0C.ResourceUser;
+  SPIP.USARTControl -> HPLUSART0C.HPLUSARTControl;
+  SPIP.USARTFeedback -> HPLUSART0C.HPLUSARTFeedback;
 }
