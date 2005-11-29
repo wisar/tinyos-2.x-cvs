@@ -40,7 +40,7 @@ implementation
   size_type m_dt[NUM_ALARMS];
   bool m_isset[NUM_ALARMS];
 
-  command result_t Init.init()
+  command error_t Init.init()
   {
     return SUCCESS;
   }
