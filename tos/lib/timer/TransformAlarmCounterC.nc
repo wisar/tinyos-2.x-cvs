@@ -249,5 +249,8 @@ implementation
   default async event void Alarm.fired()
   {
   }
+  default async event void Counter.overflow()
+  {
+  }
 }
 
