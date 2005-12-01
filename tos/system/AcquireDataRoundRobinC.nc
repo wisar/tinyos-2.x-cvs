@@ -40,8 +40,6 @@ implementation {
     signal AcquireData.error[client](info);
   }
 
-  event void Resource.requested[uint8_t client]() { }
-
   default async command error_t Resource.request[uint8_t client]() { 
     return SUCCESS; 
   }
