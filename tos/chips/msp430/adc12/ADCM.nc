@@ -233,8 +233,6 @@ implementation
     return channelConfig;
   }
 
-  event void ResourceHAL1.requested(){}
-
   default event void AcquireData.dataReady[uint8_t port](uint16_t data){}
   default event void AcquireData.error[uint8_t port](uint16_t info){}
   default async event void AcquireDataNow.dataReady[uint8_t port](uint16_t data){}
