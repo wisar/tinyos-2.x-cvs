@@ -43,15 +43,15 @@
 configuration TestArbiterAppC{
 }
 implementation {
-  components MainC, TestArbiterC,
-     // new RoundRobinArbiterC(TEST_ARBITER_RESOURCE) as Arbiter, 
-     new FcfsArbiterC(TEST_ARBITER_RESOURCE) as Arbiter, LedsC;
+  components MainC, TestArbiterC,LedsC,
+     new RoundRobinArbiterC(TEST_ARBITER_RESOURCE) as Arbiter; 
+     //new FcfsArbiterC(TEST_ARBITER_RESOURCE) as Arbiter;
 
   TestArbiterC -> MainC.Boot;
   MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> Arbiter;
  
-  TestArbiterC.ResourceUser -> Arbiter.ResourceUser;  
+  TestArbiterC.Arbiter -> Arbiter.Arbiter;  
   TestArbiterC.Resource0 -> Arbiter.Resource[unique(TEST_ARBITER_RESOURCE)];
   TestArbiterC.Resource1 -> Arbiter.Resource[unique(TEST_ARBITER_RESOURCE)];
   TestArbiterC.Resource2 -> Arbiter.Resource[unique(TEST_ARBITER_RESOURCE)];
