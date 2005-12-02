@@ -85,5 +85,5 @@ interface Arbiter {
    * Signalled both at startup and whenever a user releases the 
    *   resource and there are no more pending requests.
    */
-  event void idle(); 
+  async event void idle(); 
 }

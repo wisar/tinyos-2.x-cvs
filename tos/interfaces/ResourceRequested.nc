@@ -43,5 +43,5 @@ interface ResourceRequested {
    * Event signalled to resource onwer when resource has been requested
    * Owner might want to consider releasing it.
    */
-  event void requested();
+  async event void requested();
 }
