@@ -56,7 +56,6 @@ configuration ActiveMessageC {
     interface Packet;
     interface AMPacket;
     interface PacketAcknowledgements;
-    interface LinkStats;
   }
 }
 implementation {
@@ -71,5 +70,4 @@ implementation {
   Packet       = AM;
   AMPacket     = AM;
   PacketAcknowledgements = AM;
-  LinkStats    = AM;
 }
