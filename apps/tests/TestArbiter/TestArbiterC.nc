@@ -45,8 +45,10 @@ module TestArbiterC {
     interface Leds;
     interface Resource as Resource0;
     interface Resource as Resource1;
-    interface Resource as Resource2;   
-    interface Arbiter;
+    interface Resource as Resource2;  
+    interface ResourceRequested as ResourceRequested0;
+    interface ResourceRequested as ResourceRequested1;
+    interface ResourceRequested as ResourceRequested2;
   }
 }
 implementation {
@@ -63,7 +65,9 @@ implementation {
   //All resources try to gain access
   event void Boot.booted() {
     call Resource0.request();
+    delay();
     call Resource2.request();
+    delay();
     call Resource1.request();
   }
   
@@ -80,28 +84,20 @@ implementation {
   
   //If detect that someone else wants the resource,
   //  release it
-  event void Arbiter.requested() {
-    uint8_t usrId = call Arbiter.user();
-    switch(usrId) {
-      case 0:
-        call Resource0.release();
-        delay();
-        call Resource0.request();
-        break;
-      case 1:
-        call Resource1.release();
-        delay();
-        call Resource1.request();
-        break;
-      case 2:
-        call Resource2.release();
-        delay();
-        call Resource2.request();
-        break;
-    }
+  async event void ResourceRequested0.requested() {
+    call Resource0.release();
+    delay();
+    call Resource0.request();
   }
-
-  event void Arbiter.idle() {
+  async event void ResourceRequested1.requested() {
+    call Resource1.release();
+    delay();
+    call Resource1.request();
+  }
+  async event void ResourceRequested2.requested() {
+    call Resource2.release();
+    delay();
+    call Resource2.request();
   }
 }
 
