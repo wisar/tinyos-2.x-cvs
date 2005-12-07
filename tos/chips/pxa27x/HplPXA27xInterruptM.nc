@@ -53,10 +53,8 @@ module HplPXA27xInterruptM
   }
 }
 
-implementation {
-
-  /* Core PXA27X interrupt dispatch vectors */
-  /* DO NOT change the name of these functions */
+implementation 
+{
 
   uint32_t getICHP() {
     uint32_t val;
@@ -65,7 +63,9 @@ implementation {
     return val;
   }
 
-  void hplarmv_irq() __attribute__ ((interrupt ("IRQ"), spontaneous, C)) {
+  /* Core PXA27X interrupt dispatch vectors */
+  /* DO NOT change the name of these functions */
+  void hplarmv_irq() __attribute__ ((interrupt ("IRQ"))) @C() @atomic_hwevent() {
 
     uint32_t IRQPending;
 
@@ -82,7 +82,7 @@ implementation {
     return;
   }
 
-  void hplarmv_fiq() __attribute__ ((interrupt ("FIQ"), spontaneous, C)) {
+  void hplarmv_fiq() __attribute__ ((interrupt ("FIQ"))) @C() @atomic_hwevent() {
 
     uint32_t FIQPending;
 
