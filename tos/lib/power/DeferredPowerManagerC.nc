@@ -43,9 +43,8 @@ generic configuration DeferredPowerManagerC(uint32_t delay) {
 
     interface PowerDownCleanup;
     interface Init as ArbiterInit;
-    interface Resource;
-    interface ResourceRequested;
-    interface Arbiter;
+    interface ResourceController;
+    interface ArbiterInfo;
   }
 }
 implementation {
@@ -61,9 +60,8 @@ implementation {
   PowerManager.PowerDownCleanup = PowerDownCleanup;
  
   PowerManager.ArbiterInit  = ArbiterInit;
-  PowerManager.Arbiter = Arbiter;
-  PowerManager.Resource = Resource;
-  PowerManager.ResourceRequested = ResourceRequested;
+  PowerManager.ResourceController = ResourceController;
+  PowerManager.ArbiterInfo = ArbiterInfo;
 
   PowerManager.TimerMilli -> OskiTimerMilliC;
 }

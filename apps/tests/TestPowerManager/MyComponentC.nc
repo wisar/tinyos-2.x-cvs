@@ -43,12 +43,8 @@ implementation {
   components MyComponentP, LedsC, 
              new OskiTimerMilliC() as StartTimer, new OskiTimerMilliC() as StopTimer,
              new FcfsArbiterC(MYCOMPONENT_RESOURCE) as Arbiter,
-//              new PowerManagerC() as PowerManager;
-             new DeferredPowerManagerC(750) as PowerManager;
-
-  enum {
-    POWER_MANAGER_RESOURCE_ID = unique(MYCOMPONENT_RESOURCE),
-  };
+             new PowerManagerC() as PowerManager;
+//              new DeferredPowerManagerC(750) as PowerManager;
 
   Init = Arbiter;
   Init = PowerManager;
@@ -59,9 +55,8 @@ implementation {
 //   PowerManager.SplitControl -> MyComponentP.SplitControl;  
   PowerManager.AsyncSplitControl -> MyComponentP.AsyncSplitControl;  
   PowerManager.ArbiterInit -> Arbiter.Init;  
-  PowerManager.Arbiter -> Arbiter.Arbiter;
-  PowerManager.Resource -> Arbiter.Resource[POWER_MANAGER_RESOURCE_ID];
-  PowerManager.ResourceRequested -> Arbiter.ResourceRequested[POWER_MANAGER_RESOURCE_ID]; 
+  PowerManager.ResourceController -> Arbiter.ResourceController;
+  PowerManager.ArbiterInfo -> Arbiter.ArbiterInfo;
 
   MyComponentP.Leds -> LedsC;
   MyComponentP.StartTimer -> StartTimer;

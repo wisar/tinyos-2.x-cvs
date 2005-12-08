@@ -40,7 +40,7 @@ module MSP430ADC12M
     interface MSP430ADC12SingleChannel as SingleChannel[uint8_t id];
 	}
 	uses {
-    interface ResourceUser as ADCResourceUser;
+    interface ArbiterInfo as ADCArbiterInfo;
     interface RefVoltGenerator;
 	  interface HPLADC12;
     interface MSP430Timer as TimerA;
@@ -198,7 +198,7 @@ implementation
 
   msp430adc12_result_t getAccess(uint8_t id)
   {
-    if (call ADCResourceUser.user() == id){
+    if (call ADCArbiterInfo.userId() == id){
       if (getAndSetBusy() == FAIL)
         return MSP430ADC12_FAIL_BUSY;
       clientID = id;

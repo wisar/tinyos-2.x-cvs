@@ -54,7 +54,7 @@ implementation
   Resource = Arbiter;
   SingleChannel = MSP430ADC12M.SingleChannel;
     
-  MSP430ADC12M.ADCResourceUser -> Arbiter;
+  MSP430ADC12M.ADCArbiterInfo -> Arbiter;
   MSP430ADC12M.HPLADC12 -> HPLADC12M;
   MSP430ADC12M.RefVoltGenerator -> RefVoltGeneratorC;
 

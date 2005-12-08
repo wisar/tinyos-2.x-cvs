@@ -80,7 +80,7 @@ implementation {
   Resource     = SpiMaster;
 
   SpiMaster.ResourceArbiter -> Arbiter;
-  SpiMaster.ResourceUser    -> Arbiter;
+  SpiMaster.ArbiterInfo    -> Arbiter;
   SpiMaster.Spi             -> HplSpi;
   SpiMaster.McuPowerState   -> McuSleepC;
 }
