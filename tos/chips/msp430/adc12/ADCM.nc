@@ -94,6 +94,11 @@ implementation
     return;
   }
 
+  async command uint8_t ResourceHAL2.getId[uint8_t client]()
+  {
+    return call ResourceHAL1.getId();
+  }
+
   event void ResourceHAL1.granted()
   {
     signal ResourceHAL2.granted[currentClientID]();
