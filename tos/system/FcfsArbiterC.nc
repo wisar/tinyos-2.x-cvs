@@ -295,6 +295,8 @@ implementation {
   default event void Resource.granted[uint8_t id]() {
     signal ResourceController.granted();
   }
+  default event void ResourceController.granted() {
+  }
   default async event void ResourceController.requested() {
   }
   default async event void ResourceController.idle() {
