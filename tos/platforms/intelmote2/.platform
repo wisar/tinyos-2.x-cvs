@@ -19,6 +19,7 @@ push ( @includes, qw(
   %T/chips/pxa27x/lib
   %T/chips/pxa27x/timer
   %T/chips/pxa27x/gpio
+  %T/chips/pxa27x/dma
   %T/chips/pxa27x/ssp
   %T/chips/pxa27x/uart
   %T/lib/timer
