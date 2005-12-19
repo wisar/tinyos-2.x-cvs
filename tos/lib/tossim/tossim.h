@@ -34,9 +34,11 @@
 #ifndef TOSSIM_H_INCLUDED
 #define TOSSIM_H_INCLUDED
 
+//#include <stdint.h>
 #include <memory.h>
-#include <stdint.h>
 #include <tos.h>
+#include <mac.h>
+#include <radio.h>
 
 class Mote {
  public:
@@ -79,6 +81,10 @@ class Tossim {
   bool removeChannel(char* channel, FILE* file);
   
   bool runNextEvent();
+
+  MAC* mac();
+  Radio* radio();
+  
  private:
   char timeBuf[256];
 };

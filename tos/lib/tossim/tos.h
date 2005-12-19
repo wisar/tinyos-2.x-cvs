@@ -53,8 +53,6 @@
 #include <ctype.h>
 #include <stdio.h>
 
-typedef long long int sim_time_t;
-
 #ifndef __cplusplus
 typedef uint8_t bool;
 #endif
@@ -84,6 +82,7 @@ extern uint16_t TOS_LOCAL_ADDRESS;
 #include <sim_event_queue.c>
 #include <sim_tossim.c>
 #include <hashtable.c>
+#include <sim_mac.c>
 #endif
 
 #endif

@@ -40,6 +40,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <mac.c>
+#include <radio.c>
+
 uint16_t TOS_LOCAL_ADDRESS = 1;
 
 static Mote motes[TOSSIM_MAX_NODES + 1];
@@ -140,3 +143,10 @@ bool Tossim::runNextEvent() {
   return sim_run_next_event();
 }
 
+MAC* Tossim::mac() {
+  return new MAC();
+}
+
+Radio* Tossim::radio() {
+  return new Radio();
+}

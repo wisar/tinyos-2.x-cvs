@@ -37,6 +37,8 @@
 #ifndef SIM_EVENT_QUEUE_H_INCLUDED
 #define SIM_EVENT_QUEUE_H_INCLUDED
 
+#include <sim_tossim.h>
+
 struct sim_event;
 typedef struct sim_event sim_event_t;
 

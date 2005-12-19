@@ -230,7 +230,7 @@ void sim_log_debug(uint16_t id, char* string, const char* format, ...) {
   }
 }
 
-void simlog_error(uint16_t id, char* string, const char* format, ...) {
+void sim_log_error(uint16_t id, char* string, const char* format, ...) {
   va_list args;
   int i;
   if (outputs[id].files == NULL) {
@@ -240,6 +240,34 @@ void simlog_error(uint16_t id, char* string, const char* format, ...) {
     FILE* file = outputs[id].files[i];
     va_start(args, format);
     fprintf(file, "ERROR (%i): ", (int)sim_node());
+    vfprintf(file, format, args);
+    fflush(file);
+  }
+}
+
+void sim_log_debug_clear(uint16_t id, char* string, const char* format, ...) {
+  va_list args;
+  int i;
+  if (outputs[id].files == NULL) {
+    fillInOutput(id, string);
+  }
+  for (i = 0; i < outputs[id].num; i++) {
+    FILE* file = outputs[id].files[i];
+    va_start(args, format);
+    vfprintf(file, format, args);
+    fflush(file);
+  }
+}
+
+void sim_log_error_clear(uint16_t id, char* string, const char* format, ...) {
+  va_list args;
+  int i;
+  if (outputs[id].files == NULL) {
+    fillInOutput(id, string);
+  }
+  for (i = 0; i < outputs[id].num; i++) {
+    FILE* file = outputs[id].files[i];
+    va_start(args, format);
     vfprintf(file, format, args);
     fflush(file);
   }

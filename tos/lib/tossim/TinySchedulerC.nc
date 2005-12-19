@@ -22,8 +22,8 @@
  */
 
 /**
- * Implementation of all of the basic TOSSIM primitives and utility
- * functions.
+ * TOSSIM-specific scheduler implementation, which models
+ * tasks as simulation events (in order to capture delay).
  *
  * @author Philip Levis
  * @date   Nov 22 2005
