@@ -28,6 +28,8 @@
  * Provide GeneralIO interfaces for all of the ATmega128's pins.
  */
 
+#include <atm128hardware.h>
+
 configuration HplGeneralIOC
 {
   // provides all the ports as raw ports

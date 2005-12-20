@@ -298,17 +298,15 @@ implementation {
      }
    }
  }
+
+ async command uint8_t Resource.getId[uint8_t id]() {
+   return call ResourceArbiter.getId[id]();
+ }
  
  event void ResourceArbiter.granted[ uint8_t id ]() {
-   
    signal Resource.granted[ id ]();
  }
  
- event void ResourceArbiter.requested[ uint8_t id ]() {
-   signal Resource.requested[ id ]();
- }
-
- default event void Resource.requested[ uint8_t id ] () {}
  default event void Resource.granted[ uint8_t id ]() {}
  
 }

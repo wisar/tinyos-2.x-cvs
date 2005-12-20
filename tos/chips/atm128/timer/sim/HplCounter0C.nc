@@ -37,10 +37,6 @@
 #include <Atm128Timer.h>
 #include <hardware.h>
 
-enum {
-  ATM128_TIMER0_TICKSPPS = 32768
-};
-
 module HplCounter0C {
   provides {
     // 8-bit Timers

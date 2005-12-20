@@ -45,14 +45,12 @@ implementation {
   components new FcfsArbiterC("Atm128SpiC.Resource") as Arbiter;
   components McuSleepC;
   
-  Init         = Device.SpiInit;
+  Init         = Device;
   Init         = Arbiter;
   
   SPIByte      = Device;
   SPIPacket    = Device;
-  Resource     = Device;
+  Resource     = Arbiter;
 
-  Device.ResourceArbiter -> Arbiter;
-  Device.ResourceUser    -> Arbiter;
   Device.McuPowerState   -> McuSleepC;
 }

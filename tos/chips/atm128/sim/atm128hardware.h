@@ -40,6 +40,7 @@
 #define _H_atmega128hardware_H
 
 #include <atm128_sim.h>
+#include <sim_tossim.h>
 
 uint8_t atm128RegFile[100][0xa0];
 
@@ -109,5 +110,20 @@ __nesc_atomic_sleep()
   sei();  // Make sure interrupts are on, so we can wake up!
   asm volatile ("sleep");
 }
+
+typedef uint8_t mcu_power_t @combine("mcombine");
+/** Combine function.  */
+mcu_power_t mcombine(mcu_power_t m1, mcu_power_t m2) {
+  return (m1 < m2)? m1: m2;
+}
+
+enum {
+  ATM128_POWER_IDLE        = 0,
+  ATM128_POWER_ADC_NR      = 1,
+  ATM128_POWER_EXT_STANDBY = 2,
+  ATM128_POWER_SAVE        = 3,
+  ATM128_POWER_STANDBY     = 4,
+  ATM128_POWER_DOWN        = 5, 
+};
 
 #endif //_H_atmega128hardware_H

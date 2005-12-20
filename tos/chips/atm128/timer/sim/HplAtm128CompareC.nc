@@ -194,7 +194,7 @@ implementation {
     else {
       char time[128];
       sim_print_now(time, 128);
-      dbg("HplAtm128CompareC", "Handling compare at 0x%p @ %s\n", evt, sim_current_time());
+      dbg("HplAtm128CompareC", "Handling compare at 0x%p @ %s\n", evt, sim_time_string());
 	    
       if (READ_BIT(interruptRegister, interruptBit)) {
 	CLR_BIT(flagRegister, flagBit);
