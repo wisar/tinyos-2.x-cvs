@@ -71,7 +71,7 @@
 #endif
 
 #ifndef SIM_CSMA_MIN_FREE_SAMPLES
-#define SIM_CSMA_MIN_FREE_SAMPLES 1
+#define SIM_CSMA_MIN_FREE_SAMPLES 2
 #endif
 
 // 500 us ~= 32 symbols
