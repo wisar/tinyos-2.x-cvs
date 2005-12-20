@@ -47,7 +47,7 @@ implementation
 
   components new FcfsArbiterC("CC2420SpiClient");
   //components new HalPXA27xSpiM(1,0x7); // 6.5 Mbps, 8bit width
-  components new HalPXA27xSpiPioM(1,0x7) as HalPXA27xSpiM; // 6.5 Mbps, 8bit width
+  components new HalPXA27xSpiPioM(0,1,0x7,FALSE) as HalPXA27xSpiM; // SPI, 6.5 Mbps, 8bit width, noRWOT
   components IM2CC2420InitSpiP;
   components HplPXA27xSSP3C;
   //components HplPXA27xDMAC;
