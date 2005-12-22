@@ -48,9 +48,9 @@ implementation {
               TestPriorityArbiterC,
               LedsC,
               new FcfsPriorityArbiterC("Test.Arbiter.Resource") as Arbiter,
-              new OskiTimerMilliC() as Timer1,
-              new OskiTimerMilliC() as Timer2,
-              new OskiTimerMilliC() as Timer4;
+              new OskiTimerMilliC() as TimerHigh,
+              new OskiTimerMilliC() as TimerClient1,
+              new OskiTimerMilliC() as TimerClient2;
 
  
 
@@ -58,14 +58,14 @@ implementation {
   MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> Arbiter;
  
-  TestPriorityArbiterC.TimerResource1 -> Timer1;
-  TestPriorityArbiterC.TimerResource2 -> Timer2;
-  TestPriorityArbiterC.TimerResource4 -> Timer4;
+  TestPriorityArbiterC.TimerHighClient -> TimerHigh;
+  TestPriorityArbiterC.TimerClient1 -> TimerClient1;
+  TestPriorityArbiterC.TimerClient2 -> TimerClient2;
   
-  TestPriorityArbiterC.Resource4 -> Arbiter.HighestPriorityClient;  
-  TestPriorityArbiterC.Resource3 -> Arbiter.LowestPriorityClient;  
-  TestPriorityArbiterC.Resource2 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
-  TestPriorityArbiterC.Resource1 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
+  TestPriorityArbiterC.HighClient -> Arbiter.HighPriorityClient;  
+  TestPriorityArbiterC.PowerManager -> Arbiter.LowPriorityClient;  
+  TestPriorityArbiterC.Client2 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
+  TestPriorityArbiterC.Client1 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
   TestPriorityArbiterC.ArbiterInfo -> Arbiter.ArbiterInfo;
   
   TestPriorityArbiterC.Leds -> LedsC;
