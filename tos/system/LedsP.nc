@@ -42,8 +42,6 @@ module LedsP {
   }
 }
 implementation {
-  #define dbg(n,msg)
-
   command error_t Init.init() {
     atomic {
       dbg(DBG_BOOT, "LEDS: initialized.\n");
