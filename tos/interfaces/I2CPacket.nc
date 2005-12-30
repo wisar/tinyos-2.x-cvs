@@ -35,18 +35,18 @@ interface I2CPacket {
   /**
    * Perform an I2C read operation
    */
-  command result_t readPacket(uint16_t _addr, uint8_t _length, uint8_t* _data);
+  async command result_t readPacket(uint16_t _addr, uint8_t _length, uint8_t* _data);
   /**
    * Perform an I2C write operation
    */
-  command result_t writePacket(uint16_t _addr, uint8_t _length, uint8_t* _data);
+  async command result_t writePacket(uint16_t _addr, uint8_t _length, uint8_t* _data);
 
   /**
    * Notification that the read operation has completed
    */
-  event void readPacketDone(uint16_t addr, uint8_t length, uint8_t* data, result_t success);
+  async event void readPacketDone(uint16_t addr, uint8_t length, uint8_t* data, result_t success);
   /**
    * Notification that the write operation has completed
    */
-  event void writePacketDone(uint16_t addr, uint8_t length, uint8_t* data, result_t success);
+  async event void writePacketDone(uint16_t addr, uint8_t length, uint8_t* data, result_t success);
 }
