@@ -114,13 +114,13 @@ implementation
 
     while (IntReg) {
       chnl = 31 - _pxa27x_clzui(IntReg);
-      signal HplPXA27xDMAChnl.eventChannel[chnl]();
+      signal HplPXA27xDMAChnl.interruptDMA[chnl]();
       IntReg &= ~(1 << chnl);
     }
     return;
   }
 
-  default async event void HplPXA27xDMAChnl.eventChannel[uint8_t chnl]() {
+  default async event void HplPXA27xDMAChnl.interruptDMA[uint8_t chnl]() {
     call HplPXA27xDMAChnl.setDCMD[chnl](0);
     call HplPXA27xDMAChnl.setDCSR[chnl](DCSR_EORINT | DCSR_ENDINTR
 					| DCSR_STARTINTR | DCSR_BUSERRINTR);

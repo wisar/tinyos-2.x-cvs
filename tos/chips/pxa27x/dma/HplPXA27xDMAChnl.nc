@@ -88,5 +88,5 @@ interface HplPXA27xDMAChnl
   async command uint32_t getDSADR();
   async command void setDTADR(uint32_t val);
   async command uint32_t getDTADR();
-  async event void eventChannel();
+  async event void interruptDMA();
 }
