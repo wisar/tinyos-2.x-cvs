@@ -100,13 +100,13 @@ implementation {
 
   async command void HplPXA27xGPIOPin.setGPSRbit[uint8_t pin]() 
   {
-    GPSR(pin) |= _GPIO_bit(pin);
+    GPSR(pin) = _GPIO_bit(pin);
     return;
   }
 
   async command void HplPXA27xGPIOPin.setGPCRbit[uint8_t pin]() 
   {
-    GPCR(pin) |= _GPIO_bit(pin);
+    GPCR(pin) = _GPIO_bit(pin);
     return;
   }
 
@@ -151,7 +151,7 @@ implementation {
   {
     bool flag;
     flag = ((GEDR(pin) & _GPIO_bit(pin)) != 0);
-    GEDR(pin) |= _GPIO_bit(pin);
+    GEDR(pin) = _GPIO_bit(pin);
     return flag;
   }
 
