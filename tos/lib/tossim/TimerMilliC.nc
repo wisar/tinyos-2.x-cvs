@@ -57,8 +57,8 @@ implementation {
 
   void initializeEvent(sim_event_t* evt, uint8_t timerID);
   
-  sim_time_t clockToSim(sim_time_t clock) {
-    return (clock * sim_ticks_per_sec()) / 1024;
+  sim_time_t clockToSim(sim_time_t clockVal) {
+    return (clockVal * sim_ticks_per_sec()) / 1024;
   }
 
   sim_time_t simToClock(sim_time_t sim) {
