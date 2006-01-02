@@ -30,7 +30,7 @@
 
 /**
   * Obtain updates on the running status of a service; this operates
-  * on the whole service, and not its instances.
+  * on the whole service, and not its instances. 
   *
   * @author Philip Levis
   * @date   January 5 2005
@@ -39,7 +39,18 @@
 
 interface ServiceNotify {
 
+  /**
+   * Signaled when the underlying service has started and can now
+   * accept requests. A service accepts requests if and only if
+   * the last ServiceNotify event is signaled is started().
+   */
   event void started();
+
+  /**
+   * Signaled when the underlying service has stopped and will no
+   * longer accept requests. By default (before any events are
+   * signaled), a service is in the stopped state.
+   */
   event void stopped();
   
 }

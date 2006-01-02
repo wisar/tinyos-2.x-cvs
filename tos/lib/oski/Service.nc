@@ -55,12 +55,30 @@
 interface Service {
 
   /**
-   *
+   * Stop this instance of the service. Note that this does not necessarily
+   * stop the underlying service itself: other instances may continue to
+   * be active. Even if this is the only instance, when this call returns, the service
+   * may not stop. If a component needs to know exactly when
+   * the service stops running, it should use the <tt>ServiceNotify</tt>
+   * interface.
    */
   command void start();
 
+  /**
+   * Stop this instance of the service. Note that this does not necessarily
+   * stop the underlying service itself: other instances may continue to be
+   * active. Even if this is the only instance, when this call returns, the service
+   * may not stop. If a component needs to know exactly when
+   * the service stops running, it should use the <tt>ServiceNotify</tt>
+   * interface.
+   */
   command void stop();
-
+  
+  /**
+   * Determine whether the service is currently running.
+   *
+   * @return Whether or not the service is currently running.
+   */
   command bool isRunning();
 
   
