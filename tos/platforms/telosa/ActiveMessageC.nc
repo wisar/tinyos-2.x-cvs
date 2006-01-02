@@ -37,8 +37,8 @@
 
 /**
  *
- * The Active Message layer on the mica2 platform. This is a naming wrapper
- * around the CC1000 Active Message layer.
+ * The Active Message layer on the Telos platform. This is a naming wrapper
+ * around the CC2420 Active Message layer.
  *
  * @author Philip Levis
  * @date June 19 2005
