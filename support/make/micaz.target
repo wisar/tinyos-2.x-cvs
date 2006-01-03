@@ -6,9 +6,6 @@ SENSORBOARD ?= micasb
 PROGRAMMER_PART ?= -dpart=ATmega128 --wr_fuse_e=ff
 PFLAGS += -finline-limit=100000
 
-CFLAGS += \
--I$(TOSDIR)/lib/CC2420Radio
-
 ifdef TINYOS_NP
   ifeq ($(TINYOS_NP),BNP)
     PFLAGS += -I%T/lib/Deluge
