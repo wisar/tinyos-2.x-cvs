@@ -39,6 +39,7 @@
 #include <tos.h>
 #include <mac.h>
 #include <radio.h>
+#include <packet.h>
 
 class Mote {
  public:
@@ -84,6 +85,7 @@ class Tossim {
 
   MAC* mac();
   Radio* radio();
+  Packet* newPacket();
   
  private:
   char timeBuf[256];

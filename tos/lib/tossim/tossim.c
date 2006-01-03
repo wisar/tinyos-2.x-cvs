@@ -42,6 +42,7 @@
 
 #include <mac.c>
 #include <radio.c>
+#include <packet.c>
 
 uint16_t TOS_LOCAL_ADDRESS = 1;
 
@@ -149,4 +150,8 @@ MAC* Tossim::mac() {
 
 Radio* Tossim::radio() {
   return new Radio();
+}
+
+Packet* Tossim::newPacket() {
+  return new Packet();
 }
