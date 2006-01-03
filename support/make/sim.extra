@@ -5,7 +5,7 @@ GCC=gcc
 GPP=g++
 OPTFLAGS = -g -O0
 LIBS = -lm -lstdc++ 
-PFLAGS += -I%T/lib/tossim -tossim -fnesc-nido-tosnodes=1000 -fnesc-simulate -fnesc-nido-motenumber=sim_node\(\)  
+PFLAGS += -I$(TOSDIR)/lib/tossim -tossim -fnesc-nido-tosnodes=1000 -fnesc-simulate -fnesc-nido-motenumber=sim_node\(\)  
 WFLAGS = -Wno-nesc-data-race
 
 BUILDDIR   = simbuild/$(PLATFORM)
