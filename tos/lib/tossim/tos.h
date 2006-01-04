@@ -59,8 +59,6 @@ typedef uint8_t bool;
 
 enum { FALSE = 0, TRUE = 1 };
 
-typedef int8_t nx_bool __attribute__((nx_base(int8)));
-
 extern uint16_t TOS_LOCAL_ADDRESS;
 
 #ifndef TOSSIM_MAX_NODES

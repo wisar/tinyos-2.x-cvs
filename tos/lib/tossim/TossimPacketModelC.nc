@@ -152,6 +152,7 @@ implementation {
     if (sending != NULL) {
       return EBUSY;
     }
+    sendingLength = len; 
     sending = msg;
     destNode = dest;
     backoffCount = 0;
