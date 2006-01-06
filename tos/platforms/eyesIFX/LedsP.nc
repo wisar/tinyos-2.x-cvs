@@ -41,7 +41,10 @@ module LedsP {
   }
 }
 implementation {
-  #define dbg(n,msg)
+  
+#ifndef dbg
+#define dbg(n,msg)
+#endif  
 
   command error_t Init.init() {
     atomic {
