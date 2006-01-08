@@ -57,6 +57,10 @@ implementation {
     return isOn;
   }
 
+  async command int SimMote.getVariableInfo(char* name, void** addr, int* size) {
+    return __nesc_nido_resolve(sim_node(), name, (uintptr_t*)addr, (size_t*)size);
+  }
+
   command void SimMote.turnOn() {
     if (!isOn) {
       if (bootEvent != NULL) {
@@ -100,6 +104,16 @@ implementation {
     return result;
   }
 
+  int sim_mote_get_variable_info(int mote, char* name, void** ptr, int* len) __attribute__ ((C, spontaneous)) {
+    int result;
+    int tmpID = sim_node();
+    sim_set_node(mote);
+    result = call SimMote.getVariableInfo(name, ptr, len);
+    dbg("SimMoteP", "Fetched %s of %i to be %p with len %i\n", name, mote, *ptr, *len);
+    sim_set_node(tmpID);
+    return result;
+  }
+  
   void sim_mote_set_start_time(int mote, long long int t) __attribute__ ((C, spontaneous)) {
     int tmpID = sim_node();
     sim_set_node(mote);

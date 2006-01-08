@@ -51,7 +51,7 @@ void sim_mote_set_start_time(int mote, long long int t);
 bool sim_mote_is_on(int mote);
 void sim_mote_turn_on(int mote);
 void sim_mote_turn_off(int mote);
-
+int sim_mote_get_variable_info(int mote, char* name, void** addr, int* len);
 void sim_mote_enqueue_boot_event(int mote);
 
 #ifdef __cplusplus

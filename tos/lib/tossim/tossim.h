@@ -41,6 +41,26 @@
 #include <radio.h>
 #include <packet.h>
 
+typedef struct var_string {
+  char* ptr;
+  int len;
+} var_string_t;
+
+class Variable {
+ public:
+  Variable(char* name, int mote);
+  ~Variable();
+  var_string_t getData();
+  
+ private:
+  char* name;
+  int mote;
+  void* ptr;
+  char* data;
+  int len;
+  var_string_t str;
+};
+
 class Mote {
  public:
   Mote();
@@ -59,6 +79,8 @@ class Mote {
   void turnOn();
   void setID(unsigned long id);  
 
+  Variable* getVariable(char* name);
+  
  private:
   unsigned long nodeID;
 };

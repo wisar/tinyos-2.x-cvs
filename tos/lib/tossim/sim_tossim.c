@@ -90,7 +90,7 @@ void sim_set_time(sim_time_t t) __attribute__ ((C, spontaneous)) {
 }
 
 sim_time_t sim_ticks_per_sec() {
-  return 10000000000;
+  return 10000000000ULL;
 }
 
 unsigned long sim_node() __attribute__ ((C, spontaneous)) {
