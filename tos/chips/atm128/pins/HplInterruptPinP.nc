@@ -28,8 +28,8 @@
  * Interrupt interface access for interrupt capable GPIO pins.
  */
 generic module HplInterruptPinP (uint8_t ctrl_addr, 
-				 uint8_t edge0_addr, 
-				 uint8_t edge1_addr, 
+				 uint8_t edge0bit, 
+				 uint8_t edge1bit, 
 				 uint8_t bit)
 {
   provides interface HplInterrupt as Irq;
@@ -37,23 +37,20 @@ generic module HplInterruptPinP (uint8_t ctrl_addr,
 }
 implementation
 {
+  inline async command bool Irq.getValue() { return (EIFR & (1 << bit)) != 0; }
+  inline async command void Irq.clear()    { EIFR = 1 << bit; }
+  inline async command void Irq.enable()   { EIMSK |= 1 << bit; }
+  inline async command void Irq.disable()  { EIMSK &= ~(1 << bit); }
+
 #define ctrl  (*(volatile uint8_t *)ctrl_addr)
-#define edge0 (*(volatile uint8_t *)edge0_addr)
-#define edge1 (*(volatile uint8_t *)edge1_addr)
 
-  inline async command bool Irq.getValue()   { return READ_BIT (EIFR, bit); }
-  inline async command void Irq.clear()      { CLR_BIT  (EIFR, bit); }
-    
-  inline async command void Irq.enable()     { SET_BIT  (EIMSK, bit);  }
-  inline async command void Irq.disable()    { CLR_BIT  (EIMSK, bit);  }
-
-  inline async command void Irq.edge(bool low_to_high) { 
-    SET_BIT(ctrl, edge1);	            // use edge mode
-    if (low_to_high) {
-      SET_BIT(ctrl, edge0);          // trigger on rising level
-    } else {
-      CLR_BIT(ctrl, edge0);          // trigger on falling level
-    }
+  inline async command void Irq.edge(bool low_to_high) {
+    ctrl |= 1 << edge1bit; // use edge mode
+    // and select rising vs falling
+    if (low_to_high)
+      ctrl |= 1 << edge0bit;
+    else
+      ctrl &= ~(1 << edge0bit);
   }
 
   /** 
