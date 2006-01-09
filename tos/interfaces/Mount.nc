@@ -25,9 +25,9 @@
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
 
-includes HALSTM25P;
+#include "Storage.h"
 
 interface Mount {
-  command result_t mount(volume_id_t id);
+  command error_t mount(volume_id_t id);
   event void mountDone(storage_result_t result, volume_id_t id);
 }

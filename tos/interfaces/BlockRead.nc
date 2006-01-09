@@ -25,17 +25,17 @@
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  */
 
-includes BlockStorage;
+#include "BlockStorage.h"
 
 interface BlockRead {
 
-  command result_t read(block_addr_t addr, void* buf, block_addr_t len);
+  command error_t read(block_addr_t addr, void* buf, block_addr_t len);
   event void readDone(storage_result_t result, block_addr_t addr, void* buf, block_addr_t len);
 
-  command result_t verify();
+  command error_t verify();
   event void verifyDone(storage_result_t result);
 
-  command result_t computeCrc(block_addr_t addr, block_addr_t len);
+  command error_t computeCrc(block_addr_t addr, block_addr_t len);
   event void computeCrcDone(storage_result_t result, uint16_t crc, block_addr_t addr, block_addr_t len);
 
   command block_addr_t getSize();
