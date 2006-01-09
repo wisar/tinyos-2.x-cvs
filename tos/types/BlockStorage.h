@@ -28,6 +28,8 @@
 #ifndef __BLOCK_STORAGE_H__
 #define __BLOCK_STORAGE_H__
 
+#define UQ_BLOCK_STORAGE "blockstorage.resource"
+
 typedef uint32_t block_addr_t;
 typedef uint8_t blockstorage_t;
 
