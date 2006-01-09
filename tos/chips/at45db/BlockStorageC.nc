@@ -1,4 +1,6 @@
 // $Id$
+#include "BlockStorage.h"
+
 generic configuration BlockStorageC() {
   provides {
     interface Mount;
@@ -9,15 +11,16 @@ generic configuration BlockStorageC() {
 implementation {
   enum {
     BLOCK_ID = unique(UQ_BLOCK_STORAGE),
-    VOLUME_ID = unique(UQ_STORAGE_VOLUME)
+    VOLUME_ID = unique(UQ_STORAGE_VOLUME),
+    RESOURCE_ID = unique(UQ_AT45DB)
   };
     
-  components BlockStorageM, StorageManagerC;
+  components BlockStorageP, WireBlockStorageP, StorageManagerC, HalAt45dbC;
 
-  Mount = BlockStorageM.Mount[BLOCK_ID];
-  BlockWrite = BlockStorageM.BlockWrite[BLOCK_ID];
-  BlockRead = BlockStorageM.BlockRead[BLOCK_ID];
+  Mount = BlockStorageP.Mount[BLOCK_ID];
+  BlockWrite = BlockStorageP.BlockWrite[BLOCK_ID];
+  BlockRead = BlockStorageP.BlockRead[BLOCK_ID];
 
-  BlockStorageM.HALAT45DB[BLOCK_ID] -> StorageManagerC.HALAT45DB[VOLUME_ID];
-  BlockStorageM.ActualMount[BLOCK_ID] -> StorageManagerC.Mount[VOLUME_ID];
+  BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerC.At45dbVolume[VOLUME_ID];
+  BlockStorageP.Resource[BLOCK_ID] -> HalAt45dbC.Resource[RESOURCE_ID];
 }
