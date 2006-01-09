@@ -14,6 +14,8 @@ push( @includes, qw(
   %T/platforms/mica2
   %T/platforms/mica
   %T/chips/cc1000
+  %T/platforms/mica2/chips/at45db
+  %T/chips/at45db
   %T/chips/atm128
   %T/chips/atm128/adc
   %T/chips/atm128/pins
