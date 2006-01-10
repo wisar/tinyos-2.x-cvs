@@ -198,19 +198,19 @@ void open_input(int argc, char **argv) {
     }
     printf("%s input_stream opened\n", name);
 #ifdef __CYGWIN__
-	/* For some very mysterious reason, this incantation is necessary to make
-	   the serial port work under some windows machines */
-	HANDLE handle = (HANDLE)get_osfhandle(input_stream);
-	DCB dcb;
-	if (!(GetCommState(handle, &dcb) &&
-		  SetCommState(handle, &dcb))) {
-		fprintf(stderr, "serial port initialisation problem\n");
-		exit(2);
-	}
+    /* For some very mysterious reason, this incantation is necessary to make
+       the serial port work under some windows machines */
+    HANDLE handle = (HANDLE)get_osfhandle(input_stream);
+    DCB dcb;
+    if (!(GetCommState(handle, &dcb) &&
+	  SetCommState(handle, &dcb))) {
+      fprintf(stderr, "serial port initialisation problem\n");
+      exit(2);
+    }
 #endif
 
     /* Serial port setting */
-    bzero(&newtio, sizeof(newtio));
+    memset(&newtio, 0, sizeof(newtio));
     newtio.c_cflag = CS8 | CLOCAL | CREAD;
     newtio.c_iflag = IGNPAR | IGNBRK;
     cfsetispeed(&newtio, baudrate);

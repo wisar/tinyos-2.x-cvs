@@ -452,7 +452,7 @@ note( "constructor begin" );
     // set default port parmeters
     //struct termios options = get_comm_state();
     struct termios options;
-    bzero( &options, sizeof(options) );
+    memset( &options, 0, sizeof(options) );
 
     // disable rts/cts, no parity bits, one stop bit, clear databits mask
     //local mode, enable receiver, 8 databits
