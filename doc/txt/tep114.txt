@@ -313,7 +313,7 @@ enqueue the buffer for filling. The client can call postBuffer() more
 than once, to "pre-fill" the queue with any number of buffers. The
 size of the memory region pointed to by the buf parameter MUST be at
 least as large as the size of a pointer on the node architecture plus
-the size of the uint16_t count argument. This requirement support
+the size of the uint16_t count argument. This requirement supports
 drivers that may store the queue of buffers and count sizes by
 building a linked list.
 
