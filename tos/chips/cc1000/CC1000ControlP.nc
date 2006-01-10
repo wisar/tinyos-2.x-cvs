@@ -39,6 +39,7 @@
  * interface to control CC1000 operation.
  */
 #include "CC1000Const.h"
+#include "Timer.h"
 
 module CC1000ControlP {
   provides {
@@ -46,6 +47,7 @@ module CC1000ControlP {
   }
   uses {
     interface HplCC1000 as CC;
+    interface BusyWait<TMicro, uint16_t>;
   }
 }
 implementation
@@ -251,7 +253,7 @@ implementation
 		  1 << CC1K_FS_PD | 1 << CC1K_BIAS_PD); 
     // clear reset.
     call CC1000Control.coreOn();
-    uwait(2000);        
+    call BusyWait.wait(2000);
 
     // Set default parameter values
     // POWER: 0dbm (~900MHz), 6dbm (~430MHz)
@@ -316,9 +318,9 @@ implementation
 		  1 << CC1K_RESET_N);
     // Set the TX mode VCO Current
     call CC.write(CC1K_CURRENT, txCurrent);
-    uwait(250);
+    call BusyWait.wait(250);
     call CC.write(CC1K_PA_POW, power);
-    uwait(20);
+    call BusyWait.wait(20);
   }
 
   async command void CC1000Control.rxMode() {
@@ -327,7 +329,7 @@ implementation
     call CC.write(CC1K_CURRENT, rxCurrent);
     call CC.write(CC1K_PA_POW, 0); // turn off power amp
     call CC.write(CC1K_MAIN, 1 << CC1K_TX_PD | 1 << CC1K_RESET_N);
-    uwait(125);
+    call BusyWait.wait(125);
   }
 
   async command void CC1000Control.coreOn() {

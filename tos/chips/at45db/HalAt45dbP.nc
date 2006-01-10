@@ -31,6 +31,7 @@
 
 #include "crc.h"
 #include "HalAt45db.h"
+#include "Timer.h"
 
 module HalAt45dbP {
   provides {
@@ -39,6 +40,7 @@ module HalAt45dbP {
   }
   uses {
     interface HplAt45db;
+    interface BusyWait<TMicro, uint16_t>;
   }
 }
 implementation
@@ -207,7 +209,7 @@ implementation
     // some mysterious reason (w/o this wait, the first compare
     // always fails, even though the compare after the rewrite
     // succeeds...)
-    uwait(10);
+    call BusyWait.wait(10);
     call HplAt45db.waitCompare();
   }
 

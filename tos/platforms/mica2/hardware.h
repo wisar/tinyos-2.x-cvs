@@ -52,18 +52,4 @@ enum {
   ATM128_ADC_PRESCALE = ATM128_ADC_PRESCALE_64  // normal mica2 prescaler value
 };
 
-void inline uwait(int u_sec) {
-    while (u_sec > 0) {
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      asm volatile  ("nop" ::);
-      u_sec--;
-    }
-}
-
 #endif //HARDWARE_H

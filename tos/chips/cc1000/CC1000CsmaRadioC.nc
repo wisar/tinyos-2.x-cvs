@@ -73,7 +73,7 @@ implementation {
   components CC1000ControlP as Control;
   components HplCC1000C as Hpl;
 
-  components RandomC, TimerMilliC, ActiveMessageAddressC;
+  components RandomC, TimerMilliC, ActiveMessageAddressC, BusyWaitMicroC;
 
   Init = Csma;
   Init = Squelch;
@@ -109,7 +109,9 @@ implementation {
   Csma.RssiPulseCheck -> Rssi.Rssi[unique("CC1000RSSI")];
   Csma.cancelRssi -> Rssi;
   Csma.RssiControl -> Hpl.RssiControl;
+  Csma.BusyWait -> BusyWaitMicroC;
 
   Rssi.ActualRssi -> Hpl;
   Control.CC -> Hpl;
+  Control.BusyWait -> BusyWaitMicroC;
 }
