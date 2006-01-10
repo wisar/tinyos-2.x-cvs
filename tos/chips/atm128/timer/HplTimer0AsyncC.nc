@@ -30,6 +30,7 @@
 module HplTimer0AsyncC
 {
   provides {
+    interface Init @atleastonce();
     // 8-bit Timers
     interface HplTimer<uint8_t>   as Timer0;
     interface HplTimerCtrl8       as Timer0Ctrl;
@@ -39,6 +40,11 @@ module HplTimer0AsyncC
 implementation
 {
   bool inOverflow;
+
+  command error_t Init.init() {
+    SET_BIT(ASSR, AS0);  // set Timer/Counter0 to asynchronous mode
+    return SUCCESS;
+  }
 
   //=== Read the current timer value. ===================================
   async command uint8_t  Timer0.get() { return TCNT0; }

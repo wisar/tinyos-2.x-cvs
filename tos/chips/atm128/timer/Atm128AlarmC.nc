@@ -29,8 +29,8 @@ generic module Atm128AlarmC(typedef frequency_tag,
 			    uint8_t prescaler,
 			    int mindt)
 {
-  provides interface Init;
-  provides interface Alarm<frequency_tag, timer_size> as Alarm;
+  provides interface Init @atleastonce();
+  provides interface Alarm<frequency_tag, timer_size> as Alarm @atmostonce();
 
   uses interface HplTimer<timer_size>;
   uses interface HplCompare<timer_size>;

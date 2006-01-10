@@ -28,8 +28,6 @@ implementation {
     PORTC = 0;
     DDRC = 0xff;
 
-    SET_BIT(ASSR, AS0);  // set Timer/Counter0 to use 32,768khz crystal
-
     // Prevent sourcing current
     call SerialIdPin.makeInput(); 
     call SerialIdPin.clr();
