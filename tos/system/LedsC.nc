@@ -26,7 +26,7 @@
 
 
 configuration LedsC {
-  provides interface Init;
+  provides interface Init @atleastonce();
   provides interface Leds;
 }
 implementation {
