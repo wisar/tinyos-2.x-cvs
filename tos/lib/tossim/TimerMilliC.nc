@@ -66,7 +66,7 @@ implementation {
   }
   
   command error_t Init.init() {
-    bzero(timers, sizeof(timers));
+    memset(timers, 0, sizeof(timers));
     initTime = sim_time();
     return SUCCESS;
   }

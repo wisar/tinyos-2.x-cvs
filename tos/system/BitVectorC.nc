@@ -57,7 +57,7 @@ implementation
 
   async command void BitVector.clearAll()
   {
-    bzero( m_bits, sizeof(m_bits) );
+    memset( m_bits, 0, sizeof(m_bits) );
   }
 
   async command void BitVector.setAll()
