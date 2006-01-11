@@ -409,6 +409,16 @@ implementation
     return FALSE;
   }
   
+  async command error_t USART.clrTxIntr(){
+    IFG1 &= ~UTXIFG0;
+    return SUCCESS;
+  }
+
+  async command error_t USART.clrRxIntr() {
+    IFG1 &= ~URXIFG0;
+    return SUCCESS;
+  }
+
   async command void USART.disableRxIntr(){
     IE1 &= ~URXIE0;    
   }

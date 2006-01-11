@@ -184,6 +184,17 @@ interface HplMsp430Usart {
    */
   async command bool isRxIntrPending();
 
+  /**
+   * Clears RX interrupt pending flag
+  */
+  async command error_t clrRxIntr();
+
+  /**
+   * Clears TX interrupt pending flag
+   */
+  async command error_t clrTxIntr();
+
+
   /** 
    * SUCCESS if the TX buffer is empty and all of the bits have been
    * shifted out
