@@ -44,26 +44,25 @@ enum {
 TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
 };
 configuration HPLTDA5250DataC {
-	provides {
-		interface Init;  
-		interface HPLTDA5250Data;
-		interface Resource as Resource;
-	}
+  provides {
+    interface Init;  
+    interface HPLTDA5250Data;
+    interface Resource as Resource;
+  }
 }
 implementation {
-	components HPLTDA5250DataP
-			, HPLUSART0C
-			, TDA5250RadioIO
-	;
+  components HPLTDA5250DataP
+      , HplMsp430Usart0C
+      , TDA5250RadioIO
+          ;
 
-	Init = HPLTDA5250DataP;
-	Init = HPLUSART0C;
-	Resource = HPLTDA5250DataP.Resource;
-	HPLTDA5250Data = HPLTDA5250DataP;
-
-	HPLTDA5250DataP.DATA -> TDA5250RadioIO.TDA5250RadioDATA;
-	HPLTDA5250DataP.USARTControl -> HPLUSART0C;
-	HPLTDA5250DataP.USARTFeedback -> HPLUSART0C;
-	HPLTDA5250DataP.UARTResource -> HPLUSART0C.Resource[TDA5250_UART_BUS_ID];
-	HPLTDA5250DataP.ResourceUser -> HPLUSART0C.ResourceUser; 	
+  Init = HPLTDA5250DataP;
+  Init = HplMsp430Usart0C;
+  Resource = HPLTDA5250DataP.Resource;
+  HPLTDA5250Data = HPLTDA5250DataP;
+          
+  HPLTDA5250DataP.DATA -> TDA5250RadioIO.TDA5250RadioDATA;
+  HPLTDA5250DataP.Usart -> HplMsp430Usart0C;
+  HPLTDA5250DataP.UartResource -> HplMsp430Usart0C.Resource[TDA5250_UART_BUS_ID];
+  HPLTDA5250DataP.ArbiterInfo -> HplMsp430Usart0C.ArbiterInfo;   
 }

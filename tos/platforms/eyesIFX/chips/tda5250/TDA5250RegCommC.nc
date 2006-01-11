@@ -48,20 +48,24 @@ configuration TDA5250RegCommC {
   }
 }
 implementation {
-  components HPLUSART0C
+  components HplMsp430Usart0C
            , TDA5250RegCommP
            , TDA5250RadioIO
            ;      
    
-  Init = HPLUSART0C;
+  Init = HplMsp430Usart0C;
   Init = TDA5250RegCommP;
   Resource = TDA5250RegCommP.Resource;
   
   TDA5250RegComm = TDA5250RegCommP; 
   
-  TDA5250RegCommP.BUSM -> TDA5250RadioIO.TDA5250RadioBUSM; 
+  TDA5250RegCommP.BusM -> TDA5250RadioIO.TDA5250RadioBUSM; 
   
-  TDA5250RegCommP.USARTControl -> HPLUSART0C; 
-  TDA5250RegCommP.SPIResource -> HPLUSART0C.Resource[TDA5250_SPI_BUS_ID];
-  TDA5250RegCommP.ResourceUser -> HPLUSART0C.ResourceUser; 	
+  TDA5250RegCommP.Usart -> HplMsp430Usart0C;
+  // FIXME: Hier ResourceController!?
+  TDA5250RegCommP.SpiResource -> HplMsp430Usart0C.Resource[TDA5250_SPI_BUS_ID];
+  TDA5250RegCommP.ArbiterInfo -> HplMsp430Usart0C.ArbiterInfo;      
+  
+  
+  
 }

@@ -43,15 +43,13 @@
 
 configuration AD5200SpiC {
     provides {
-		  interface Resource;
-		  interface SPIByte;
-		}
+                  interface Resource;
+                  interface SPIByte;
+                }
 }
 
 implementation {
-    components new SPIC()	as SPI
-						 ;
-					
-    Resource = SPI;						 	 
+  components new Spi0C() as SPI;
+    Resource = SPI;                                                      
     SPIByte = SPI;   
 }
