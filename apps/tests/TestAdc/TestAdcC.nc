@@ -42,7 +42,7 @@
  **/
 module TestAdcC
 {
-  uses interface AcquireData;
+  uses interface Read<uint16_t> as Read;
   uses interface Boot;
   uses interface Leds;
 }
@@ -50,17 +50,13 @@ implementation
 {
   event void Boot.booted()
   {
-    if (call AcquireData.getData() == SUCCESS)
+    if (call Read.read() == SUCCESS)
       call Leds.led0On();
   }
 
-  event void AcquireData.dataReady(uint16_t data)
+  event void Read.readDone(error_t result, uint16_t data)
   {
     call Leds.led1On();
-  }
-
-  event void AcquireData.error(uint16_t info)
-  {
   }
 }
 

@@ -35,27 +35,26 @@
 
 /**
  * This application tests the ADC subsystem: if the test is successful,
- * it turns on LED0 and LED1. LED0 denotes whether the call to acquire
+ * it turns on LED0 and LED1. LED0 denotes whether the call to Read
  * an ADC sample succeeded, and LED1 denotes whether the ADC successfully
  * delivered a sample. 
  * 
  * Author: Jan Hauer
- * Date:   Aug 8, 2005
+ * Date:   Jan 9, 2006
  */
 
 configuration TestAdcAppC {
 }
 implementation
 {
-  // NOTE: The channel/port number to be sampled is defined by
-  // the parameter given to ADCChannelC (default 0). This is  
-  // actually a platform dependent property, but for this test  
-  // application it is sufficient to sample *any* channel.
-  components MainC, TestAdcC, new AdcChannelC(0) as Sensor, LedsC;
+  components MainC, 
+             TestAdcC, 
+             new DemoSensorC() as Sensor, 
+             LedsC;
 
   TestAdcC -> MainC.Boot;
   MainC.SoftwareInit -> LedsC;
   TestAdcC.Leds -> LedsC;
-  TestAdcC.AcquireData -> Sensor;
+  TestAdcC.Read -> Sensor;
 }
 
