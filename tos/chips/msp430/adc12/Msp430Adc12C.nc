@@ -48,7 +48,7 @@ implementation
 {
   components Msp430Adc12P, HplAdc12P, MSP430TimerC, 
              Msp430RefVoltGeneratorC, MSP430GeneralIOC,
-             new RoundRobinArbiterC(ADC_RESOURCE) as Arbiter;
+             new RoundRobinArbiterC(MSP430ADC12_RESOURCE) as Arbiter;
 
   Init = Arbiter;
   Init = Msp430Adc12P;
