@@ -35,14 +35,16 @@
  
 generic configuration Msp430Adc12ClientC()
 {
+  provides interface Init;
   provides interface Resource;
   provides interface Msp430Adc12SingleChannel;
 } implementation {
   components Msp430Adc12C;
    
   enum {
-    ID = unique(ADC_RESOURCE),
+    ID = unique(MSP430ADC12_RESOURCE),
   };
+  Init = Msp430Adc12C.Init;
   Resource = Msp430Adc12C.Resource[ID];
   Msp430Adc12SingleChannel = Msp430Adc12C.SingleChannel[ID];
 }
