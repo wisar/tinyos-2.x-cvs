@@ -46,10 +46,11 @@ generic configuration AdcReadClientC() {
     CLIENT = unique(ADCC_SERVICE),
   };
 
+  Init = AdcC;
   Init = Msp430AdcClient;
   Read = AdcC.Read[CLIENT];
   Msp430Adc12Config = AdcC.Config[CLIENT];
   AdcC.SingleChannel[CLIENT] -> Msp430AdcClient.Msp430Adc12SingleChannel;
-  AdcC.ResourceRead[CLIENT] ->  Msp430AdcClient.Resource;
+  AdcC.Resource[CLIENT] ->  Msp430AdcClient.Resource;
 }
   
