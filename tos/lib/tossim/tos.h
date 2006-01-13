@@ -61,6 +61,8 @@ enum { FALSE = 0, TRUE = 1 };
 
 extern uint16_t TOS_LOCAL_ADDRESS;
 
+#define PROGMEM
+
 #ifndef TOSSIM_MAX_NODES
 #define TOSSIM_MAX_NODES 1000
 #endif
@@ -75,6 +77,11 @@ extern uint16_t TOS_LOCAL_ADDRESS;
 // build process means that this is the only really good place to put
 // them.
 #ifdef TOSSIM
+
+struct @atmostonce { };
+struct @atleastonce { };
+struct @exactlyonce { };
+
 #include <sim_log.c>
 #include <heap.c>
 #include <sim_event_queue.c>
