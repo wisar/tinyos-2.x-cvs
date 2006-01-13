@@ -236,6 +236,10 @@ enum sampcon_id_enum
 // The unique string for accessing HAL2
 #define ADCC_SERVICE "AdcC.Service"
 
+// The unique string for accessing HAL2 via ReadStream
+#define ADCC_READ_STREAM_SERVICE "AdcC.ReadStream.Client"
+
+
 typedef struct 
 {
   volatile unsigned
