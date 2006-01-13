@@ -33,14 +33,17 @@
  * ========================================================================
  */
 
-/**
- * This application tests the ADC subsystem: if the test is successful,
- * it turns on LED0 and LED1. LED0 denotes whether the call to Read
- * an ADC sample succeeded, and LED1 denotes whether the ADC successfully
- * delivered a sample. 
+/** 
+ * Tests the AdcC and switches on LED1, LED2 and LED3 if the test is
+ * successful: 
+ * LED1 denotes a successful Read operation, 
+ * LED2 denotes a successful ReadNow operation, 
+ * LED3 denotes a successful ReadStream operation.  
+ *
+ * Requires a DemoSensorC component that provides Read<uint16_t>,
+ * ReadNow<uint16_t> and ReadStream<uint16_t>
  * 
- * Author: Jan Hauer
- * Date:   Jan 9, 2006
+ * Author: Jan Hauer 
  */
 
 configuration TestAdcAppC {
@@ -56,5 +59,7 @@ implementation
   MainC.SoftwareInit -> LedsC;
   TestAdcC.Leds -> LedsC;
   TestAdcC.Read -> Sensor;
+  TestAdcC.ReadNow -> Sensor;
+  TestAdcC.ReadStream -> Sensor;
 }
 

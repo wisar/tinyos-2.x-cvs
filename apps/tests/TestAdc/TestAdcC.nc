@@ -34,29 +34,56 @@
  */
 
 /**
- * The implementation of the TestAdc application. Switches first two
- * LEDs on if test is successful.
+ * Tests the AdcC and switches on LED1, LED2 and LED3 if the test is successful:
+ * LED1 denotes a successful Read operation,
+ * LED2 denotes a successful ReadNow operation,
+ * LED3 denotes a successful ReadStream operation.
  *
  * Author: Jan Hauer
- * Date: August 8, 2005
+ * Date: January 13 (a Friday), 2005
  **/
 module TestAdcC
 {
   uses interface Read<uint16_t> as Read;
+  uses interface ReadNow<uint16_t> as ReadNow;
+  uses interface ReadStream<uint16_t> as ReadStream;
   uses interface Boot;
   uses interface Leds;
 }
 implementation
 {
+#define BUF_SIZE 100
+  uint16_t buf[BUF_SIZE];
+  
   event void Boot.booted()
   {
-    if (call Read.read() == SUCCESS)
-      call Leds.led0On();
+    call ReadNow.read();
+    call Read.read();
+    call ReadStream.postBuffer(buf, BUF_SIZE);
+    call ReadStream.read(10000);
   }
-
+  
   event void Read.readDone(error_t result, uint16_t data)
   {
-    call Leds.led1On();
+    if (result == SUCCESS)
+      call Leds.led0On();
+  }
+  
+  async event void ReadNow.readDone(error_t result, uint16_t data)
+  {
+    if (result == SUCCESS)
+      call Leds.led1On();
+  }
+
+  event void ReadStream.bufferDone( error_t result, 
+			 uint16_t* buffer, uint16_t count )
+  {
+  }
+
+  event void ReadStream.readDone(error_t result)
+  {
+    if (result == SUCCESS)
+      call Leds.led2On();
   }
 }
 
