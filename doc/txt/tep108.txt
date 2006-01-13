@@ -464,13 +464,12 @@ high-priority client.
 ====================================================================
 
 | Kevin Klues
-| Sekr FT5
-| Einsteinufer 25
-| 10587 Berlin
-| GERMANY
+| 503 Bryan Hall
+| Washington University
+| St. Louis, MO 63130
 |
-| phone - +49-30-314-23813
-| email - klues@tkn.tu-berlin.de
+| phone - +1-314-935-6355
+| email - klueska@cs.wustl.edu
 |
 | Philip Levis
 | 358 Gates Hall
