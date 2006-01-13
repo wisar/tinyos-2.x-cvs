@@ -40,13 +40,25 @@ generic configuration DemoSensorC()
     interface Init;
     interface Read<uint16_t> as Read;
     interface ReadNow<uint16_t> as ReadNow;
+    interface ReadStream<uint16_t> as ReadStream;
   }
 }
 implementation
 {
-  components new PhotoSensorC() as Sensor;
+  components SensorSettingsC as Settings;
+             
+  components new AdcReadClientC() as AdcReadClient;
+  Init = AdcReadClient;
+  Read = AdcReadClient;
+  AdcReadClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
   
-  Init = Sensor;
-  Read = Sensor;
-  ReadNow = Sensor;
+  components new AdcReadNowClientC() as AdcReadNowClient;
+  Init = AdcReadNowClient;
+  ReadNow = AdcReadNowClient;
+  AdcReadNowClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_VCC];  
+
+  components new AdcReadStreamClientC() as AdcReadStreamClient;
+  Init = AdcReadStreamClient;
+  ReadStream = AdcReadStreamClient;
+  AdcReadStreamClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT]; 
 }

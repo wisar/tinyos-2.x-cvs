@@ -56,3 +56,4 @@ implementation
   ReadNow = AdcReadNowClient;
   AdcReadNowClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
 }
+
