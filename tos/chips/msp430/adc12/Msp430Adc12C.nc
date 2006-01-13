@@ -68,8 +68,8 @@ implementation
   Msp430Adc12P.Port66 -> MSP430GeneralIOC.Port66;
   Msp430Adc12P.Port67 -> MSP430GeneralIOC.Port67;
 
+  // exclusive access to TimerA expected
   Msp430Adc12P.TimerA -> MSP430TimerC.TimerA;
-  //Msp430Adc12P.TimerAResource -> MSP430TimerC.TimerAResource;
   Msp430Adc12P.ControlA0 -> MSP430TimerC.ControlA0;
   Msp430Adc12P.ControlA1 -> MSP430TimerC.ControlA1;
   Msp430Adc12P.CompareA0 -> MSP430TimerC.CompareA0;
