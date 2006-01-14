@@ -32,14 +32,13 @@
  * @author Kevin Klues <klueska@cs.wustl.edu>
  */
  
-generic module PowerManagerC() {
+generic module PowerManagerP() {
   provides {
     interface Init;
   }
   uses {
     interface StdControl;
     interface SplitControl;
-    interface AsyncSplitControl;
 
     interface PowerDownCleanup;
     interface Init as ArbiterInit;
@@ -73,14 +72,10 @@ implementation {
 
   async event void ResourceController.requested() {
     if(f.stopping == FALSE)
-      call AsyncSplitControl.start();
+      post startTask();
     else atomic f.requested = TRUE;
   }
-
-  default async command error_t AsyncSplitControl.start() {
-    post startTask();
-    return SUCCESS;
-  }
+  
   default command error_t StdControl.start() {
     return SUCCESS;
   }
@@ -89,40 +84,32 @@ implementation {
     return SUCCESS;
   }
 
-  async event void AsyncSplitControl.startDone(error_t error) {
-    call ResourceController.release();
-  }
   event void SplitControl.startDone(error_t error) {
     call ResourceController.release();
   }
-
+  
   async event void ResourceController.idle() {
     if(call ResourceController.immediateRequest() == SUCCESS) {
       f.stopping = TRUE;
       call PowerDownCleanup.cleanup();
-      call AsyncSplitControl.stop();
+      post stopTask();
     }
   }
 
-  async event void AsyncSplitControl.stopDone(error_t error) {
-    if(f.requested == TRUE)
-      call AsyncSplitControl.start();
+  event void SplitControl.stopDone(error_t error) {
+    if(f.requested == TRUE) {
+      call StdControl.start();
+      call SplitControl.start();
+    }
     atomic {
       f.requested = FALSE;
       f.stopping = FALSE;
     }
   }
-  event void SplitControl.stopDone(error_t error) {
-    signal AsyncSplitControl.stopDone(error);
-  }
 
   event void ResourceController.granted() {
   }
 
-  default async command error_t AsyncSplitControl.stop() {
-    post stopTask();
-    return SUCCESS;
-  }
   default command error_t StdControl.stop() {
     return SUCCESS;
   }

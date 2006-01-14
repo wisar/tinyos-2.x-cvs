@@ -27,19 +27,17 @@
  */
  
  /**
- * PowerManagerC Component  
- *
- * @author Kevin Klues (klueska@cs.wustl.edu)
+ * PowerManager generic module
+ * 
+ * @author Kevin Klues <klueska@cs.wustl.edu>
  */
  
-generic configuration DeferredPowerManagerC(uint32_t delay) {
+generic module AsyncPowerManagerP() {
   provides {
     interface Init;
   }
   uses {
-    interface StdControl;
-    interface SplitControl;
-    interface AsyncSplitControl;
+    interface AsyncStdControl;
 
     interface PowerDownCleanup;
     interface Init as ArbiterInit;
@@ -48,21 +46,45 @@ generic configuration DeferredPowerManagerC(uint32_t delay) {
   }
 }
 implementation {
-  components new OskiTimerMilliC(),
-             new DeferredPowerManagerP(delay) as PowerManager;
 
-  Init = PowerManager;
- 
-  PowerManager.StdControl = StdControl;
-  PowerManager.SplitControl = SplitControl;
-  PowerManager.AsyncSplitControl = AsyncSplitControl;
+  norace struct {
+    uint8_t stopping :1;
+    uint8_t requested :1;
+  } f; //for flags
+  
+  command error_t Init.init() {
+    call ArbiterInit.init();
+    call ResourceController.immediateRequest();
+    return SUCCESS;
+  }
 
-  PowerManager.PowerDownCleanup = PowerDownCleanup;
- 
-  PowerManager.ArbiterInit  = ArbiterInit;
-  PowerManager.ResourceController = ResourceController;
-  PowerManager.ArbiterInfo = ArbiterInfo;
+  async event void ResourceController.requested() {
+    if(f.stopping == FALSE) {
+      call AsyncStdControl.start();
+      call ResourceController.release();
+    }
+    else atomic f.requested = TRUE;    
+  }
 
-  PowerManager.TimerMilli -> OskiTimerMilliC;
+  async event void ResourceController.idle() {
+    if(call ResourceController.immediateRequest() == SUCCESS) {
+      atomic f.stopping = TRUE;
+      call PowerDownCleanup.cleanup();
+      call AsyncStdControl.stop();
+    }
+    if(f.requested == TRUE) {
+      call AsyncStdControl.start();
+      call ResourceController.release();
+    }
+    atomic {
+      f.stopping = FALSE;
+      f.requested = FALSE;
+    }
+  }
+
+  event void ResourceController.granted() {
+  }
+
+  default async command void PowerDownCleanup.cleanup() {
+  }
 }
-
