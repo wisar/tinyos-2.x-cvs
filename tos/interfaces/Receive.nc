@@ -36,8 +36,8 @@
  */ 
 
 
-includes TinyError;
-includes TOSMsg;
+#include <TinyError.h>
+#include <message.h>
 
 interface Receive {
 

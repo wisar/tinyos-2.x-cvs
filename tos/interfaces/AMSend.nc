@@ -36,9 +36,9 @@
   */ 
 
 
-includes TinyError;
-includes TOSMsg;
-includes AM;
+#include <TinyError.h>
+#include <message.h>
+#include <AM.h>
 
 interface AMSend {
 

@@ -33,7 +33,7 @@
 // $Id$
 
 #include <sim_packet.h>
-#include <TOSMsg.h>
+#include <message.h>
 
 // NOTE: This function is defined in lib/tossim/ActiveMessageC. It
 // has to be predeclared here because it is defined within that component.

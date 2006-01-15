@@ -37,11 +37,23 @@
  */
 
 
-#ifndef RADIO_TOS_MSG_H
-#define RADIO_TOS_MSG_H
+#ifndef PLATFORM_MESSAGE_H
+#define PLATFORM_MESSAGE_H
 
+#include "CC1000Msg.h"
+#include "Serial.h"
 
-#warning "RadioTOSMsg.h has been replaced by platform_message.h. Please update your code to include the latter."
-#include "platform_message.h"
+typedef union message_header {
+  CC1KHeader cc1k;
+  serial_header_t serial;
+} message_header_t;
+
+typedef union message_footer {
+  CC1KFooter cc1k;
+} message_footer_t;
+
+typedef union message_metadata {
+  CC1KMetadata cc1k;
+} message_metadata_t;
 
 #endif

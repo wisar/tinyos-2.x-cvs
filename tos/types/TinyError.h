@@ -28,6 +28,9 @@
  * Defines global error codes for error_t in TinyOS.
  */
 
+#ifndef TINY_ERROR_H_INCLUDED
+#define TINY_ERROR_H_INCLUDED
+
 enum {
   SUCCESS        = 0,          
   FAIL           = 1,           // Generic condition: backwards compatible
@@ -49,3 +52,5 @@ error_t ecombine(error_t r1, error_t r2)
 {
   return r1 == r2 ? r1 : FAIL;
 }
+
+#endif

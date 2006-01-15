@@ -41,10 +41,7 @@
 #ifndef RADIO_TOS_MSG_H
 #define RADIO_TOS_MSG_H
 
-#include "TDA5250Msg.h"
-
-typedef TDA5250Header message_radio_header_t;
-typedef TDA5250Footer message_radio_footer_t;
-typedef TDA5250Metadata message_radio_metadata_t;
+#warning "RadioTOSMsg.h has been replaced by platform_message.h. Please update your code to include the latter."
+#include "platform_message.h"
 
 #endif

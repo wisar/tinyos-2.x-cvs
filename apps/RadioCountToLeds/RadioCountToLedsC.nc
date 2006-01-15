@@ -67,6 +67,7 @@ implementation {
   
   event void MilliTimer.fired() {
     counter++;
+    dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
     if (locked) {
       return;
     }
@@ -85,6 +86,7 @@ implementation {
 
   event message_t* Receive.receive(message_t* bufPtr, 
 				   void* payload, uint8_t len) {
+    dbg("RadioCountToLedsC", "Received packet of length %hhu.\n", len);
     if (len != sizeof(RadioCountMsg)) {return bufPtr;}
     else {
       RadioCountMsg* rcm = (RadioCountMsg*)payload;

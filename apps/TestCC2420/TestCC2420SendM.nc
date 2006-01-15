@@ -25,9 +25,9 @@
 /**
  * @author Joe Polastre
  */
-includes TOSMsg;
-includes CountMsg;
-includes Timer;
+#include <message.h>
+#include <CountMsg.h>
+#include <Timer.h>
 
 module TestCC2420SendM {
   uses interface Boot;

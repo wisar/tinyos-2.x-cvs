@@ -47,7 +47,7 @@
  */
 
 #include "CC1000Const.h"
-#include "TOSMsg.h"
+#include "message.h"
 
 configuration CC1000CsmaRadioC {
   provides {

@@ -29,19 +29,36 @@
 
 /**
  * Defining the platform-independently named packet structures to be the
- * chip-specific CC1000 packet structures.
+ * chip-specific TDA5250 packet structures.
  *
  * @author Philip Levis
+ * @author Vlado Handziski (TDA5250 Modifications)
  * @date   May 16 2005
  * Revision:  $Revision$
  */
 
 
-#ifndef RADIO_TOS_MSG_H
-#define RADIO_TOS_MSG_H
+#ifndef PLATFORM_TOS_MSG_H
+#define PLATFORM_TOS_MSG_H
 
+#include "Serial.h"
+#include "TDA5250Msg.h"
 
-#warning "RadioTOSMsg.h has been replaced by platform_message.h. Please update your code to include the latter."
-#include "platform_message.h"
+typedef union message_header_t {
+  TDA5250Header radio;
+  serial_header_t serial;
+} message_header_t;
+
+typedef union message_footer_t {
+  TDA5250Footer radio;
+} message_footer_t;
+
+typedef union message_metadata_t {
+  TDA5250Metadata radio;
+} message_metadata_t;
+
+typedef TDA5250Header message_radio_header_t;
+typedef TDA5250Footer message_radio_footer_t;
+typedef TDA5250Metadata message_radio_metadata_t;
 
 #endif

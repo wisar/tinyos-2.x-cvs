@@ -36,8 +36,7 @@
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // dirty hack for now
-#include "PlatformTOSMsg.h"
-#include "RadioTOSMsg.h"
+#include <message.h>
 
 /**
 * PacketSerializerP module

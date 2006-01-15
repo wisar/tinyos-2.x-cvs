@@ -40,18 +40,8 @@
 #ifndef RADIO_TOS_MSG_H
 #define RADIO_TOS_MSG_H
 
-#include "CC2420.h"
 
-typedef union TOSRadioHeader {
-  cc2420_header_t cc2420;
-} TOSRadioHeader;
-
-typedef union TOSRadioFooter {
-  cc2420_footer_t cc2420;
-} TOSRadioFooter;
-
-typedef union TOSRadioMetadata {
-  cc2420_metadata_t cc2420;
-} TOSRadioMetadata;
+#warning "RadioTOSMsg.h has been replaced by platform_message.h. Please update your code to include the latter."
+#include "platform_message.h"
 
 #endif

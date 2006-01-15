@@ -40,20 +40,7 @@
 #ifndef RADIO_TOS_MSG_H
 #define RADIO_TOS_MSG_H
 
-#include "CC1000Msg.h"
-#include "Serial.h"
-
-typedef union TOSRadioHeader {
-  CC1KHeader cc1k;
-  SerialAMHeader serial;
-} TOSRadioHeader;
-
-typedef union TOSRadioFooter {
-  CC1KFooter cc1k;
-} TOSRadioFooter;
-
-typedef union TOSRadioMetadata {
-  CC1KMetadata cc1k;
-} TOSRadioMetadata;
+#warning "RadioTOSMsg.h has been replaced by platform_message.h. Please update your code to include the latter."
+#include "platform_message.h"
 
 #endif

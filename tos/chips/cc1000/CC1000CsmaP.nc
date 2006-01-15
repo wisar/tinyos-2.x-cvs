@@ -44,7 +44,7 @@
  * @author David Gay
  */
   
-#include "TOSMsg.h"
+#include "message.h"
 #include "crc.h"
 #include "CC1000Const.h"
 #include "Timer.h"

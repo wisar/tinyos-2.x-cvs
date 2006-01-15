@@ -37,8 +37,8 @@
   */ 
 
 
-includes TOSMsg;
-includes AM;
+#include <message.h>
+#include <AM.h>
 
 interface AMPacket {
 

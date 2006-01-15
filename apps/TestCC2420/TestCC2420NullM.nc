@@ -25,7 +25,7 @@
 /**
  * @author Joe Polastre
  */
-includes TOSMsg;
+#include <message.h>
 
 module TestCC2420NullM {
   uses interface Boot;

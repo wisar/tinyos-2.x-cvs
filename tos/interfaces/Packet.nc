@@ -37,7 +37,7 @@
   */ 
 
 
-includes TOSMsg;
+#include <message.h>
 
 interface Packet {
 
