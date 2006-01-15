@@ -29,7 +29,7 @@ generic module Atm128CounterC(typedef frequency_tag,
 			      typedef timer_size @integer())
 {
   provides interface Counter<frequency_tag,timer_size> as Counter;
-  uses interface HplTimer<timer_size> as Timer;
+  uses interface HplAtm128Timer<timer_size> as Timer;
 }
 implementation
 {

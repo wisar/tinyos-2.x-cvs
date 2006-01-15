@@ -58,7 +58,7 @@ configuration HplAtm128SpiC {
 }
 implementation
 {
-    components HplGeneralIOC as IO, HplAtm128SpiP as HplSpi;
+    components HplAtm128GeneralIOC as IO, HplAtm128SpiP as HplSpi;
     
     SpiBus = HplSpi;
 

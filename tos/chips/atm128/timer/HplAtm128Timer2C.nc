@@ -26,12 +26,12 @@
 
 #include <Atm128Timer.h>
 
-module HplTimer2C
+module HplAtm128Timer2C
 {
   provides {
-    interface HplTimer<uint8_t>   as Timer2;
-    interface HplTimerCtrl8       as Timer2Ctrl;
-    interface HplCompare<uint8_t> as Compare2;
+    interface HplAtm128Timer<uint8_t>   as Timer2;
+    interface HplAtm128TimerCtrl8       as Timer2Ctrl;
+    interface HplAtm128Compare<uint8_t> as Compare2;
   }
 }
 implementation

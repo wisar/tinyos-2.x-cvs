@@ -32,7 +32,7 @@
  * @author Philip Levis <pal@cs.stanford.edu>
  */
 
-// $Id$/// $Id: HplTimer2C.nc,
+// $Id$/// $Id: HplAtm128Timer2C.nc,
 
 
 interface HplAtm128TimerNotify {

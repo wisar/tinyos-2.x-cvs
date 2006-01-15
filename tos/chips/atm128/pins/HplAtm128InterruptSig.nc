@@ -31,7 +31,7 @@
  * Exposes just the interrupt vector routine for 
  * easy linking to generic components.
  */
-interface HplInterruptSig
+interface HplAtm128InterruptSig
 {
   /**
    * Signalled when an interrupt occurs on a pin

@@ -24,19 +24,22 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-#include <Atm128Timer.h>
-
-interface HplTimerCtrl8
+interface HplAtm128Capture<size_type>
 {
-  /// Timer control register: Direct access
-  async command Atm128TimerControl_t getControl();
-  async command void setControl( Atm128TimerControl_t control );
+  /// Capture value register: Direct access
+  async command size_type get();
+  async command void      set(size_type t);
 
-  /// Interrupt mask register: Direct access
-  async command Atm128_TIMSK_t getInterruptMask();
-  async command void setInterruptMask( Atm128_TIMSK_t mask);
+  /// Interrupt signals
+  async event void captured(size_type t);  //<! Signalled on capture interrupt
 
-  /// Interrupt flag register: Direct access
-  async command Atm128_TIFR_t getInterruptFlag();
-  async command void setInterruptFlag( Atm128_TIFR_t flags );
+  /// Interrupt flag utilites: Bit level set/clr  
+  async command void reset();          //<! Clear the capture interrupt flag
+  async command void start();          //<! Enable the capture interrupt
+  async command void stop();           //<! Turn off capture interrupts
+  async command bool test();           //<! Did capture interrupt occur?
+  async command bool isOn();           //<! Is capture interrupt on?
+
+  async command void setEdge(bool up); //<! True = detect rising edge
 }
+

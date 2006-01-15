@@ -24,38 +24,41 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-generic configuration HplGeneralIOPortP (uint8_t port_addr, uint8_t ddr_addr, uint8_t pin_addr)
+/**
+ * Interrupt interface access for interrupt capable GPIO pins.
+ */
+generic module HplAtm128InterruptPinP (uint8_t ctrl_addr, 
+				 uint8_t edge0bit, 
+				 uint8_t edge1bit, 
+				 uint8_t bit)
 {
-  // provides all the ports as raw ports
-  provides {
-    interface GeneralIO as Pin0;
-    interface GeneralIO as Pin1;
-    interface GeneralIO as Pin2;
-    interface GeneralIO as Pin3;
-    interface GeneralIO as Pin4;
-    interface GeneralIO as Pin5;
-    interface GeneralIO as Pin6;
-    interface GeneralIO as Pin7;
-  }
+  provides interface HplAtm128Interrupt as Irq;
+  uses interface HplAtm128InterruptSig as IrqSignal;
 }
 implementation
 {
-  components 
-  new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 0) as Bit0,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 1) as Bit1,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 2) as Bit2,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 3) as Bit3,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 4) as Bit4,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 5) as Bit5,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 6) as Bit6,
-    new HplGeneralIOPinP (port_addr, ddr_addr, pin_addr, 7) as Bit7;
+  inline async command bool Irq.getValue() { return (EIFR & (1 << bit)) != 0; }
+  inline async command void Irq.clear()    { EIFR = 1 << bit; }
+  inline async command void Irq.enable()   { EIMSK |= 1 << bit; }
+  inline async command void Irq.disable()  { EIMSK &= ~(1 << bit); }
 
-  Pin0 = Bit0;
-  Pin1 = Bit1;
-  Pin2 = Bit2;
-  Pin3 = Bit3;
-  Pin4 = Bit4;
-  Pin5 = Bit5;
-  Pin6 = Bit6;
-  Pin7 = Bit7;
+#define ctrl  (*(volatile uint8_t *)ctrl_addr)
+
+  inline async command void Irq.edge(bool low_to_high) {
+    ctrl |= 1 << edge1bit; // use edge mode
+    // and select rising vs falling
+    if (low_to_high)
+      ctrl |= 1 << edge0bit;
+    else
+      ctrl &= ~(1 << edge0bit);
+  }
+
+  /** 
+   * Forward the external interrupt event.  This ties the statically
+   * allocated interrupt vector SIG_INTERRUPT##bit to a particular
+   * pin passed in via the generic component instantiation.
+   */
+  async event void IrqSignal.fired() { signal Irq.fired(); }
+
+  default async event void Irq.fired() { }
 }

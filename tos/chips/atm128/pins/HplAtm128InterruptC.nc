@@ -26,18 +26,18 @@
 
 #include <atm128hardware.h>
 
-configuration HplInterruptC
+configuration HplAtm128InterruptC
 {
   // provides all the ports as raw ports
   provides {
-    interface HplInterrupt as Int0;
-    interface HplInterrupt as Int1;
-    interface HplInterrupt as Int2;
-    interface HplInterrupt as Int3;
-    interface HplInterrupt as Int4;
-    interface HplInterrupt as Int5;
-    interface HplInterrupt as Int6;
-    interface HplInterrupt as Int7;
+    interface HplAtm128Interrupt as Int0;
+    interface HplAtm128Interrupt as Int1;
+    interface HplAtm128Interrupt as Int2;
+    interface HplAtm128Interrupt as Int3;
+    interface HplAtm128Interrupt as Int4;
+    interface HplAtm128Interrupt as Int5;
+    interface HplAtm128Interrupt as Int6;
+    interface HplAtm128Interrupt as Int7;
   }
 }
 implementation
@@ -46,15 +46,15 @@ implementation
 #define IRQ_PORT_E_PIN(bit) (uint8_t)&EICRB, ISC##bit##0, ISC##bit##1, bit
 
   components 
-    HplInterruptSigP as IrqVector,
-    new HplInterruptPinP(IRQ_PORT_D_PIN(0)) as IntPin0,
-    new HplInterruptPinP(IRQ_PORT_D_PIN(1)) as IntPin1,
-    new HplInterruptPinP(IRQ_PORT_D_PIN(2)) as IntPin2,
-    new HplInterruptPinP(IRQ_PORT_D_PIN(3)) as IntPin3,
-    new HplInterruptPinP(IRQ_PORT_E_PIN(4)) as IntPin4,
-    new HplInterruptPinP(IRQ_PORT_E_PIN(5)) as IntPin5,
-    new HplInterruptPinP(IRQ_PORT_E_PIN(6)) as IntPin6,
-    new HplInterruptPinP(IRQ_PORT_E_PIN(7)) as IntPin7;
+    HplAtm128InterruptSigP as IrqVector,
+    new HplAtm128InterruptPinP(IRQ_PORT_D_PIN(0)) as IntPin0,
+    new HplAtm128InterruptPinP(IRQ_PORT_D_PIN(1)) as IntPin1,
+    new HplAtm128InterruptPinP(IRQ_PORT_D_PIN(2)) as IntPin2,
+    new HplAtm128InterruptPinP(IRQ_PORT_D_PIN(3)) as IntPin3,
+    new HplAtm128InterruptPinP(IRQ_PORT_E_PIN(4)) as IntPin4,
+    new HplAtm128InterruptPinP(IRQ_PORT_E_PIN(5)) as IntPin5,
+    new HplAtm128InterruptPinP(IRQ_PORT_E_PIN(6)) as IntPin6,
+    new HplAtm128InterruptPinP(IRQ_PORT_E_PIN(7)) as IntPin7;
   
   Int0 = IntPin0;
   Int1 = IntPin1;

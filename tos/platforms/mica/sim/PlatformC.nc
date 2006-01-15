@@ -24,22 +24,19 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-interface HplCapture<size_type>
+includes hardware;
+
+configuration PlatformC {
+  provides interface Init;
+  uses interface Init as SubInit;
+}
+implementation
 {
-  /// Capture value register: Direct access
-  async command size_type get();
-  async command void      set(size_type t);
+  components PlatformP, MotePlatformC;
+  
+  Init = PlatformP;
+  PlatformP.MoteInit -> MotePlatformC;
+  MotePlatformC.SubInit = SubInit;
 
-  /// Interrupt signals
-  async event void captured(size_type t);  //<! Signalled on capture interrupt
-
-  /// Interrupt flag utilites: Bit level set/clr  
-  async command void reset();          //<! Clear the capture interrupt flag
-  async command void start();          //<! Enable the capture interrupt
-  async command void stop();           //<! Turn off capture interrupts
-  async command bool test();           //<! Did capture interrupt occur?
-  async command bool isOn();           //<! Is capture interrupt on?
-
-  async command void setEdge(bool up); //<! True = detect rising edge
 }
 

@@ -1,4 +1,4 @@
-// $Id$
+/// $Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -23,34 +23,21 @@
  */
 
 /// @author Martin Turon <mturon@xbow.com>
-/// @author David Gay <dgay@intel-research.net>
 
-/**
- * Generic pin access for pins mapped into I/O space (for which the sbi, cbi
- * instructions give atomic updates). This can be used for ports A-E.
- */
-generic module HplGeneralIOPinP (uint8_t port_addr, 
-				 uint8_t ddr_addr, 
-				 uint8_t pin_addr,
-				 uint8_t bit)
+interface HplAtm128Compare<size_type>
 {
-  provides interface GeneralIO as IO;
-}
-implementation
-{
-#define pin  pin_addr
-#define port port_addr
-#define ddr  ddr_addr
+  /// Compare value register: Direct access
+  async command size_type get();
+  async command void      set(size_type t);
 
-  inline async command bool IO.get()        { return READ_BIT (port, bit); }
-  inline async command void IO.set()        {
-    dbg("Pins", "Setting bit %i of port %i.\n", (int)bit, (int)port);
-    SET_BIT  (port, bit);
-  }
-  inline async command void IO.clr()        { CLR_BIT  (port, bit); }
-  inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
-    
-  inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
-  inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
+  /// Interrupt signals
+  async event void fired();           //<! Signalled on compare interrupt
+
+  /// Interrupt flag utilites: Bit level set/clr
+  async command void reset();         //<! Clear the compare interrupt flag
+  async command void start();         //<! Enable the compare interrupt
+  async command void stop();          //<! Turn off comparee interrupts
+  async command bool test();          //<! Did compare interrupt occur?
+  async command bool isOn();          //<! Is compare interrupt on?
 }
 

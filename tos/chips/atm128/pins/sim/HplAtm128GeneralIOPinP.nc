@@ -26,28 +26,31 @@
 /// @author David Gay <dgay@intel-research.net>
 
 /**
- * Generic pin access for pins not mapped into I/O space (for which the
- * sbi, cbi instructions cannot be used). This can be used for ports F-G.
+ * Generic pin access for pins mapped into I/O space (for which the sbi, cbi
+ * instructions give atomic updates). This can be used for ports A-E.
  */
-
-generic module HplGeneralIOSlowPinP (uint8_t port_addr, 
-				     uint8_t ddr_addr, 
-				     uint8_t pin_addr,
-				     uint8_t bit)
+generic module HplAtm128GeneralIOPinP (uint8_t port_addr, 
+				 uint8_t ddr_addr, 
+				 uint8_t pin_addr,
+				 uint8_t bit)
 {
   provides interface GeneralIO as IO;
 }
 implementation
 {
-#define pin (*(volatile uint8_t *)pin_addr)
-#define port (*(volatile uint8_t *)port_addr)
-#define ddr (*(volatile uint8_t *)ddr_addr)
+#define pin  pin_addr
+#define port port_addr
+#define ddr  ddr_addr
 
-  inline async command bool IO.get()        { return READ_BIT (pin, bit); }
-  inline async command void IO.set()        { atomic SET_BIT  (port, bit); }
-  inline async command void IO.clr()        { atomic CLR_BIT  (port, bit); }
+  inline async command bool IO.get()        { return READ_BIT (port, bit); }
+  inline async command void IO.set()        {
+    dbg("Pins", "Setting bit %i of port %i.\n", (int)bit, (int)port);
+    SET_BIT  (port, bit);
+  }
+  inline async command void IO.clr()        { CLR_BIT  (port, bit); }
   inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
     
-  inline async command void IO.makeInput()  { atomic CLR_BIT  (ddr, bit);  }
-  inline async command void IO.makeOutput() { atomic SET_BIT  (ddr, bit);  }
+  inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
+  inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
 }
+

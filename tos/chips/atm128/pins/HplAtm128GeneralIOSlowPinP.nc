@@ -1,4 +1,4 @@
-/// $Id$
+// $Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -23,26 +23,31 @@
  */
 
 /// @author Martin Turon <mturon@xbow.com>
+/// @author David Gay <dgay@intel-research.net>
 
-#include <Atm128Timer.h>
+/**
+ * Generic pin access for pins not mapped into I/O space (for which the
+ * sbi, cbi instructions cannot be used). This can be used for ports F-G.
+ */
 
-interface HplTimerCtrl16
+generic module HplAtm128GeneralIOSlowPinP (uint8_t port_addr, 
+				     uint8_t ddr_addr, 
+				     uint8_t pin_addr,
+				     uint8_t bit)
 {
-  /// Timer control registers: Direct access
-  async command Atm128TimerCtrlCompare_t getCtrlCompare();
-  async command Atm128TimerCtrlCapture_t getCtrlCapture();
-  async command Atm128TimerCtrlClock_t   getCtrlClock();
-
-  async command void setCtrlCompare( Atm128TimerCtrlCompare_t control );
-  async command void setCtrlCapture( Atm128TimerCtrlCapture_t control );
-  async command void setCtrlClock  ( Atm128TimerCtrlClock_t   control );
-
-  /// Interrupt mask register: Direct access
-  async command Atm128_ETIMSK_t getInterruptMask();
-  async command void setInterruptMask( Atm128_ETIMSK_t mask);
-
-  /// Interrupt flag register: Direct access
-  async command Atm128_ETIFR_t getInterruptFlag();
-  async command void setInterruptFlag( Atm128_ETIFR_t flags );
+  provides interface GeneralIO as IO;
 }
+implementation
+{
+#define pin (*(volatile uint8_t *)pin_addr)
+#define port (*(volatile uint8_t *)port_addr)
+#define ddr (*(volatile uint8_t *)ddr_addr)
 
+  inline async command bool IO.get()        { return READ_BIT (pin, bit); }
+  inline async command void IO.set()        { atomic SET_BIT  (port, bit); }
+  inline async command void IO.clr()        { atomic CLR_BIT  (port, bit); }
+  inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
+    
+  inline async command void IO.makeInput()  { atomic CLR_BIT  (ddr, bit);  }
+  inline async command void IO.makeOutput() { atomic SET_BIT  (ddr, bit);  }
+}

@@ -24,20 +24,25 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-interface HplCompare<size_type>
+#include <Atm128Timer.h>
+
+interface HplAtm128TimerCtrl16
 {
-  /// Compare value register: Direct access
-  async command size_type get();
-  async command void      set(size_type t);
+  /// Timer control registers: Direct access
+  async command Atm128TimerCtrlCompare_t getCtrlCompare();
+  async command Atm128TimerCtrlCapture_t getCtrlCapture();
+  async command Atm128TimerCtrlClock_t   getCtrlClock();
 
-  /// Interrupt signals
-  async event void fired();           //<! Signalled on compare interrupt
+  async command void setCtrlCompare( Atm128TimerCtrlCompare_t control );
+  async command void setCtrlCapture( Atm128TimerCtrlCapture_t control );
+  async command void setCtrlClock  ( Atm128TimerCtrlClock_t   control );
 
-  /// Interrupt flag utilites: Bit level set/clr
-  async command void reset();         //<! Clear the compare interrupt flag
-  async command void start();         //<! Enable the compare interrupt
-  async command void stop();          //<! Turn off comparee interrupts
-  async command bool test();          //<! Did compare interrupt occur?
-  async command bool isOn();          //<! Is compare interrupt on?
+  /// Interrupt mask register: Direct access
+  async command Atm128_ETIMSK_t getInterruptMask();
+  async command void setInterruptMask( Atm128_ETIMSK_t mask);
+
+  /// Interrupt flag register: Direct access
+  async command Atm128_ETIFR_t getInterruptFlag();
+  async command void setInterruptFlag( Atm128_ETIFR_t flags );
 }
 

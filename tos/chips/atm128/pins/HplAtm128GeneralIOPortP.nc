@@ -1,4 +1,4 @@
-/// $Id$
+// $Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -24,28 +24,38 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-configuration HplTimer1C
+generic configuration HplAtm128GeneralIOPortP (uint8_t port_addr, uint8_t ddr_addr, uint8_t pin_addr)
 {
+  // provides all the ports as raw ports
   provides {
-    // 16-bit Timers
-    interface HplTimer<uint16_t>   as Timer1;
-    interface HplTimerCtrl16       as Timer1Ctrl;
-    interface HplCapture<uint16_t> as Capture1;
-    interface HplCompare<uint16_t> as Compare1A;
-    interface HplCompare<uint16_t> as Compare1B;
-    interface HplCompare<uint16_t> as Compare1C;
+    interface GeneralIO as Pin0;
+    interface GeneralIO as Pin1;
+    interface GeneralIO as Pin2;
+    interface GeneralIO as Pin3;
+    interface GeneralIO as Pin4;
+    interface GeneralIO as Pin5;
+    interface GeneralIO as Pin6;
+    interface GeneralIO as Pin7;
   }
 }
 implementation
 {
-  components HplTimer0AsyncC, HplTimer1P;
+  components 
+  new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 0) as Bit0,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 1) as Bit1,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 2) as Bit2,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 3) as Bit3,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 4) as Bit4,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 5) as Bit5,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 6) as Bit6,
+    new HplAtm128GeneralIOPinP (port_addr, ddr_addr, pin_addr, 7) as Bit7;
 
-  Timer1 = HplTimer1P;
-  Timer1Ctrl = HplTimer1P;
-  Capture1 = HplTimer1P;
-  Compare1A = HplTimer1P.Compare1A;
-  Compare1B = HplTimer1P.Compare1B;
-  Compare1C = HplTimer1P.Compare1C;
-
-  HplTimer1P.Timer0Ctrl -> HplTimer0AsyncC;
+  Pin0 = Bit0;
+  Pin1 = Bit1;
+  Pin2 = Bit2;
+  Pin3 = Bit3;
+  Pin4 = Bit4;
+  Pin5 = Bit5;
+  Pin6 = Bit6;
+  Pin7 = Bit7;
 }

@@ -23,42 +23,31 @@
  */
 
 /// @author Martin Turon <mturon@xbow.com>
+/// @author David Gay <dgay@intel-research.net>
 
 /**
- * Interrupt interface access for interrupt capable GPIO pins.
+ * Generic pin access for pins mapped into I/O space (for which the sbi, cbi
+ * instructions give atomic updates). This can be used for ports A-E.
  */
-generic module HplInterruptPinP (uint8_t ctrl_addr, 
-				 uint8_t edge0bit, 
-				 uint8_t edge1bit, 
+generic module HplAtm128GeneralIOPinP (uint8_t port_addr, 
+				 uint8_t ddr_addr, 
+				 uint8_t pin_addr,
 				 uint8_t bit)
 {
-  provides interface HplInterrupt as Irq;
-  uses interface HplInterruptSig as IrqSignal;
+  provides interface GeneralIO as IO;
 }
 implementation
 {
-  inline async command bool Irq.getValue() { return (EIFR & (1 << bit)) != 0; }
-  inline async command void Irq.clear()    { EIFR = 1 << bit; }
-  inline async command void Irq.enable()   { EIMSK |= 1 << bit; }
-  inline async command void Irq.disable()  { EIMSK &= ~(1 << bit); }
+#define pin (*(volatile uint8_t *)pin_addr)
+#define port (*(volatile uint8_t *)port_addr)
+#define ddr (*(volatile uint8_t *)ddr_addr)
 
-#define ctrl  (*(volatile uint8_t *)ctrl_addr)
-
-  inline async command void Irq.edge(bool low_to_high) {
-    ctrl |= 1 << edge1bit; // use edge mode
-    // and select rising vs falling
-    if (low_to_high)
-      ctrl |= 1 << edge0bit;
-    else
-      ctrl &= ~(1 << edge0bit);
-  }
-
-  /** 
-   * Forward the external interrupt event.  This ties the statically
-   * allocated interrupt vector SIG_INTERRUPT##bit to a particular
-   * pin passed in via the generic component instantiation.
-   */
-  async event void IrqSignal.fired() { signal Irq.fired(); }
-
-  default async event void Irq.fired() { }
+  inline async command bool IO.get()        { return READ_BIT (pin, bit); }
+  inline async command void IO.set()        { SET_BIT  (port, bit); }
+  inline async command void IO.clr()        { CLR_BIT  (port, bit); }
+  inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
+    
+  inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
+  inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
 }
+

@@ -42,11 +42,11 @@ generic module HplAtm128CompareC(typedef width_t @integer(),
 {
   provides {
     // 8-bit Timers
-    interface HplCompare<width_t> as Compare;
+    interface HplAtm128Compare<width_t> as Compare;
   }
   uses {
-    interface HplTimer<width_t>   as Timer;
-    interface HplTimerCtrl8       as TimerCtrl;
+    interface HplAtm128Timer<width_t>   as Timer;
+    interface HplAtm128TimerCtrl8       as TimerCtrl;
     interface HplAtm128TimerNotify as Notify;
   }
 }

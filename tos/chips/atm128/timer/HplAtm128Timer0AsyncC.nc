@@ -27,14 +27,14 @@
 
 #include <Atm128Timer.h>
 
-module HplTimer0AsyncC
+module HplAtm128Timer0AsyncC
 {
   provides {
     interface Init @atleastonce();
     // 8-bit Timers
-    interface HplTimer<uint8_t>   as Timer0;
-    interface HplTimerCtrl8       as Timer0Ctrl;
-    interface HplCompare<uint8_t> as Compare0;
+    interface HplAtm128Timer<uint8_t>   as Timer0;
+    interface HplAtm128TimerCtrl8       as Timer0Ctrl;
+    interface HplAtm128Compare<uint8_t> as Compare0;
   }
 }
 implementation

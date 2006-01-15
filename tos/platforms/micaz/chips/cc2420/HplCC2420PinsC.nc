@@ -75,7 +75,7 @@ configuration HplCC2420PinsC {
 
 implementation {
 
-  components HplGeneralIOC as IO;
+  components HplAtm128GeneralIOC as IO;
   
   CCA    = IO.PortD6;
   CSN    = IO.PortB0;

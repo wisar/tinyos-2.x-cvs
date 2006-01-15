@@ -1,4 +1,4 @@
-// $Id$
+/// $Id$
 
 /**
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -24,19 +24,19 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-includes hardware;
+#include <Atm128Timer.h>
 
-configuration PlatformLedsC
+interface HplAtm128TimerCtrl8
 {
-  provides interface GeneralIO as Led0;
-  provides interface GeneralIO as Led1;
-  provides interface GeneralIO as Led2;
-}
-implementation
-{
-  components HplAtm128GeneralIOC as IO;
-    
-  Led0 = IO.PortA2;  // Pin A2 = Red LED
-  Led1 = IO.PortA1;  // Pin A1 = Green LED
-  Led2 = IO.PortA0;  // Pin A0 = Yellow LED
+  /// Timer control register: Direct access
+  async command Atm128TimerControl_t getControl();
+  async command void setControl( Atm128TimerControl_t control );
+
+  /// Interrupt mask register: Direct access
+  async command Atm128_TIMSK_t getInterruptMask();
+  async command void setInterruptMask( Atm128_TIMSK_t mask);
+
+  /// Interrupt flag register: Direct access
+  async command Atm128_TIFR_t getInterruptFlag();
+  async command void setInterruptFlag( Atm128_TIFR_t flags );
 }

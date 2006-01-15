@@ -41,7 +41,7 @@
  *      3) Control of Overflow Interrupt: start/stop/clear...
  *      4) Timer Initialization: turn on/off clock source
  */
-interface HplTimer<timer_size>
+interface HplAtm128Timer<timer_size>
 {
   /// Timer value register: Direct access
   async command timer_size get();

@@ -18,10 +18,10 @@ configuration MotePlatformC
   uses interface Init as SubInit;
 }
 implementation {
-  components MotePlatformP, HplGeneralIOC;
+  components MotePlatformP, HplAtm128GeneralIOC;
 
   PlatformInit = MotePlatformP;
   
-  MotePlatformP.SerialIdPin -> HplGeneralIOC.PortA4;
+  MotePlatformP.SerialIdPin -> HplAtm128GeneralIOC.PortA4;
   SubInit = MotePlatformP.SubInit;
 }
