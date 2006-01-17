@@ -38,7 +38,7 @@ ifndef TINYOS_MAKE_PATH
     TINYOS_MAKE_PATH := $(dir $(MAKERULES))
     TINYOS_MAKE_PATH := $(TINYOS_MAKE_PATH:%/=%)
   else
-    TINYOS_MAKE_PATH := $(TOSDIR)/../tools/make
+    TINYOS_MAKE_PATH := $(TOSDIR)/../support/make
   endif
 endif
 

@@ -65,7 +65,10 @@ exe: exe0 bytes FORCE
 
 exe0: builddir asms $(BUILD_EXTRA_DEPS) FORCE
 	@echo "    compiling $(COMPONENT) to a $(PLATFORM) binary"
-	$(NCC) -o $(MAIN_EXE) $(OPTFLAGS) $(PFLAGS) $(CFLAGS) $(COMPONENT).nc $(LIBS) $(LDFLAGS) $(ASSEMBLY_OBJS) $(LIBRARY_OBJS)
+	$(NCC) -o $(MAIN_EXE) $(OPTFLAGS) $(PFLAGS) $(CFLAGS) $(WIRING_CHECK_FLAGS) $(COMPONENT).nc $(LIBS) $(LDFLAGS) $(ASSEMBLY_OBJS) $(LIBRARY_OBJS)
+ifdef WIRING_CHECK_FILE
+	@nescc-wiring $(WIRING_CHECK_FILE)
+endif
 	@echo "    compiled $(COMPONENT) to $(MAIN_EXE)"
 
 builddir: FORCE
