@@ -10,13 +10,14 @@
 /**
  * @author David Gay
  */
+#include "StorageVolumes.h"
+
 configuration RandRWC { }
 implementation {
-  components RandRW, new BlockStorageC(), MainC, LedsC, PlatformC;
+  components RandRW, new BlockStorageC(VOLUME_BLOCKTEST), MainC, LedsC, PlatformC;
 
   MainC.Boot <- RandRW;
   PlatformC.SubInit -> LedsC;
-  RandRW.Mount -> BlockStorageC.Mount;
   RandRW.BlockRead -> BlockStorageC.BlockRead;
   RandRW.BlockWrite -> BlockStorageC.BlockWrite;
   RandRW.Leds -> LedsC;

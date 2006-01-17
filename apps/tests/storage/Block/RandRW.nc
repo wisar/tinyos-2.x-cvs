@@ -20,14 +20,12 @@ module RandRW {
   uses {
     interface Boot;
     interface Leds;
-    interface Mount;
     interface BlockRead;
     interface BlockWrite;
   }
 }
 implementation {
   enum {
-    S_MOUNT,
     S_ERASE,
     S_WRITE,
     S_COMMIT,
@@ -107,8 +105,16 @@ implementation {
     for (i = 0; i < sizeof data; i++)
       data[i++] = rand() >> 8;
 
-    state = S_MOUNT;
-    rcheck(call Mount.mount(1));
+    if (TOS_LOCAL_ADDRESS & 1)
+      {
+	state = S_ERASE;
+	rcheck(call BlockWrite.erase());
+      }
+    else
+      {
+	state = S_VERIFY;
+	rcheck(call BlockRead.verify());
+      }
   }
 
   void nextRead() {
@@ -134,22 +140,6 @@ implementation {
       {
 	setParameters();
 	rcheck(call BlockWrite.write(addr, data + offset, len));
-      }
-  }
-
-  event void Mount.mountDone(storage_result_t result, volume_id_t id) {
-    if (scheck(result))
-      {
-	if (TOS_LOCAL_ADDRESS & 1)
-	  {
-	    state = S_ERASE;
-	    rcheck(call BlockWrite.erase());
-	  }
-	else
-	  {
-	    state = S_VERIFY;
-	    rcheck(call BlockRead.verify());
-	  }
       }
   }
 

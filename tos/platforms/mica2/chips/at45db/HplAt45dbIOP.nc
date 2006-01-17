@@ -53,7 +53,7 @@ module HplAt45dbIOP {
     interface GeneralIO as Clk;
     interface GeneralIO as Out;
     interface GeneralIO as In;
-    interface HplInterrupt as InInterrupt;
+    interface HplAtm128Interrupt as InInterrupt;
     interface BusyWait<TMicro, uint16_t>;
   }
 }
