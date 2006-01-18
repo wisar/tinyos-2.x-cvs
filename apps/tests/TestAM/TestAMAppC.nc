@@ -42,7 +42,7 @@ configuration TestAMAppC {}
 implementation {
   components MainC, TestAMC as App, LedsC;
   components ActiveMessageC;
-  components new OskiTimerMilliC();
+  components new TimerMilliC();
   
   MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> ActiveMessageC;
@@ -53,7 +53,7 @@ implementation {
   App.AMSend -> ActiveMessageC.AMSend[240];
   App.SplitControl -> ActiveMessageC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OskiTimerMilliC;
+  App.MilliTimer -> TimerMilliC;
 }
 
 

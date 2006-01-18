@@ -44,7 +44,7 @@ implementation {
   components MainC, RadioStressC as App, LedsC;
   components new AMSenderC(AM_RADIOCOUNTMSG);
   components new AMReceiverC(AM_RADIOCOUNTMSG);
-  components new OskiTimerMilliC();
+  components new TimerMilliC();
   components new AMServiceC();
   components new AMServiceNotifierC();
   
@@ -59,7 +59,7 @@ implementation {
   App.ServiceNotify -> AMServiceNotifierC;
   App.Packet -> AMSenderC;
   App.Acks -> AMSenderC;
-  App.Timer -> OskiTimerMilliC;
+  App.Timer -> TimerMilliC;
 }
 
 
