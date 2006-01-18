@@ -82,6 +82,11 @@ implementation {
 
     /* Spin in the Scheduler */       
     call Scheduler.taskLoop();
+
+    /* We should never reach this point, but some versions of
+     * gcc don't realize that and issue a warning if we return
+     * void from a non-void function. So include this. */
+    return -1;
   }
 
   default command error_t PlatformInit.init() { return SUCCESS; }
