@@ -31,17 +31,17 @@
 // all platforms, and that this configuration only specifies (implicitly or
 // explicitly) how precisely to use the hardware resources.
 
-configuration TimerMilliC
+#include "Timer.h"
+
+configuration HilTimerMilliC
 {
   provides interface Init;
   provides interface Timer<TMilli> as TimerMilli[ uint8_t num ];
 }
 implementation
 {
-  components new AlarmMilliC()
-	   , new AlarmToTimerC(TMilli)
-	   , new VirtualizeTimerC(TMilli,uniqueCount("TimerMilliC.TimerMilli"))
-	   ;
+  components new AlarmMilliC(), new AlarmToTimerC(TMilli),
+             new VirtualizeTimerC(TMilli,uniqueCount(UQ_TIMER_MILLI));
 
   Init = AlarmMilliC;
   TimerMilli = VirtualizeTimerC;

@@ -30,5 +30,9 @@ typedef struct { } TMilli;
 typedef struct { } T32khz;
 typedef struct { } TMicro;
 
+#define UQ_TIMER_MILLI "HilTimerMilliC.Timer"
+#define UQ_TIMER_32KHZ "HilTimer32khzC.Timer"
+#define UQ_TIMER_MICRO "HilTimerMicroC.Timer"
+
 #endif
 
