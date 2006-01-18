@@ -53,7 +53,9 @@ double sim_gain_value(int src, int dest);
 bool sim_gain_connected(int src, int dest);
 void sim_gain_remove(int src, int dest);
 void sim_gain_set_noise_floor(int node, double mean, double range);
-double sim_gain_noise(int node);
+double sim_gain_sample_noise(int node);
+double sim_gain_noise_mean(int node);
+double sim_gain_noise_range(int node);
 
 void sim_gain_set_sensitivity(double value);
 double sim_gain_sensitivity();

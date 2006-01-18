@@ -34,14 +34,14 @@
 
 #include <Timer.h>
 
-module TimerMilliC {
+module HilTimerMilliC {
   provides interface Init;
   provides interface Timer<TMilli> as TimerMilli[uint8_t num];
 }
 implementation {
 
   enum {
-    TIMER_COUNT = uniqueCount("TimerMilliC.TimerMilli")
+    TIMER_COUNT = uniqueCount("UQ_TIMER_MILLI")
   };
 
   typedef struct tossim_timer {
