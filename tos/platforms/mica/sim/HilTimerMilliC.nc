@@ -34,9 +34,7 @@
 
 #include "Timer.h"
 
-#define TIMERMILLIC_SERVICE "TimerMilliC.TimerMilli"
-
-configuration TimerMilliC
+configuration HilTimerMilliC
 {
   provides interface Init;
   provides interface Timer<TMilli> as TimerMilli[uint8_t num];
@@ -45,7 +43,7 @@ configuration TimerMilliC
 implementation
 {
   components AlarmCounterMilliP, new AlarmToTimerC(TMilli),
-    new VirtualizeTimerC(TMilli, uniqueCount(TIMERMILLIC_SERVICE)),
+    new VirtualizeTimerC(TMilli, uniqueCount(UQ_TIMER_MILLI)),
     new CounterToLocalTimeC(TMilli);
 
   Init = AlarmCounterMilliP;
