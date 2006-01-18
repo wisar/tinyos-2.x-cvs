@@ -31,6 +31,8 @@
  * @date December 2 2005
  */
 
+#include <AM.h>
+
 module TossimActiveMessageP {
   provides {
     
