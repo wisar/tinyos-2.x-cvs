@@ -50,7 +50,6 @@ enum {
   STORAGE_INVALID_ADDR = (uint32_t)0xffff,
 };
 
-typedef uint8_t volume_t;
 typedef uint8_t volume_id_t;
 typedef uint8_t storage_result_t;
 
