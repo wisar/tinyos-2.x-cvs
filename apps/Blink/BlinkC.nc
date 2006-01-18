@@ -55,16 +55,19 @@ implementation
 
   event void Timer0.fired()
   {
+    dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
     call Leds.led0Toggle();
   }
   
   event void Timer1.fired()
   {
+    dbg("BlinkC", "Timer 1 fired @ %s \n", sim_time_string());
     call Leds.led1Toggle();
   }
   
   event void Timer2.fired()
   {
+    dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
     call Leds.led2Toggle();
   }
 }

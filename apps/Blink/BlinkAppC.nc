@@ -43,9 +43,9 @@ configuration BlinkAppC
 implementation
 {
   components MainC, BlinkC, LedsC;
-  components new OskiTimerMilliC() as Timer0;
-  components new OskiTimerMilliC() as Timer1;
-  components new OskiTimerMilliC() as Timer2;
+  components new TimerMilliC() as Timer0;
+  components new TimerMilliC() as Timer1;
+  components new TimerMilliC() as Timer2;
 
 
   BlinkC -> MainC.Boot;
