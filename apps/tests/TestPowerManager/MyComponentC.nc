@@ -41,7 +41,7 @@ configuration MyComponentC{
 }
 implementation {
   components MyComponentP, LedsC, 
-             new OskiTimerMilliC() as StartTimer, new OskiTimerMilliC() as StopTimer,
+             new TimerMilliC() as StartTimer, new TimerMilliC() as StopTimer,
              new FcfsArbiterC(MYCOMPONENT_RESOURCE) as Arbiter,
 //              new AsyncStdControlPowerManagerC() as PowerManager;
 //              new AsyncStdControlDeferredPowerManagerC(750) as PowerManager;

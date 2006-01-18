@@ -52,7 +52,7 @@ implementation {
   components new AMReceiverC(240) as PowerReceive;
   components new AMSenderC(241) as DataSend;
   components new AMReceiverC(241) as DataReceive;
-  components new OskiTimerMilliC();
+  components new TimerMilliC();
   components new AMServiceNotifierC();
   components new AMServiceC();
   components new AMServiceC() as SecondServiceC;
@@ -70,7 +70,7 @@ implementation {
   App.SecondService -> SecondServiceC;
   App.ServiceNotify -> AMServiceNotifierC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OskiTimerMilliC;
+  App.MilliTimer -> TimerMilliC;
   
 }
 

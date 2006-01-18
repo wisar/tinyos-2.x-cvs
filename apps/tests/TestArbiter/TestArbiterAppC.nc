@@ -44,9 +44,9 @@ configuration TestArbiterAppC{
 }
 implementation {
   components MainC, TestArbiterC,LedsC,
-     new OskiTimerMilliC() as Timer0,
-     new OskiTimerMilliC() as Timer1,
-     new OskiTimerMilliC() as Timer2,
+     new TimerMilliC() as Timer0,
+     new TimerMilliC() as Timer1,
+     new TimerMilliC() as Timer2,
 //      new RoundRobinArbiterC(TEST_ARBITER_RESOURCE) as Arbiter; 
      new FcfsArbiterC(TEST_ARBITER_RESOURCE) as Arbiter;
 

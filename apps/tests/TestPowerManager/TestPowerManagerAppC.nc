@@ -37,13 +37,13 @@
 configuration TestPowerManagerAppC{
 }
 implementation {
-  components MainC, TestPowerManagerC, MyComponentC, LedsC, new OskiTimerMilliC();
+  components MainC, TestPowerManagerC, MyComponentC, LedsC, new TimerMilliC();
 
   TestPowerManagerC -> MainC.Boot;
   MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> MyComponentC;
   
-  TestPowerManagerC.TimerMilli -> OskiTimerMilliC;
+  TestPowerManagerC.TimerMilli -> TimerMilliC;
   TestPowerManagerC.Resource0 -> MyComponentC.Resource[unique("MyComponent.Resource")];
   TestPowerManagerC.Resource1 -> MyComponentC.Resource[unique("MyComponent.Resource")];
   

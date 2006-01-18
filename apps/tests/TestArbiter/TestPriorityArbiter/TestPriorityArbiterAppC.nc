@@ -48,9 +48,9 @@ implementation {
               TestPriorityArbiterC,
               LedsC,
               new FcfsPriorityArbiterC("Test.Arbiter.Resource") as Arbiter,
-              new OskiTimerMilliC() as TimerHigh,
-              new OskiTimerMilliC() as TimerClient1,
-              new OskiTimerMilliC() as TimerClient2;
+              new TimerMilliC() as TimerHigh,
+              new TimerMilliC() as TimerClient1,
+              new TimerMilliC() as TimerClient2;
 
  
 

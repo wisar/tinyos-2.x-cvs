@@ -53,7 +53,7 @@ configuration TestSerialAppC {}
 implementation {
   components TestSerialC as App, LedsC, MainC;
   components SerialActiveMessageC as AM;
-  components new OskiTimerMilliC();
+  components new TimerMilliC();
 
   
   MainC.SoftwareInit -> LedsC;
@@ -64,7 +64,7 @@ implementation {
   App.Receive -> AM.Receive[AM_TESTSERIALMSG];
   App.AMSend -> AM.AMSend[AM_TESTSERIALMSG];
   App.Leds -> LedsC;
-  App.MilliTimer -> OskiTimerMilliC;
+  App.MilliTimer -> TimerMilliC;
   App.Packet -> AM;
 }
 

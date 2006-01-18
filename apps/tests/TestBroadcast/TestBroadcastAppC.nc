@@ -45,7 +45,7 @@ implementation {
   components new BroadcastSenderC(240) as Sender;
   components new BroadcastReceiverC(240) as Receiver;
   components new BroadcastServiceC();
-  components new OskiTimerMilliC();
+  components new TimerMilliC();
   
   MainC.SoftwareInit -> LedsC;
   
@@ -55,7 +55,7 @@ implementation {
   App.Send -> Sender;
   App.Service -> BroadcastServiceC.Service;
   App.Leds -> LedsC;
-  App.MilliTimer -> OskiTimerMilliC;
+  App.MilliTimer -> TimerMilliC;
 }
 
 
