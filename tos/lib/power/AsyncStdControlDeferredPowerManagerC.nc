@@ -47,7 +47,7 @@ generic configuration AsyncStdControlDeferredPowerManagerC(uint32_t delay)
   }
 }
 implementation {
-  components new OskiTimerMilliC(),
+  components new TimerMilliC(),
              new AsyncDeferredPowerManagerP(delay) as PowerManager;
 
   Init = PowerManager;
@@ -60,6 +60,6 @@ implementation {
   PowerManager.ResourceController = ResourceController;
   PowerManager.ArbiterInfo = ArbiterInfo;
 
-  PowerManager.TimerMilli -> OskiTimerMilliC;
+  PowerManager.TimerMilli -> TimerMilliC;
 }
 

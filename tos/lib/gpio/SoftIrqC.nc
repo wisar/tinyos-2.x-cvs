@@ -42,7 +42,7 @@ implementation
 {
     components
 	new SoftIrqP(interval), 
-	new OskiTimerMilliC() as IrqTimer;
+	new TimerMilliC() as IrqTimer;
 
     Interrupt = SoftIrqP;
     GeneralIO = SoftIrqP;
