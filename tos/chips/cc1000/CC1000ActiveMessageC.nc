@@ -77,4 +77,5 @@ implementation {
   AM.SubSend    -> Radio.Send;
   AM.SubReceive -> Radio.Receive;
   AM.amAddress -> Address;
+  AM.Packet     -> Radio;
 }

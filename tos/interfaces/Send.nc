@@ -71,4 +71,24 @@ interface Send {
     */ 
   event void sendDone(message_t* msg, error_t error);
 
+   /**
+   * Return the maximum payload length that this communication layer
+   * can provide. This command behaves identically to
+   * <tt>Packet.maxPayloadLength</tt> and is included in this
+   * interface as a convenience.
+   */
+
+  
+  command uint8_t maxPayloadLength();
+
+
+   /**
+    * Return a pointer to a protocol's payload region in a packet.
+    * The length of this region is maxPayloadLength(). This command
+    * behaves similarly to <tt>Packet.getPayload</tt> (minus the
+    * length parameter) and is included in this interface
+    * as a convenience.
+    */
+  command void* getPayload(message_t* msg);
+
 }

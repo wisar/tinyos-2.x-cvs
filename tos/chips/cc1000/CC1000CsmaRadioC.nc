@@ -73,11 +73,10 @@ implementation {
   components CC1000ControlP as Control;
   components HplCC1000C as Hpl;
 
-  components RandomC, TimerMilliC, ActiveMessageAddressC, BusyWaitMicroC;
+  components RandomC, new TimerMilliC(), ActiveMessageAddressC, BusyWaitMicroC;
 
   Init = Csma;
   Init = Squelch;
-  Init = TimerMilliC;
   Init = RandomC;
 
   SplitControl = Csma;
@@ -94,7 +93,7 @@ implementation {
   Csma.CC1000Control -> Control;
   Csma.Random -> RandomC;
   Csma.CC1000Squelch -> Squelch;
-  Csma.WakeupTimer -> TimerMilliC.TimerMilli[unique("TimerMilliC.TimerMilli")];
+  Csma.WakeupTimer -> TimerMilliC;
   Csma.ByteRadio -> SendReceive;
   Csma.ByteRadioInit -> SendReceive;
   Csma.ByteRadioControl -> SendReceive;
