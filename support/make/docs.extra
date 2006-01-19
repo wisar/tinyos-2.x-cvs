@@ -12,9 +12,13 @@ ifeq ($(DOCDIR)_x, _x)
 DOCDIR := $(BASEDIR)/doc/nesdoc
 endif
 
+ifeq ($(DOCS),here)
+DOCDIR = doc
+endif
+
 BUILD_DEPS = docs_
 
 docs_: FORCE
 	@echo "    Making documentation for $(COMPONENT) on $(PLATFORM)"
-	nesdoc $(DOCDIR)/$(PLATFORM) -fnesc-is-app $(NESDOC_FLAGS) $(PFLAGS) $(CFLAGS) $(COMPONENT).nc
+	nesdoc -o $(DOCDIR) -fnesc-is-app $(NESDOC_FLAGS) $(PFLAGS) $(CFLAGS) $(COMPONENT).nc
 
