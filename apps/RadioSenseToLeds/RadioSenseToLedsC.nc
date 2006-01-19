@@ -41,8 +41,8 @@
  *
  **/
 
-includes Timer;
-includes RadioSenseToLeds;
+#include "Timer.h"
+#include "RadioSenseToLeds.h"
 
 module RadioSenseToLedsC {
   uses {
@@ -51,11 +51,10 @@ module RadioSenseToLedsC {
     interface Receive;
     interface AMSend;
     interface Timer<TMilli> as MilliTimer;
-    interface Service;
-    interface ServiceNotify;
     interface Packet;
     interface AcquireData;
     interface StdControl as SensorControl;
+    interface SplitControl as RadioControl;
   }
 }
 implementation {
@@ -64,13 +63,15 @@ implementation {
   bool locked = FALSE;
    
   event void Boot.booted() {
-    call Service.start();
+    call RadioControl.start();
   }
 
-  event void ServiceNotify.started() {
-    call MilliTimer.startPeriodic(1000);
+  event void RadioControl.startDone(error_t err) {
+    if (err == SUCCESS) {
+      call MilliTimer.startPeriodic(1000);
+    }
   }
-  event void ServiceNotify.stopped() {}
+  event void RadioControl.stopDone(error_t err) {}
   
   event void MilliTimer.fired() {
     if (call SensorControl.start() != SUCCESS) {
