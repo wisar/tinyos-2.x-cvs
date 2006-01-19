@@ -65,7 +65,7 @@ implementation {
 
   message_t packet;
 
-  bool locked;
+  bool locked = FALSE;
   uint16_t counter = 0;
   
   event void Boot.booted() {
