@@ -31,24 +31,25 @@
  * @date   Oct 31 2005
  */
   
-generic module ConstantSensorC(uint16_t val) { 
+generic module ConstantSensorC(typedef width_t @integer(), uint32_t val) { 
   provides interface StdControl;	
-  provides interface AcquireData;
+  provides interface Read<width_t>;
 }
 implementation
 {
   command error_t StdControl.start() {
     return SUCCESS;
   }
+
   command error_t StdControl.stop() {
     return SUCCESS;
   }
 
   task void senseResult() {
-    signal AcquireData.dataReady(val);
+    signal Read.readDone(SUCCESS, val);
   }
 
-  command error_t AcquireData.getData() {
+  command error_t Read.read() {
     return post senseResult();
   }
   

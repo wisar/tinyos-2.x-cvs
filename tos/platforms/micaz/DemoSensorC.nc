@@ -32,13 +32,13 @@
 configuration DemoSensorC
 {
   provides interface StdControl;	
-  provides interface AcquireData;
+  provides interface Read<uint16_t>;
 }
 implementation
 {
-  components new ConstantSensorC(0xbeef) as DemoChannel;
+  components new ConstantSensorC(uint16_t, 0xbeef) as DemoChannel;
 
   StdControl  = DemoChannel;    
-  AcquireData = DemoChannel;
+  Read = DemoChannel;
 }
 
