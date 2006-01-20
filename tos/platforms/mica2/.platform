@@ -23,7 +23,6 @@ push( @includes, qw(
   %T/chips/atm128/pins
   %T/chips/atm128/spi
   %T/chips/atm128/timer
-  %T/lib/adc
   %T/lib/timer
   %T/lib/serial
   %T/lib/power

@@ -26,13 +26,13 @@
 configuration DemoSensorC
 {
   provides interface StdControl;	
-  provides interface AcquireData;
+  provides interface Read<uint16_t>;
 }
 implementation
 {
   components VoltageC as DemoChannel;
 
   StdControl  = DemoChannel;    
-  AcquireData = DemoChannel;
+  Read = DemoChannel;
 }
 

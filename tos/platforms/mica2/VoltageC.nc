@@ -26,13 +26,15 @@
 configuration VoltageC
 {
   provides interface StdControl;	
-  provides interface AcquireData;
+  provides interface Read<uint16_t>;
 }
 implementation
 {
-  components VoltageP, new AdcChannelC(CHANNEL_BATTERY) as VoltageChannel, HplGeneralIOC;
+  components VoltageP, new AdcReadClientC() as VoltageChannel,
+    HplAtm128GeneralIOC as Pins;
   
   StdControl  = VoltageP;  
-  AcquireData = VoltageChannel;
-  VoltageP.BAT_MON -> HplGeneralIOC.PortA5;
+  Read = VoltageChannel;
+  VoltageChannel.Atm128AdcConfig -> VoltageP;
+  VoltageP.BAT_MON -> Pins.PortA5;
 }

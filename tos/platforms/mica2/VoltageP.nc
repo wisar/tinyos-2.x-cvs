@@ -24,7 +24,10 @@
 /// @author Hu Siquan <husq@xbow.com>
 
 module VoltageP {
-  provides interface StdControl;
+  provides {
+    interface StdControl;
+    interface Atm128AdcConfig as VoltageConfig;
+  }
   uses interface GeneralIO as BAT_MON;	
 }
 implementation {
@@ -36,9 +39,20 @@ implementation {
   }
 
   command error_t StdControl.stop() {
-	call BAT_MON.clr();
+    call BAT_MON.clr();
     return SUCCESS;
   }	
 
+  async command uint8_t VoltageConfig.getPort() {
+    return CHANNEL_BATTERY;
+  }
+
+  async command uint8_t VoltageConfig.getRefVoltage() {
+    return ATM128_ADC_VREF_OFF;
+  }
+
+  async command uint8_t VoltageConfig.getPrescaler() {
+    return ATM128_ADC_PRESCALE;
+  }
 }
 
