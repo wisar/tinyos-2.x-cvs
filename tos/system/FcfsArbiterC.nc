@@ -206,10 +206,10 @@ implementation {
   */    
   async command bool ArbiterInfo.inUse() {
     atomic {
-      if ( state == RES_BUSY )
-        return TRUE;
+      if ( state == RES_IDLE )
+        return FALSE;
     }
-    return FALSE;
+    return TRUE;
   }
 
   /**
