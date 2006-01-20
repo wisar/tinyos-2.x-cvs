@@ -39,19 +39,10 @@
 
 #define UQ_STORAGE_VOLUME "storage.resource"
 
-enum {
-  STORAGE_OK,
-  STORAGE_FAIL,
-  STORAGE_INVALID_SIGNATURE,
-  STORAGE_INVALID_CRC
-};
-
-enum {
-  STORAGE_INVALID_ADDR = (uint32_t)0xffff,
-};
-
+typedef uint8_t storage_volume_t;
 typedef uint8_t volume_id_t;
-typedef uint8_t storage_result_t;
+typedef uint32_t storage_addr_t;
+typedef uint16_t storage_len_t;
 
 #include "Storage_chip.h"
 
