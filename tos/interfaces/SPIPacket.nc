@@ -56,7 +56,7 @@ interface SPIPacket {
    *
    * @return SUCCESS if the request was accepted for transfer
    */
-  async command error_t send( uint8_t* txBuf, uint8_t* rxBuf, uint8_t len );
+  async command error_t send( uint8_t* txBuf, uint8_t* rxBuf, uint16_t len );
   
   /**
    * Notification that the send command has completed.
@@ -68,7 +68,7 @@ interface SPIPacket {
    * @param error  SUCCESS if the operation completed successfully, FAIL 
    *               otherwise
    */
-  async event void sendDone( uint8_t* txBuf, uint8_t* rxBuf, uint8_t len, 
+  async event void sendDone( uint8_t* txBuf, uint8_t* rxBuf, uint16_t len, 
 			     error_t error );
 
 }
