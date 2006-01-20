@@ -32,9 +32,10 @@ configuration PlatformC {
 }
 implementation
 {
-  components PlatformP, MotePlatformC;
+  components PlatformP, MotePlatformC, MeasureClockC;
   
   Init = PlatformP;
+  PlatformP.MeasureClock -> MeasureClockC;
   PlatformP.MoteInit -> MotePlatformC;
   MotePlatformC.SubInit = SubInit;
 

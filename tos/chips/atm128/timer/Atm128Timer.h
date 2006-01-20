@@ -314,5 +314,9 @@ typedef union
   } bits;
 } Atm128_ETIFR_t;
 
+/* Resource strings for timer 1 and 3 compare registers */
+#define UQ_TIMER1_COMPARE "atm128.timer1"
+#define UQ_TIMER3_COMPARE "atm128.timer3"
+
 #endif //_H_Atm128Timer_h
 

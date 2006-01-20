@@ -25,27 +25,22 @@
 /// @author Martin Turon <mturon@xbow.com>
 /// @author David Gay <david.e.gay@intel.com>
 
-configuration HplAtm128Timer1C
+generic module Atm128TimerInitC(typedef timer_size @integer(), uint8_t prescaler)
 {
-  provides {
-    // 16-bit Timers
-    interface HplAtm128Timer<uint16_t>   as Timer;
-    interface HplAtm128TimerCtrl16       as TimerCtrl;
-    interface HplAtm128Capture<uint16_t> as Capture;
-    interface HplAtm128Compare<uint16_t> as Compare[uint8_t id];
-  }
+  provides interface Init @atleastonce();
+  uses interface HplAtm128Timer<timer_size> as Timer;
 }
 implementation
 {
-  components HplAtm128Timer0AsyncC, HplAtm128Timer1P;
+  command error_t Init.init() {
+    atomic {
+      call Timer.set(0);
+      call Timer.start();
+      call Timer.setScale(prescaler);
+    }
+    return SUCCESS;
+  }
 
-  Timer = HplAtm128Timer1P;
-  TimerCtrl = HplAtm128Timer1P;
-  Capture = HplAtm128Timer1P;
-
-  Compare[0] = HplAtm128Timer1P.CompareA; 
-  Compare[1] = HplAtm128Timer1P.CompareB;
-  Compare[2] = HplAtm128Timer1P.CompareC;
-
-  HplAtm128Timer1P.Timer0Ctrl -> HplAtm128Timer0AsyncC;
+  async event void Timer.overflow() {
+  }
 }
