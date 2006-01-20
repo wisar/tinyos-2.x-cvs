@@ -17,7 +17,7 @@ implementation {
   components RandRW, new BlockStorageC(VOLUME_BLOCKTEST), MainC, LedsC, PlatformC;
 
   MainC.Boot <- RandRW;
-  PlatformC.SubInit -> LedsC;
+  MainC.SoftwareInit -> LedsC;
   RandRW.BlockRead -> BlockStorageC.BlockRead;
   RandRW.BlockWrite -> BlockStorageC.BlockWrite;
   RandRW.Leds -> LedsC;
