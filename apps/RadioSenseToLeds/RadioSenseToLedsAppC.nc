@@ -55,6 +55,6 @@ implementation {
   App.Leds -> LedsC;
   App.MilliTimer -> TimerMilliC;
   App.Packet -> AMSenderC;
-  App.AcquireData -> DemoSensorC;
+  App.Read -> DemoSensorC;
   App.SensorControl -> DemoSensorC;
 }
