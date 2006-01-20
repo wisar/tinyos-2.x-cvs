@@ -22,8 +22,6 @@
  * MODIFICATIONS.
  */
 /**
- * The micaZ Voltage sensor seems to have a few issues, so the default
- * micaZ sensor returns a constant value of 0xbeef.
  *
  * @author Philip Levis
  * @author Hu Siquan <husq@xbow.com>
