@@ -181,7 +181,7 @@ implementation {
   }
 
   async event void InterruptCCA.fired() {
-    nx_uint16_t id[ 2 ];
+    nxle_uint16_t id[ 2 ];
     m_state = S_XOSC_STARTED;
     id[ 0 ] = m_pan;
     id[ 1 ] = call AMPacket.address();
