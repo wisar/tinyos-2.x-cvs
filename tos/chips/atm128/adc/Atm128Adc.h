@@ -148,7 +148,7 @@ typedef uint8_t Atm128_ADCH_t;         //!< ADC data register high
 typedef uint8_t Atm128_ADCL_t;         //!< ADC data register low
 
 // The resource identifier string for the ADC subsystem
-#define ADC_RESOURCE "ADC.resource"
+#define UQ_ATM128ADC_RESOURCE "atm128adc.resource"
 
 #endif //_H_Atm128ADC_h
 

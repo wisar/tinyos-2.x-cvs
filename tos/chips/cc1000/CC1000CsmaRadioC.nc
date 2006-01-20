@@ -107,7 +107,6 @@ implementation {
   Csma.RssiCheckChannel -> Rssi.Rssi[unique("CC1000RSSI")];
   Csma.RssiPulseCheck -> Rssi.Rssi[unique("CC1000RSSI")];
   Csma.cancelRssi -> Rssi;
-  Csma.RssiControl -> Hpl.RssiControl;
   Csma.BusyWait -> BusyWaitMicroC;
 
   Rssi.ActualRssi -> Hpl;

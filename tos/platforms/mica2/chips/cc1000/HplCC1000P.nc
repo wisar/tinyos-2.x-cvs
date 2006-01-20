@@ -41,10 +41,13 @@
  * @author Philip Buonadonna
  */
 
+#include "Atm128Adc.h"
+
 module HplCC1000P {
   provides {
     interface Init as PlatformInit;
     interface HplCC1000;
+    interface Atm128AdcConfig as RssiConfig;
   }
   uses {
     /* These are the CC1000 pin names */
@@ -182,6 +185,18 @@ implementation
 
   async command bool HplCC1000.getLOCK() {
     return call CHP_OUT.get();
+  }
+
+  async command uint8_t RssiConfig.getPort() {
+    return CHANNEL_RSSI;
+  }
+
+  async command uint8_t RssiConfig.getRefVoltage() {
+    return ATM128_ADC_VREF_OFF;
+  }
+
+  async command uint8_t RssiConfig.getPrescaler() {
+    return ATM128_ADC_PRESCALE;
   }
 }
   

@@ -8,45 +8,39 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Implement arbitrated access to an AcquireDataNow interface, based on an
+ * Implement arbitrated access to an Read interface, based on an
  * underlying arbitrated Resource interface.
  *
  * @author David Gay
  */
-generic module AcquireDataRoundRobinC() {
-  provides interface AcquireData[uint8_t client];
+generic module ArbitratedReadC(typedef width_t) {
+  provides interface Read<width_t>[uint8_t client];
   uses {
-    interface AcquireData as Service[uint8_t client];
+    interface Read<width_t> as Service[uint8_t client];
     interface Resource[uint8_t client];
   }
 }
 implementation {
-  command error_t AcquireData.getData[uint8_t client]() {
+  command error_t Read.read[uint8_t client]() {
     call Resource.request[client]();
     return SUCCESS;
   }
 
   event void Resource.granted[uint8_t client]() {
-    call Service.getData[client]();
+    call Service.read[client]();
   }
 
-  event void Service.dataReady[uint8_t client](uint16_t data) {
+  event void Service.readDone[uint8_t client](error_t result, width_t data) {
     call Resource.release[client]();
-    signal AcquireData.dataReady[client](data);
-  }
-
-  event void Service.error[uint8_t client](uint16_t info) {
-    call Resource.release[client]();
-    signal AcquireData.error[client](info);
+    signal Read.readDone[client](result, data);
   }
 
   default async command error_t Resource.request[uint8_t client]() { 
     return SUCCESS; 
   }
-  default event void AcquireData.error[uint8_t client](uint16_t info) { }
   default async command void Resource.release[uint8_t client]() { }
-  default event void AcquireData.dataReady[uint8_t client](uint16_t data) { }
-  default command error_t Service.getData[uint8_t client]() {
+  default event void Read.readDone[uint8_t client](error_t result, width_t data) { }
+  default command error_t Service.read[uint8_t client]() {
     return SUCCESS;
   }
 }

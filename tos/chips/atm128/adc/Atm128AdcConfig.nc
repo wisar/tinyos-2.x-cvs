@@ -17,12 +17,17 @@
  */
 interface Atm128AdcConfig {
   /**
-   * Return the reference voltage to use for this channel
+   * Return the A/D port voltage to use for this client
+   */
+  async command uint8_t getPort();
+
+  /**
+   * Return the reference voltage to use for this client
    */
   async command uint8_t getRefVoltage();
 
   /**
-   * Return the prescaler value to use for this channel
+   * Return the prescaler value to use for this client
    */
   async command uint8_t getPrescaler();
 }

@@ -32,20 +32,20 @@
  */
 configuration HplCC1000C {
   provides {
-    interface StdControl as RssiControl;
-    interface AcquireDataNow as RssiAdc;
+    interface Read<uint16_t> as RssiAdc;
     interface HplCC1000Spi;
     interface HplCC1000;
   }
 }
 implementation {
   components HplCC1000P, HplCC1000SpiP;
-  components new AdcNowChannelC(CHANNEL_RSSI) as RssiChannel, AdcC;
+  components new AdcReadClientC() as RssiChannel;
 
   HplCC1000 = HplCC1000P;
   HplCC1000Spi = HplCC1000SpiP;
-  RssiControl = AdcC;
   RssiAdc = RssiChannel;
+
+  RssiChannel.Atm128AdcConfig -> HplCC1000P;
 
   // HplCC1000M, HplCC1000SpiM are wired in HplCC1000InitC which is always
   // included (see MotePlatformC.nc).

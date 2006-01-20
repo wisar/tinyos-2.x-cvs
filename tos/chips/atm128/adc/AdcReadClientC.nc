@@ -7,26 +7,28 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-
 /**
- * Provide arbitrated access to the AcquireDataNow interface of the ADCC
+ * Provide arbitrated access to the Read interface of the AdcC
  * component for a particular port.
  * 
  * @author David Gay
  */
+
 #include "Adc.h"
 
-generic configuration AdcNowChannelC(uint8_t port) {
-  provides interface AcquireDataNow;
+generic configuration AdcReadClientC() {
+  provides interface Read<uint16_t>;
+  uses interface Atm128AdcConfig;
 }
 implementation {
-  components AdcC, AdcNowChannelArbiterC;
+  components AdcC, Atm128AdcC;
 
   enum {
-    ID = unique(ADC_RESOURCE)
+    ID = unique(UQ_ADC_READ),
+    HAL_ID = unique(UQ_ATM128ADC_RESOURCE)
   };
 
-  AcquireDataNow = AdcNowChannelArbiterC.AcquireDataNow[ID];
-  AdcNowChannelArbiterC.Resource[ID] -> AdcC.Resource[ID];
-  AdcNowChannelArbiterC.Service[ID] -> AdcC.AcquireDataNow[port];
+  Read = AdcC.Read[ID];
+  Atm128AdcConfig = AdcC.Atm128AdcConfig[ID];
+  AdcC.Resource[ID] -> Atm128AdcC.Resource[HAL_ID];
 }

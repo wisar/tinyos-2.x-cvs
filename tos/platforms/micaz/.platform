@@ -23,6 +23,7 @@ push( @includes, qw(
   %T/lib/adc
   %T/lib/timer
   %T/lib/serial
+  %T/lib/power
 
 ) );
 

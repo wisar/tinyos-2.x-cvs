@@ -8,7 +8,7 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Provide arbitrated access to the AcquireData interface of the AdcC
+ * Provide arbitrated access to the ReadNow interface of the AdcC
  * component for a particular port.
  * 
  * @author David Gay
@@ -16,17 +16,19 @@
 
 #include "Adc.h"
 
-generic configuration AdcChannelC(uint8_t port) {
-  provides interface AcquireData;
+generic configuration AdcReadNowClientC() {
+  provides interface ReadNow<uint16_t>;
+  uses interface Atm128AdcConfig;
 }
 implementation {
-  components AdcC, AdcChannelArbiterC;
+  components AdcC, Atm128AdcC;
 
   enum {
-    ID = unique(ADC_RESOURCE)
+    ID = unique(UQ_ADC_READNOW)
+    HAL_ID = unique(UQ_ATM128ADC_RESOURCE);
   };
 
-  AcquireData = AdcChannelArbiterC.AcquireData[ID];
-  AdcChannelArbiterC.Resource[ID] -> AdcC.Resource[ID];
-  AdcChannelArbiterC.Service[ID] -> AdcC.AcquireData[port];
+  ReadNow = AdcC.ReadNow[ID];
+  Atm128AdcConfig = AdcC.Atm128AdcConfig[ID];
+  AdcC.Resource[ID] -> Atm128AdcC.Resource[HAL_ID];
 }
