@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2005 Arched Rock Corporation
+ * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,8 +30,8 @@
  *
  * @author Jonathan Hui <jhui@archedrock.com>
  *
- * $ Revision: $
- * $ Date: $
+ * $Revision$
+ * $Date$
  */
 
 configuration CC2420ReceiveC {
