@@ -43,7 +43,7 @@ implementation {
     return SUCCESS;
   }	
 
-  async command uint8_t VoltageConfig.getPort() {
+  async command uint8_t VoltageConfig.getChannel() {
     return CHANNEL_BATTERY;
   }
 

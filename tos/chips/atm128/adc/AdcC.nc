@@ -20,23 +20,31 @@ configuration AdcC {
   provides {
     interface Read<uint16_t>[uint8_t client];
     interface ReadNow<uint16_t>[uint8_t client];
-    //interface ReadStream<uint16_t>[uint8_t client];
+    interface ReadStream<uint16_t>[uint8_t client];
   }
   uses {
     interface Atm128AdcConfig[uint8_t client];
     interface Resource[uint8_t client];
+    interface Resource as StreamResource[uint8_t client];
   }
 }
 implementation {
-  components Atm128AdcC, AdcP, Atm128AdcChannelArbiterP;
+  components Atm128AdcC, AdcP, Atm128AdcChannelArbiterP, PlatformC,
+    new AlarmMicro32C();
 
-  Resource = Atm128AdcChannelArbiterP;
+  Resource = Atm128AdcChannelArbiterP.Resource;
+  StreamResource = Atm128AdcChannelArbiterP.StreamResource;
   Read = Atm128AdcChannelArbiterP;
   ReadNow = Atm128AdcChannelArbiterP;
+  ReadStream = Atm128AdcChannelArbiterP;
   Atm128AdcConfig = AdcP;
 
   Atm128AdcChannelArbiterP.ActualRead -> AdcP;
   Atm128AdcChannelArbiterP.ActualReadNow -> AdcP;
+  Atm128AdcChannelArbiterP.ActualReadNow -> AdcP;
+  Atm128AdcChannelArbiterP.ActualReadStream -> AdcP;
 
   AdcP.Atm128AdcSingle -> Atm128AdcC;
+  AdcP.calibrateMicro -> PlatformC;
+  AdcP.Alarm -> AlarmMicro32C;
 }

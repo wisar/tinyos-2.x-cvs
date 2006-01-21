@@ -16,5 +16,6 @@
 /* Read and ReadNow share client ids */
 #define UQ_ADC_READ "adc.read"
 #define UQ_ADC_READNOW UQ_ADC_READ
+#define UQ_ADC_READSTREAM "adc.readstream"
 
 #endif

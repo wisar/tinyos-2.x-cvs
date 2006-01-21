@@ -187,7 +187,7 @@ implementation
     return call CHP_OUT.get();
   }
 
-  async command uint8_t RssiConfig.getPort() {
+  async command uint8_t RssiConfig.getChannel() {
     return CHANNEL_RSSI;
   }
 

@@ -17,9 +17,9 @@
  */
 interface Atm128AdcConfig {
   /**
-   * Return the A/D port voltage to use for this client
+   * Return the A/D channel to use for this client
    */
-  async command uint8_t getPort();
+  async command uint8_t getChannel();
 
   /**
    * Return the reference voltage to use for this client
