@@ -90,13 +90,15 @@ implementation {
 			} else {
 			    // otherwise, complete with success
 			    call I2C.end();
-			    i2cMode = I2C_READY;
-			    
+	    
 			    if (i2cMode == I2C_PING) {	
-				signal I2CDevice.pingDone(SUCCESS);
+				    signal I2CDevice.pingDone(SUCCESS);
 			    } else {
-				signal I2CDevice.readDone();   
+				    
+					signal I2CDevice.readDone();   
 			    }
+
+			    i2cMode = I2C_READY;
 			}
 			break;
 			
