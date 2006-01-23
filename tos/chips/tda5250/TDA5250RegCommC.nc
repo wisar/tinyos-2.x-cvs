@@ -36,24 +36,48 @@
  * ========================================================================
  */
  
+/*
+#include "msp430BusResource.h"
+
+enum {
+  TDA5250_SPI_BUS_ID = unique("Msp430Usart0.Resource")
+};     
+*/
 configuration TDA5250RegCommC {
   provides {
     interface Init;
     interface TDA5250RegComm;
+    interface Pot;
     interface Resource;
   }
 }
 implementation {
-  components new SPIC() as SPI
+  components new Spi0C() as Spi
            , TDA5250RegCommP
            , TDA5250RadioIO
+           , AD5200P
+           , AD5200PotIO
            ;      
    
-  Init = SPI;
+//  Init = HplMsp430Usart0C;
   Init = TDA5250RegCommP;
-  TDA5250RegComm = TDA5250RegCommP; 	
-  Resource = SPI.Resource;
+  Init = AD5200P;
+  Pot = AD5200P.Pot;
+  Resource = TDA5250RegCommP.Resource;
+
+  TDA5250RegComm = TDA5250RegCommP; 
   
-  TDA5250RegCommP.BUSM -> TDA5250RadioIO.TDA5250RadioBUSM;
-  TDA5250RegCommP.SPIByte -> SPI;
+  TDA5250RegCommP.BusM -> TDA5250RadioIO.TDA5250RadioBUSM; 
+  
+  TDA5250RegCommP.SPIByte -> Spi;
+  // FIXME: Hier ResourceController!?
+  TDA5250RegCommP.SpiResource -> Spi;
+//  TDA5250RegCommP.ArbiterInfo -> Spi; 
+  
+  AD5200P.ENPOT -> AD5200PotIO.AD5200PotENPOT;
+  AD5200P.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
+  AD5200P.SPIByte -> Spi;
+
+  
+  
 }

@@ -57,9 +57,9 @@ module TDA5250RegistersP {
     interface TDA5250ReadReg<TDA5250_REG_TYPE_ADC>          as ADC;
   }
   uses {  
-	interface TDA5250RegComm; 
-	interface Pot;
-	interface GeneralIO as ENTDA;
+        interface TDA5250RegComm; 
+        interface Pot;
+        interface GeneralIO as ENTDA;
   }  
 }
 implementation {
@@ -91,10 +91,9 @@ implementation {
      call ENTDA.makeOutput();
      
      // initializing pin values
-     call ENTDA.set();  
-		    
-		 call Pot.init(255); 
-     return SUCCESS;
+     call ENTDA.set();
+
+    return SUCCESS;
    }   
 
    async command error_t CONFIG.set(uint16_t data) {
