@@ -38,27 +38,27 @@
  */
 
 
-#ifndef PLATFORM_TOS_MSG_H
-#define PLATFORM_TOS_MSG_H
+#ifndef PLATFORM_MESSAGE_H
+#define PLATFORM_MESSAGE_H
 
 #include "Serial.h"
-#include "TDA5250Msg.h"
+#include "tda5250_message.h"
 
 typedef union message_header_t {
-  TDA5250Header radio;
+  tda5250_header_t radio;
   serial_header_t serial;
 } message_header_t;
 
 typedef union message_footer_t {
-  TDA5250Footer radio;
+  tda5250_footer_t radio;
 } message_footer_t;
 
 typedef union message_metadata_t {
-  TDA5250Metadata radio;
+  tda5250_metadata_t radio;
 } message_metadata_t;
 
-typedef TDA5250Header message_radio_header_t;
-typedef TDA5250Footer message_radio_footer_t;
-typedef TDA5250Metadata message_radio_metadata_t;
+typedef tda5250_header_t message_radio_header_t;
+typedef tda5250_footer_t message_radio_footer_t;
+typedef tda5250_metadata_t message_radio_metadata_t;
 
 #endif

@@ -62,7 +62,7 @@ configuration ActiveMessageC {
 }
 implementation {
   components TDA5250ActiveMessageC as AM;
-  // components TDA5250RadioC, RealMainP;
+
   Init         = AM;
   SplitControl = AM;
   AMSend       = AM;
@@ -72,7 +72,4 @@ implementation {
   AMPacket     = AM;
 
   PacketAcknowledgements = AM;
-  // RealMainP.SoftwareInit->TDA5250C;
-  
-  
 }
