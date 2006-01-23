@@ -55,7 +55,6 @@ implementation {
   components CC2420CsmaP as CsmaP;
 
   Init = CsmaP;
-  Init = RandomC;
   SplitControl = CsmaP;
   Send = CsmaP;
   Acks = CsmaP;
