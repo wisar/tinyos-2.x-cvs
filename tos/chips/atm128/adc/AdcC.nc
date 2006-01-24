@@ -30,7 +30,7 @@ configuration AdcC {
 }
 implementation {
   components Atm128AdcC, AdcP, Atm128AdcChannelArbiterP, PlatformC,
-    new AlarmMicro32C();
+    new AlarmMicro32C(), MainC;
 
   Resource = Atm128AdcChannelArbiterP.Resource;
   StreamResource = Atm128AdcChannelArbiterP.StreamResource;
@@ -44,6 +44,7 @@ implementation {
   Atm128AdcChannelArbiterP.ActualReadNow -> AdcP;
   Atm128AdcChannelArbiterP.ActualReadStream -> AdcP;
 
+  AdcP.Init <- MainC;
   AdcP.Atm128AdcSingle -> Atm128AdcC;
   AdcP.calibrateMicro -> PlatformC;
   AdcP.Alarm -> AlarmMicro32C;

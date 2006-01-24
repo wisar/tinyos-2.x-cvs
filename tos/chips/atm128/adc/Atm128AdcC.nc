@@ -40,7 +40,7 @@ configuration Atm128AdcC
 {
   provides {
     interface Resource[uint8_t client];
-    interface Atm128AdcSingle[uint8_t channel];
+    interface Atm128AdcSingle;
     interface Atm128AdcMultiple;
   }
 }
