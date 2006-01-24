@@ -39,14 +39,15 @@ configuration Msp430RefVoltGeneratorC
 
 implementation
 {
-  components Msp430RefVoltGeneratorP, TimerMilliC, HplAdc12P;
+  components Msp430RefVoltGeneratorP, 
+             new TimerMilliC() as SwitchOnDelayTimer, 
+             new TimerMilliC() as SwitchOffDelayTimer, 
+             HplAdc12P;
 
-  enum { TIMER_ID = unique("TimerMilliC.TimerMilli") };
-  
   Msp430RefVoltGenerator = Msp430RefVoltGeneratorP;
   
-  Msp430RefVoltGeneratorP.SwitchOnTimer -> TimerMilliC.TimerMilli[TIMER_ID];
-  Msp430RefVoltGeneratorP.SwitchOffTimer -> TimerMilliC.TimerMilli[TIMER_ID];
+  Msp430RefVoltGeneratorP.SwitchOnTimer -> SwitchOnDelayTimer;
+  Msp430RefVoltGeneratorP.SwitchOffTimer -> SwitchOffDelayTimer;
   Msp430RefVoltGeneratorP.HplAdc12 -> HplAdc12P;
 }
 
