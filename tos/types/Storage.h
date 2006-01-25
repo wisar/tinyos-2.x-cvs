@@ -34,12 +34,9 @@
  * @author: David Gay <david.e.gay@intel.com>
  */
 
-#ifndef __STORAGE_H__
-#define __STORAGE_H__
+#ifndef STORAGE_H
+#define STORAGE_H
 
-#define UQ_STORAGE_VOLUME "storage.resource"
-
-typedef uint8_t storage_volume_t;
 typedef uint8_t volume_id_t;
 typedef uint32_t storage_addr_t;
 typedef uint16_t storage_len_t;

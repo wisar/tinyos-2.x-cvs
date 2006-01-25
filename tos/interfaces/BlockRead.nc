@@ -34,7 +34,7 @@
  * $Date$
  */
 
-includes Storage;
+#include "Storage.h"
 
 interface BlockRead {
   

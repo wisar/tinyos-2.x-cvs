@@ -1,10 +1,11 @@
 // $Id$
 
-#ifndef __HALAT45DB_H__
-#define __HALAT45DB_H__
+#ifndef STORAGE_CHIP_H
+#define STORAGE_CHIP_H
 
 #include "At45db.h"
 
-typedef uint32_t storage_addr_t;
+#define UQ_BLOCK_STORAGE "BlockStorageP.BlockRead"
+typedef uint8_t blockstorage_t;
 
 #endif

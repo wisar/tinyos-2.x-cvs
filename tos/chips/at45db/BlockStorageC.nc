@@ -9,7 +9,7 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-#include "BlockStorage.h"
+#include "Storage.h"
 
 generic configuration BlockStorageC(volume_id_t volid) {
   provides {
