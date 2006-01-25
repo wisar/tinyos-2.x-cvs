@@ -35,7 +35,7 @@ implementation {
   }
 
   default async command error_t Resource.request[uint8_t client]() { 
-    return SUCCESS; 
+    return FAIL; 
   }
   default async command void Resource.release[uint8_t client]() { }
   default event void Read.readDone[uint8_t client](error_t result, width_t data) { }

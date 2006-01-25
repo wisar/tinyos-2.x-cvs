@@ -11,7 +11,6 @@
 #
 push( @includes, qw(
 
-  %T/platforms/mica2
   %T/platforms/mica
   %T/platforms/mica2/chips/cc1000
   %T/chips/cc1000

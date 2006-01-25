@@ -47,7 +47,7 @@
  
 generic module RoundRobinArbiterC(char resourceName[]) {
   provides {
-    interface Init;
+    interface Init @atleastonce();
     interface Resource[uint8_t id];
     interface ResourceController;
     interface ArbiterInfo;

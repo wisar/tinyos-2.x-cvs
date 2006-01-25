@@ -38,6 +38,8 @@ implementation
   components PlatformP, MotePlatformC, MeasureClockC;
   
   Init = PlatformP;
+  calibrateMicro = MeasureClockC;
+
   PlatformP.MeasureClock -> MeasureClockC;
   PlatformP.MoteInit -> MotePlatformC;
   MotePlatformC.SubInit = SubInit;

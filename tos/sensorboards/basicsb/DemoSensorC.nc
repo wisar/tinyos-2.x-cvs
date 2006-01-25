@@ -8,27 +8,20 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Provide arbitrated access to the ReadNow interface of the AdcC
- * component for a particular port.
+ * Demo sensor for basicsb
  * 
  * @author David Gay
  */
 
-#include "Adc.h"
-
-generic configuration AdcReadNowClientC() {
+generic configuration DemoSensorC() {
+  provides interface Read<uint16_t>;
   provides interface ReadNow<uint16_t>;
-  uses interface Atm128AdcConfig;
+  provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components AdcC, Atm128AdcC;
+  components new TempClientC();
 
-  enum {
-    ID = unique(UQ_ADC_READNOW),
-    HAL_ID = unique(UQ_ATM128ADC_RESOURCE)
-  };
-
-  ReadNow = AdcC.ReadNow[ID];
-  Atm128AdcConfig = AdcC.Atm128AdcConfig[ID];
-  AdcC.Resource[ID] -> Atm128AdcC.Resource[HAL_ID];
+  Read = TempClientC;
+  ReadNow = TempClientC;
+  ReadStream = TempClientC;
 }

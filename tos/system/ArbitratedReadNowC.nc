@@ -36,6 +36,9 @@ implementation {
     signal ReadNow.readDone[client](result, data);
   }
 
+  default async command error_t Resource.immediateRequest[uint8_t client]() { 
+    return FAIL; 
+  }
   default async command void Resource.release[uint8_t client]() { }
   default async event void ReadNow.readDone[uint8_t client](error_t result, width_t data) { }
   default async command error_t Service.read[uint8_t client]() {
