@@ -44,9 +44,9 @@ configuration HplAtm128Timer0AsyncC
   provides {
     interface Init @atleastonce();
     // 8-bit Timers
-    interface HplAtm128Timer<uint8_t>   as Timer0;
-    interface HplAtm128TimerCtrl8       as Timer0Ctrl;
-    interface HplAtm128Compare<uint8_t> as Compare0;
+    interface HplAtm128Timer<uint8_t>   as Timer;
+    interface HplAtm128TimerCtrl8       as TimerCtrl;
+    interface HplAtm128Compare<uint8_t> as Compare;
   }
 }
 implementation {
@@ -58,9 +58,9 @@ implementation {
 						 OCF0);
 
   Init = HplAtm128Counter0C;
-  Timer0 = HplAtm128Counter0C;
-  Timer0Ctrl = HplAtm128Counter0C;
-  Compare0 = HplAtm128CompareC;
+  Timer = HplAtm128Counter0C;
+  TimerCtrl = HplAtm128Counter0C;
+  Compare = HplAtm128CompareC;
 
   HplAtm128CompareC.Timer -> HplAtm128Counter0C;
   HplAtm128CompareC.TimerCtrl -> HplAtm128Counter0C;
