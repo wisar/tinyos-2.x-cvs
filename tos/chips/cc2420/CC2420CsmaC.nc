@@ -70,7 +70,7 @@ implementation {
   Init = CC2420TransmitC;
   CsmaP.SubControl -> CC2420TransmitC;
   CsmaP.CC2420Transmit -> CC2420TransmitC;
-  CsmaP.CSMABackoff -> CC2420TransmitC;
+  CsmaP.CsmaBackoff -> CC2420TransmitC;
 
   components CC2420ReceiveC;
   Init = CC2420ReceiveC;

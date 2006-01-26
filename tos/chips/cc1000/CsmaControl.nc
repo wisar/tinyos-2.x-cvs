@@ -20,22 +20,22 @@
  *
  */
 /**
- * Interface for activating/deactivating CSMA. 
+ * Interface for activating/deactivating congestion control.
  *
  * @author Philip Levis
  * @author Joe Polastre
  * @date   August 31 2005
- *
- * Authors:		Joe Polastre
- * Date last modified:  $Revision$
- *
- * MacControl interface for tuning the parameters of the MAC protocol
  */
+interface CsmaControl {
+  /**
+   * Enable congestion control.
+   * @return SUCCESS if congestion control enabled, FAIL otherwise.
+   */
+  async command error_t enableCca();
 
-/**
- * Mac Control Interface
- */
-interface CSMAControl {
-  async command error_t enableCCA();
-  async command error_t disableCCA();
+  /**
+   * Disable congestion control.
+   * @return SUCCESS if congestion control disabled, FAIL otherwise.
+   */
+  async command error_t disableCca();
 }

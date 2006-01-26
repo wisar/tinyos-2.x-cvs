@@ -29,8 +29,8 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-#ifndef HPLAT45DB_H
-#define HPLAT45DB_H
+#ifndef HPLAT45DB_CHIP_H
+#define HPLAT45DB_CHIP_H
 
 // flash characteristics
 enum {

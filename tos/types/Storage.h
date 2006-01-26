@@ -39,7 +39,7 @@
 
 typedef uint8_t volume_id_t;
 typedef uint32_t storage_addr_t;
-typedef uint16_t storage_len_t;
+typedef uint32_t storage_len_t;
 
 #include "Storage_chip.h"
 

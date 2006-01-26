@@ -39,7 +39,7 @@ configuration CC2420TransmitC {
   provides interface Init;
   provides interface AsyncControl;
   provides interface CC2420Transmit;
-  provides interface CSMABackoff;
+  provides interface CsmaBackoff;
   provides interface RadioTimeStamping;
 
 }
@@ -60,7 +60,7 @@ implementation {
   Init = CC2420TransmitP;
   AsyncControl = CC2420TransmitP;
   CC2420Transmit = CC2420TransmitP;
-  CSMABackoff = CC2420TransmitP;
+  CsmaBackoff = CC2420TransmitP;
   RadioTimeStamping = CC2420TransmitP;
 
   CC2420TransmitP.BackoffTimer -> Alarm;

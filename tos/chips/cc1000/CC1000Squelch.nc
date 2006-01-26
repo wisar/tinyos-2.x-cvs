@@ -26,11 +26,29 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
+/**
+ * CC1000 internal noise floor (aka squelch value) interface
+ * @author David Gay
+ */
 interface CC1000Squelch
 {
+  /**
+   * Adjust noise floor based on new noise measurement
+   * @param data noise measurement
+   */
   command void adjust(uint16_t data);
 
+  /**
+   * Return current estimated noise floor
+   * @return Noise floor value
+   */
   async command uint16_t get();
 
+  /**
+   * Check if noise floor estimate is considered stable (typically after
+   * some number of measurements)
+   * @return TRUE if noise floor estimate considered stable, FALSE otherwise
+   */
   command bool settled();
 }

@@ -71,7 +71,8 @@ implementation
   /* The requests */
   uint8_t state[N]; /* automatically initialised to S_IDLE */
   uint8_t *bufPtr[N];
-  storage_addr_t curAddr[N], requestedLength[N];
+  storage_addr_t curAddr[N];
+  storage_len_t requestedLength[N];
 
   storage_addr_t maxAddr[N];
   uint8_t sig[8];
@@ -205,7 +206,7 @@ implementation
       }
   }
 
-  command error_t BlockWrite.write[blockstorage_t id](storage_addr_t addr, void* buf, storage_len_t len) {
+  command error_t BlockWrite.write[blockstorage_t id](storage_addr_t addr, void* buf, uint16_t len) {
     error_t ok = newRequest(S_WRITE, id, addr, buf, len);
 
     if (ok == SUCCESS && addr + len > maxAddr[id])
@@ -251,7 +252,7 @@ implementation
   }
 #endif
 
-  command error_t BlockRead.read[blockstorage_t id](storage_addr_t addr, void* buf, storage_len_t len) {
+  command error_t BlockRead.read[blockstorage_t id](storage_addr_t addr, void* buf, uint16_t len) {
     return newRequest(S_READ, id, addr, buf, len);
   }
 
@@ -310,10 +311,10 @@ implementation
   event void At45db.flushDone(error_t result) {
   }
 
-  default event void BlockWrite.writeDone[uint8_t id](storage_addr_t addr, void* buf, storage_len_t len, error_t result) { }
+  default event void BlockWrite.writeDone[uint8_t id](storage_addr_t addr, void* buf, uint16_t len, error_t result) { }
   default event void BlockWrite.eraseDone[uint8_t id](error_t result) { }
   default event void BlockWrite.commitDone[uint8_t id](error_t result) { }
-  default event void BlockRead.readDone[uint8_t id](storage_addr_t addr, void* buf, storage_len_t len, error_t result) { }
+  default event void BlockRead.readDone[uint8_t id](storage_addr_t addr, void* buf, uint16_t len, error_t result) { }
   default event void BlockRead.verifyDone[uint8_t id](error_t result) { }
   default event void BlockRead.computeCrcDone[uint8_t id](storage_addr_t addr, storage_len_t len, uint16_t x, error_t result) { }
   

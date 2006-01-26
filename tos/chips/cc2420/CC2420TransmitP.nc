@@ -39,7 +39,7 @@ module CC2420TransmitP {
   provides interface Init;
   provides interface AsyncControl;
   provides interface CC2420Transmit as Send;
-  provides interface CSMABackoff;
+  provides interface CsmaBackoff;
   provides interface RadioTimeStamping as TimeStamp;
 
   uses interface Alarm<T32khz,uint32_t> as BackoffTimer;
@@ -184,7 +184,7 @@ implementation {
     }
 
     if ( m_cca ) {
-      startBackoffTimer( signal CSMABackoff.initial( m_msg ) * 
+      startBackoffTimer( signal CsmaBackoff.initial( m_msg ) * 
 			       CC2420_BACKOFF_PERIOD );
     }
     else if ( acquireSpiResource() == SUCCESS ) {
@@ -246,7 +246,7 @@ implementation {
     else {
       releaseSpiResource();
       m_state = S_SAMPLE_CCA;
-      startBackoffTimer( signal CSMABackoff.initial( m_msg ) * 
+      startBackoffTimer( signal CsmaBackoff.initial( m_msg ) * 
 			 CC2420_BACKOFF_PERIOD );
     }
 
@@ -254,7 +254,7 @@ implementation {
 
   void congestionBackoff() {
     atomic {
-      uint16_t time = signal CSMABackoff.congestion( m_msg );
+      uint16_t time = signal CsmaBackoff.congestion( m_msg );
       if ( time )
 	startBackoffTimer( time * CC2420_BACKOFF_PERIOD );
       else

@@ -38,8 +38,8 @@
 
 interface BlockWrite {
   
-  command error_t write( storage_addr_t addr, void* buf, storage_len_t len );
-  event void writeDone( storage_addr_t addr, void* buf, storage_len_t len, 
+  command error_t write( storage_addr_t addr, void* buf, uint16_t len );
+  event void writeDone( storage_addr_t addr, void* buf, uint16_t len, 
 			error_t error );
   
   command error_t erase();

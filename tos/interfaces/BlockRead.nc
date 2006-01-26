@@ -38,8 +38,8 @@
 
 interface BlockRead {
   
-  command error_t read( storage_addr_t addr, void* buf, storage_len_t len );
-  event void readDone( storage_addr_t addr, void* buf, storage_len_t len, 
+  command error_t read( storage_addr_t addr, void* buf, uint16_t len );
+  event void readDone( storage_addr_t addr, void* buf, uint16_t len, 
 		       error_t error );
   
   command error_t verify();
