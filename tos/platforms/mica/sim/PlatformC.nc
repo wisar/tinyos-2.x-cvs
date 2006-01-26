@@ -27,16 +27,20 @@
 includes hardware;
 
 configuration PlatformC {
-  provides interface Init;
+  provides {
+    interface Init;
+    command uint32_t calibrateMicro(uint32_t n);
+  }
   uses interface Init as SubInit;
 }
 implementation
 {
-  components PlatformP, MotePlatformC;
+  components PlatformP, MotePlatformC, MeasureClockC;
   
   Init = PlatformP;
   PlatformP.MoteInit -> MotePlatformC;
   MotePlatformC.SubInit = SubInit;
+  PlatformP.MeasureClock -> MeasureClockC;
 
 }
 
