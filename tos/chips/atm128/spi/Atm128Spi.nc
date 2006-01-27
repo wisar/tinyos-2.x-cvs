@@ -1,3 +1,5 @@
+/// $Id$ 
+
 /*
  * "Copyright (c) 2005 Stanford University. All rights reserved.
  *
@@ -59,13 +61,34 @@ includes Atm128Spi;
 interface Atm128Spi {
 
   /* Modal functions */
+
+  /** Initialize the ATmega128 SPI bus into master mode. */
   async command void initMaster();
+
+  /** Initialize the ATmega128 SPI bus into slave mode. */
   async command void initSlave();
+
+  /** Disable and sleep the ATmega128 SPI bus. */
   async command void sleep();
   
   /* SPDR: SPI Data Register */
+
+  /** 
+   * Read the SPI data register 
+   * @return last data byte
+   */
   async command uint8_t read();
+
+  /** 
+   * Write the SPI data register 
+   * @param data   next data byte
+   */
   async command void write(uint8_t data);
+
+  /**
+   * Interrupt signalling SPI data cycle is complete. 
+   * @param data   data byte from data register
+   */
   async event   void dataReady(uint8_t data);
   
   /* SPCR: SPI Control Register */
