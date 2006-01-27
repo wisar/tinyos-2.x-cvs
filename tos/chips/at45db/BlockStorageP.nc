@@ -29,7 +29,10 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-/*
+/**
+ * Private component of the AT45DB implementation of the block storage
+ * abstraction.
+ *
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  * @author: David Gay <dgay@acm.org>
  */

@@ -9,6 +9,13 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
+/**
+ * Implementation of the block storage abstraction from TEP103 for the
+ * Atmel AT45DB serial data flash.
+ *
+ * @author David Gay
+ */
+
 #include "Storage.h"
 
 generic configuration BlockStorageC(volume_id_t volid) {
@@ -23,11 +30,11 @@ implementation {
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
-  components BlockStorageP, WireBlockStorageP, StorageManagerC, At45dbC;
+  components BlockStorageP, WireBlockStorageP, StorageManagerP, At45dbC;
 
   BlockWrite = BlockStorageP.BlockWrite[BLOCK_ID];
   BlockRead = BlockStorageP.BlockRead[BLOCK_ID];
 
-  BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerC.At45dbVolume[volid];
+  BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerP.At45dbVolume[volid];
   BlockStorageP.Resource[BLOCK_ID] -> At45dbC.Resource[RESOURCE_ID];
 }
