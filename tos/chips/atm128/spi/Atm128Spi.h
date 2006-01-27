@@ -1,4 +1,4 @@
-/// $Id$
+// $Id$
 
 /*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
@@ -22,7 +22,7 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+// @author Martin Turon <mturon@xbow.com>
 
 #ifndef _H_Atm128SPI_h
 #define _H_Atm128SPI_h
@@ -36,7 +36,7 @@ enum {
   ATM128_SPI_CLK_DIVIDE_128 = 3,
 };
 
-/** SPI Control Register */
+/* SPI Control Register */
 typedef struct {
   uint8_t spie  : 1;  //!< SPI Interrupt Enable
   uint8_t spe   : 1;  //!< SPI Enable
@@ -54,7 +54,7 @@ typedef union {
 
 typedef Atm128SPIControl_t Atm128_SPCR_t;  //!< SPI Control Register
 
-/** SPI Status Register */
+/* SPI Status Register */
 typedef struct {
   uint8_t spif  : 1;  //!< SPI Interrupt Flag
   uint8_t wcol  : 1;  //!< SPI Write COLision flag

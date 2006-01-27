@@ -12,7 +12,7 @@
  * Internal mica-family timer component. Sets up hardware timer 3 to run
  * at cpu clock / 8, at boot time.
  *
- * @authod David Gay
+ * @author David Gay
  */
 
 configuration InitMicroP { }

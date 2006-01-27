@@ -7,14 +7,15 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
+#include "Atm128Adc.h"
+
 /**
  * Clients of the higher-level A/D system must implement this interface to
  * specify which channel to sample, and with what parameters.
  *
  * @author David Gay
  */
-#include "Atm128Adc.h"
-
 interface Atm128AdcConfig {
   /**
    * Obtain channel.

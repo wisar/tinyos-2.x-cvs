@@ -12,7 +12,7 @@
  * Internal mica-family timer component. Sets up hardware timer 1 to run
  * at cpu clock / 256, at boot time.
  *
- * @authod David Gay
+ * @author David Gay
  */
 
 configuration Init32khzP { }

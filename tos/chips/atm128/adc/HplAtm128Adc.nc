@@ -22,6 +22,8 @@
  * MODIFICATIONS.
  */
 
+#include "Atm128Adc.h"
+
 /**
  * HPL interface to the Atmega128 A/D conversion subsystem. Please see the
  * Atmega128 manual for full details on the functioning of this subsystem.
@@ -31,10 +33,8 @@
  *
  * @author Martin Turon <mturon@xbow.com>
  * @author Hu Siquan <husq@xbow.com>
- * @authod David Gay
+ * @author David Gay
  */
-
-#include "Atm128Adc.h"
 
 interface HplAtm128Adc {
   /**

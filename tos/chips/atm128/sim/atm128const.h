@@ -7,7 +7,7 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/**
+/*
  * const_[u]int[8/16/32]_t types are used to declare single and array
  * constants that should live in ROM/FLASH. These constants must be read
  * via the corresponding read_[u]int[8/16/32]_t functions.

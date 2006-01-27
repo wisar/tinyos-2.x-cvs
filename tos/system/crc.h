@@ -32,7 +32,7 @@
 #ifndef CRC_H
 #define CRC_H
 
-/**
+/*
  * Default CRC function. Some microcontrollers may provide more efficient
  * implementations.
  *

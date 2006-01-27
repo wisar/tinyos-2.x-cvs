@@ -16,7 +16,7 @@
  * An "AlarmMicro microsecond" is actually 8 cpu cycles (see 
  * AlarmMicro16C and AlarmMicro32C).
  *
- * @authod David Gay
+ * @author David Gay
  */
 
 #include "scale.h"
