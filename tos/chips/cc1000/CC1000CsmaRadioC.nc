@@ -100,11 +100,11 @@ implementation {
   SendReceive.CC1000Control -> Control;
   SendReceive.HplCC1000Spi -> Hpl;
   SendReceive.amAddress -> ActiveMessageAddressC;
-  SendReceive.RssiRx -> Rssi.Rssi[unique("CC1000RSSI")];
+  SendReceive.RssiRx -> Rssi.Rssi[unique(UQ_CC1000_RSSI)];
   
-  Csma.RssiNoiseFloor -> Rssi.Rssi[unique("CC1000RSSI")];
-  Csma.RssiCheckChannel -> Rssi.Rssi[unique("CC1000RSSI")];
-  Csma.RssiPulseCheck -> Rssi.Rssi[unique("CC1000RSSI")];
+  Csma.RssiNoiseFloor -> Rssi.Rssi[unique(UQ_CC1000_RSSI)];
+  Csma.RssiCheckChannel -> Rssi.Rssi[unique(UQ_CC1000_RSSI)];
+  Csma.RssiPulseCheck -> Rssi.Rssi[unique(UQ_CC1000_RSSI)];
   Csma.cancelRssi -> Rssi;
   Csma.BusyWait -> BusyWaitMicroC;
 
