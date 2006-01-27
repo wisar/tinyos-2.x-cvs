@@ -1,6 +1,6 @@
 /// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,9 +22,13 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+/**
+ * Initialisation component for mica-family platforms. See TEP107.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ */
 
-includes hardware;
+#include "hardware.h"
 
 configuration PlatformC {
   provides {
