@@ -1,6 +1,6 @@
 //$Id$
 
-/* "Copyright (c) 2000-2003 The Regents of the University of California.  
+/* "Copyright (c) 2000-2005 The Regents of the University of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -21,43 +21,50 @@
  */
 
 /**
+ * Implementation of the GPIO interrupt abstraction from TEP117 for
+ * the TI MSP430 microcontroller.
+ *
+ * @author Jonathan Hui
  * @author Joe Polastre
  */
 
-interface MSP430Interrupt
-{
-  /** 
-   * Enables MSP430 hardware interrupt on a particular port
-   */
-  async command void enable();
+generic module Msp430InterruptC() {
 
-  /** 
-   * Disables MSP430 hardware interrupt on a particular port
-   */
-  async command void disable();
+  provides interface GpioInterrupt as Interrupt;
+  uses interface HplMsp430Interrupt as HplInterrupt;
 
-  /** 
-   * Clears the MSP430 Interrupt Pending Flag for a particular port
-   */
-  async command void clear();
-
-  /** 
-   * Gets the current value of the input voltage of a port
-   *
-   * @return TRUE if the pin is set high, FALSE if it is set low
-   */
-  async command bool getValue();
-
-  /** 
-   * Sets whether the edge should be high to low or low to high.
-   * @param TRUE if the interrupt should be triggered on a low to high
-   *        edge transition, false for interrupts on a high to low transition
-   */
-  async command void edge(bool low_to_high);
-
-  /**
-   * Signalled when an interrupt occurs on a port
-   */
-  async event void fired();
 }
 
+implementation {
+
+  error_t enable( bool rising ) {
+    atomic {
+      call Interrupt.disable();
+      call HplInterrupt.edge( rising );
+      call HplInterrupt.enable();
+    }
+    return SUCCESS;
+  }
+
+  async command error_t Interrupt.enableRisingEdge() {
+    return enable( TRUE );
+  }
+
+  async command error_t Interrupt.enableFallingEdge() {
+    return enable( FALSE );
+  }
+
+  async command error_t Interrupt.disable() {
+    atomic {
+      call HplInterrupt.disable();
+      call HplInterrupt.clear();
+    }
+    return SUCCESS;
+  }
+
+  async event void HplInterrupt.fired() {
+    call HplInterrupt.clear();
+    signal Interrupt.fired();
+  }
+
+}

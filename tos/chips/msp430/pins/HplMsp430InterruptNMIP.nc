@@ -23,11 +23,11 @@
 /**
  * @author Joe Polastre
  */
-module MSP430InterruptNMIM
+module HplMsp430InterruptNMIP
 {
-  provides interface MSP430Interrupt as NMI;
-  provides interface MSP430Interrupt as OF;
-  provides interface MSP430Interrupt as ACCV;
+  provides interface HplMsp430Interrupt as NMI;
+  provides interface HplMsp430Interrupt as OF;
+  provides interface HplMsp430Interrupt as ACCV;
 }
 implementation
 {

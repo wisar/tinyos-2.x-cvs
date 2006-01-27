@@ -1,6 +1,6 @@
 //$Id$
 
-/* "Copyright (c) 2000-2003 The Regents of the University of California.  
+/* "Copyright (c) 2000-2005 The Regents of the University of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -21,20 +21,22 @@
  */
 
 /**
+ * HPL for the TI MSP430 family of microprocessors. This provides an
+ * abstraction for non-maskable interrupts.
+ *
  * @author Joe Polastre
  */
-
-generic module GpioC() {
-  provides interface GeneralIO;
-  uses interface MSP430GeneralIO;
+configuration HplMsp430InterruptNMIC
+{
+  provides interface HplMsp430Interrupt as NMI;
+  provides interface HplMsp430Interrupt as OF;
+  provides interface HplMsp430Interrupt as ACCV;
 }
-implementation {
+implementation
+{
+  components HplMsp430InterruptNMIP as HplInterruptP;
 
-  async command void GeneralIO.set() { call MSP430GeneralIO.set(); }
-  async command void GeneralIO.clr() { call MSP430GeneralIO.clr(); }
-  async command void GeneralIO.toggle() { call MSP430GeneralIO.toggle(); }
-  async command bool GeneralIO.get() { return call MSP430GeneralIO.get(); }
-  async command void GeneralIO.makeInput() { call MSP430GeneralIO.makeInput(); }
-  async command void GeneralIO.makeOutput() { call MSP430GeneralIO.makeOutput(); }
-
+  NMI = HplInterruptP.NMI;
+  OF = HplInterruptP.OF;
+  ACCV = HplInterruptP.ACCV;
 }

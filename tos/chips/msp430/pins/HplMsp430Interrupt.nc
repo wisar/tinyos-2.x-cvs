@@ -1,4 +1,4 @@
-// $Id$
+//$Id$
 
 /* "Copyright (c) 2000-2003 The Regents of the University of California.  
  * All rights reserved.
@@ -21,19 +21,44 @@
  */
 
 /**
- * @author Cory Sharp <cssharp@eecs.berkeley.edu>
+ * @author Joe Polastre
  */
 
-interface MSP430GeneralIO
+interface HplMsp430Interrupt
 {
-  async command void set();
-  async command void clr();
-  async command void toggle();
-  async command uint8_t getRaw();
-  async command bool get();
-  async command void makeInput();
-  async command void makeOutput();
-  async command void selectModuleFunc();
-  async command void selectIOFunc();
+  /** 
+   * Enables MSP430 hardware interrupt on a particular port.
+   */
+  async command void enable();
+
+  /** 
+   * Disables MSP430 hardware interrupt on a particular port.
+   */
+  async command void disable();
+
+  /** 
+   * Clears the MSP430 Interrupt Pending Flag for a particular port.
+   */
+  async command void clear();
+
+  /** 
+   * Gets the current value of the input voltage of a port.
+   *
+   * @return TRUE if the pin is set high, FALSE if it is set low.
+   */
+  async command bool getValue();
+
+  /** 
+   * Sets whether the edge should be high to low or low to high.
+   *
+   * @param TRUE if the interrupt should be triggered on a low to high
+   *        edge transition, false for interrupts on a high to low transition.
+   */
+  async command void edge(bool low_to_high);
+
+  /**
+   * Signalled when an interrupt occurs on a port.
+   */
+  async event void fired();
 }
 

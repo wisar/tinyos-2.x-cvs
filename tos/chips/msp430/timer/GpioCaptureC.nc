@@ -30,7 +30,7 @@ generic module GpioCaptureC() {
   provides interface GpioCapture as Capture;
   uses interface MSP430TimerControl;
   uses interface MSP430Capture;
-  uses interface MSP430GeneralIO;
+  uses interface HplMsp430GeneralIO as GeneralIO;
 
 }
 
@@ -39,7 +39,7 @@ implementation {
   error_t enableCapture( uint8_t mode ) {
     atomic {
       call MSP430TimerControl.disableEvents();
-      call MSP430GeneralIO.selectModuleFunc();
+      call GeneralIO.selectModuleFunc();
       call MSP430TimerControl.clearPendingInterrupt();
       call MSP430Capture.clearOverflow();
       call MSP430TimerControl.setControlAsCapture( mode );
@@ -59,7 +59,7 @@ implementation {
   async command void Capture.disable() {
     atomic {
       call MSP430TimerControl.disableEvents();
-      call MSP430GeneralIO.selectIOFunc();
+      call GeneralIO.selectIOFunc();
     }
   }
 

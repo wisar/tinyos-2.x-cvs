@@ -33,20 +33,20 @@ configuration PlatformLedsC {
 implementation
 {
   components 
-    MSP430GeneralIOC
-    , new GpioC() as Led0Impl
-    , new GpioC() as Led1Impl
-    , new GpioC() as Led2Impl
+      HplMsp430GeneralIOC as GeneralIOC
+    , new Msp430GpioC() as Led0Impl
+    , new Msp430GpioC() as Led1Impl
+    , new Msp430GpioC() as Led2Impl
     ;
 
   Led0 = Led0Impl;
-  Led0Impl -> MSP430GeneralIOC.Port54;
+  Led0Impl -> GeneralIOC.Port54;
 
   Led1 = Led1Impl;
-  Led1Impl -> MSP430GeneralIOC.Port55;
+  Led1Impl -> GeneralIOC.Port55;
 
   Led2 = Led2Impl;
-  Led2Impl -> MSP430GeneralIOC.Port56;
+  Led2Impl -> GeneralIOC.Port56;
 
 }
 

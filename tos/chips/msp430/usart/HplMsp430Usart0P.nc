@@ -41,11 +41,11 @@ module HplMsp430Usart0P {
   provides interface HplMsp430Usart as USART;
   provides interface HPLI2CInterrupt;
 
-  uses interface MSP430GeneralIO as SIMO;
-  uses interface MSP430GeneralIO as SOMI;
-  uses interface MSP430GeneralIO as UCLK;
-  uses interface MSP430GeneralIO as URXD;
-  uses interface MSP430GeneralIO as UTXD;
+  uses interface HplMsp430GeneralIO as SIMO;
+  uses interface HplMsp430GeneralIO as SOMI;
+  uses interface HplMsp430GeneralIO as UCLK;
+  uses interface HplMsp430GeneralIO as URXD;
+  uses interface HplMsp430GeneralIO as UTXD;
 }
 implementation
 {

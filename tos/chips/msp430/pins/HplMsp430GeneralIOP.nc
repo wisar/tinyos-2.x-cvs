@@ -26,7 +26,7 @@
 
 includes msp430regtypes;
 
-generic module MSP430GeneralIOM(
+generic module HplMsp430GeneralIOP(
 				uint8_t port_in_addr,
 				uint8_t port_out_addr,
 				uint8_t port_dir_addr,
@@ -34,7 +34,7 @@ generic module MSP430GeneralIOM(
 				uint8_t pin
 				)
 {
-  provides interface MSP430GeneralIO as IO;
+  provides interface HplMsp430GeneralIO as IO;
 }
 implementation
 {
@@ -53,4 +53,3 @@ implementation
   async command void IO.selectModuleFunc() { atomic PORTxSEL |= (0x01 << pin); }
   async command void IO.selectIOFunc() { atomic PORTxSEL &= ~(0x01 << pin); }
 }
-

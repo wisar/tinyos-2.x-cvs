@@ -1,6 +1,6 @@
 //$Id$
 
-/* "Copyright (c) 2000-2005 The Regents of the University of California.  
+/* "Copyright (c) 2000-2003 The Regents of the University of California.  
  * All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -21,19 +21,23 @@
  */
 
 /**
+ * Implementation of the general-purpose I/O abstraction from TEP117
+ * for the TI MSP430 microcontroller.
+ *
  * @author Joe Polastre
  */
-configuration MSP430InterruptNMIC
-{
-  provides interface MSP430Interrupt as NMI;
-  provides interface MSP430Interrupt as OF;
-  provides interface MSP430Interrupt as ACCV;
-}
-implementation
-{
-  components MSP430InterruptNMIM as MSP430InterruptM;
 
-  NMI = MSP430InterruptM.NMI;
-  OF = MSP430InterruptM.OF;
-  ACCV = MSP430InterruptM.ACCV;
+generic module Msp430GpioC() {
+  provides interface GeneralIO;
+  uses interface HplMsp430GeneralIO as HplGeneralIO;
+}
+implementation {
+
+  async command void GeneralIO.set() { call HplGeneralIO.set(); }
+  async command void GeneralIO.clr() { call HplGeneralIO.clr(); }
+  async command void GeneralIO.toggle() { call HplGeneralIO.toggle(); }
+  async command bool GeneralIO.get() { return call HplGeneralIO.get(); }
+  async command void GeneralIO.makeInput() { call HplGeneralIO.makeInput(); }
+  async command void GeneralIO.makeOutput() { call HplGeneralIO.makeOutput(); }
+
 }
