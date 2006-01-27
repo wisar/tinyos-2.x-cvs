@@ -89,6 +89,7 @@ implementation
     ignore = FALSE;
     state = owner = value = 0;
     resultBuf = 0;
+    return SUCCESS;
   }
   
   command error_t Read.read[uint8_t client]()

@@ -50,14 +50,14 @@ module Msp430Adc12P
     interface MSP430TimerControl as ControlA1;
     interface MSP430Compare as CompareA0;
     interface MSP430Compare as CompareA1;
-    interface MSP430GeneralIO as Port60;
-    interface MSP430GeneralIO as Port61;
-    interface MSP430GeneralIO as Port62;
-    interface MSP430GeneralIO as Port63;
-    interface MSP430GeneralIO as Port64;
-    interface MSP430GeneralIO as Port65;
-    interface MSP430GeneralIO as Port66;
-    interface MSP430GeneralIO as Port67;
+    interface HplMsp430GeneralIO as Port60;
+    interface HplMsp430GeneralIO as Port61;
+    interface HplMsp430GeneralIO as Port62;
+    interface HplMsp430GeneralIO as Port63;
+    interface HplMsp430GeneralIO as Port64;
+    interface HplMsp430GeneralIO as Port65;
+    interface HplMsp430GeneralIO as Port66;
+    interface HplMsp430GeneralIO as Port67;
     
 	}
 }
@@ -90,6 +90,7 @@ implementation
   {
     call HplAdc12.disableConversion();
     call HplAdc12.adcOff();
+    return SUCCESS;
   }
   
   command error_t StdControlNull.start() {
