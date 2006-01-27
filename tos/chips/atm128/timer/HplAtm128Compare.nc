@@ -1,6 +1,6 @@
 /// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,7 +22,12 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+/**
+ * HPL Interface to Atmega128 compare registers.
+ * @param size_type Integer type of compare register
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ */
 
 interface HplAtm128Compare<size_type>
 {

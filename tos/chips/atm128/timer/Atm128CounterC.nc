@@ -1,6 +1,6 @@
 //$Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,9 +22,14 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+/**
+ * Build a TEP102 Counter from an Atmega128 hardware timer.
+ * @param frequency_tag The frequency tag for this Counter
+ * @param timer_size The width of this Counter
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ */
 
-// Convert ATmega128 hardware timer to TinyOS CounterBase.
 generic module Atm128CounterC(typedef frequency_tag,
 			      typedef timer_size @integer())
 {

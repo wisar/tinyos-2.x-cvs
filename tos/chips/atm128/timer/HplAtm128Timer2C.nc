@@ -1,6 +1,6 @@
 /// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,7 +22,11 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+/**
+ * HPL interface to Atmega128 timer 2.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ */
 
 #include <Atm128Timer.h>
 

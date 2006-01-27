@@ -33,6 +33,12 @@
 #include "At45db.h"
 #include "Timer.h"
 
+/**
+ * Private componenent for the Atmel's AT45DB HAL.
+ *
+ * @author David Gay
+ */
+
 module At45dbP {
   provides {
     interface Init;

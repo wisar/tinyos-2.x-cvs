@@ -1,6 +1,6 @@
 /// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,8 +22,15 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-/// @author David Gay <dgay@intel-research.net>
+/**
+ * HPL interface to Atmega128 timer 0 in ASYNC mode. This is a specialised
+ * HPL component that assumes that timer 0 is used in ASYNC mode and
+ * includes some workarounds for some of the weirdnesses (delayed overflow
+ * interrupt) of that mode.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ * @author David Gay <dgay@intel-research.net>
+ */
 
 #include <Atm128Timer.h>
 

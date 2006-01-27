@@ -1,4 +1,4 @@
-/**
+/*
  *  Copyright (c) 2004-2005 Crossbow Technology, Inc.
  *  All rights reserved.
  *
@@ -22,10 +22,6 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
  *  THE POSSIBILITY OF SUCH DAMAGE.
  *
- *  @author Alan Broad, Crossbow <abroad@xbow.com>
- *  @author Matt Miller, Crossbow <mmiller@xbow.com>
- *  @author Martin Turon, Crossbow <mturon@xbow.com>
- *
  *  $Id$
  */
 
@@ -38,7 +34,9 @@
  *         Timer3 == PortE.Pin7 [E7]
  * So selection of 16-bit timer gives implicit wiring of actual Pin to capture.
  *
- * @version    mturon     2005/7/30      Intial revision.
+ *  @author Alan Broad, Crossbow <abroad@xbow.com>
+ *  @author Matt Miller, Crossbow <mmiller@xbow.com>
+ *  @author Martin Turon, Crossbow <mturon@xbow.com>
  */
 generic module Atm128CaptureP () 
 {
