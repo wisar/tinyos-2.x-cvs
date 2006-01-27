@@ -134,11 +134,11 @@ implementation
   async command void CompareB.start() { SET_BIT(TIMSK,OCIE1B); }
   async command void CompareC.start() { SET_BIT(ETIMSK,OCIE1C); }
 
-  async command void Timer.stop()    { CLR_BIT(ETIMSK,TOIE3); }
-  async command void Capture.stop()  { CLR_BIT(ETIMSK,TICIE1); }
-  async command void CompareA.stop() { CLR_BIT(ETIMSK,OCIE3A); }
-  async command void CompareB.stop() { CLR_BIT(ETIMSK,OCIE3B); }
-  async command void CompareC.stop() { CLR_BIT(ETIMSK,OCIE3C); }
+  async command void Timer.stop()    { CLR_BIT(TIMSK,TOIE1); }
+  async command void Capture.stop()  { CLR_BIT(TIMSK,TICIE1); }
+  async command void CompareA.stop() { CLR_BIT(TIMSK,OCIE1A); }
+  async command void CompareB.stop() { CLR_BIT(TIMSK,OCIE1B); }
+  async command void CompareC.stop() { CLR_BIT(ETIMSK,OCIE1C); }
 
   // Note: Many Timer interrupt flags are on Timer0 register
   async command bool Timer.test() { 
