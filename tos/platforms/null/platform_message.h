@@ -12,19 +12,21 @@
  * Dummy implementation to support the null platform.
  */
 
-#ifndef RADIO_TOS_MSG_H
-#define RADIO_TOS_MSG_H
+#ifndef PLATFORM_MESSAGE_H
+#define PLATFORM_MESSAGE_H
 
-typedef nx_struct {
-  nx_int8_t dummy;
-} TOSRadioHeader;
+#include "Serial.h"
 
-typedef nx_struct {
-  nx_int8_t dummy;
-} TOSRadioFooter;
+typedef union message_header {
+  serial_header_t serial;
+} message_header_t;
 
-typedef nx_struct {
-  nx_int8_t dummy;
-} TOSRadioMetadata;
+typedef union message_footer {
+  nx_uint8_t dummy;
+} message_footer_t;
+
+typedef union message_metadata {
+  nx_uint8_t dummy;
+} message_metadata_t;
 
 #endif
