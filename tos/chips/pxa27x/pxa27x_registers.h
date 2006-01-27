@@ -1414,6 +1414,13 @@
 #define PSLR_SL_R0 	(1 << 8)	      /* SRAM bank 0 retains state */
 #define PSLR_SL_PI(_x) (((_x) & 0x3) << 2)    /* PI power domain */
 
+#define PWRMODE_M_NORMAL	(0)
+#define PWRMODE_M_IDLE		(1)
+#define PWRMODE_M_STANDBY	(2)
+#define PWRMODE_M_SLEEP		(3)
+#define PWRMODE_M_DEEPSLEEP	(4)
+#define PWRMODE_VC	(1 << 3)	/* Voltage Change */
+
 /******************************************************************************/
 /* Power Manager I2C */
 /******************************************************************************/
