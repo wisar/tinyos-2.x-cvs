@@ -8,8 +8,10 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Provide arbitrated access to the ReadNow interface of the AdcC
- * component for a particular port.
+ * Provide, as per TEP101, Resource-based access to the Atmega128 ADC via a
+ * ReadNow interface.  Users of this component must link it to an
+ * implementation of Atm128AdcConfig which provides the ADC parameters
+ * (channel, etc).
  * 
  * @author David Gay
  */
@@ -17,18 +19,21 @@
 #include "Adc.h"
 
 generic configuration AdcReadNowClientC() {
-  provides interface ReadNow<uint16_t>;
+  provides {
+    interface Resource;
+    interface ReadNow<uint16_t>;
+  }
   uses interface Atm128AdcConfig;
 }
 implementation {
-  components AdcC, Atm128AdcC;
+  components WireAdcP, Atm128AdcC;
 
   enum {
     ID = unique(UQ_ADC_READNOW),
     HAL_ID = unique(UQ_ATM128ADC_RESOURCE)
   };
 
-  ReadNow = AdcC.ReadNow[ID];
+  ReadNow = WireAdcP.ReadNow[ID];
   Atm128AdcConfig = AdcC.Atm128AdcConfig[ID];
-  AdcC.Resource[ID] -> Atm128AdcC.Resource[HAL_ID];
+  Resource = Atm128AdcC.Resource[HAL_ID];
 }
