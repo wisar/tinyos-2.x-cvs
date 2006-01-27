@@ -8,8 +8,14 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Implement arbitrated access to an ReadNow interface, based on an
+ * Implement arbitrated access to a ReadNow interface, based on an
  * underlying arbitrated Resource interface.
+ *
+ * Note that this code does not deal with unexpected events: it assumes
+ * that all events it receives are in response to commands that it
+ * made. 
+ *
+ * @param width_t Width of the underlying ReadNow interface.
  *
  * @author David Gay
  */
