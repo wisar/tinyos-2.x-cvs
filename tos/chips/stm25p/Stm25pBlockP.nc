@@ -104,7 +104,7 @@ implementation {
   
   command error_t Write.write[ storage_block_t b ]( storage_addr_t addr, 
 						    void* buf, 
-						    uint16_t len ) {
+						    storage_len_t len ) {
     m_req.req = S_WRITE;
     m_req.addr = addr;
     m_req.buf = buf;
@@ -224,10 +224,10 @@ implementation {
 
   }
 
-  default event void Read.readDone[ storage_block_t b ]( storage_addr_t addr, void* buf, uint16_t len, error_t error ) {}
+  default event void Read.readDone[ storage_block_t b ]( storage_addr_t addr, void* buf, storage_len_t len, error_t error ) {}
   default event void Read.computeCrcDone[ storage_block_t b ]( storage_addr_t addr, storage_len_t len, uint16_t crc, error_t error ) {}
   default event void Read.verifyDone[ storage_block_t b ]( error_t error ) {}
-  default event void Write.writeDone[ storage_block_t b ]( storage_addr_t addr, void* buf, uint16_t len, error_t error ) {}
+  default event void Write.writeDone[ storage_block_t b ]( storage_addr_t addr, void* buf, storage_len_t len, error_t error ) {}
   default event void Write.eraseDone[ storage_block_t b ]( error_t error ) {}
   default event void Write.commitDone[ storage_block_t b ]( error_t error ) {}
 
