@@ -1,4 +1,6 @@
-/**
+/// $Id$
+
+/*
  * "Copyright (c) 2005 Stanford University. All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and
@@ -19,7 +21,6 @@
  * PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND STANFORD UNIVERSITY
  * HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
  * ENHANCEMENTS, OR MODIFICATIONS."
- *
  */
 
 /**
@@ -34,7 +35,6 @@
  * @author Philip Levis
  * @author Robert Szewczyk
  * @date   October 26, 2005
- *
  */
 
 module McuSleepC {
