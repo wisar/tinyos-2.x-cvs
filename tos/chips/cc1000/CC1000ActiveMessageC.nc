@@ -28,12 +28,6 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/*
- *
- * Authors:		Philip Levis
- * Date last modified:  $Id$
- *
- */
 
 /**
  *

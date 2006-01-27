@@ -26,24 +26,24 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
 /**
- * A rewrite of the low-power-listening CC1000 radio stack.
+ * A low-power-listening CC1000 radio stack.
  *
  * Radio logic is split between Csma (media-access control, low-power
  * listening and general control) and SendReceive (packet reception and
  * transmission). 
  *
- * CC1000RssiM (RSSI sharing), CC1000SquelchM (noise-floor estimation)
- * and CC1000ControlM (radio configuration) provide supporting roles.
+ * CC1000RssiP (RSSI sharing), CC1000SquelchP (noise-floor estimation)
+ * and CC1000ControlP (radio configuration) provide supporting roles.
  *
- * This code has some degree of platform-independence, via the
- * CC1000Control, RSSIADC and SpiByteFifo interfaces which must be provided
- * by the platform. However, these interfaces may still reflect some
+ * This code has some degree of platform-independence, via the HplCC1000,
+ * RssiAdc and HplCC1000Spi interfaces which must be provided by the
+ * platform. However, these interfaces may still reflect some
  * particularities of the mica2 hardware implementation.
  *
  * @author Joe Polastre
  * @author David Gay
- * Revision:  $Revision$
  */
 
 #include "CC1000Const.h"

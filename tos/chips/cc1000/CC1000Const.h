@@ -490,4 +490,6 @@ static const_uint8_t CC1K_Params[6][20] = {
   },
 };
 
+#define UQ_CC1000_RSSI "CC1000RssiP.Rssi"
+
 #endif /* CC1000CONST_H */

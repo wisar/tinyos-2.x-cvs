@@ -28,14 +28,9 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/*
- *
- * Authors:		Philip Levis
- * Date last modified:  $Id$
- *
- */
-
 /**
+ * Implementation component for CC1000ActiveMessageC.
+ *
  * @author Philip Levis
  * @date June 19 2005
  */

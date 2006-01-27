@@ -27,16 +27,13 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
+ * This module provides the CONTROL functionality for the Chipcon1000
+ * series radio.  It exports a custom interface to control CC1000
+ * operation.
+ *
  * @author Philip Buonadonna
  * @author Jaein Jeong
  * @author David Gay
- * Revision:  $Revision$
- */
-
-/**
- * This module provides the CONTROL functionality for the Chipcon1000
- * series radio.  It exports both a standard control interface and a custom
- * interface to control CC1000 operation.
  */
 #include "CC1000Const.h"
 #include "Timer.h"

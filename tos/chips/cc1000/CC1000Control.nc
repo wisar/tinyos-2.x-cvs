@@ -28,7 +28,8 @@
  */
 /**
  * CC1000 internal radio control interface.
- * @author Philip Buonadonna, Jaein Jeong
+ * @author Philip Buonadonna
+ * @aythor Jaein Jeong
  */
 interface CC1000Control
 {

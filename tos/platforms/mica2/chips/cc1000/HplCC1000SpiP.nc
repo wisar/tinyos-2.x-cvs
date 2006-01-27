@@ -76,7 +76,7 @@ implementation
   }
 
   async command bool HplCC1000Spi.isBufBusy() {
-    return bit_is_clear(SPSR,SPIF);
+    return bit_is_clear(SPSR, SPIF);
   }
 
   async command uint8_t HplCC1000Spi.readByte() {
