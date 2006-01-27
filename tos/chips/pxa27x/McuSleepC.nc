@@ -52,6 +52,11 @@ implementation {
   
   async command void McuSleep.sleep() {
     // Put idle into here.
+    asm volatile (
+		  "mcr p14,0,%0,c7,c0,0"
+		  : 
+		  : "r" (PWRMODE_M_IDLE)
+		  );
     __nesc_enable_interrupt();
     __nesc_disable_interrupt();
     return;
