@@ -125,7 +125,7 @@ implementation
     return SUCCESS;
   }
 
-  async command error_t SPIPacket.send[uint8_t instance](uint8_t* txBuf, uint8_t* rxBuf, uint8_t len) {
+  async command error_t SPIPacket.send[uint8_t instance](uint8_t* txBuf, uint8_t* rxBuf, uint16_t len) {
     uint32_t tmp,i;
     uint8_t *txPtr,*rxPtr;
     uint32_t txInc = 1,rxInc = 1;
@@ -214,7 +214,7 @@ implementation
   }
 
   default async event void SPIPacket.sendDone[uint8_t instance](uint8_t* txBuf, uint8_t* rxBuf, 
-					      uint8_t len, error_t error) {
+					      uint16_t len, error_t error) {
     return;
   }
   
