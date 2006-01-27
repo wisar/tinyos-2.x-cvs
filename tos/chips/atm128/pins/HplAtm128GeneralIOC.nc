@@ -1,6 +1,6 @@
-// $Id$
+/// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,13 +22,13 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
+#include <atm128hardware.h>
 
 /**
  * Provide GeneralIO interfaces for all of the ATmega128's pins.
+ *
+ * @author Martin Turon <mturon@xbow.com>
  */
-
-#include <atm128hardware.h>
 
 configuration HplAtm128GeneralIOC
 {

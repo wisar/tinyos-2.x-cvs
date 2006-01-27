@@ -1,6 +1,6 @@
-// $Id$
+/// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,12 +22,12 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-
 /**
  * Interrupt interface access for interrupt capable GPIO pins.
  * Exposes just the interrupt vector routine for 
  * easy linking to generic components.
+ *
+ * @author Martin Turon <mturon@xbow.com>
  */
 module HplAtm128InterruptSigP
 {

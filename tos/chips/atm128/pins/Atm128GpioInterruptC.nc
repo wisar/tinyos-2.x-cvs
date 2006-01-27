@@ -1,4 +1,8 @@
+/// $Id$
 
+/**
+ * @author Phil Levis
+ */
 generic module Atm128GpioInterruptC() {
 
   provides interface GpioInterrupt as Interrupt;

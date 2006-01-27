@@ -1,6 +1,6 @@
-// $Id$
+/// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -22,10 +22,10 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-
 /**
  * Interrupt interface access for interrupt capable GPIO pins.
+ *
+ * @author Martin Turon <mturon@xbow.com>
  */
 generic module HplAtm128InterruptPinP (uint8_t ctrl_addr, 
 				 uint8_t edge0bit, 

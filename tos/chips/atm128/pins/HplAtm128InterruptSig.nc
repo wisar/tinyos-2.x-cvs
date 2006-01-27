@@ -1,4 +1,6 @@
-/**
+/// $Id$
+
+/*
  *  Copyright (c) 2004-2005 Crossbow Technology, Inc.
  *  All rights reserved.
  *
@@ -21,15 +23,13 @@
  *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
  *  THE POSSIBILITY OF SUCH DAMAGE.
- *
- *  @author Martin Turon <mturon@xbow.com>
- *
- *  $Id$
  */
 
 /**
  * Exposes just the interrupt vector routine for 
  * easy linking to generic components.
+ *
+ * @author Martin Turon <mturon@xbow.com>
  */
 interface HplAtm128InterruptSig
 {
