@@ -1,6 +1,6 @@
 /// $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its
@@ -21,7 +21,11 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR 
  * MODIFICATIONS.
  */
-/// @author Hu Siquan <husq@xbow.com>
+/**
+ * Demo sensor for the mica2 platform.
+ *
+ * @author Hu Siquan <husq@xbow.com>
+ */
 
 configuration DemoSensorC
 {

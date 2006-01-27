@@ -28,14 +28,10 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-
-/* 
- * Authors: Jaein Jeong, Philip buonadonna
- * Date last modified: $Revision$
- *
- */
-
 /**
+ * Low-level functions to access the CC1000 bus. Built using the mica2
+ * hardware SPI.
+ *
  * @author Jaein Jeong
  * @author Philip buonadonna
  */

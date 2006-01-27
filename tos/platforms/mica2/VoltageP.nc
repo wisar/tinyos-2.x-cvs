@@ -21,7 +21,11 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR 
  * MODIFICATIONS.
  */
-/// @author Hu Siquan <husq@xbow.com>
+/**
+ * Internal component for voltage sensor reading.
+ *
+ * @author Hu Siquan <husq@xbow.com>
+ */
 
 module VoltageP {
   provides {

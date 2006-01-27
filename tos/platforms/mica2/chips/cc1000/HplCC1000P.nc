@@ -28,15 +28,9 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/*
- *
- * Authors:		Jaein Jeong, Philip Buonadonna
- * Date last modified:  $Revision$
- *
- */
-
 /**
- * Low level hardware access to the CC1000
+ * Low level hardware access to the CC1000.
+ *
  * @author Jaein Jeong
  * @author Philip Buonadonna
  */

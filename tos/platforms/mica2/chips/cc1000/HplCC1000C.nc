@@ -28,6 +28,8 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
+ * HPL for the CC1000 radio, for the mica2 platform.
+ *
  * @author David Gay
  */
 configuration HplCC1000C {

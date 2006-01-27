@@ -23,7 +23,9 @@
  */
 
 /**
- * Initialisation component for mica-family platforms. See TEP107.
+ * Initialisation component for mica-family platforms. See TEP107. Each 
+ * mica-family member must also provide a MotePlatformC with initialisation
+ * specific to that member.
  *
  * @author Martin Turon <mturon@xbow.com>
  */

@@ -28,6 +28,9 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
+ * Hardware initialisation for the CC1000 radio. This component is always
+ * included even if the radio is not used.
+ *
  * @author David Gay
  */
 configuration HplCC1000InitP {

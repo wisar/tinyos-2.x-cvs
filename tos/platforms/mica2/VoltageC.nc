@@ -21,7 +21,11 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR 
  * MODIFICATIONS.
  */
-/// @author Hu Siquan <husq@xbow.com>
+/**
+ * Read the mica2's onboard voltage sensor.
+ *
+ * @author Hu Siquan <husq@xbow.com>
+ */
 
 configuration VoltageC
 {

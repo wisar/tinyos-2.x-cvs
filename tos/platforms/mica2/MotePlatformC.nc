@@ -8,7 +8,7 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * The porttion of a mica-family initialisation that is mote-specific.
+ * The portion of a mica-family initialisation that is mote-specific.
  * 
  * @author David Gay
  */

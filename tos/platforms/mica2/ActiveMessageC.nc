@@ -36,7 +36,6 @@
  */
 
 /**
- *
  * The Active Message layer on the mica2 platform. This is a naming wrapper
  * around the CC1000 Active Message layer.
  *
