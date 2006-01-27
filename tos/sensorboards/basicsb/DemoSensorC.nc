@@ -8,20 +8,18 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Demo sensor for basicsb
+ * Demo sensor for basicsb sensorboard.
  * 
  * @author David Gay
  */
 
 generic configuration DemoSensorC() {
   provides interface Read<uint16_t>;
-  provides interface ReadNow<uint16_t>;
   provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components new TempClientC();
+  components new PhotoClientC() as Sensor;
 
-  Read = TempClientC;
-  ReadNow = TempClientC;
-  ReadStream = TempClientC;
+  Read = Sensor;
+  ReadStream = Sensor;
 }
