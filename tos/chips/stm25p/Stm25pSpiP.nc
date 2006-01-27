@@ -180,7 +180,7 @@ implementation {
   }
 
   async event void SPIPacket.sendDone( uint8_t* tx_buf, uint8_t* rx_buf,
-				       stm25p_len_t len, error_t error ) {
+				       uint16_t len, error_t error ) {
 
     int i;
 

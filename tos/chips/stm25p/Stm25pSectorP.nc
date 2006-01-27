@@ -156,7 +156,7 @@ implementation {
   }
 
   async event void Spi.readDone( stm25p_addr_t addr, uint8_t* buf, 
-				 uint16_t len, error_t error ) {
+				 stm25p_len_t len, error_t error ) {
     signalDone( error );
   }
 
