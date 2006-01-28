@@ -28,16 +28,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
- * @author Jonathan Hui <jhui@archedrock.com>
+ * Implementation of the transmit path for the ChipCon CC2420 radio.
  *
- * $Revision$
- * $Date$
+ * @author Jonathan Hui <jhui@archedrock.com>
+ * @version $Revision$ $Date$
  */
 
 configuration CC2420TransmitC {
 
   provides interface Init;
-  provides interface AsyncControl;
+  provides interface AsyncStdControl;
   provides interface CC2420Transmit;
   provides interface CsmaBackoff;
   provides interface RadioTimeStamping;
@@ -58,7 +58,7 @@ implementation {
 
   Init = Alarm;
   Init = CC2420TransmitP;
-  AsyncControl = CC2420TransmitP;
+  AsyncStdControl = CC2420TransmitP;
   CC2420Transmit = CC2420TransmitP;
   CsmaBackoff = CC2420TransmitP;
   RadioTimeStamping = CC2420TransmitP;

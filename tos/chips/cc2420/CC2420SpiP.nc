@@ -29,9 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
  * @author Jonathan Hui <jhui@archedrock.com>
- *
- * $Revision$
- * $Date$
+ * @version $Revision$ $Date$
  */
 
 configuration CC2420SpiP {
