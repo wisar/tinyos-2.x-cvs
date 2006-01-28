@@ -39,7 +39,7 @@ includes RadioSenseToLeds;
 
 configuration RadioSenseToLedsAppC {}
 implementation {
-  components MainC, RadioSenseToLedsC as App, LedsC, DemoSensorC;
+  components MainC, RadioSenseToLedsC as App, LedsC, new DemoSensorC();
   components ActiveMessageC;
   components new AMSenderC(AM_RADIOSENSEMSG);
   components new AMReceiverC(AM_RADIOSENSEMSG);
@@ -56,5 +56,4 @@ implementation {
   App.MilliTimer -> TimerMilliC;
   App.Packet -> AMSenderC;
   App.Read -> DemoSensorC;
-  App.SensorControl -> DemoSensorC;
 }
