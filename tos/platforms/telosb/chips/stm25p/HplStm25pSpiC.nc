@@ -28,10 +28,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
+ * HPL implementation of the SPI bus for a ST M25P chip connected to a
+ * TI MSP430.
+ *
  * @author Jonathan Hui <jhui@archedrock.com>
-
- * $Revision$
- * $Date$
+ * @version $Revision$ $Date$
  */
 
 configuration HplStm25pSpiC {

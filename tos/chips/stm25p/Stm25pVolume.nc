@@ -28,16 +28,21 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
+ * Abstraction to provide the id of a volume.
+ *
  * @author Jonathan Hui <jhui@archedrock.com>
-
- * $Revision$
- * $Date$
+ * @version $Revision$ $Date$
  */
 
 includes Stm25p;
 
 interface Stm25pVolume {
 
+  /**
+   * Signals a request to provide the id of a volume.
+   *
+   * @return the id of the volume.
+   */
   async event volume_id_t getVolumeId();
 
 }

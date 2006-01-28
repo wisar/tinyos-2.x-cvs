@@ -29,9 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
  * @author Jonathan Hui <jhui@archedrock.com>
-
- * $Revision$
- * $Date$
+ * @version $Revision$ $Date$
  */
 
 #ifndef __STORAGE_CHIP_H__

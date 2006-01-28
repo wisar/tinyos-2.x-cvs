@@ -32,6 +32,7 @@
 /*
  * @author: Jonathan Hui <jwhui@cs.berkeley.edu>
  * @author: David Gay <david.e.gay@intel.com>
+ * @version $Revision$ $Date$
  */
 
 #ifndef STORAGE_H

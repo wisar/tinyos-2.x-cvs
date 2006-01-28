@@ -28,10 +28,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
  *
+ * HPL implementation of general-purpose I/O for a ST M25P chip
+ * connected to a TI MSP430.
+ *
  * @author Jonathan Hui <jhui@archedrock.com>
-
- * $Revision$
- * $Date$
+ * @version $Revision$ $Date$
  */
 
 configuration HplStm25pPinsC {
@@ -43,12 +44,12 @@ configuration HplStm25pPinsC {
 
 implementation {
 
-  components MSP430GeneralIOC;
-  components new GpioC() as CSNM;
-  components new GpioC() as HoldM;
+  components HplMsp430GeneralIOC as HplGeneralIOC;
+  components new Msp430GpioC() as CSNM;
+  components new Msp430GpioC() as HoldM;
 
-  CSNM -> MSP430GeneralIOC.Port44;
-  HoldM -> MSP430GeneralIOC.Port47;
+  CSNM -> HplGeneralIOC.Port44;
+  HoldM -> HplGeneralIOC.Port47;
 
   CSN = CSNM;
   Hold = HoldM;
