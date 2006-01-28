@@ -27,7 +27,9 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
- *
+ */
+
+/**
  * Implementation of the sector storage absraction for the ST M25P
  * serial code flash.
  *

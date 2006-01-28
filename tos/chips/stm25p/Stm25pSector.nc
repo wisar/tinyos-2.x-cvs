@@ -27,7 +27,9 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
- *
+ */
+
+/**
  * HAL for the ST M25P family of serial code flash chips. This
  * provides a sector level abstraction to perform basic
  * operations. Upon completion of a write/erase operation, all data is
