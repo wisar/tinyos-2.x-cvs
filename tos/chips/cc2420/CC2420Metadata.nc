@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2005-2006 Arched Rock Corporation
+/*
+ * Copyright (c) 2005 Arched Rock Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,38 +27,32 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
- */
-
-/**
+ *
+ * $ Revision: $
+ * $ Date: $
+ *
+ * @author Gilman Tolle <gtolle@archedrock.com>
  * @author Alec Woo <awoo@archedrock.com>
- * @version $Revision$ $Date$
+ * @author Philip Levis
  */
 
-module CC2420LinkStatsP{
-  provides interface LinkStats;
-}
+interface CC2420Metadata {
 
-implementation{
+  /*
+   * @param msg Message that contains the metadata
+   *
+   * @return Should return a linear scale of the link quality from 0-100% using uint8_t
+   * 
+   * (0 means 0% and 255 means 100%)
+   */
+  command uint8_t linkQual(message_t* pMsg);
 
-  command uint8_t LinkStats.linkQual(message_t* pMsg){
-    uint8_t result;
-    cc2420_metadata_t * mdata = (cc2420_metadata_t *) pMsg->metadata;
-
-    // Assume range is 64 from 48 (lowest) to 112 (highest) 
-    if(mdata->lqi <48) 
-      result = 0;
-    else if (mdata->lqi > 112)
-      result = 255;
-    else 
-      // (lqi - 48)/64 * 256
-      result = (mdata->lqi - 48) << 2; 
-
-    return result;    
-  }
-
-  command int16_t LinkStats.rssi(message_t* pMsg){
-    cc2420_metadata_t * mdata = (cc2420_metadata_t *) pMsg->metadata;
-    return ((int16_t) mdata->strength - (int16_t) 45); // do no scaling for now    
-  }
+  /*
+   * @param msg Message that contains the metadata
+   *
+   * @return Should return signal strength dBm using int16_t
+   * 
+   */
+  command int16_t rssi(message_t* pMsg);
 
 }
