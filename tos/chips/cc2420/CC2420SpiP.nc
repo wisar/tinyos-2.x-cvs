@@ -54,8 +54,8 @@ implementation {
   Reg = SpiP;
   Strobe = SpiP;
 
-  SpiP.SPIByte -> HplCC2420SpiC;
-  SpiP.SPIPacket -> HplCC2420SpiC;
+  SpiP.SpiByte -> HplCC2420SpiC;
+  SpiP.SpiPacket -> HplCC2420SpiC;
   SpiP.Leds -> LedsC;
 
 }

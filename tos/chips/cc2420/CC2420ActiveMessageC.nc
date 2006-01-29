@@ -50,7 +50,7 @@ configuration CC2420ActiveMessageC {
     interface AMPacket;
     interface Packet;
     interface PacketAcknowledgements;
-    interface LinkStats;
+    interface CC2420Metadata;
   }
 }
 implementation {
@@ -58,7 +58,7 @@ implementation {
   components CC2420ActiveMessageP as AM;
   components CC2420CsmaC as Radio;
   components ActiveMessageAddressC as Address;
-  components CC2420LinkStatsP as RadioStats;
+  components CC2420MetadataP as RadioStats;
   
   Init         = Radio;
   SplitControl = Radio;
@@ -69,7 +69,7 @@ implementation {
   Snoop    = AM.Snoop;
   AMPacket = AM;
   PacketAcknowledgements = Radio;
-  LinkStats = RadioStats;
+  CC2420Metadata = RadioStats;
   
   AM.SubSend    -> Radio.Send;
   AM.SubReceive -> Radio.Receive;

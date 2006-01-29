@@ -38,6 +38,8 @@
  * @version $Revision$ $Date$
  */
 
+#include <Timer.h>
+
 configuration AlarmMultiplexC {
 
   provides interface Init;
