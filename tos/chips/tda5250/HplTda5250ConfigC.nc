@@ -55,8 +55,8 @@ implementation {
            , new Alarm32khzC() as TransmitterDelay
            , new Alarm32khzC() as ReceiverDelay
            , new Alarm32khzC() as RSSIStableDelay
-           , Tda5250RadioIO
-           , Tda5250RadioInterruptPWDDD
+           , Tda5250RadioIOC
+           , Tda5250RadioInterruptC
            ;
 
   Init = HplTda5250ConfigP;
@@ -84,7 +84,7 @@ implementation {
   HplTda5250ConfigP.ReceiverDelay -> ReceiverDelay.Alarm32khz16;
   HplTda5250ConfigP.RSSIStableDelay -> RSSIStableDelay.Alarm32khz16;
 
-  HplTda5250ConfigP.PWDDD -> Tda5250RadioIO.Tda5250RadioPWDDD;
-  HplTda5250ConfigP.TXRX -> Tda5250RadioIO.Tda5250RadioTXRX;
-  HplTda5250ConfigP.PWDDDInterrupt -> Tda5250RadioInterruptPWDDD;
+  HplTda5250ConfigP.PWDDD -> Tda5250RadioIOC.Tda5250RadioPWDDD;
+  HplTda5250ConfigP.TXRX -> Tda5250RadioIOC.Tda5250RadioTXRX;
+  HplTda5250ConfigP.PWDDDInterrupt -> Tda5250RadioInterruptC;
 }

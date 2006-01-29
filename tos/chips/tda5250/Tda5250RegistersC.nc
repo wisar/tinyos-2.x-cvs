@@ -60,7 +60,7 @@ provides {
 }
 implementation {
         components Tda5250RegistersP
-                        , Tda5250RadioIO
+                        , Tda5250RadioIOC
                         , Tda5250RegCommC
         ;
 
@@ -87,6 +87,6 @@ implementation {
         Tda5250RegistersP.Pot -> Tda5250RegCommC;
         Tda5250RegistersP.Tda5250RegComm -> Tda5250RegCommC;
 
-        Tda5250RegistersP.ENTDA -> Tda5250RadioIO.Tda5250RadioENTDA;
+        Tda5250RegistersP.ENTDA -> Tda5250RadioIOC.Tda5250RadioENTDA;
 }
 
