@@ -38,7 +38,7 @@
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */
-configuration Tda5250RadioIO
+configuration Tda5250RadioIOC
 {
   provides interface GeneralIO as Tda5250RadioBUSM;
   provides interface GeneralIO as Tda5250RadioENTDA;
@@ -49,11 +49,11 @@ configuration Tda5250RadioIO
 implementation {
   components
       HplMsp430GeneralIOC as MspGeneralIO
-    , new GpioC() as rBUSM
-    , new GpioC() as rENTDA
-    , new GpioC() as rTXRX
-    , new GpioC() as rDATA
-    , new GpioC() as rPWDD
+    , new Msp430GpioC() as rBUSM
+    , new Msp430GpioC() as rENTDA
+    , new Msp430GpioC() as rTXRX
+    , new Msp430GpioC() as rDATA
+    , new Msp430GpioC() as rPWDD
     ;
 
   Tda5250RadioBUSM = rBUSM;

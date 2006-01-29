@@ -38,7 +38,7 @@
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */
-configuration Tda5250RadioInterruptPWDDD
+configuration Tda5250RadioInterruptC
 {
   provides interface GpioInterrupt;
 }
@@ -46,10 +46,10 @@ implementation
 {
   components
       HplMsp430InterruptC
-    , new GpioInterruptC()
+    , new Msp430InterruptC()
     ;
 
-    GpioInterrupt = GpioInterruptC.Interrupt;
-    GpioInterruptC.HplInterrupt -> HplMsp430InterruptC.Port10;
+    GpioInterrupt = Msp430InterruptC.Interrupt;
+    Msp430InterruptC.HplInterrupt -> HplMsp430InterruptC.Port10;
 }
 

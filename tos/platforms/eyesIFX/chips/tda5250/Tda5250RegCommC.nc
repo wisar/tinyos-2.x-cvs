@@ -49,9 +49,9 @@ configuration Tda5250RegCommC {
 implementation {
   components new Spi0C() as Spi
            , Tda5250RegCommP
-           , Tda5250RadioIO
+           , Tda5250RadioIOC
            , AD5200P
-           , AD5200PotIO
+           , AD5200PotIOC
            ;
 
   Init = Tda5250RegCommP;
@@ -61,15 +61,15 @@ implementation {
 
   Tda5250RegComm = Tda5250RegCommP;
 
-  Tda5250RegCommP.BusM -> Tda5250RadioIO.Tda5250RadioBUSM;
+  Tda5250RegCommP.BusM -> Tda5250RadioIOC.Tda5250RadioBUSM;
 
   Tda5250RegCommP.SpiByte -> Spi;
   // FIXME: Hier ResourceController!?
   Tda5250RegCommP.SpiResource -> Spi;
   //Tda5250RegCommP.ArbiterInfo -> Spi;
 
-  AD5200P.ENPOT -> AD5200PotIO.AD5200PotENPOT;
-  AD5200P.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
+  AD5200P.ENPOT -> AD5200PotIOC.AD5200PotENPOT;
+  AD5200P.SDPOT -> AD5200PotIOC.AD5200PotSDPOT;
   AD5200P.SpiByte -> Spi;
 
 
