@@ -20,64 +20,42 @@
  * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
  * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES {} LOSS OF USE, DATA,
- * OR PROFITS {} OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * - Description ---------------------------------------------------------
- * Controlling the TDA5250 at the HPL layer for use with the MSP430 on the 
- * eyesIFX platforms, Configuration.
+ * Interface for writing and reading bytes to and from the Tda5250 Radio
+ * registers
  * - Revision -------------------------------------------------------------
  * $Revision$
  * $Date$
  * @author: Kevin Klues (klues@tkn.tu-berlin.de)
  * ========================================================================
  */
- 
-/*
-#include "msp430BusResource.h"
 
-enum {
-  TDA5250_SPI_BUS_ID = unique("Msp430Usart0.Resource")
-};     
-*/
-configuration TDA5250RegCommC {
-  provides {
-    interface Init;
-    interface TDA5250RegComm;
-    interface Pot;
-    interface Resource;
-  }
+interface Tda5250RegComm {
+ /**
+   * Transmit a byte of data to a given register.
+   * @param address The address of the register to write to
+   * @param data the 8-bit data value to write to the register
+   */
+  async command error_t writeByte(uint8_t address, uint8_t data);
+
+ /**
+   * Transmit a word of data to a given register.
+   * @param address The address of the register to write to
+   * @param data the 16-bit data value to write to the register
+   */
+  async command error_t writeWord(uint8_t address, uint16_t data);
+
+ /**
+   * Read a byte of data from a given register.
+   * @param address The address of the register to read from
+   * @return The 16-bit data value read from the register
+   */
+  async command uint8_t readByte(uint8_t address);
 }
-implementation {
-  components new Spi0C() as Spi
-           , TDA5250RegCommP
-           , TDA5250RadioIO
-           , AD5200P
-           , AD5200PotIO
-           ;      
-   
-//  Init = HplMsp430Usart0C;
-  Init = TDA5250RegCommP;
-  Init = AD5200P;
-  Pot = AD5200P.Pot;
-  Resource = TDA5250RegCommP.Resource;
 
-  TDA5250RegComm = TDA5250RegCommP; 
-  
-  TDA5250RegCommP.BusM -> TDA5250RadioIO.TDA5250RadioBUSM; 
-  
-  TDA5250RegCommP.SPIByte -> Spi;
-  // FIXME: Hier ResourceController!?
-  TDA5250RegCommP.SpiResource -> Spi;
-//  TDA5250RegCommP.ArbiterInfo -> Spi; 
-  
-  AD5200P.ENPOT -> AD5200PotIO.AD5200PotENPOT;
-  AD5200P.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
-  AD5200P.SPIByte -> Spi;
-
-  
-  
-}

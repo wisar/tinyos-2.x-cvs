@@ -27,21 +27,21 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * - Revision -------------------------------------------------------------
  * $Revision$
- * $Date$ 
- * ======================================================================== 
+ * $Date$
+ * ========================================================================
  */
- 
+
  /**
- * TDA5250Data Interface  
- * Interface for sending and receiving bytes of data over the TDA5250 Radio 
+ * TDA5250Data Interface
+ * Interface for sending and receiving bytes of data over the TDA5250 Radio
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
- 
-interface HPLTDA5250Data {
+
+interface HplTda5250Data {
 
  /**
-   * Transmit a byte of data over the radio. 
+   * Transmit a byte of data over the radio.
    * @param data The data byte to be transmitted
    * @return SUCCESS Byte successfully transmitted
              FAIL    Byte could not be transmitted
@@ -55,36 +55,36 @@ interface HPLTDA5250Data {
    * now be handed over for transmission.
    */
   async event void txReady();
-  
+
   /**
    * Command for querying whether any bytes are still waiting to be transmitted
-   */  
+   */
   async command bool isTxDone();
-  
+
   /**
    * Signaled when a byte of data has been received from the radio.
    * @param data The data byte received
    */
   async event void rxDone(uint8_t data);
- 
+
   /**
    * Enable transmitting over the radio
-  */  
+  */
   async command error_t enableTx();
-  
+
   /**
    * Disable transmitting over the radio
-  */    
+  */
   async command error_t disableTx();
-  
+
   /**
    * Enable receiving over the radio
-  */    
+  */
   async command error_t enableRx();
-  
+
   /**
    * Disable receiving over the radio
-  */    
-  async command error_t disableRx(); 	
+  */
+  async command error_t disableRx();
 }
 

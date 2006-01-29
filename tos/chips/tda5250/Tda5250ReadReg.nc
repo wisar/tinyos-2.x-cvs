@@ -27,44 +27,17 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * - Revision -------------------------------------------------------------
  * $Revision$
- * $Date$ 
- * ======================================================================== 
+ * $Date$
+ * ========================================================================
  */
- 
+
  /**
- * HPLTDA5250ConfigM configuration  
- * Controlling the TDA5250 at the HPL layer.. 
+ * Tda5250ReadReg Interface
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
- 
-#include "tda5250Const.h"
-#include "tda5250RegDefaultSettings.h"
-#include "tda5250RegTypes.h"
-configuration TDA5250RadioC {
-  provides {
-    interface Init;  
-    interface SplitControl;
-    interface TDA5250Control;
-    interface RadioByteComm;
-  }
+
+interface Tda5250ReadReg<reg_type> {
+  async command reg_type get();
 }
-implementation {
-  components TDA5250RadioP
-           , HPLTDA5250ConfigC
-           , HPLTDA5250DataC
-           ;
-   
-  Init = HPLTDA5250ConfigC;
-  Init = HPLTDA5250DataC;  
-  Init = TDA5250RadioP; 
-  TDA5250Control = TDA5250RadioP;
-  RadioByteComm = TDA5250RadioP;
-  SplitControl = TDA5250RadioP;
-  
-  TDA5250RadioP.ConfigResource -> HPLTDA5250ConfigC;
-  TDA5250RadioP.DataResource -> HPLTDA5250DataC;
-  
-  TDA5250RadioP.HPLTDA5250Config -> HPLTDA5250ConfigC;
-  TDA5250RadioP.HPLTDA5250Data -> HPLTDA5250DataC;
-}
+

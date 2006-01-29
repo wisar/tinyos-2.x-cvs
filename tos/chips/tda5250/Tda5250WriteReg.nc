@@ -32,34 +32,12 @@
  */
 
  /**
- * tda5250RegTypes Header File
- * Defines the register types for the registers on the TDA5250 Radio
+ * TDA5250WriteReg Interface
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
-#ifndef TDA5250REGTYPES_H
-#define TDA5250REGTYPES_H
-
-//Macro for receiving an address and figuring out its type
-#define TDA5250_REG_TYPE(addr) TDA5250_REG_TYPE_#addr
-
-// Default values of data registers
-#define TDA5250_REG_TYPE_CONFIG           uint16_t
-#define TDA5250_REG_TYPE_FSK              uint16_t
-#define TDA5250_REG_TYPE_XTAL_TUNING      uint16_t
-#define TDA5250_REG_TYPE_LPF              uint8_t
-#define TDA5250_REG_TYPE_ON_TIME          uint16_t
-#define TDA5250_REG_TYPE_OFF_TIME         uint16_t
-#define TDA5250_REG_TYPE_COUNT_TH1        uint16_t
-#define TDA5250_REG_TYPE_COUNT_TH2        uint16_t
-#define TDA5250_REG_TYPE_RSSI_TH3         uint8_t
-#define TDA5250_REG_TYPE_RF_POWER         uint8_t
-#define TDA5250_REG_TYPE_CLK_DIV          uint8_t
-#define TDA5250_REG_TYPE_XTAL_CONFIG      uint8_t
-#define TDA5250_REG_TYPE_BLOCK_PD         uint16_t
-#define TDA5250_REG_TYPE_STATUS           uint8_t
-#define TDA5250_REG_TYPE_ADC              uint8_t
-
-#endif //TDA5250REGTYPES_H
+interface Tda5250WriteReg<reg_type> {
+  async command error_t set(reg_type v);
+}
 
