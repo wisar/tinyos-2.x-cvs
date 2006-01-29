@@ -37,8 +37,8 @@ generic configuration HplCC2420SpiC()
   
   provides interface Init;
   provides interface Resource;
-  provides interface SPIByte;
-  provides interface SPIPacket;
+  provides interface SpiByte;
+  provides interface SpiPacket;
   
 }
 
@@ -53,7 +53,7 @@ implementation
  
   Init = IM2CC2420SpiP.Init;
   Resource = IM2CC2420SpiP.Resource[SPI_CLIENT_ID];
-  SPIByte = IM2CC2420SpiP.SPIByte;
-  SPIPacket = IM2CC2420SpiP.SPIPacket[SPI_CLIENT_ID];
+  SpiByte = IM2CC2420SpiP.SpiByte;
+  SpiPacket = IM2CC2420SpiP.SpiPacket[SPI_CLIENT_ID];
   
 }

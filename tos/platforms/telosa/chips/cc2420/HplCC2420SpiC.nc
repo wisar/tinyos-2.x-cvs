@@ -41,8 +41,8 @@ generic configuration HplCC2420SpiC() {
 
   provides interface Init;
   provides interface Resource;
-  provides interface SPIByte;
-  provides interface SPIPacket;
+  provides interface SpiByte;
+  provides interface SpiPacket;
 
 }
 
@@ -52,8 +52,8 @@ implementation {
   
   Init = SpiC;
   Resource = SpiC;
-  SPIByte = SpiC;
-  SPIPacket = SpiC;
+  SpiByte = SpiC;
+  SpiPacket = SpiC;
   
 }
 
