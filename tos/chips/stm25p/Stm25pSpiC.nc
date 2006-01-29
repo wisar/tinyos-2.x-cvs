@@ -59,8 +59,8 @@ implementation {
   SpiP.SpiResource -> SpiC;
   SpiP.CSN -> PinsC.CSN;
   SpiP.Hold -> PinsC.Hold;
-  SpiP.SPIByte -> SpiC;
-  SpiP.SPIPacket -> SpiC;
+  SpiP.SpiByte -> SpiC;
+  SpiP.SpiPacket -> SpiC;
 
   components LedsC as Leds;
   SpiP.Leds -> Leds;
