@@ -37,10 +37,10 @@ implementation
 {
   components
     HplMsp430GeneralIOC
-    , new GpioC() as Led0Impl
-    , new GpioC() as Led1Impl
-    , new GpioC() as Led2Impl
-    , new GpioC() as Led3Impl
+    , new Msp430GpioC() as Led0Impl
+    , new Msp430GpioC() as Led1Impl
+    , new Msp430GpioC() as Led2Impl
+    , new Msp430GpioC() as Led3Impl
     ;
 
 
