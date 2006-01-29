@@ -1,6 +1,6 @@
 // $Id$
 
-/*									tab:2
+/*                                                                      tab:2
  * "Copyright (c) 2000-2005 The Regents of the University  of California.
  * All rights reserved.
  *
@@ -40,7 +40,7 @@
  * @author Joe Polastre
  * Revision:  $Revision$
  */
-interface SPIPacket {
+interface SpiPacket {
 
   /**
    * Send a message over the SPI bus.
@@ -57,7 +57,7 @@ interface SPIPacket {
    * @return SUCCESS if the request was accepted for transfer
    */
   async command error_t send( uint8_t* txBuf, uint8_t* rxBuf, uint16_t len );
-  
+
   /**
    * Notification that the send command has completed.
    *
@@ -65,10 +65,10 @@ interface SPIPacket {
    * @param rxBuf The buffer used for reception
    * @param len    The request length of the transfer, but not necessarily
    *               the number of bytes that were actually transferred
-   * @param error  SUCCESS if the operation completed successfully, FAIL 
+   * @param error  SUCCESS if the operation completed successfully, FAIL
    *               otherwise
    */
-  async event void sendDone( uint8_t* txBuf, uint8_t* rxBuf, uint16_t len, 
-			     error_t error );
+  async event void sendDone( uint8_t* txBuf, uint8_t* rxBuf, uint16_t len,
+                             error_t error );
 
 }

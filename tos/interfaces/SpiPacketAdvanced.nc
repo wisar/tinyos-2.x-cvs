@@ -22,8 +22,8 @@
 
 /**
  * SPI Packet/buffer interface for sending data over an SPI bus.
- * This "expert" interface provides a send command that can reduce the 
- * amount of buffer space required by a service or component.  
+ * This "expert" interface provides a send command that can reduce the
+ * amount of buffer space required by a service or component.
  * This interface is only for buffer based
  * transfers where the microcontroller is the master (clocking) device.
  *
@@ -33,10 +33,10 @@
  * @author Joe Polastre
  * Revision:  $Revision$
  */
-interface SPIPacketAdvanced {
+interface SpiPacketAdvanced {
 
   /**
-   * Send a message over the SPI bus. 
+   * Send a message over the SPI bus.
    *
    * Examples:
    *
@@ -79,7 +79,7 @@ interface SPIPacketAdvanced {
    * @param rxend Position where rxbuf is no longer in use
    * @param length The request length of the transfer, but not necessarily
    *               the number of bytes that were actually transferred
-   * @param success SUCCESS if the operation completed successfully, FAIL 
+   * @param success SUCCESS if the operation completed successfully, FAIL
    *                otherwise
    */
   event void sendDone(uint8_t* txbuffer, uint8_t txstart, uint8_t txend, uint8_t* rxbuffer, uint8_t rxstart, uint8_t rxend, uint8_t length, error_t success);
