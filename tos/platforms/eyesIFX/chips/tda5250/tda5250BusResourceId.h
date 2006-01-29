@@ -37,7 +37,6 @@
 #define TDA5250BUSRESOURCEID_H
 
 enum {
-    //TDA5250_SPI_BUS_ID = unique(MSP430_UARTO_BUS),
     TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
 };
 
