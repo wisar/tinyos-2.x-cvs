@@ -100,6 +100,8 @@ interface Leds {
    * This command supports up to 8 LEDs; if a platform has fewer, then
    * those LEDs should always be off (their bit is zero). Also see
    * <tt>set()</tt>.
+   *
+   * @return a bitmask describing which LEDs are on and which are off
    */ 
   async command uint8_t get();
 
@@ -115,6 +117,8 @@ interface Leds {
    * This statement will turn LED 1 on if it was not already:
    *
    * <pre>call Leds.set(call Leds.get() | LEDS_LED1);</pre>
+   *
+   * @param  val   a bitmask describing the on/off settings of the LEDs
    */
    async command void set(uint8_t val);
   

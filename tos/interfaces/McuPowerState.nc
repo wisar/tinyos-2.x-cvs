@@ -32,12 +32,14 @@
  * 
  * @author Philip Levis
  * @date   Oct 26, 2005
- *
+ * @see    TEP 112: Microcontroller Power Management
  */
 
 interface McuPowerState {
-    /** Called by any component to tell TinyOS that the MCU low
+    /** 
+     * Called by any component to tell TinyOS that the MCU low
      * power state may have changed. Generally, this should be
-     * called whenever a peripheral/timer is started/stopped. */
+     * called whenever a peripheral/timer is started/stopped. 
+     */
     async command void update();
 }

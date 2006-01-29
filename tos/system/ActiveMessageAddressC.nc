@@ -1,5 +1,4 @@
 // $Id$
-
 /*									tab:4
  * "Copyright (c) 2004-2005 The Regents of the University  of California.  
  * All rights reserved.
@@ -27,16 +26,13 @@
  * file. If you do not find these files, copies can be found by writing to
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
- */
-/*
  *
- * Authors:		Philip Levis
  * Date last modified:  $Id$
  *
  */
 
 /**
- * Accessor methods for Active Messages.
+ * Component that stores the node's active message address.
  *
  * @author Philip Levis
  * @date June 19 2005

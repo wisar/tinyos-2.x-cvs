@@ -30,7 +30,7 @@
 
 
 /**
- * The underlying configuration of OSKI Active Messages. Wires the AM
+ * The underlying configuration of the AM layer. Wires the AM
  * implementation (ActiveMessageC) to the boot sequence, and exports
  * the AM interfaces.
  *
@@ -38,7 +38,7 @@
  * @date   January 5 2005
  */ 
 
-includes AM;
+#include "AM.h"
 
 configuration ActiveMessageImplP {
   provides {

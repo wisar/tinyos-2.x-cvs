@@ -34,7 +34,7 @@
  * 
  * @author Philip Levis
  * @date   Oct 26, 2005
- *
+ * @see    TEP 112: Microconroller Power Management
  */
 
 includes hardware;
@@ -47,6 +47,9 @@ interface McuPowerOverride {
    * this command originates deep within the basic TinyOS scheduling
    * mechanisms, it should be used very sparingly. Refer to TEP 112 for
    * details.
+   *
+   * @return    the lowest power state the system can enter to meet the 
+   *            requirements of this component
    */
   async command mcu_power_t lowestState();
 }

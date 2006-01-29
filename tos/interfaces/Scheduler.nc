@@ -28,28 +28,35 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-/** The interface to a TinyOS scheduler, discussed in TEP 106.
+/** 
+  * The interface to a TinyOS task scheduler.
   *
   * @author Philip Levis
   * @date   January 19 2005
+  * @see TEP 106: Tasks and Schedulers
+  * @see TEP 107: Boot Sequence
   */ 
 
 
 interface Scheduler {
 
-  /** Initialize the scheduler.*/
+  /** 
+   * Initialize the scheduler.
+   */
   command void init();
 
-  /** Run the next task if one is waiting, otherwise return immediately. The
-    * return value indicates whether a task was run -- TRUE indicates a task
-    * ran, FALSE indicates there was no task to run.
+  /** 
+    * Run the next task if one is waiting, otherwise return immediately. 
+    *
+    * @return        whether a task was run -- TRUE indicates a task
+    *                ran, FALSE indicates there was no task to run.
     */
   command bool runNextTask();
 
   /**
    * Enter an infinite task-running loop. Put the MCU into a low power
    * state when the processor is idle (task queue empty, waiting for
-   * interrupts).
+   * interrupts). This call never returns.
    */
   command void taskLoop();
 }

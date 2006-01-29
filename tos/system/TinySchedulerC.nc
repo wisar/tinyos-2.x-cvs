@@ -29,6 +29,7 @@
  *
  * @author  Phil Levis
  * @date    August 7 2005
+ * @see     TEP 106: Tasks and Schedulers
  */
 
 configuration TinySchedulerC {

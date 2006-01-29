@@ -27,20 +27,17 @@
  * file. If you do not find these files, copies can be found by writing to
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
- */
-/*
  *
- * Authors:             Philip Levis
  * Date last modified:  $Id$
- *
  */
 
 /**
- * Main is the system interface the TinyOS boot sequence. It wires the
+ * MainC is the system interface the TinyOS boot sequence. It wires the
  * boot sequence implementation to the scheduler and hardware resources.
  *
  * @author Philip Levis
  * @date   August 6 2005
+ * @see    TEP 107: Boot Sequence
  */
 
 includes hardware;
