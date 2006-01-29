@@ -44,7 +44,7 @@
 #include <radio.c>
 #include <packet.c>
 
-uint16_t TOS_LOCAL_ADDRESS = 1;
+uint16_t TOS_NODE_ID = 1;
 
 Variable::Variable(char* str, char* formatStr, int array, int which) {
   name = str;

@@ -61,9 +61,9 @@ implementation
   /* Initialize the seed from the ID of the node */
   command error_t Init.init() {
     atomic {
-      shiftReg = 119 * 119 * (TOS_LOCAL_ADDRESS + 1);
+      shiftReg = 119 * 119 * (TOS_NODE_ID + 1);
       initSeed = shiftReg;
-      mask = 137 * 29 * (TOS_LOCAL_ADDRESS + 1);
+      mask = 137 * 29 * (TOS_NODE_ID + 1);
     }
     return SUCCESS;
   }

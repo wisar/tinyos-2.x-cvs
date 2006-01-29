@@ -59,7 +59,7 @@ typedef uint8_t bool;
 
 enum { FALSE = 0, TRUE = 1 };
 
-extern uint16_t TOS_LOCAL_ADDRESS;
+extern uint16_t TOS_NODE_ID
 
 #define PROGMEM
 
