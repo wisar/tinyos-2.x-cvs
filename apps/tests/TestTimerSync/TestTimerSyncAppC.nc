@@ -50,18 +50,18 @@ configuration TestTimerSyncAppC {}
 implementation {
   components MainC, TestTimerSyncC as App, LedsC;
   components ActiveMessageC;
-  components new OskiTimerMilliC();
-  
+  components new TimerMilliC();
+  components new AMSenderC(240), new AMReceiverC(240); 
   MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> ActiveMessageC;
   
   App.Boot -> MainC.Boot;
 
-  App.Receive -> ActiveMessageC.Receive[240];
-  App.AMSend -> ActiveMessageC.AMSend[240];
+  App.Receive -> AMReceiverC;
+  App.AMSend -> AMSenderC;
   App.SplitControl -> ActiveMessageC;
   App.Leds -> LedsC;
-  App.MilliTimer -> OskiTimerMilliC;
+  App.MilliTimer -> TimerMilliC;
 }
 
 

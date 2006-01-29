@@ -60,7 +60,7 @@ implementation {
   }
  
   event void SplitControl.startDone(error_t err) {
-    if(TOS_LOCAL_ADDRESS == 0) {
+    if(TOS_NODE_ID == 0) {
       call AMSend.send(AM_BROADCAST_ADDR, &syncMsg, 0);
     }
   }
