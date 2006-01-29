@@ -33,6 +33,7 @@ SET_ID = tos-set-symbols
 NCC = ncc
 LIBS = -lm
 
+AMADDR = ActiveMessageAddressC\$$addr
 BUILDDIR = build/$(PLATFORM)
 MAIN_EXE = $(BUILDDIR)/main.exe
 MAIN_IHEX = $(BUILDDIR)/main.ihex
@@ -69,7 +70,8 @@ ifndef BUILD_DEPS
 endif
 
 setid: FORCE
-	@cmd () { echo "$$@"; $$@; }; if [ x = x$(NODEID) ]; then cmd cp $(MAIN_IHEX) $(INSTALL_IHEX); else cmd $(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target ihex $(MAIN_IHEX) $(INSTALL_IHEX) $(NODEID); fi
+	@cmd () { echo "$$@"; $$@; }; if [ x = x$(NODEID) ]; then cmd cp $(MAIN_IHEX) $(INSTALL_IHEX); else cmd $(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target ihex $(MAIN_IHEX) $(INSTALL_IHEX) TOS_NODE_ID=$(NODEID); fi
+	$(SET_ID) $(MAIN_SREC) $(INSTALL_SREC) $(AMADDR)=$(NODEID) 
 
 tosimage: ihex build_tosimage FORCE
 	@:
