@@ -46,7 +46,7 @@ configuration Msp430Adc12C
 }
 implementation
 {
-  components Msp430Adc12P, HplAdc12P, MSP430TimerC, 
+  components Msp430Adc12P, HplAdc12P, Msp430TimerC, 
              Msp430RefVoltGeneratorC, HplMsp430GeneralIOC,
              new RoundRobinArbiterC(MSP430ADC12_RESOURCE) as Arbiter;
 
@@ -69,10 +69,10 @@ implementation
   Msp430Adc12P.Port67 -> HplMsp430GeneralIOC.Port67;
 
   // exclusive access to TimerA expected
-  Msp430Adc12P.TimerA -> MSP430TimerC.TimerA;
-  Msp430Adc12P.ControlA0 -> MSP430TimerC.ControlA0;
-  Msp430Adc12P.ControlA1 -> MSP430TimerC.ControlA1;
-  Msp430Adc12P.CompareA0 -> MSP430TimerC.CompareA0;
-  Msp430Adc12P.CompareA1 -> MSP430TimerC.CompareA1;
+  Msp430Adc12P.TimerA -> Msp430TimerC.TimerA;
+  Msp430Adc12P.ControlA0 -> Msp430TimerC.ControlA0;
+  Msp430Adc12P.ControlA1 -> Msp430TimerC.ControlA1;
+  Msp430Adc12P.CompareA0 -> Msp430TimerC.CompareA0;
+  Msp430Adc12P.CompareA1 -> Msp430TimerC.CompareA1;
 }
 
