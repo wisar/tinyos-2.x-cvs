@@ -61,7 +61,7 @@ implementation {
     msg.data[0] = AM_COUNT_MSG;
     // group location in tinyos 1.x
     msg.data[1] = DEF_TOS_AM_GROUP;
-    cmsg->src = TOS_LOCAL_ADDRESS;
+    cmsg->src = TOS_NODE_ID;
     cmsg->n = cnt++;
     if (call Send.send(&msg, sizeof(CountMsg_t))) {
       call Leds.led1On();
