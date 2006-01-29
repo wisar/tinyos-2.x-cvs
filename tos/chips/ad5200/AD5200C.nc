@@ -27,7 +27,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
- 
+
 /*
  * - Revision -------------------------------------------------------------
  * $Revision$
@@ -46,7 +46,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
-configuration Ad5200C {
+configuration AD5200C {
 provides {
   interface Pot;
   interface Resource;
@@ -55,19 +55,19 @@ provides {
 }
 
 implementation {
-  components Ad5200P
-      , Ad5200SpiC
-      , Ad5200PotIO
+  components AD5200P
+      , AD5200SpiC
+      , AD5200PotIO
       , MainC
       ;
 
-      StdControl = Ad5200P;
-      Pot = Ad5200P;
-      Resource = Ad5200SpiC;
+      StdControl = AD5200P;
+      Pot = AD5200P;
+      Resource = AD5200SpiC;
 
 
-      MainC.SoftwareInit-> Ad5200P.Init;
-      Ad5200P.ENPOT -> Ad5200PotIO.Ad5200PotENPOT;
-      Ad5200P.SDPOT -> Ad5200PotIO.Ad5200PotSDPOT;
-      Ad5200P.SpiByte -> Ad5200SpiC;
+      MainC.SoftwareInit-> AD5200P.Init;
+      AD5200P.ENPOT -> AD5200PotIO.AD5200PotENPOT;
+      AD5200P.SDPOT -> AD5200PotIO.AD5200PotSDPOT;
+      AD5200P.SpiByte -> AD5200SpiC;
 }

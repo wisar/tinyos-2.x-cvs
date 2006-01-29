@@ -27,7 +27,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
- 
+
 /*
  * - Revision -------------------------------------------------------------
  * $Revision$
@@ -46,7 +46,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
-configuration Ad5200SpiC {
+configuration AD5200SpiC {
     provides {
       interface Resource;
       interface SpiByte;

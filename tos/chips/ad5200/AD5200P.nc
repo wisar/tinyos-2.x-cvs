@@ -27,7 +27,7 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
- 
+
 /*
  * - Revision -------------------------------------------------------------
  * $Revision$
@@ -46,7 +46,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 
-  module Ad5200P {
+  module AD5200P {
   provides {
     interface Init;
     interface Pot;
