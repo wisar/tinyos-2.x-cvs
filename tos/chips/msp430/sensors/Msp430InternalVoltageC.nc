@@ -54,8 +54,4 @@ implementation {
   components Msp430InternalVoltageP;
   AdcReadClientC.Msp430Adc12Config -> Msp430InternalVoltageP;
   AdcReadStreamClientC.Msp430Adc12Config -> Msp430InternalVoltageP;
-
-  components MainC;
-  MainC.SoftwareInit -> AdcReadClientC;
-  MainC.SoftwareInit -> AdcReadStreamClientC;
 }
