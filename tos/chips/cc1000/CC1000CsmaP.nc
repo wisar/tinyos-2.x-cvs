@@ -233,18 +233,21 @@ implementation
   void setWakeup() {
     switch (radioState)
       {
-      case IDLE_STATE: 
-	if (call CC1000Squelch.settled())
-	  {
-	    if (lplRxPower == 0 || f.txPending)
-	      call WakeupTimer.startOneShot(CC1K_SquelchIntervalSlow);
-	    else
-	      // timeout for receiving a message after an lpl check
-	      // indicates channel activity.
-	      call WakeupTimer.startOneShot(TIME_AFTER_CHECK);
-	  }
-	else
-	  call WakeupTimer.startOneShot(CC1K_SquelchIntervalFast);
+      case IDLE_STATE:
+	/* Timer already running means that we have a noise floor
+	   measurement scheduled. */
+	if (!call WakeupTimer.isRunning())
+	  if (call CC1000Squelch.settled())
+	    {
+	      if (lplRxPower == 0 || f.txPending)
+		call WakeupTimer.startOneShot(CC1K_SquelchIntervalSlow);
+	      else
+		// timeout for receiving a message after an lpl check
+		// indicates channel activity.
+		call WakeupTimer.startOneShot(TIME_AFTER_CHECK);
+	    }
+	  else
+	    call WakeupTimer.startOneShot(CC1K_SquelchIntervalFast);
 	break;
       case PULSECHECK_STATE:
 	// Radio warm-up time.
