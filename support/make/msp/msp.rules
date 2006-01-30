@@ -71,7 +71,7 @@ endif
 
 setid: FORCE
 	@cmd () { echo "$$@"; $$@; }; if [ x = x$(NODEID) ]; then cmd cp $(MAIN_IHEX) $(INSTALL_IHEX); else cmd $(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target ihex $(MAIN_IHEX) $(INSTALL_IHEX) TOS_NODE_ID=$(NODEID); fi
-	$(SET_ID) $(MAIN_SREC) $(INSTALL_SREC) $(AMADDR)=$(NODEID) 
+	$(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target ihex $(MAIN_IHEX) $(INSTALL_IHEX) $(AMADDR)=$(NODEID) 
 
 tosimage: ihex build_tosimage FORCE
 	@:
