@@ -34,11 +34,15 @@ interface SerialByteComm {
 
   /** 
    * Put a single byte to the serial port.
+   * @param data The byte to send to the serial port.
+   * @return Returns an error_t code indicating whether this byte was
+   * successfully put (SUCCESS) or not (FAIL).
    */
   async command error_t put(uint8_t data);
 
   /** 
    * Receive a single byte from the serial port.
+   * @param data The byte that has been received from the serial port.
    */
   async event void get(uint8_t data);
 
