@@ -34,23 +34,26 @@
  */
 #include <Msp430Adc12.h>
 generic configuration AdcReadStreamClientC() {
-  provides {
-    interface Init;
-    interface ReadStream<uint16_t> as ReadStream;
-  }
+  provides interface ReadStream<uint16_t>;
   uses interface Msp430Adc12Config;
 } implementation {
-  components new Msp430Adc12ClientC() as Msp430AdcClient, AdcC;
+  components AdcC,
+#ifdef REF_VOLT_AUTO_CONFIGURE     
+             new Msp430Adc12RefVoltAutoClientC() as Msp430AdcClient;
+#else
+             new Msp430Adc12ClientC() as Msp430AdcClient;
+#endif
 
   enum {
     RSCLIENT = unique(ADCC_READ_STREAM_SERVICE),
   };
 
-  Init = AdcC;
-  Init = Msp430AdcClient;
   ReadStream = AdcC.ReadStream[RSCLIENT];
   Msp430Adc12Config = AdcC.ConfigReadStream[RSCLIENT];
   AdcC.SingleChannelReadStream[RSCLIENT] -> Msp430AdcClient.Msp430Adc12SingleChannel;
   AdcC.ResourceReadStream[RSCLIENT] -> Msp430AdcClient.Resource;
+#ifdef REF_VOLT_AUTO_CONFIGURE
+  Msp430Adc12Config = Msp430AdcClient.Msp430Adc12Config;
+#endif
 }
   
