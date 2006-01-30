@@ -40,6 +40,7 @@ enum {
   EBUSY          = 5,           // The underlying system is busy; retry later
   EINVAL         = 6,           // An invalid parameter was passed
   ERETRY         = 7,           // A rare and transient failure: can retry
+  ERESERVE       = 8,           // Reservation required before usage
 };
 
 typedef uint8_t error_t __attribute__((combine(ecombine)));
