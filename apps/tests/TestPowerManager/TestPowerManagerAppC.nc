@@ -19,19 +19,20 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
  * MODIFICATIONS."
  *
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$ 
- * ======================================================================== 
- *
  */
  
- /**
- * TestPowerManager Application  
- * This application is used to test the functionality of the non mcu power  
- * management component
+/**
+ * Please refer to TEP 115 for more information about the components
+ * this application is used to test.
  *
- * @author Kevin Klues (klueska@cs.wustl.edu)
+ * This application is used to test the functionality of the non mcu power  
+ * management component for non-virtualized devices.  Changes to
+ * <code>MyComponentC</code> allow one to choose between different Power
+ * Management policies.
+ *
+ * @author Kevin Klues <klueska@cs.wustl.edu>
+ * @version  $Revision$
+ * @date $Date$ 
  */
  
 configuration TestPowerManagerAppC{

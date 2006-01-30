@@ -19,17 +19,19 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
  * MODIFICATIONS."
  *
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$ 
- * ======================================================================== 
- *
  */
- 
- /**
- * MyComponentP module
+
+/**
+ * Please refer to TEP 115 for more information about the components
+ * this application is used to test.
  *
- * @author Kevin Klues (klueska@cs.wustl.edu)
+ * This component is used to create a "dummy" non-virtualized component for use
+ * with the TestPowerManager component.  It can be powered on and off through any
+ * of the AsyncStdControl, StdControl, and SplitControl interfaces.
+ *
+ * @author Kevin Klues <klueska@cs.wustl.edu>
+ * @version  $Revision$
+ * @date $Date$ 
  */
  
 module MyComponentP {
