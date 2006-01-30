@@ -33,7 +33,7 @@
  * ========================================================================
  */
 
-includes Msp430Adc12;
+#include <Msp430Adc12.h>
 interface Msp430Adc12Config {
   /* 
    * Returns configuration settings of an HAL2 client, See TEP 101.

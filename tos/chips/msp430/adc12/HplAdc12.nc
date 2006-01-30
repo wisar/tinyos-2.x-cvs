@@ -33,8 +33,7 @@
  * ========================================================================
  */
         
-includes Msp430Adc12;
-
+#include <Msp430Adc12.h>
 interface HplAdc12
 {
   /** Setting ADC12 Control Register ADC12CTL0 */
