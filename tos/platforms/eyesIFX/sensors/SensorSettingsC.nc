@@ -39,6 +39,7 @@
  * respective subdirectory.
  */
 
+#include <sensors.h>
 module SensorSettingsC {
   provides interface Msp430Adc12Config[uint8_t type];  
 }
