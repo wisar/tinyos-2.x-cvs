@@ -36,6 +36,7 @@
 
 configuration CC2420SpiP {
 
+  provides interface Resource[ uint8_t id ];
   provides interface CC2420Fifo as Fifo[ uint8_t id ];
   provides interface CC2420Ram as Ram[ uint16_t id ];
   provides interface CC2420Register as Reg[ uint8_t id ];
@@ -45,17 +46,22 @@ configuration CC2420SpiP {
 
 implementation {
 
-  components new HplCC2420SpiC();
   components CC2420SpiImplP as SpiP;
-  components LedsC;
-
+  Resource = SpiP;
   Fifo = SpiP;
   Ram = SpiP;
   Reg = SpiP;
   Strobe = SpiP;
 
+  components new HplCC2420SpiC();
+  SpiP.SpiResource -> HplCC2420SpiC;
   SpiP.SpiByte -> HplCC2420SpiC;
   SpiP.SpiPacket -> HplCC2420SpiC;
+
+  components MainC;
+  MainC.SoftwareInit -> HplCC2420SpiC;
+
+  components LedsC;
   SpiP.Leds -> LedsC;
 
 }

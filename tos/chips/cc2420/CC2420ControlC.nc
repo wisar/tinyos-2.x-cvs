@@ -59,7 +59,6 @@ implementation {
   components LedsC as Leds;
   
   Init = CC2420ControlP;
-  Init = Spi;
   Resource = CC2420ControlP;
   CC2420Config = CC2420ControlP;
   AMPacket = CC2420ControlP;

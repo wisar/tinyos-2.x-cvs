@@ -38,7 +38,6 @@
 
 generic configuration CC2420SpiC() {
 
-  provides interface Init;
   provides interface Resource;
 
   // commands
@@ -74,12 +73,14 @@ generic configuration CC2420SpiC() {
 
 implementation {
 
+  enum {
+    CLIENT_ID = unique( "CC2420Spi.Resource" ),
+  };
+
   components HplCC2420PinsC as Pins;
-  components new HplCC2420SpiC();
   components CC2420SpiP as Spi;
   
-  Init = HplCC2420SpiC;
-  Resource = HplCC2420SpiC;
+  Resource = Spi.Resource[ CLIENT_ID ];
 
   // commands
   SFLUSHRX = Spi.Strobe[ CC2420_SFLUSHRX ];
