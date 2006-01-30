@@ -20,8 +20,12 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
+#include "Timer.h"
+
 /**
  * AlarmToTimerC converts a 32-bit Alarm to a Timer.  
+ *
+ * <p>See TEP102 for more details.
  * @param precision_tag A type indicating the precision of the Alarm and
  * Timer being converted.
  *

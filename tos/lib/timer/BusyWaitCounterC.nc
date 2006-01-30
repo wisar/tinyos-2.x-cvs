@@ -27,6 +27,8 @@
  * (block until a specified amount of time elapses). See TEP102 for more
  * details.
  *
+ * <p>See TEP102 for more details.
+ *
  * @param precision_tag A type indicating the precision of the BusyWait
  *   interface.
  * @param size_type An integer type representing time values for the
