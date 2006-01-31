@@ -701,6 +701,8 @@ implementation {
       case TXSTATE_ENDWAIT:
         txState = TXSTATE_FINISH;
       case TXSTATE_FINISH:
+        MaybeScheduleTx();
+        break;
       case TXSTATE_ERROR:
       default:
         txResult = FAIL; 
