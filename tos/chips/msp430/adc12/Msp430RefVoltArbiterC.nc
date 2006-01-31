@@ -33,6 +33,21 @@
  * ========================================================================
  */
 
+/** 
+ *
+ * This component is meant to intercept requests to the <code>Resource</code>
+ * interface on their way to the arbiter. It checks whether the client requires
+ * the internal reference voltage generator of the MSP430 to be switched on by
+ * pulling its configuration data via <code>Msp430Adc12Config</code>. If (and
+ * only if) this is the case it enables the generator and forwards the
+ * <code>Resource.granted()</code> event from the arbiter when the reference
+ * voltage is stable.  Clients SHOULD NOT wire to
+ * <code>Msp430RefVoltArbiterC</code> but wire to
+ * <code>Msp430Adc12RefVoltAutoClientC</code>.
+ * 
+ * @author Jan Hauer
+ */
+
 configuration Msp430RefVoltArbiterC
 {
   provides interface Resource as ClientResource[uint8_t client];

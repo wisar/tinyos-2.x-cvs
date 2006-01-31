@@ -32,6 +32,20 @@
  * @author: Jan Hauer <hauer@tkn.tu-berlin.de>
  * ========================================================================
  */
+
+/** 
+ * Please refer to TEP 101 for more information about this component and its
+ * intended use. This component allows a client to access the MSP430 ADC12
+ * (12-bit analog-to-digital converter) via the <code>ReadStream</code>
+ * interface. A client must wire the <code>Msp430Adc12Config</code> interface
+ * to a component that returns its ADC12 configuration data. Depending on the
+ * REF_VOLT_AUTO_CONFIGURE switch (defined in Msp430Adc12.h) the internal
+ * reference voltage generator is automatically enabled if and only if the
+ * configuration data includes VREF as reference voltage.
+ *
+ * @author Jan Hauer
+ */
+
 #include <Msp430Adc12.h>
 generic configuration AdcReadStreamClientC() {
   provides interface ReadStream<uint16_t>;

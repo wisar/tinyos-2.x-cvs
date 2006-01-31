@@ -33,19 +33,23 @@
  * ========================================================================
  */
 
-/*
- * HAL1 of ADC12, see TEP 101.
+/** 
+ * Please refer to TEP 101 for more information about this component and its
+ * intended use. This component represents the HAL1 of the MSP430 ADC12
+ * subsystem. Clients SHOULD NOT wire to <code>Msp430Adc12C</code> directly but
+ * should go via <code>Msp430Adc12ClientC</code> or
+ * <code>Msp430Adc12RefVoltAutoClientC</code>.
+ *
+ * @author Jan Hauer
  */
-#include <Msp430Adc12.h>
-configuration Msp430Adc12C
-{
-  provides interface Resource[uint8_t id];
-  provides interface Msp430Adc12SingleChannel as SingleChannel[uint8_t id];
-}
-implementation
-{
-  components Msp430Adc12P, HplAdc12P, Msp430TimerC,
-             MainC, HplMsp430GeneralIOC,
+
+#include <Msp430Adc12.h> 
+configuration Msp430Adc12C 
+{ 
+  provides interface Resource[uint8_t id]; 
+  provides interface Msp430Adc12SingleChannel as SingleChannel[uint8_t id]; 
+} implementation { 
+  components Msp430Adc12P,HplAdc12P, Msp430TimerC, MainC, HplMsp430GeneralIOC, 
              new RoundRobinArbiterC(MSP430ADC12_RESOURCE) as Arbiter;
 
   Resource = Arbiter;

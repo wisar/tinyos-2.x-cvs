@@ -57,8 +57,17 @@ module Msp430RefVoltArbiterP
    
   async command error_t ClientResource.immediateRequest[uint8_t client]()
   {
-    // always fails, because of the possible start-up delay
-    return FAIL;
+    msp430adc12_channel_config_t settings = call Config.getChannelSettings[client]();
+    if (settings.sref == REFERENCE_VREFplus_AVss ||
+        settings.sref == REFERENCE_VREFplus_VREFnegterm)
+      // always fails, because of the possible start-up delay (and async-sync transition)
+      return FAIL;
+    else {
+      error_t request = call AdcResource.immediateRequest[client]();
+      if (request == SUCCESS)
+        owner = client;
+      return request;
+    }
   }
 
   event void AdcResource.granted[uint8_t client]()
