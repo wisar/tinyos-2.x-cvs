@@ -34,6 +34,8 @@
 /**
 * Tda5250RegistersC Configuration
 *
+* Provides access to the registers of the tda5250 radio.
+*
 * @author Kevin Klues (klues@tkn.tu-berlin.de)
 */
 

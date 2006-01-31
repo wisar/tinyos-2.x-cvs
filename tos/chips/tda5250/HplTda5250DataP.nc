@@ -95,12 +95,6 @@ implementation {
     signal Resource.granted();
   }
 
-  /* FIXME
-  event void UartResource.requested() {
-    signal Resource.requested();
-  }
-  */
-
   async command error_t HplTda5250Data.tx(uint8_t data) {
     if(call ArbiterInfo.userId() != TDA5250_UART_BUS_ID)
      return FAIL;
@@ -163,10 +157,6 @@ implementation {
   }
 
   default event void Resource.granted() {}
-
-  // FIXME
-  //default event void Resource.requested() {}
-
   default async event void HplTda5250Data.txReady() {}
   default async event void HplTda5250Data.rxDone(uint8_t data) {}
 }

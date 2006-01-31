@@ -37,7 +37,6 @@
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
-
 interface HplTda5250Data {
 
  /**
@@ -58,6 +57,9 @@ interface HplTda5250Data {
 
   /**
    * Command for querying whether any bytes are still waiting to be transmitted
+   *
+   * @return TRUE if all bytes are trasnmitted
+   *         FALSE otherwise.
    */
   async command bool isTxDone();
 
@@ -69,22 +71,34 @@ interface HplTda5250Data {
 
   /**
    * Enable transmitting over the radio
-  */
+   *
+   * @return SUCCESS on success
+   *         FAIL otherwise.
+   */
   async command error_t enableTx();
 
   /**
    * Disable transmitting over the radio
-  */
+   *
+   * @return SUCCESS on success
+   *         FAIL otherwise.
+   */
   async command error_t disableTx();
 
   /**
    * Enable receiving over the radio
+   *
+   * @return SUCCESS on success
+   *         FAIL otherwise.
   */
   async command error_t enableRx();
 
   /**
    * Disable receiving over the radio
-  */
+   *
+   * @return SUCCESS on success
+   *         FAIL otherwise.
+   */
   async command error_t disableRx();
 }
 

@@ -38,14 +38,11 @@ module Tda5250RegCommP {
   provides {
     interface Init;
     interface Tda5250RegComm;
-    // FIXME: Hier ResourceController!?
     interface Resource;
   }
   uses {
     interface GeneralIO as BusM;
-    // FIXME: Hier ResourceController als high priority client!?
     interface Resource as SpiResource;
-//    interface ArbiterInfo;
     interface SpiByte;
   }
 }
@@ -73,7 +70,7 @@ implementation {
    }
 
    async command uint8_t Resource.getId() {
-   //  return TDA5250_SPI_BUS_ID;
+// return TDA5250_SPI_BUS_ID;
    return 255;
    }
 
@@ -85,17 +82,6 @@ implementation {
      signal Resource.granted();
    }
 
-   /* FIXME
-   event void SpiResource.requested() {
-     signal Resource.requested();
-   }
-
-
-   async event void Usart.txDone() {
-   }
-   async event void Usart.rxDone(uint8_t data) {
-   }
-*/
    async command error_t Tda5250RegComm.writeByte(uint8_t address, uint8_t data) {
      uint8_t rxbyte;
 //     if(call ArbiterInfo.userId() != TDA5250_SPI_BUS_ID) {
