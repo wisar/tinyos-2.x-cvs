@@ -43,6 +43,9 @@
 generic configuration Msp430InternalVoltageC() {
   provides interface Read<uint16_t>;
   provides interface ReadStream<uint16_t>;
+
+  provides interface Resource;
+  provides interface ReadNow<uint16_t>;
 }
 implementation {
   components new AdcReadClientC();
@@ -54,4 +57,10 @@ implementation {
   components Msp430InternalVoltageP;
   AdcReadClientC.Msp430Adc12Config -> Msp430InternalVoltageP;
   AdcReadStreamClientC.Msp430Adc12Config -> Msp430InternalVoltageP;
+
+  components new AdcReadNowClientC();
+  Resource = AdcReadNowClientC;
+  ReadNow = AdcReadNowClientC;
+  
+  AdcReadNowClientC.Msp430Adc12Config -> Msp430InternalVoltageP;
 }
