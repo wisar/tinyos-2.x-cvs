@@ -33,10 +33,12 @@
  * ========================================================================
  */
 
-/* 
+/**
  * Default ADC channel configuration for eyesIFXv1 and eyesIFXv2. Future
  * eyesIFX platforms may shadow this configuration (and sensors.h) in their
  * respective subdirectory.
+ *
+ * @author Jan Hauer
  */
 
 #include <sensors.h>

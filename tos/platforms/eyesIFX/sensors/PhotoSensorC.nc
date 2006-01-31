@@ -33,6 +33,16 @@
  * ========================================================================
  */
 
+/** 
+ *
+ * Please refer to TEP 109 for more information about this component and its
+ * intended use. This component provides platform-independent access to the
+ * onboard photo sensor on the eyesIFXv{1,2} platform.
+ *
+ * @author Jan Hauer
+ */
+
+
 #include <sensors.h>
 generic configuration PhotoSensorC()
 {

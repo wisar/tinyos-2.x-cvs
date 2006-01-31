@@ -33,6 +33,16 @@
  * ========================================================================
  */
 
+/** 
+ *
+ * Please refer to TEP 109 for more information about this component and its
+ * intended use. This component provides platform-independent access to the
+ * RSSI sensor exported by the TDA5250 radio on the eyesIFXv{1,2} platform.
+ * Note: The radio must be configured to output the RSSI on the pin!
+ *
+ * @author Jan Hauer
+ */
+
 #include <sensors.h>
 generic configuration RssiSensorC()
 {

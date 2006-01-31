@@ -33,6 +33,18 @@
  * ========================================================================
  */
 
+/** 
+ *
+ * Please refer to TEP 109 for more information about this component and its
+ * intended use. This component is an example component that provides
+ * platform-independent access to a sensor via the <code>Read</code> and
+ * <code>ReadStream</code> interface. Which actual sensor this is, is variable
+ * defined in the implementation part below.
+ *
+ * @author Jan Hauer
+ */
+
+
 #include <sensors.h>
 generic configuration DemoSensorC()
 {
