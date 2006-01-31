@@ -32,9 +32,8 @@
  */
 
  /**
- * Tda5250RadioIO configuration
  * Configuration file for using the IO pins to the TDA5250 Radio on
- * the eyesIFX platforms
+ * the eyesIFX platforms.
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */

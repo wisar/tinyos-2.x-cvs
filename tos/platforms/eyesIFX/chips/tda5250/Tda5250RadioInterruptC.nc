@@ -32,9 +32,8 @@
  */
 
  /**
- * Tda5250RadioInterruptPWDDD configuration
  * Configuration file for using the PWDDD interrupt for the TDA5250 Radio
- * on the eyesIFX platforms
+ * on the eyesIFX platforms.
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */

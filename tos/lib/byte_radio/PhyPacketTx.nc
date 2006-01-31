@@ -33,10 +33,10 @@
  */
 
 /**
- * Physical Packet Transmission Interface
+ * Physical Packet Transmission Interface.
  * Commands and event provided by the Physical Layer
  * to communicate with upper layers about the status of a 
- * packet that is being transmitted
+ * packet that is being transmitted.
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de)>
  */  
@@ -57,6 +57,8 @@ interface PhyPacketTx {
   
   /**
   * Notification that the packet header was sent.
+  *
+  * @param error Success-Notification.
   */
   async event void sendHeaderDone(error_t error);
   
@@ -68,7 +70,7 @@ interface PhyPacketTx {
   /**
   * Notification that the the packet footer was sent.
   *
-  * @param success Notification.
+  * @param error Success-Notification.
   */
   async event void sendFooterDone(error_t error);  
 }

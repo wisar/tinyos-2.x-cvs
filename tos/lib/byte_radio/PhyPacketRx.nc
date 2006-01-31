@@ -33,10 +33,10 @@
  */
  
 /**
- * Physical Packet Receive Interface
+ * Physical Packet Receive Interface.
  * Commands and event provided by the Radio Interface
  * to communicate with upper layers about the status of a 
- * received packet
+ * received packet.
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */ 
@@ -59,7 +59,7 @@ interface PhyPacketRx {
   /**
   * Notification that the the packet footer was received.
   *
-  * @param success Notification.
+  * @param error Success-Notification.
   */
   async event void recvFooterDone(bool error);
 }

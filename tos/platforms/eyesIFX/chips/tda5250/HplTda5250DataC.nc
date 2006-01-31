@@ -31,16 +31,14 @@
 * ========================================================================
 */
 
-/**
- * HplTda5250P configuration
- * Controlling the TDA5250 at the HPL layer..
- *
- * @author Kevin Klues (klues@tkn.tu-berlin.de)
- */
-
 #include "msp430baudrates.h"
 #include "tda5250BusResourceId.h"
 
+/**
+ * Controlling the TDA5250 at the HPL layer.
+ *
+ * @author Kevin Klues (klues@tkn.tu-berlin.de)
+ */
 configuration HplTda5250DataC {
   provides {
     interface Init;

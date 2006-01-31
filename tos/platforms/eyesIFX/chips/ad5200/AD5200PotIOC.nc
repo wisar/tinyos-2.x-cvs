@@ -32,9 +32,8 @@
  */
 
  /**
- * AD5200PotIO configuration
  * Configuration file for using the IO pins to the AD5200 Pot on
- * the eyesIFX platforms
+ * the eyesIFX platforms.
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */

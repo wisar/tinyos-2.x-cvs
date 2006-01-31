@@ -39,9 +39,8 @@
 #include "tda5250BusResourceId.h"
 
 /**
- * Tda5250RegCommP configuration
  * Configuration file for the registers of TDA5250 Radio on
- * the eyesIFX platforms
+ * the eyesIFX platforms.
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
