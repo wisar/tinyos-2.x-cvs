@@ -63,7 +63,6 @@ module HplTda5250ConfigP {
     interface Alarm<T32khz, uint16_t> as RSSIStableDelay;
     interface GeneralIO as TXRX;
     interface GeneralIO as PWDDD;
-    //interface Interrupt as PWDDDInterrupt;
     interface GpioInterrupt as PWDDDInterrupt;
   }
 }

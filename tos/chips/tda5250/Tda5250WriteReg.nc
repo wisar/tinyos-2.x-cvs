@@ -32,9 +32,10 @@
  */
 
  /**
- * TDA5250WriteReg Interface
- *
  * Allows writing to a specified register. See "tda5250RegTypes.h".
+ * WriteReg is parameterized by the register it uses.
+ *
+ * @param reg_type Defines the register to write to.
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
@@ -42,7 +43,7 @@ interface Tda5250WriteReg<reg_type> {
   /**
   * Writes to the parametrized register.
   *
-  * @param register to which is written.
+  * @param v Data written to the register.
   *
   * @return SUCCESS on success
   *         FAIL otherwise.

@@ -32,9 +32,10 @@
  */
 
  /**
- * Tda5250ReadReg Interface
- *
  * Allows reading of a specified register. See "tda5250RegTypes.h".
+ * ReadReg is parameterized by the register it uses.
+ *
+ * @param reg_type Defines the register to read from.
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
@@ -43,7 +44,7 @@ interface Tda5250ReadReg<reg_type> {
   /**
    * Reads from the paramterized register.
    *
-   * @return data content of the register.
+   * @return Data content of the register.
    */
   async command reg_type get();
 }

@@ -33,7 +33,7 @@
 */
 
 /**
-* PacketSerializerM module
+* BasicMac module
 *
 * @author Kevin Klues <klues@tkn.tu-berlin.de>
 */

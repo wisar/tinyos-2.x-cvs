@@ -32,8 +32,7 @@
  */
 
  /**
- * HplTda5250ConfigP configuration
- * Controlling the TDA5250 at the HPL layer..
+ * Controlling the TDA5250 at the HPL layer.
  *
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
