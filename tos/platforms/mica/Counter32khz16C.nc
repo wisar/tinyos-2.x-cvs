@@ -23,7 +23,7 @@ configuration Counter32khz16C
 }
 implementation
 {
-  components HplAtm128Timer3C as HWTimer, Init32khzP,
+  components HplAtm128Timer1C as HWTimer, Init32khzP,
     new Atm128CounterC(T32khz, uint16_t) as NCounter;
   
   Counter = NCounter;

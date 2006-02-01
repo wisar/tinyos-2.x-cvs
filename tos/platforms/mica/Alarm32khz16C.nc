@@ -20,6 +20,8 @@
  * @author David Gay <dgay@intel-research.net>
  */
 
+#include "Atm128Timer.h"
+
 generic configuration Alarm32khz16C()
 {
   provides interface Alarm<T32khz, uint16_t>;
