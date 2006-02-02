@@ -51,7 +51,7 @@ $(if $(PROGRAM),,$(call TOSMake_include,pxa27x/$(DEFAULT_PROGRAM).extra))
 
 ifndef BUILD_DEPS
   ifeq ($(filter $(BUILDLESS_DEPS),$(GOALS)),)
-    BUILD_DEPS = bin bytes setid $(POST_BUILD_EXTRA_DEPS)
+    BUILD_DEPS = bin bytes $(POST_BUILD_EXTRA_DEPS)
   endif
 endif
 
