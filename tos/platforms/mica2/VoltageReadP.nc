@@ -8,20 +8,22 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Demo sensor for the mica2 platform.
- *
+ * Internal component for voltage sensor.
+ * 
  * @author David Gay
  */
 
-generic configuration DemoSensorC()
-{
-  provides interface Read<uint16_t>;
-  provides interface ReadStream<uint16_t>;
+configuration VoltageReadP {
+  provides interface Read<uint16_t>[uint8_t client];
+  uses {
+    interface Read<uint16_t> as ActualRead[uint8_t client];
+    interface Resource[uint8_t client];
+  }
 }
 implementation {
-  components new VoltageReadStreamC() as SensorStream,
-    new VoltageReadC() as Sensor;
+  components new ArbitratedReadC(uint16_t);
 
-  Read = Sensor;
-  ReadStream = SensorStream;
+  Read = ArbitratedReadC;
+  ActualRead = ArbitratedReadC;
+  Resource = ArbitratedReadC;
 }

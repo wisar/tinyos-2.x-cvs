@@ -8,20 +8,27 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * Demo sensor for the mica2 platform.
- *
+ * Voltage sensor.
+ * 
  * @author David Gay
  */
 
-generic configuration DemoSensorC()
-{
+#include "hardware.h"
+
+generic configuration VoltageReadC() {
   provides interface Read<uint16_t>;
-  provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components new VoltageReadStreamC() as SensorStream,
-    new VoltageReadC() as Sensor;
+  components VoltageReadP, VoltageDeviceP, new AdcReadClientC();
 
-  Read = Sensor;
-  ReadStream = SensorStream;
+  enum {
+    RESID = unique(UQ_VOLTAGEDEVICE),
+  };
+
+  Read = VoltageReadP.Read[RESID];
+  
+  VoltageReadP.ActualRead[RESID] -> AdcReadClientC;
+  VoltageReadP.Resource[RESID] -> VoltageDeviceP.Resource[RESID];
+
+  AdcReadClientC.Atm128AdcConfig -> VoltageDeviceP;
 }

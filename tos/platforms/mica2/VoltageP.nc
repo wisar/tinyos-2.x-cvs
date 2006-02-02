@@ -35,7 +35,6 @@ module VoltageP {
   uses interface GeneralIO as BAT_MON;	
 }
 implementation {
-  
   command error_t StdControl.start() {
     call BAT_MON.makeOutput();
     call BAT_MON.set();
@@ -59,4 +58,3 @@ implementation {
     return ATM128_ADC_PRESCALE;
   }
 }
-

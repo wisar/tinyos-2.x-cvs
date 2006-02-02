@@ -13,15 +13,14 @@
  * @author David Gay
  */
 
-generic configuration DemoSensorC()
+generic configuration DemoSensorNowC()
 {
-  provides interface Read<uint16_t>;
-  provides interface ReadStream<uint16_t>;
+  provides interface Resource;
+  provides interface ReadNow<uint16_t>;
 }
 implementation {
-  components new VoltageReadStreamC() as SensorStream,
-    new VoltageReadC() as Sensor;
+  components new VoltageReadNowC() as Sensor;
 
-  Read = Sensor;
-  ReadStream = SensorStream;
+  Resource = Sensor;
+  ReadNow = Sensor;
 }

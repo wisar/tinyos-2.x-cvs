@@ -34,6 +34,6 @@ implementation {
   };
 
   ReadNow = WireAdcP.ReadNow[ID];
-  Atm128AdcConfig = AdcC.Atm128AdcConfig[ID];
+  Atm128AdcConfig = WireAdcP.Atm128AdcConfig[ID];
   Resource = Atm128AdcC.Resource[HAL_ID];
 }
