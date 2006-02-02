@@ -32,19 +32,10 @@
  */
   
 generic module ConstantSensorC(typedef width_t @integer(), uint32_t val) { 
-  provides interface StdControl;	
   provides interface Read<width_t>;
 }
 implementation
 {
-  command error_t StdControl.start() {
-    return SUCCESS;
-  }
-
-  command error_t StdControl.stop() {
-    return SUCCESS;
-  }
-
   task void senseResult() {
     signal Read.readDone(SUCCESS, val);
   }
