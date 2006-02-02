@@ -48,8 +48,7 @@ module RadioStressC {
     interface Boot;
     interface Receive;
     interface AMSend;
-    interface Service;
-    interface ServiceNotify;
+    interface SplitControl as RadioControl;
     interface Packet;
     interface Timer<TMilli>;
     interface PacketAcknowledgements as Acks;
@@ -70,7 +69,7 @@ implementation {
   
   event void Boot.booted() {
     call Leds.led0On();
-    call Service.start();
+    call RadioControl.start();
   }
 
   task void sendTask();
@@ -92,13 +91,13 @@ implementation {
     sendPacket();
   }
   
-  event void ServiceNotify.started() {
+  event void RadioControl.startDone() {
     call Leds.led1On();
     call Timer.startPeriodic(1000);
     //call Acks.enable();
   }
 
-  event void ServiceNotify.stopped() {
+  event void RadioControl.stopDone() {
 
   }
 

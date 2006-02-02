@@ -37,7 +37,7 @@
  *  at 1Hz. Every 5s, it transmits a power message. When a slave hears
  *  a data message, it toggles its red led; when it hears a power
  *  message, it turns off its radio, which it turns back on in a few
- *  seconds. This essentially tests whether the AMService is turning
+ *  seconds. This essentially tests whether ActiveMessageC is turning
  *  the radio off appropriately. It uses AM types 240 (power messages)
  *  and 241 (data messages).
  *
@@ -53,9 +53,7 @@ implementation {
   components new AMSenderC(241) as DataSend;
   components new AMReceiverC(241) as DataReceive;
   components new TimerMilliC();
-  components new AMServiceNotifierC();
-  components new AMServiceC();
-  components new AMServiceC() as SecondServiceC;
+  components ActiveMessageC;
   
   MainC.SoftwareInit -> LedsC;
   
@@ -66,9 +64,7 @@ implementation {
   App.DataReceive -> DataReceive;
   App.DataSend -> DataSend;
 
-  App.Service -> AMServiceC;
-  App.SecondService -> SecondServiceC;
-  App.ServiceNotify -> AMServiceNotifierC;
+  App.RadioControl -> ActiveMessageC;
   App.Leds -> LedsC;
   App.MilliTimer -> TimerMilliC;
   

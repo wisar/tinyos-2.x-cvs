@@ -45,8 +45,7 @@ implementation {
   components new AMSenderC(AM_RADIOCOUNTMSG);
   components new AMReceiverC(AM_RADIOCOUNTMSG);
   components new TimerMilliC();
-  components new AMServiceC();
-  components new AMServiceNotifierC();
+  components ActiveMessageC;
   
   MainC.SoftwareInit -> LedsC;
   
@@ -54,9 +53,8 @@ implementation {
   
   App.Receive -> AMReceiverC;
   App.AMSend -> AMSenderC;
-  App.Service -> AMServiceC;
+  App.RadioControl -> ActiveMessageC;
   App.Leds -> LedsC;
-  App.ServiceNotify -> AMServiceNotifierC;
   App.Packet -> AMSenderC;
   App.Acks -> AMSenderC;
   App.Timer -> TimerMilliC;
