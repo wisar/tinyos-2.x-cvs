@@ -51,7 +51,7 @@ module Tda5250ActiveMessageP {
   uses {
     interface Send as SubSend;
     interface Receive as SubReceive;
-    interface Packet as Packet;
+    interface Packet as SubPacket;
     command am_addr_t amAddress();
   }
 }
@@ -80,11 +80,11 @@ implementation {
   }
 
   command uint8_t AMSend.maxPayloadLength[am_id_t id]() {
-    return call Packet.maxPayloadLength();
+    return call SubPacket.maxPayloadLength();
   }
 
   command void* AMSend.getPayload[am_id_t id](message_t* m) {
-    return call Packet.getPayload(m, NULL);
+    return call SubPacket.getPayload(m, NULL);
   }
 
   /* Receiving a packet */
@@ -99,19 +99,19 @@ implementation {
   }
 
   command void* Receive.getPayload[am_id_t id](message_t* m, uint8_t* len) {
-    return call Packet.getPayload(m, len);
+    return call SubPacket.getPayload(m, len);
   }
 
   command uint8_t Receive.payloadLength[am_id_t id](message_t* m) {
-    return call Packet.payloadLength(m);
+    return call SubPacket.payloadLength(m);
   }
 
   command void* Snoop.getPayload[am_id_t id](message_t* m, uint8_t* len) {
-    return call Packet.getPayload(m, len);
+    return call SubPacket.getPayload(m, len);
   }
 
   command uint8_t Snoop.payloadLength[am_id_t id](message_t* m) {
-    return call Packet.payloadLength(m);
+    return call SubPacket.payloadLength(m);
   }
 
   command am_addr_t AMPacket.address() {
