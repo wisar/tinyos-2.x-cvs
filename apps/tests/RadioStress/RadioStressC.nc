@@ -91,13 +91,18 @@ implementation {
     sendPacket();
   }
   
-  event void RadioControl.startDone() {
-    call Leds.led1On();
-    call Timer.startPeriodic(1000);
-    //call Acks.enable();
+  event void RadioControl.startDone(error_t err) {
+    if (err != SUCCESS) {
+      call RadioControl.start();
+    }
+    else {
+      call Leds.led1On();
+      call Timer.startPeriodic(1000);
+      //call Acks.enable();
+    }
   }
 
-  event void RadioControl.stopDone() {
+  event void RadioControl.stopDone(error_t err) {
 
   }
 
