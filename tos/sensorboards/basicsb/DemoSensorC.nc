@@ -18,8 +18,9 @@ generic configuration DemoSensorC() {
   provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components new PhotoClientC() as Sensor;
+  components new PhotoReadStreamC() as SensorStream,
+    new PhotoReadC() as Sensor;
 
   Read = Sensor;
-  ReadStream = Sensor;
+  ReadStream = SensorStream;
 }

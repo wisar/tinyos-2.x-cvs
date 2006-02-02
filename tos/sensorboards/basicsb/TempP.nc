@@ -17,7 +17,10 @@ module TempP
     interface StdControl;
     interface Atm128AdcConfig;
   }
-  uses interface GeneralIO as TempPin;
+  uses {
+    interface GeneralIO as TempPin;
+    interface MicaBusAdc as TempAdc;
+  }
 }
 implementation
 {
@@ -33,7 +36,7 @@ implementation
   }
 
   async command uint8_t Atm128AdcConfig.getChannel() {
-    return 6;
+    return call TempAdc.getChannel();
   }
 
   async command uint8_t Atm128AdcConfig.getRefVoltage() {
