@@ -14,7 +14,6 @@
 module PhotoP
 {
   provides {
-    interface Init;
     interface StdControl;
     interface Atm128AdcConfig;
   }
@@ -25,10 +24,6 @@ module PhotoP
 }
 implementation
 {
-  command error_t Init.init() {
-    return SUCCESS;
-  }
-
   command error_t StdControl.start() {
     call PhotoPin.makeOutput();
     call PhotoPin.set();
