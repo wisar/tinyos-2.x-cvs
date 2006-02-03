@@ -49,11 +49,9 @@
 generic configuration DemoSensorC()
 {
   provides interface Read<uint16_t>;
-  provides interface ReadStream<uint16_t>;
 }
 implementation
 {
   components new VoltageC() as DemoSensor;
   Read = DemoSensor;
-  ReadStream = DemoSensor;
 }

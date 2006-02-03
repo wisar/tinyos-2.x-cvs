@@ -40,11 +40,11 @@
  * @version $Revision$ $Date$
  */
 
-generic configuration VoltageC() {
-  provides interface Read<uint16_t>;
+generic configuration VoltageStreamC() {
+  provides interface ReadStream<uint16_t>;
 }
 implementation {
   components new Msp430InternalVoltageC();
-  Read = Msp430InternalVoltageC.Read;
+  ReadStream = Msp430InternalVoltageC.ReadStream;
 }
 
