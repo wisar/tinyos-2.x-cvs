@@ -35,7 +35,7 @@ configuration PowerupAppC{}
 implementation {
   components MainC, PowerupC, LedsC;
 
-  MainC.Boot <- PowerupM;
+  MainC.Boot <- PowerupC;
   MainC.SoftwareInit -> LedsC;
   
   PowerupC -> LedsC.Leds;
