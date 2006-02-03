@@ -31,7 +31,7 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-module PowerupM
+module PowerupC
 {
   uses interface Boot;
   uses interface Leds;

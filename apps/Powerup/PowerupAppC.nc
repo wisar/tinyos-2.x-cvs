@@ -31,13 +31,13 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-configuration PowerupC{}
+configuration PowerupAppC{}
 implementation {
-  components MainC, PowerupM, LedsC;
+  components MainC, PowerupC, LedsC;
 
   MainC.Boot <- PowerupM;
   MainC.SoftwareInit -> LedsC;
   
-  PowerupM -> LedsC.Leds;
+  PowerupC -> LedsC.Leds;
 }
 
