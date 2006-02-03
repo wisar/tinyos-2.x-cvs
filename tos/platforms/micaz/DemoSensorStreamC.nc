@@ -16,13 +16,14 @@
  * @authod David Gay
  */
 
-generic configuration DemoSensorC()
+generic configuration DemoSensorStreamC()
 {
-  provides interface Read<uint16_t>;
+  provides interface ReadStream<uint16_t>;
 }
 implementation
 {
-  components new ConstantSensorC(uint16_t, 0xbeef) as DemoChannel;
+  components new AdcReadStreamClientC();
 
-  Read = DemoChannel;
+  // An unconfigure atm128 ReadStream sensor reads the "ground" channel.
+  ReadStream = AdcReadStreamClientC;
 }
