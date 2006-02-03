@@ -54,7 +54,6 @@ module CC1000CsmaP {
   provides {
     interface Init;
     interface SplitControl;
-    interface TransmitControl;
     interface CsmaControl;
     interface CsmaBackoff;
     interface LowPowerListening;
@@ -466,11 +465,6 @@ implementation
 
   /* Options */
   /*---------*/
-
-  async command message_t* TransmitControl.haltTx() {
-    /* We simply ignore cancellations. */
-    return NULL;
-  }
 
   async command error_t CsmaControl.enableCca() {
     atomic f.ccaOff = FALSE;
