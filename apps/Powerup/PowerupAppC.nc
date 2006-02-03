@@ -36,6 +36,7 @@ implementation {
   components MainC, PowerupM, LedsC;
 
   MainC.Boot <- PowerupM;
+  MainC.SoftwareInit -> LedsC;
   
   PowerupM -> LedsC.Leds;
 }
