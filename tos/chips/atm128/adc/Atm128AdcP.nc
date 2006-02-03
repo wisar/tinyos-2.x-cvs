@@ -193,7 +193,7 @@ implementation
     adcsr.aden = ATM128_ADC_ENABLE_ON;
     adcsr.adsc = ATM128_ADC_START_CONVERSION_ON;
     adcsr.adfr = f.multiple;
-    adcsr.adif = ATM128_ADC_INT_FLAG_OFF;
+    adcsr.adif = ATM128_ADC_INT_FLAG_ON; // clear any stale flag
     adcsr.adie = ATM128_ADC_INT_ENABLE_ON;
     adcsr.adps = prescaler;
     call HplAtm128Adc.setAdcsra(adcsr);
