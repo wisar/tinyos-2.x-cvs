@@ -67,8 +67,11 @@ public class SFListen extends Thread implements PacketListenerIF, PhoenixError {
     // handler, but sends the error message to a different location
     // (sf.message vs sf.verbose.message)
     public void error(IOException e) {
+	if (e.getMessage() != null) {
+	    sf.message(e.getMessage());
+	}
 	sf.message(source.getPacketSource().getName() +
-		   " died - restarting (" + e + ")");
+		   " died - restarting");
 	try {
 	    sleep(5000);
 	}
