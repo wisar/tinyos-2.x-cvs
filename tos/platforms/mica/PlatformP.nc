@@ -35,6 +35,8 @@ module PlatformP
   provides interface Init;
   uses interface Init as MoteInit;
   uses interface Init as MeasureClock;
+  uses interface Init as LedsInit;
+
 }
 implementation
 {
@@ -58,7 +60,11 @@ implementation
 
     power_init();
 
+    call LedsInit.init();
+
     return SUCCESS;
   }
+
+  default command error_t LedsInit.init() { return SUCCESS; }
 }
 

@@ -35,11 +35,15 @@ configuration PlatformLedsC
   provides interface GeneralIO as Led0;
   provides interface GeneralIO as Led1;
   provides interface GeneralIO as Led2;
+  uses interface Init;
 }
 implementation
 {
   components HplAtm128GeneralIOC as IO;
-    
+  components PlatformP;
+
+  Init = PlatformP.LedsInit;
+
   Led0 = IO.PortA2;  // Pin A2 = Red LED
   Led1 = IO.PortA1;  // Pin A1 = Green LED
   Led2 = IO.PortA0;  // Pin A0 = Yellow LED
