@@ -45,7 +45,7 @@
 module HplAt45dbIOP {
   provides {
     interface Init;
-    interface SPIByte as FlashSpi;
+    interface SpiByte as FlashSpi;
     interface HplAt45dbByte;
   }
   uses {
