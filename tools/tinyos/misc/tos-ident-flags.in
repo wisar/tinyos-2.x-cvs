@@ -6,8 +6,8 @@ use strict;
 
 my $MaxNameLength = 16;
 
-if( @ARGV == 0 ) {
-  print "usage: tos-ident-flags [program_name] (cache_file)\n";
+if( @ARGV != 1 ) {
+  print "usage: tos-ident-flags program_name\n";
   exit 0;
 }
 
