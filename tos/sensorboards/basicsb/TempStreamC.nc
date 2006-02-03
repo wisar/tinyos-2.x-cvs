@@ -15,20 +15,21 @@
 
 #include "basicsb.h"
 
-generic configuration TempReadC() {
-  provides interface Read<uint16_t>;
+generic configuration TempStreamC() {
+  provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components TempReadP, TempDeviceP, new AdcReadClientC();
+  components TempReadStreamP, TempDeviceP, new AdcReadStreamClientC();
 
   enum {
     RESID = unique(UQ_TEMPDEVICE),
+    STREAMID = unique(UQ_TEMPDEVICE_STREAM)
   };
 
-  Read = TempReadP.Read[RESID];
+  ReadStream = TempReadStreamP.ReadStream[STREAMID];
   
-  TempReadP.ActualRead[RESID] -> AdcReadClientC;
-  TempReadP.Resource[RESID] -> TempDeviceP.Resource[RESID];
+  TempReadStreamP.ActualReadStream[STREAMID] -> AdcReadStreamClientC;
+  TempReadStreamP.Resource[STREAMID] -> TempDeviceP.Resource[RESID];
 
-  AdcReadClientC.Atm128AdcConfig -> TempDeviceP;
+  AdcReadStreamClientC.Atm128AdcConfig -> TempDeviceP;
 }

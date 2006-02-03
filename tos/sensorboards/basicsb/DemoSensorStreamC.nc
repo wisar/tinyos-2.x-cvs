@@ -13,11 +13,11 @@
  * @author David Gay
  */
 
-generic configuration DemoSensorC() {
-  provides interface Read<uint16_t>;
+generic configuration DemoSensorStreamC() {
+  provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components new PhotoReadC() as Sensor;
+  components new PhotoReadStreamC() as SensorStream;
 
-  Read = Sensor;
+  ReadStream = SensorStream;
 }

@@ -15,21 +15,20 @@
 
 #include "basicsb.h"
 
-generic configuration PhotoReadStreamC() {
-  provides interface ReadStream<uint16_t>;
+generic configuration PhotoC() {
+  provides interface Read<uint16_t>;
 }
 implementation {
-  components PhotoReadStreamP, PhotoDeviceP, new AdcReadStreamClientC();
+  components PhotoReadP, PhotoDeviceP, new AdcReadClientC();
 
   enum {
     RESID = unique(UQ_PHOTODEVICE),
-    STREAMID = unique(UQ_PHOTODEVICE_STREAM)
   };
 
-  ReadStream = PhotoReadStreamP.ReadStream[STREAMID];
+  Read = PhotoReadP.Read[RESID];
   
-  PhotoReadStreamP.ActualReadStream[STREAMID] -> AdcReadStreamClientC;
-  PhotoReadStreamP.Resource[STREAMID] -> PhotoDeviceP.Resource[RESID];
+  PhotoReadP.ActualRead[RESID] -> AdcReadClientC;
+  PhotoReadP.Resource[RESID] -> PhotoDeviceP.Resource[RESID];
 
-  AdcReadStreamClientC.Atm128AdcConfig -> PhotoDeviceP;
+  AdcReadClientC.Atm128AdcConfig -> PhotoDeviceP;
 }
