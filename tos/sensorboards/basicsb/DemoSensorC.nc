@@ -17,7 +17,7 @@ generic configuration DemoSensorC() {
   provides interface Read<uint16_t>;
 }
 implementation {
-  components new PhotoReadC() as Sensor;
+  components new PhotoC() as Sensor;
 
   Read = Sensor;
 }
