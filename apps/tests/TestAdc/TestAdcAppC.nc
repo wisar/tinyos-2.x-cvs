@@ -54,6 +54,7 @@ implementation
              TestAdcC, 
              new DemoSensorC() as Sensor, 
              new DemoSensorNowC() as SensorNow,
+             new DemoSensorStreamC() as SensorStream,
              LedsC;
 
   TestAdcC -> MainC.Boot;
@@ -62,6 +63,6 @@ implementation
   TestAdcC.Read -> Sensor;
   TestAdcC.ReadNow -> SensorNow;
   TestAdcC.ReadNowResource -> SensorNow;
-  TestAdcC.ReadStream -> Sensor;
+  TestAdcC.ReadStream -> SensorStream;
 }
 
