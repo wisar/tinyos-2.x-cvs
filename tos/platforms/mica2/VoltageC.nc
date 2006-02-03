@@ -15,7 +15,7 @@
 
 #include "hardware.h"
 
-generic configuration VoltageReadC() {
+generic configuration VoltageC() {
   provides interface Read<uint16_t>;
 }
 implementation {

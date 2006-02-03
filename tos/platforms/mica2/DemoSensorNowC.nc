@@ -19,7 +19,7 @@ generic configuration DemoSensorNowC()
   provides interface ReadNow<uint16_t>;
 }
 implementation {
-  components new VoltageReadNowC() as Sensor;
+  components new VoltageNowC() as Sensor;
 
   Resource = Sensor;
   ReadNow = Sensor;

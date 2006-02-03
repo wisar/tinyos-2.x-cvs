@@ -15,22 +15,21 @@
 
 #include "hardware.h"
 
-generic configuration VoltageReadNowC() {
-  provides interface Resource;
-  provides interface ReadNow<uint16_t>;
+generic configuration VoltageStreamC() {
+  provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components VoltageDeviceP, new AdcReadNowClientC(), new NestedResourceC();
+  components VoltageReadStreamP, VoltageDeviceP, new AdcReadStreamClientC();
 
   enum {
     RESID = unique(UQ_VOLTAGEDEVICE),
+    STREAMID = unique(UQ_VOLTAGEDEVICE_STREAM)
   };
 
-  Resource = NestedResourceC;
-  ReadNow = AdcReadNowClientC;
+  ReadStream = VoltageReadStreamP.ReadStream[STREAMID];
+  
+  VoltageReadStreamP.ActualReadStream[STREAMID] -> AdcReadStreamClientC;
+  VoltageReadStreamP.Resource[STREAMID] -> VoltageDeviceP.Resource[RESID];
 
-  NestedResourceC.Resource1 -> VoltageDeviceP.Resource[RESID];
-  NestedResourceC.Resource2 -> AdcReadNowClientC;
-
-  AdcReadNowClientC.Atm128AdcConfig -> VoltageDeviceP;
+  AdcReadStreamClientC.Atm128AdcConfig -> VoltageDeviceP;
 }
