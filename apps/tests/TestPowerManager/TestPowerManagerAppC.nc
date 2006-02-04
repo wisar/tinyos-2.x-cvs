@@ -41,7 +41,7 @@ implementation {
   components MainC, TestPowerManagerC, MyComponentC, LedsC, new TimerMilliC();
 
   TestPowerManagerC -> MainC.Boot;
-  MainC.SoftwareInit -> LedsC;
+  
   MainC.SoftwareInit -> MyComponentC;
   
   TestPowerManagerC.TimerMilli -> TimerMilliC;

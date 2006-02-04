@@ -55,7 +55,7 @@ implementation {
   components new TimerMilliC();
   components ActiveMessageC;
   
-  MainC.SoftwareInit -> LedsC;
+  
   
   App.Boot -> MainC.Boot;
   

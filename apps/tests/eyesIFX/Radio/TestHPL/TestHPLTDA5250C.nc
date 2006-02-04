@@ -45,7 +45,7 @@ implementation {
 
   TestHPLTDA5250P -> MainC.Boot;
   
-  MainC.SoftwareInit -> LedsC;
+  
   MainC.SoftwareInit -> HPLTDA5250ConfigC;
 
   TestHPLTDA5250P.Resource -> HPLTDA5250ConfigC.Resource;

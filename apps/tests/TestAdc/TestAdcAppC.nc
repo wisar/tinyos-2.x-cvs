@@ -58,7 +58,7 @@ implementation
              LedsC;
 
   TestAdcC -> MainC.Boot;
-  MainC.SoftwareInit -> LedsC;
+  
   TestAdcC.Leds -> LedsC;
   TestAdcC.Read -> Sensor;
   TestAdcC.ReadNow -> SensorNow;

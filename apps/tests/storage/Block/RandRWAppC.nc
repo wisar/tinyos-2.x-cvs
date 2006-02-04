@@ -22,7 +22,7 @@ implementation {
     MainC, LedsC, PlatformC;
 
   MainC.Boot <- RandRWC;
-  MainC.SoftwareInit -> LedsC;
+  
   RandRWC.BlockRead -> BlockStorageC.BlockRead;
   RandRWC.BlockWrite -> BlockStorageC.BlockWrite;
   RandRWC.Leds -> LedsC;

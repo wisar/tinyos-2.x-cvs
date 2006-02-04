@@ -43,7 +43,7 @@ configuration TestSchedulerAppC {}
 implementation {
   components MainC, TestSchedulerC, LedsC, TinySchedulerC;
   
-  MainC.SoftwareInit -> LedsC;
+  
   TestSchedulerC -> MainC.Boot;
 
   TestSchedulerC.Leds -> LedsC;

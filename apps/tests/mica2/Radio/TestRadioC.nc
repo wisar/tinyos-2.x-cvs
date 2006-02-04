@@ -46,7 +46,7 @@ implementation
     CC1000CsmaRadioC as Radio;
 
   TestRadioM -> MainC.Boot;
-  MainC.SoftwareInit -> LedsC;
+  
   MainC.SoftwareInit -> Radio;
 
   TestRadioM.SplitControl -> Radio;

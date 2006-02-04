@@ -73,7 +73,7 @@ implementation {
   MainC.Boot <- BaseStationP;
 
   MainC.SoftwareInit -> Radio;
-  MainC.SoftwareInit -> LedsC;
+  
   MainC.SoftwareInit -> Serial;
   
   BaseStationP.RadioControl -> Radio;

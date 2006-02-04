@@ -24,23 +24,22 @@
 
 /// @author Martin Turon <mturon@xbow.com>
 
-/** This version of TestI2C is designed to test the ATmega128 I2C subsystem. */
-configuration TestI2CC
+/** This version of Blink is designed to test ATmega128 AVR timers. */
+configuration BlinkC
 {
 }
 implementation
 {
-  components 
-      MainC, TestI2CM, LedsC, 
-      new TimerMilliC() as Timer0,
-      HplAtm128I2CBusC as I2C;
-      //new Atm128I2CMasterC(0x58) as I2CPot;  // ad5242 for mag on MTS310
+    components MainC, new BlinkM(uint8_t), LedsC, HplTimerC;
 
-  TestI2CM -> MainC.Boot;
-  
+    BlinkM.Boot -> MainC;
+    
+    BlinkM.Leds -> LedsC;
+    
+    BlinkM.Timer -> HplTimerC.Timer0;
+    BlinkM.Compare -> HplTimerC.Compare0;
 
-  TestI2CM.Timer0 -> Timer0;
-  TestI2CM.Leds -> LedsC;  
-  TestI2CM.I2C -> I2C;
+    BlinkM.FastTimer -> HplTimerC.Timer1;
+    BlinkM.FastCompare -> HplTimerC.Compare1A;
 }
 

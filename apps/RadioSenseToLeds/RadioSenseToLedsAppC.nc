@@ -45,7 +45,7 @@ implementation {
   components new AMReceiverC(AM_RADIOSENSEMSG);
   components new TimerMilliC();
 
-  MainC.SoftwareInit -> LedsC;
+  
   
   App.Boot -> MainC.Boot;
   

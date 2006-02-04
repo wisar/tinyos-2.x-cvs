@@ -47,7 +47,7 @@ implementation {
   components new BroadcastServiceC();
   components new TimerMilliC();
   
-  MainC.SoftwareInit -> LedsC;
+  
   
   App.Boot -> MainC.Boot;
 

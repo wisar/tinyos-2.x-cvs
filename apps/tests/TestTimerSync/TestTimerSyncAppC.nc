@@ -52,7 +52,7 @@ implementation {
   components ActiveMessageC;
   components new TimerMilliC();
   components new AMSenderC(240), new AMReceiverC(240); 
-  MainC.SoftwareInit -> LedsC;
+  
   MainC.SoftwareInit -> ActiveMessageC;
   
   App.Boot -> MainC.Boot;
