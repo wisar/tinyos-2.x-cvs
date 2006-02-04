@@ -49,7 +49,6 @@ implementation
 
 
   BlinkC -> MainC.Boot;
-  MainC.SoftwareInit -> LedsC;
 
   BlinkC.Timer0 -> Timer0;
   BlinkC.Timer1 -> Timer1;
