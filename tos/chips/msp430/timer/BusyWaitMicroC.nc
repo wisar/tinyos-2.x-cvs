@@ -35,6 +35,6 @@ implementation
            ;
 
   BusyWait = BusyWaitCounterC;
-  BusyWaitCounter.Counter -> Msp430CounterMicroC;
+  BusyWaitCounterC.Counter -> Msp430CounterMicroC;
 }
 
