@@ -43,7 +43,6 @@ implementation {
   components ActiveMessageC;
   components new OSKITimerMilliC();
   
-  MainC.SoftwareInit -> LedsC;
   MainC.SoftwareInit -> ActiveMessageC;
   
   App.Boot -> MainC.Boot;

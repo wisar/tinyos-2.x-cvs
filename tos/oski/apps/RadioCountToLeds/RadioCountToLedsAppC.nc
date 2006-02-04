@@ -47,7 +47,6 @@ implementation {
   components new OSKITimerMilliC();
   components new AMServiceC();
   
-  MainC.SoftwareInit -> LedsC;
   
   App.Boot -> MainC.Boot;
   

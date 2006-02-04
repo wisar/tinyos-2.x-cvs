@@ -55,7 +55,6 @@ implementation {
   components new AMServiceC();
   components new AMServiceC() as SecondServiceC;
   
-  MainC.SoftwareInit -> LedsC;
   
   App.Boot -> MainC.Boot;
   

@@ -45,7 +45,6 @@ implementation {
   components new BroadcastServiceC();
   components new OSKITimerMilliC();
   
-  MainC.SoftwareInit -> LedsC;
   
   App.Boot -> MainC.Boot;
 
