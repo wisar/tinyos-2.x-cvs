@@ -46,17 +46,17 @@
 
 
 #include <sensors.h>
-generic configuration DemoSensorC()
+generic configuration DemoSensorStreamC()
 {
   provides {
-    interface Read<uint16_t>;
+    interface ReadStream<uint16_t>;
   }
 }
 implementation
 {
   components SensorSettingsC as Settings;
 
-  components new AdcReadClientC() as AdcReadClient;
-  Read = AdcReadClient;
-  AdcReadClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
+  components new AdcReadStreamClientC() as AdcReadStreamClient;
+  ReadStream = AdcReadStreamClient;
+  AdcReadStreamClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
 }
