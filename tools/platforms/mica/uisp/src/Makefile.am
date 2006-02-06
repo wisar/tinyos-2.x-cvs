@@ -30,8 +30,9 @@ MAINTAINERCLEANFILES = Makefile.in
 
 # Turn on all warnings and consider them errors. This kinda forces you to have
 # to use gcc, but I'd rather have all warnings eliminated.
+# There's a header file macro causing warnings on cygwin => -Werror removed
 
-AM_CXXFLAGS          = -Wall -Werror
+AM_CXXFLAGS          = -Wall
 
 bin_PROGRAMS         = uisp
 uisp_SOURCES         = \
