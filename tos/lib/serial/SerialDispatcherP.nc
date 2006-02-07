@@ -205,7 +205,7 @@ implementation {
   }
   
   void receiveBufferSwap() {
-    receiveState.which = (receiveState.which)? 1: 0;
+    receiveState.which = (receiveState.which)? 0: 1;
     receiveBuffer = (uint8_t*)(messagePtrs[receiveState.which]);
   }
   
@@ -274,9 +274,7 @@ implementation {
     myBuf = signal Receive.receive[myType](myBuf, myBuf, mySize);
     atomic {
       messagePtrs[myWhich] = myBuf;
-      if (myWhich) {
-        unlockBuffer(myWhich);
-      }
+      unlockBuffer(myWhich);
       receiveTaskPending = FALSE;
     }
   }
