@@ -22,8 +22,7 @@ public class Env {
 	}
 	catch (Throwable t) {
 	    System.err.println("getenv JNI library not found. Env.getenv will not work");
-	    System.err.println("(please consult installation directions in");
-	    System.err.println("tinyos-1.x/tools/java/net/tinyos/util/Env.INSTALL)");
+	    System.err.println("(run the tos-install-jni tool, see man tos-install-jni for more details)\n");
 	}
     }
 
