@@ -56,7 +56,7 @@ ifndef BUILD_DEPS
 endif
 
 setid: FORCE
-	@cmd () { echo "$$@"; $$@; }; if [ x = x$(NODEID) ]; then cmd $(OBJCOPY) --output-target=binary $(MAIN_EXE) $(INSTALL_BIN); else cmd $(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target binary $(MAIN_EXE) $(INSTALL_BIN) TOS_NODE_ID=$(NODEID) $(AMADDR) = $(NODEID); fi
+	@cmd () { echo "$$@"; $$@; }; if [ x = x$(NODEID) ]; then cmd $(OBJCOPY) --output-target=binary $(MAIN_EXE) $(INSTALL_BIN); else cmd $(SET_ID) --objcopy $(OBJCOPY) --objdump $(OBJDUMP) --target binary $(MAIN_EXE) $(INSTALL_BIN) TOS_NODE_ID=$(NODEID) $(AMADDR)=$(NODEID); fi
 
 
 bin: exe FORCE
