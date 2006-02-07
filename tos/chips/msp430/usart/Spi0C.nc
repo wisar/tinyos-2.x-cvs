@@ -52,8 +52,10 @@ implementation {
     CLIENT_ID = unique(MSP430_SPIO_BUS)
   };
 
-  components new Msp430SpiP() as SpiP, HplMsp430Usart0C as HplUsart;
+  components new Msp430SpiP() as SpiP;
+  Init = HplUsart;
 
+  components HplMsp430Usart0C as HplUsart;
   Init = SpiP.Init;
   Resource = SpiP.Resource;
   ArbiterInfo = HplUsart;
