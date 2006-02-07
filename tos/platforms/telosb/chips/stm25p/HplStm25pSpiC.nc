@@ -30,7 +30,7 @@
  */
 
 /**
- * HPL implementation of the SPI bus for a ST M25P chip connected to a
+ * HPL implementation of the Spi bus for a ST M25P chip connected to a
  * TI MSP430.
  *
  * @author Jonathan Hui <jhui@archedrock.com>
@@ -39,20 +39,20 @@
 
 configuration HplStm25pSpiC {
 
-  provides interface Init;
   provides interface Resource;
-  provides interface SPIByte;
-  provides interface SPIPacket;
+  provides interface SpiByte;
+  provides interface SpiPacket;
 
 }
 
 implementation {
 
   components new Spi0C() as SpiC;
-
-  Init = SpiC;
   Resource = SpiC;
-  SPIByte = SpiC;
-  SPIPacket = SpiC;
+  SpiByte = SpiC;
+  SpiPacket = SpiC;
+
+  components MainC;
+  MainC.SoftwareInit -> SpiC;
 
 }

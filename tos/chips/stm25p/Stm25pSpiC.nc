@@ -47,20 +47,19 @@ configuration Stm25pSpiC {
 
 implementation {
 
-  components HplStm25pPinsC as PinsC;
-  components HplStm25pSpiC as SpiC;
   components Stm25pSpiP as SpiP;
-
-  Init = SpiC;
   Init = SpiP;
   Resource = SpiP.ClientResource;
   Stm25pSpi = SpiP;
 
+  components HplStm25pSpiC as SpiC;
   SpiP.SpiResource -> SpiC;
-  SpiP.CSN -> PinsC.CSN;
-  SpiP.Hold -> PinsC.Hold;
   SpiP.SpiByte -> SpiC;
   SpiP.SpiPacket -> SpiC;
+
+  components HplStm25pPinsC as PinsC;
+  SpiP.CSN -> PinsC.CSN;
+  SpiP.Hold -> PinsC.Hold;
 
   components LedsC as Leds;
   SpiP.Leds -> Leds;

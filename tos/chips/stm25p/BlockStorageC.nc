@@ -55,19 +55,15 @@ implementation {
   };
 
   components Stm25pBlockP as BlockP;
-  components new Stm25pBinderP( volume_id ) as BinderP;
-  components Stm25pSectorC as SectorC;
-  
   BlockRead = BlockP.Read[ BLOCK_ID ];
   BlockWrite = BlockP.Write[ BLOCK_ID ];
   StorageMap = BlockP.StorageMap[ BLOCK_ID ];
 
+  components Stm25pSectorC as SectorC;
   BlockP.ClientResource[ BLOCK_ID ] -> SectorC.ClientResource[ VOLUME_ID ];
   BlockP.Sector[ BLOCK_ID ] -> SectorC.Sector[ VOLUME_ID ];
+
+  components new Stm25pBinderP( volume_id ) as BinderP;
   BinderP.Volume -> SectorC.Volume[ VOLUME_ID ];
 
-  components LedsC;
-  BlockP.Leds -> LedsC;
-
 }
-

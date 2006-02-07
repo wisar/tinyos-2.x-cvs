@@ -56,8 +56,8 @@ implementation {
   MainC.SoftwareInit -> SectorP;
 
   components new FcfsArbiterC( "Stm25p.Volume" ) as Arbiter;
-  SectorP.Stm25pResource -> Arbiter;
   MainC.SoftwareInit -> Arbiter;
+  SectorP.Stm25pResource -> Arbiter;
 
   components Stm25pSpiC as SpiC;
   SectorP.SpiResource -> SpiC;

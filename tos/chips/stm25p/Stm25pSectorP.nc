@@ -34,7 +34,8 @@
  * @version $Revision$ $Date$
  */
 
-includes Stm25p;
+#include <Stm25p.h>
+#include <StorageVolumes.h>
 
 module Stm25pSectorP {
 
