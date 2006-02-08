@@ -1,5 +1,5 @@
 ============================
-Service Distributions
+Virtualization
 ============================
 
 :TEP: 110
@@ -24,10 +24,10 @@ Service Distributions
 Abstract
 ====================================================================
 
-This memo describes the structure and implementation of TinyOS 2.x
-service distributions, collections of components designed to work
-as a cohesive whole for application builders. It documents one
-example distribution, OSKI.
+This memo desribes how TinyOS 2.0 virtualizes common abstractions through
+a combination of static allocation and runtime arbitration. It describes
+the benefits and tradeoffs of this approach and how it is used in several
+major abstractions.
 
 1. Introduction
 ====================================================================
