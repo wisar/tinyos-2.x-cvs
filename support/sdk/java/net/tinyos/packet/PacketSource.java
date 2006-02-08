@@ -77,7 +77,7 @@ public interface PacketSource
      * Close a packet source. Closing a source must force any 
      * running <code>readPacket</code> and <code>writePacket</code>
      * operations to terminate with an IOException
-     * @excpetion IOException Thrown if a problem occured during closing.
+     * @exception IOException Thrown if a problem occured during closing.
      *   The source is considered closed even if thos occurs.
      *   Closing a closed source does not cause this exception
      */

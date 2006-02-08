@@ -71,7 +71,7 @@ public class Packetizer extends AbstractSource implements Runnable {
      *     the first byte must be the unknown packet type.
      * - Packets that are greater than a (private) MTU are silently dropped.
      */
-    final static boolean DEBUG = true;
+    final static boolean DEBUG = false;
 
     final static int SYNC_BYTE = 0x7e;
     final static int ESCAPE_BYTE = 0x7d;

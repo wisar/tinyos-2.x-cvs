@@ -51,8 +51,8 @@ package net.tinyos.message;
  */
 public interface MessageListener {
     /**
-     * This method is called to signal message reception. to is
-     * the destination of message m.
+     * This method is called to signal message reception. The destination of
+     * message m is to.
      * @param to the destination of the message (Note: to is only valid
      *   when using TOSBase base stations)
      * @param m the received message

@@ -576,7 +576,7 @@ public class Message implements Cloneable {
      * Set the 32 bit IEEE float at offset to value
      * @param offset bit offset where the float starts
      * @param length is ignored
-     * @parem value value to store in bitfield
+     * @param value value to store in bitfield
      * @exception ArrayIndexOutOfBoundsException for invalid offset
      */
     protected void setFloatElement(int offset, int length, float value)
