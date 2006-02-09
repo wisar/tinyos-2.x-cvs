@@ -3,7 +3,7 @@
 
 IDENT_PL ?= tos-ident-flags
 IDENT_PROGRAM_NAME ?= $(COMPONENT)
-IDENT_FLAGS := $(shell [ $(IDENT_PL) "$(IDENT_PROGRAM_NAME)")
+IDENT_FLAGS := $(shell $(IDENT_PL) "$(IDENT_PROGRAM_NAME)")
 
 CFLAGS += $(IDENT_FLAGS)
 
