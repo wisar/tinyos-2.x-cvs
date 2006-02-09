@@ -56,9 +56,18 @@ implementation {
   bool busy = FALSE;
 
   void setLeds(uint16_t val) {
-    val & 0x01 ? call Leds.led0On() : call Leds.led0Off();
-    val & 0x02 ? call Leds.led1On() : call Leds.led1Off();
-    val & 0x04 ? call Leds.led2On() : call Leds.led2Off();
+    if (val & 0x01)
+      call Leds.led0On();
+    else 
+      call Leds.led0Off();
+    if (val & 0x02)
+      call Leds.led1On();
+    else
+      call Leds.led1Off();
+    if (val & 0x04)
+      call Leds.led2On();
+    else
+      call Leds.led2Off();
   }
 
   event void Boot.booted() {
