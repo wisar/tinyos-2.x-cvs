@@ -26,12 +26,11 @@
 
 
 configuration LedsC {
-  provides interface Init;
   provides interface Leds;
 }
 implementation {
   components LedsP, PlatformLedsC;
-  Init = LedsP;
+
   Leds = LedsP;
 
   LedsP.Init <- PlatformLedsC.Init;
