@@ -35,7 +35,7 @@
  * @date   June 6 2005
  */
 
-includes RadioSenseToLeds;
+#include "RadioSenseToLeds.h"
 
 configuration RadioSenseToLedsAppC {}
 implementation {

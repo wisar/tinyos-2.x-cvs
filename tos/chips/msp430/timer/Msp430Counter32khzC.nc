@@ -26,7 +26,7 @@
 
 // Msp430Counter32khC provides the standard 32khz counter for the MSP430.
 
-includes Timer;
+#include "Timer.h"
 
 configuration Msp430Counter32khzC
 {

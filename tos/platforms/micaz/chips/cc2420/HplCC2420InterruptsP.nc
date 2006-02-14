@@ -60,7 +60,7 @@
  * @date   September 11 2005
  */
 
-includes Timer;
+#include "Timer.h"
 
 module HplCC2420InterruptsP {
   provides {

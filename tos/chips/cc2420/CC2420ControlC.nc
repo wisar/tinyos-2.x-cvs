@@ -36,8 +36,8 @@
  * @version $Revision$ $Date$
  */
 
-includes CC2420;
-includes IEEE802154;
+#include "CC2420.h"
+#include "IEEE802154.h"
 
 configuration CC2420ControlC {
 

@@ -28,7 +28,7 @@
  * @author Martin Turon <mturon@xbow.com>
  */
 
-includes hardware;
+#include "hardware.h"
 
 module PlatformP
 {

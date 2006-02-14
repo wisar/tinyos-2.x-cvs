@@ -37,7 +37,7 @@
  * @version $Revision$ $Date$
  */
 
-includes Stm25p;
+#include "Stm25p.h"
 
 generic configuration BlockStorageC( volume_id_t volume_id ) {
 

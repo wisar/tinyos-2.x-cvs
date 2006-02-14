@@ -47,7 +47,7 @@
  */
 
 
-includes Timer;
+#include "Timer.h"
 
 configuration Tda5250ActiveMessageC {
   provides {

@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-includes Uart;
+#include "Uart.h"
 
 generic configuration UartSender(uart_id_t id) {
   provides {

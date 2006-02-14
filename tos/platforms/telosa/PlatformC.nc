@@ -23,7 +23,7 @@
 /**
  * @author Joe Polastre and Cory Sharp
  */
-includes hardware;
+#include "hardware.h"
 
 configuration PlatformC
 {

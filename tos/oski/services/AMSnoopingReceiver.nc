@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-includes AM;
+#include "AM.h"
 
 generic configuration AMSnoopingReceiver(am_id_t AMId) {
   provides {

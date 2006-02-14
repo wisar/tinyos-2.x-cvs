@@ -42,7 +42,7 @@
  * @date   January 10 2005
  */ 
 
-includes Collection;
+#include "Collection.h"
 
 generic configuration CollectionInterceptor(collect_id_t id) {
   provides {

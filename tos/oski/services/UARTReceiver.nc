@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-includes UART;
+#include "UART.h"
 
 generic configuration UARTReceiver(uart_id_t id) {  
   provides {

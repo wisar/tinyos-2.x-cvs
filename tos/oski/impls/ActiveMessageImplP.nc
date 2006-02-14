@@ -38,7 +38,7 @@
  * @date   January 5 2005
  */ 
 
-includes AM;
+#include "AM.h"
 
 configuration ActiveMessageImplP {
   provides {

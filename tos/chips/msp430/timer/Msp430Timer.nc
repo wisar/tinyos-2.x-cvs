@@ -23,7 +23,7 @@
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 //@author Jan Hauer <hauer@tkn.tu-berlin.de>
 
-includes Msp430Timer;
+#include "Msp430Timer.h"
 
 interface Msp430Timer
 {

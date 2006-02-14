@@ -38,7 +38,7 @@
  * </pre>
  */
 
-includes CC2420;
+#include "CC2420.h"
 
 configuration CC2420ActiveMessageC {
   provides {

@@ -79,9 +79,9 @@
  */
 #define DISABLE_BUCK2 0	
 
-//includes trace;
-includes Timer;
-includes pmic;
+//#include "trace.h"
+#include "Timer.h"
+#include "pmic.h"
 
 module PMICM {
   provides{

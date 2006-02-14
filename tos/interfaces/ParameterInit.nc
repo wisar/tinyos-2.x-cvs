@@ -37,7 +37,7 @@
   */ 
 
 
-includes TinyError;
+#include "TinyError.h"
 
 interface ParameterInit <parameter> {
 

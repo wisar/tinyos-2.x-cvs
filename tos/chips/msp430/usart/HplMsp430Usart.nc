@@ -40,7 +40,7 @@
  * ========================================================================
  */
  
-includes msp430usart;
+#include "msp430usart.h"
 
 interface HplMsp430Usart {
 

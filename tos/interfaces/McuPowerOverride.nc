@@ -37,7 +37,7 @@
  * @see    TEP 112: Microconroller Power Management
  */
 
-includes hardware;
+#include "hardware.h"
 
 interface McuPowerOverride {
 

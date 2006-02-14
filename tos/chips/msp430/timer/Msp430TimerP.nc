@@ -22,7 +22,7 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-includes msp430regtypes;
+#include "msp430regtypes.h"
 
 generic module Msp430TimerP(
   uint16_t TxIV_addr,

@@ -24,7 +24,7 @@
  * @author Joe Polastre
  */
 
-includes msp430regtypes;
+#include "msp430regtypes.h"
 
 generic module HplMsp430GeneralIOP(
 				uint8_t port_in_addr,

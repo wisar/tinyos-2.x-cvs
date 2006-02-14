@@ -44,7 +44,7 @@
  * @date   January 19 2005
  */
 
-includes hardware;
+#include "hardware.h"
 
 module SchedulerBasicP {
   provides interface Scheduler;

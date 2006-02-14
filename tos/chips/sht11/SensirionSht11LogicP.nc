@@ -29,8 +29,8 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  */
 
-includes Timer;
-includes SensirionSht11;
+#include "Timer.h"
+#include "SensirionSht11.h"
 
 /**
  * SensirionSht11LogicP contains the actual driver logic needed to

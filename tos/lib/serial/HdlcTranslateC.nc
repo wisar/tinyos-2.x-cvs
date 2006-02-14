@@ -30,7 +30,7 @@
  *
  */
 
-includes Serial;
+#include "Serial.h"
 
 module HdlcTranslateC {
   provides interface SerialFrameComm;

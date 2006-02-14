@@ -27,7 +27,7 @@
  *  $Id$
  */
 
-includes Timer;
+#include "Timer.h"
 
 /**
  * This component is the "platform" of the sensorboard space.

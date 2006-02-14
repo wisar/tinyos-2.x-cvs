@@ -24,7 +24,7 @@
  * @author Joe Polastre
  * @author Vlado Handziski (modifications for eyesIFX)
  */
-includes hardware;
+#include "hardware.h"
 
 configuration PlatformLedsC
 {

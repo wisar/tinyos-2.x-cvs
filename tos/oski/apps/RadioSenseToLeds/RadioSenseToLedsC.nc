@@ -41,8 +41,8 @@
  *
  **/
 
-includes Timer;
-includes RadioSenseToLeds;
+#include "Timer.h"
+#include "RadioSenseToLeds.h"
 
 module RadioSenseToLedsC {
   uses {

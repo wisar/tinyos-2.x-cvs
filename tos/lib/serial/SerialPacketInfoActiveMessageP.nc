@@ -30,7 +30,7 @@
  *
  */
 
-includes Serial;
+#include "Serial.h"
 
 module SerialPacketInfoActiveMessageP {
   provides interface SerialPacketInfo as Info;

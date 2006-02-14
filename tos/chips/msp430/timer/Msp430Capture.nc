@@ -22,7 +22,7 @@
 
 //@author Joe Polastre
 
-includes Msp430Timer;
+#include "Msp430Timer.h"
 
 interface Msp430Capture
 {

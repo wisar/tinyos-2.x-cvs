@@ -34,7 +34,7 @@
  */ 
 
 
-includes TinyError;
+#include "TinyError.h"
 
 interface GainRadioModel {
   command void putOnAirTo(int dest,

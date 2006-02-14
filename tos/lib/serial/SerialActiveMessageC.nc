@@ -29,7 +29,7 @@
  *
  */
 
-includes Serial;
+#include "Serial.h"
 configuration SerialActiveMessageC {
   provides {
     interface Init;

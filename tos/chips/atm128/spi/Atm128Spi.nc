@@ -56,7 +56,7 @@
  * @date   September 8 2005
  */
 
-includes Atm128Spi;
+#include "Atm128Spi.h"
 
 interface Atm128Spi {
 

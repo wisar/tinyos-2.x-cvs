@@ -34,7 +34,7 @@
 
 // $Id$
 
-includes hardware;
+#include "hardware.h"
 
 configuration MainC {
   provides interface Boot;

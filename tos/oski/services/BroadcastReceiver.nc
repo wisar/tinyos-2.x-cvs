@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-includes Broadcast;
+#include "Broadcast.h"
 
 generic configuration BroadcastReceiver(bcast_id_t id) {
   provides {

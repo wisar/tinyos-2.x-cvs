@@ -23,7 +23,7 @@
 /**
  * @author Joe Polastre
  */
-includes hardware;
+#include "hardware.h"
 
 configuration PlatformLedsC {
   provides interface GeneralIO as Led0;

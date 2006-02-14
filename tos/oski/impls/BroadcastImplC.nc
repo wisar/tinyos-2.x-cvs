@@ -40,7 +40,7 @@
  * @date   May 16 2005
  */ 
 
-includes Broadcast;
+#include "Broadcast.h"
 
 configuration BroadcastImplC {
   provides {

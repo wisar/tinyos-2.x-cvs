@@ -26,7 +26,7 @@
 
 // Counter32khzC is the counter to be used for all 32khzs.
 
-includes Timer;
+#include "Timer.h"
 
 configuration Counter32khzC
 {

@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  */
 
-includes Timer;
+#include "Timer.h"
 
 /**
  * HplSensirionSht11P is a low-level component that controls power for

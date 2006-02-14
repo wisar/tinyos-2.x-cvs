@@ -40,7 +40,7 @@
  * @see    TEP 107: Boot Sequence
  */
 
-includes hardware;
+#include "hardware.h"
 
 configuration MainC {
   provides interface Boot;

@@ -36,7 +36,7 @@
  * @date   January 5 2005
  */ 
 
-includes Timer;
+#include "Timer.h"
 
 generic configuration OSKITimerMilliC() {
   provides interface Timer<TMilli>;

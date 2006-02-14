@@ -34,7 +34,7 @@
  * @version $Revision$ $Date$
  */
 
-includes Timer;
+#include "Timer.h"
 
 module CC2420ControlP {
 

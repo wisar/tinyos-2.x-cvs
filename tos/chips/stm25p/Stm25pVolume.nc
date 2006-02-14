@@ -36,7 +36,7 @@
  * @version $Revision$ $Date$
  */
 
-includes Stm25p;
+#include "Stm25p.h"
 
 interface Stm25pVolume {
 

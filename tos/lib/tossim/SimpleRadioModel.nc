@@ -32,7 +32,7 @@
  */ 
 
 
-includes TinyError;
+#include "TinyError.h"
 
 interface SimpleRadioModel {
   command void putOnAirTo(int dest, message_t* msg, bool ack, sim_time_t endTime);

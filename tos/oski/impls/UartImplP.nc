@@ -38,7 +38,7 @@
  * @date   January 5 2005
  */ 
 
-includes Uart;
+#include "Uart.h"
 
 configuration UartImplP {
   provides {

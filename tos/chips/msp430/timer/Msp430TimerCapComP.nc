@@ -22,7 +22,7 @@
 
 //@author Cory Sharp <cssharp@eecs.berkeley.edu>
 
-includes Msp430Timer;
+#include "Msp430Timer.h"
 
 generic module Msp430TimerCapComP(
     uint16_t TxCCTLx_addr,

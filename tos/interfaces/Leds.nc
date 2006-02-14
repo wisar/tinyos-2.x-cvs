@@ -35,7 +35,7 @@
  * @author Philip Levis
  */
 
-includes Leds;
+#include "Leds.h"
 
 interface Leds {
 

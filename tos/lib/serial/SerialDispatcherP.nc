@@ -32,7 +32,7 @@
  *
  */
 
-includes Serial;
+#include "Serial.h"
 
 generic module SerialDispatcherP() {
   provides {

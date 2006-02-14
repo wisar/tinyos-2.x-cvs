@@ -37,7 +37,7 @@
  * ========================================================================
  */
 
-includes msp430baudrates;
+#include "msp430baudrates.h"
 
 generic module Msp430UartP(uint32_t default_baudrate) {
 

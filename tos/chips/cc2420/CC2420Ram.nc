@@ -36,7 +36,7 @@
  * @version $Revision$ $Date$
  */
 
-includes CC2420;
+#include "CC2420.h"
 
 interface CC2420Ram {
 

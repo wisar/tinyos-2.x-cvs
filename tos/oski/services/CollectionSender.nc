@@ -40,7 +40,7 @@
  * @date   January 5 2005
  */ 
 
-includes Collection;
+#include "Collection.h"
 
 generic configuration CollectionSender(collect_id_t id) {
   provides {

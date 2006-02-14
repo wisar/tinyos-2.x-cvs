@@ -30,7 +30,7 @@
  *
  */
 
-includes Serial;
+#include "Serial.h"
 configuration Serial802_15_4C {
   provides {
     interface Send;

@@ -36,7 +36,7 @@
  * @date   May 16 2005
  */ 
 
-includes AM;
+#include "AM.h"
 
 generic configuration AMReceiverC(am_id_t AMId) {
   provides {

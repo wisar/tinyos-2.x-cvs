@@ -30,7 +30,7 @@
  *
  */
 
-includes 802_15_4;
+#include "802_15_4.h"
 module SerialPacketInfo802_15_4P {
   provides interface SerialPacketInfo as Info;
 }

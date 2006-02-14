@@ -43,7 +43,7 @@
  *
  **/
 
-includes Timer;
+#include "Timer.h"
 
 module TestAMOnOffC {
   uses {

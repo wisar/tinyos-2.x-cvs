@@ -51,7 +51,7 @@
  * @author Martin Turon
  */
 
-includes Atm128Spi;
+#include "Atm128Spi.h"
 
 module HplAtm128SpiP {
   provides interface Atm128Spi as SPI;

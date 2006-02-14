@@ -34,7 +34,7 @@
  * @version $Revision$ $Date$
  */
 
-includes crc;
+#include "crc.h"
 
 module Stm25pSpiP {
 

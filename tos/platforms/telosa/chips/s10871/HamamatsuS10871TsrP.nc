@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  */
 
-includes Msp430Adc12;
+#include "Msp430Adc12.h"
 
 /**
  * HamamatsuS10871TsrP is a driver for a photosynthetically-active

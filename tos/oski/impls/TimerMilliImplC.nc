@@ -40,7 +40,7 @@
  * @date   May 16 2005
  */ 
 
-includes Timer;
+#include "Timer.h"
 
 configuration TimerMilliImplC {
   provides interface Timer<TMilli> as TimerMilli[uint8_t id];

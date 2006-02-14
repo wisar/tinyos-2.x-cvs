@@ -56,8 +56,8 @@
  */
 
 
-includes AM;
-includes crc;
+#include "AM.h"
+#include "crc.h"
 
 module SerialP {
 
