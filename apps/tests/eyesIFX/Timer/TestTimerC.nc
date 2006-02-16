@@ -31,43 +31,32 @@
  **/
 
 #include "Timer.h"
-configuration TestUARTPhyC {
+configuration TestTimerC {
 }
 implementation {
-  components MainC, TestUARTPhyP
-           , new AlarmMilliC() as TxTimer
-           , new AlarmMilliC() as RxTimer
-           , new AlarmMilliC() as CCATimer
-           , new AlarmMilliC() as TimerTimer
-//            , new AlarmMilliC() as SelfPollingTimer
-//            , new AlarmMilliC() as SleepTimer
-           , LedsC
-           , TDA5250RadioC
-           , RandomLfsrC
-           , UARTPhyP
+  components Main, TestTimerM
+           , new AlarmMilliC() as Timer0
+           , new AlarmMilliC() as Timer1
+           , new AlarmMilliC() as Timer2
+           , new AlarmMilliC() as Timer3
+					 , new AlarmMilliC() as Timer4					 					 					 					 
+					 , new AlarmMilliC() as Timer5	
+					 , new AlarmMilliC() as Timer6	
+					 , new AlarmMilliC() as Timer7	
+					 , new AlarmMilliC() as Timer8	
            ;
 
-  MainC.SoftwareInit -> TDA5250RadioC.Init;
-  MainC.SoftwareInit -> RandomLfsrC.Init;
-  MainC.SoftwareInit -> LedsC.Init;
-  MainC.SoftwareInit -> UARTPhyP.Init;
-  TestUARTPhyP -> MainC.Boot;
+  TestTimerM -> Main.Boot;
 
-  TestUARTPhyP.Random -> RandomLfsrC.Random;
-  TestUARTPhyP.TxTimer -> TxTimer;
-  TestUARTPhyP.RxTimer -> RxTimer;
-  TestUARTPhyP.CCATimer -> CCATimer;
-  TestUARTPhyP.TimerTimer -> TimerTimer;
-//   TestUARTPhyP.SelfPollingTimer -> SelfPollingTimer;
-//   TestUARTPhyP.SleepTimer -> SleepTimer;
-  TestUARTPhyP.Leds  -> LedsC;
-  TestUARTPhyP.TDA5250Control -> TDA5250RadioC.TDA5250Control;
-  TestUARTPhyP.RadioSplitControl -> TDA5250RadioC.SplitControl;  
-  TestUARTPhyP.RadioByteComm -> UARTPhyP.SerializerRadioByteComm;
-  TestUARTPhyP.PhyPacketTx -> UARTPhyP.PhyPacketTx;
-  TestUARTPhyP.PhyPacketRx -> UARTPhyP.PhyPacketRx;
-  
-  UARTPhyP.RadioByteComm -> TDA5250RadioC.RadioByteComm;
+  TestTimerM.Timer0 -> Timer0;
+	TestTimerM.Timer1 -> Timer1;
+	TestTimerM.Timer2 -> Timer2;
+	TestTimerM.Timer3 -> Timer3;
+	TestTimerM.Timer4 -> Timer4;
+	TestTimerM.Timer5 -> Timer5;
+	TestTimerM.Timer6 -> Timer6;
+	TestTimerM.Timer7 -> Timer7;
+	TestTimerM.Timer8 -> Timer8;
 }
 
 

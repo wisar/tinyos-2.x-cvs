@@ -47,8 +47,8 @@
  *
  **/
 
-includes Timer;
-includes TestSerial;
+#include "Timer.h"
+#include "TestSerial.h"
 
 module TestSerialC {
   uses {

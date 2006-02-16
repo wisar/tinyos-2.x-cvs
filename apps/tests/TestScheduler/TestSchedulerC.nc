@@ -34,7 +34,7 @@
  * Timer fires.
  **/
 
-includes Timer;
+#include "Timer.h"
 
 module TestSchedulerC {
   uses interface Leds;

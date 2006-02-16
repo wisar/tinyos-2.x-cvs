@@ -39,8 +39,8 @@
  *
  **/
 
-includes Timer;
-includes RadioCountToLeds;
+#include "Timer.h"
+#include "RadioCountToLeds.h"
 
 module RadioCountToLedsC {
   uses {

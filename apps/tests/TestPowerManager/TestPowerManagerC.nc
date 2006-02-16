@@ -35,7 +35,7 @@
  * @date $Date$ 
  */
  
-includes Timer;
+#include "Timer.h"
 
 module TestPowerManagerC {
   uses {

@@ -32,7 +32,7 @@
  *
  **/
 
-includes Timer;
+#include "Timer.h"
 configuration TestHPLTDA5250C {
 }
 implementation {

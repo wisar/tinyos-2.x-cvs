@@ -37,7 +37,7 @@
  *
  **/
 
-includes Timer;
+#include "Timer.h"
 
 module TestAMServiceC {
   uses {

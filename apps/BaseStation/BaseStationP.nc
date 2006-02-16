@@ -43,8 +43,8 @@
  * serial will be filtered by that same group id.
  */
 
-includes AM;
-includes Serial;
+#include "AM.h"
+#include "Serial.h"
 
 module BaseStationP {
   uses {

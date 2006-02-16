@@ -42,7 +42,7 @@
  * toggle the LED.
  **/
 
-includes Timer;
+#include "Timer.h"
 
 module BlinkTaskC
 {

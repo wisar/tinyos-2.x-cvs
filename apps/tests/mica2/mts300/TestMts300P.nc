@@ -27,74 +27,53 @@
  *  $Id$
  */
 
-/**
- * Implementation for TestI2C application:  
- *   Yellow      == Every timer, post task for I2C ping if not already running
- *   Red & GREEN == task started
- *   Red         == Device ping FAIL
- *   Green       == Device ping SUCCESS
- *
- * @version    2005/9/11    mturon     Initial version
- */
-
-#define I2C_DEVICE      I2C_MTS300_MIC
-
-#define I2C_MTS310_MAG  0x58
-#define I2C_MTS300_MIC  0x5A
-#define I2C_MDA300_ADC  0x94
-#define I2C_MDA300_EE   0xAE
-
 #include "Timer.h"
 
-module TestI2CM
+/**
+ * This application tests the mts300 sensorboard.
+ * Specifically, this handles the thermistor and light sensors.
+ * 
+ * @author  Martin Turon
+ * @date    October 19, 2005
+ */
+module TestMts300P
 {
-  uses interface Timer<TMilli> as Timer0;
-  uses interface Leds;
-  uses interface Boot;
-  uses interface HplAtm128I2CBus    as I2C;
+    uses {
+	interface Boot;
+	interface Leds;
+	interface Timer<TMilli> as AppTimer;
+
+	interface StdControl as SensorControl;
+	interface AcquireData as Temp;
+	interface AcquireData as Light;
+    }
 }
 implementation
 {
-    bool    working;
-
-    task void i2c_test() {
-	call Leds.led1On();
-	call Leds.led0On();
-	
-	if (call I2C.ping(I2C_DEVICE) == SUCCESS) {
-	    call Leds.led0Off();
-	} else {
-	    call Leds.led1Off();
-	}
-
-	working = FALSE;
-    }
-
-    void i2c_test_start() {
-	atomic {
-	    if (!working) {
-		working = TRUE;
-		post i2c_test();
-	    }
-	}
-    }
-
     event void Boot.booted() {
-	working = FALSE;
-	call I2C.init();
-
-	call Timer0.startPeriodic( 10000 );
-
-	call Leds.led2On();
-	i2c_test_start();
+	call Leds.led0On();
+	call Leds.led1On();        // power led
+	call SensorControl.start();
     }
     
-    event void Timer0.fired() {
+    event void AppTimer.fired() {
+	call Leds.led0Toggle();    // heartbeat indicator 
+	call Light.getData();
+	call Temp.getData();
+    }
+
+    event void Light.dataReady(uint16_t data) {
+	call Leds.led1Toggle();
+    }
+
+    event void Temp.dataReady(uint16_t data) {
 	call Leds.led2Toggle();
-	i2c_test_start();
-    }  
+    }
 
-    async event void I2C.symbolSent() { }
+    event void Light.error(uint16_t info) {
+    }
 
+    event void Temp.error(uint16_t info) {
+    }
 }
 

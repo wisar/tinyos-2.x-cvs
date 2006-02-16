@@ -39,8 +39,8 @@
  *
  **/
 
-includes Timer;
-includes RadioStress;
+#include "Timer.h"
+#include "RadioStress.h"
 
 module RadioStressC {
   uses {

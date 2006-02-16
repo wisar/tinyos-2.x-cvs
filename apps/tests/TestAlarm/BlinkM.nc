@@ -1,6 +1,6 @@
 // $Id$
 
-includes Timer;
+#include "Timer.h"
 
 module BlinkM
 {

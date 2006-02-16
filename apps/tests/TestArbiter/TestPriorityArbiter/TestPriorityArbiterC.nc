@@ -61,7 +61,7 @@
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  * @author Philipp Huppertz (extended test FcfsPriorityArbiter)
  */
-includes Timer;
+#include "Timer.h"
 
 module TestPriorityArbiterC {
   uses {

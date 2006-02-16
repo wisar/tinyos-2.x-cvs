@@ -37,7 +37,7 @@
  * @date   June 6 2005
  */
 
-includes RadioStress;
+#include "RadioStress.h"
 
 configuration RadioStressAppC {}
 implementation {

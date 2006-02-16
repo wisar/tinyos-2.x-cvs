@@ -59,7 +59,7 @@
  * @date $Date$
  */
 
-includes Timer;
+#include "Timer.h"
 
 module TestArbiterC {
   uses {

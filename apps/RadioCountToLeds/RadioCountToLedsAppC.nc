@@ -37,7 +37,7 @@
  * @date   June 6 2005
  */
 
-includes RadioCountToLeds;
+#include "RadioCountToLeds.h"
 
 configuration RadioCountToLedsAppC {}
 implementation {

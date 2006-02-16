@@ -38,7 +38,7 @@
  *
  **/
 
-includes Timer;
+#include "Timer.h"
 
 module TestTimerSyncC {
   uses {

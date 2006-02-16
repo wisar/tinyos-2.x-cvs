@@ -47,7 +47,7 @@
  *
  **/
 
-includes TestSerial;
+#include "TestSerial.h"
 
 configuration TestSerialAppC {}
 implementation {
