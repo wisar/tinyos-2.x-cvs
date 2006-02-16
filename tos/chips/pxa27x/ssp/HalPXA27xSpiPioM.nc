@@ -106,7 +106,7 @@ implementation
     return SUCCESS;
   }
 
-  async command error_t SpiByte.write(uint8_t tx, uint8_t* rx) {
+  async command void SpiByte.write(uint8_t tx, uint8_t* rx) {
     volatile uint32_t tmp;
     volatile uint8_t val;
 #if 1
@@ -121,8 +121,6 @@ implementation
     val = call SSP.getSSDR();
 
     if (rx != NULL) *rx = val;
-
-    return SUCCESS;
   }
 
   async command error_t SpiPacket.send[uint8_t instance](uint8_t* txBuf, uint8_t* rxBuf, uint16_t len) {

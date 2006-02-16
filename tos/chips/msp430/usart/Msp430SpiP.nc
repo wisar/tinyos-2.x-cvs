@@ -95,16 +95,15 @@ implementation {
     signal Resource.granted();
   }
 
-  async command error_t SpiByte.write( uint8_t tx, uint8_t* rx ) {
+  async command void SpiByte.write( uint8_t tx, uint8_t* rx ) {
     bool owner;
     atomic owner = isOwner;
-    if (owner != TRUE) return FAIL;
+    if (owner != TRUE) return;
     call HplUsart.disableRxIntr();
     call HplUsart.tx( tx );
     while( !call HplUsart.isRxIntrPending() );
     *rx = call HplUsart.rx();
     call HplUsart.enableRxIntr();
-    return SUCCESS;
   }
 
   default event void Resource.granted() {}
