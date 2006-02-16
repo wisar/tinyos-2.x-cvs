@@ -20,7 +20,10 @@
 
 generic configuration AdcReadStreamClientC() {
   provides interface ReadStream<uint16_t>;
-  uses interface Atm128AdcConfig;
+  uses {
+    interface Atm128AdcConfig;
+    interface ResourceConfigure;
+  }
 }
 implementation {
   components WireAdcStreamP, Atm128AdcC;
@@ -33,4 +36,5 @@ implementation {
   ReadStream = WireAdcStreamP.ReadStream[ID];
   Atm128AdcConfig = WireAdcStreamP.Atm128AdcConfig[ID];
   WireAdcStreamP.Resource[ID] -> Atm128AdcC.Resource[HAL_ID];
+  ResourceConfigure = Atm128AdcC.ResourceConfigure[HAL_ID];
 }

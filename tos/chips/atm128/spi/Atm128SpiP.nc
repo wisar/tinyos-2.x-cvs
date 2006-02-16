@@ -126,11 +126,10 @@ implementation {
     call McuPowerState.update();
   }
   
-  async command error_t SpiByte.write( uint8_t tx, uint8_t* rx ) {
+  async command void SpiByte.write( uint8_t tx, uint8_t* rx ) {
     call Spi.write( tx );
     while ( !( SPSR & 0x80 ) );
     *rx = call Spi.read();
-    return SUCCESS;
   }
 
 

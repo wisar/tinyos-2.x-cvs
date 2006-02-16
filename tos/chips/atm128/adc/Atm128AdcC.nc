@@ -43,6 +43,7 @@ configuration Atm128AdcC
     interface Atm128AdcSingle;
     interface Atm128AdcMultiple;
   }
+  uses interface ResourceConfigure[uint8_t client];
 }
 implementation
 {
@@ -51,6 +52,7 @@ implementation
     new StdControlPowerManagerC() as PM;
 
   Resource = AdcArbiter;
+  ResourceConfigure = AdcArbiter;
   Atm128AdcSingle = Atm128AdcP;
   Atm128AdcMultiple = Atm128AdcP;
 

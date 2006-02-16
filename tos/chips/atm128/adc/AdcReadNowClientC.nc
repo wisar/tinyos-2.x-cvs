@@ -23,7 +23,10 @@ generic configuration AdcReadNowClientC() {
     interface Resource;
     interface ReadNow<uint16_t>;
   }
-  uses interface Atm128AdcConfig;
+  uses {
+    interface Atm128AdcConfig;
+    interface ResourceConfigure;
+  }
 }
 implementation {
   components WireAdcP, Atm128AdcC;
@@ -36,4 +39,5 @@ implementation {
   ReadNow = WireAdcP.ReadNow[ID];
   Atm128AdcConfig = WireAdcP.Atm128AdcConfig[ID];
   Resource = Atm128AdcC.Resource[HAL_ID];
+  ResourceConfigure = Atm128AdcC.ResourceConfigure[HAL_ID];
 }
