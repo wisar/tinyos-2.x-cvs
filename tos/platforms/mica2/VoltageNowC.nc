@@ -20,17 +20,10 @@ generic configuration VoltageNowC() {
   provides interface ReadNow<uint16_t>;
 }
 implementation {
-  components VoltageDeviceP, new AdcReadNowClientC(), new NestedResourceC();
+  components new AdcReadNowClientC(), VoltageDeviceP;
 
-  enum {
-    RESID = unique(UQ_VOLTAGEDEVICE),
-  };
-
-  Resource = NestedResourceC;
   ReadNow = AdcReadNowClientC;
-
-  NestedResourceC.Resource1 -> VoltageDeviceP.Resource[RESID];
-  NestedResourceC.Resource2 -> AdcReadNowClientC;
-
+  Resource = AdcReadNowClientC;
   AdcReadNowClientC.Atm128AdcConfig -> VoltageDeviceP;
+  AdcReadNowClientC.ResourceConfigure -> VoltageDeviceP;
 }

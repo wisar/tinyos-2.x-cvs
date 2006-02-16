@@ -52,7 +52,4 @@ enum {
   ATM128_ADC_PRESCALE = ATM128_ADC_PRESCALE_64  // normal mica2 prescaler value
 };
 
-#define UQ_VOLTAGEDEVICE "VoltageReadP.Resource"
-#define UQ_VOLTAGEDEVICE_STREAM "VoltageReadStreamP.Resource"
-
 #endif //HARDWARE_H

@@ -19,16 +19,9 @@ generic configuration VoltageC() {
   provides interface Read<uint16_t>;
 }
 implementation {
-  components VoltageReadP, VoltageDeviceP, new AdcReadClientC();
+  components new AdcReadClientC(), VoltageDeviceP;
 
-  enum {
-    RESID = unique(UQ_VOLTAGEDEVICE),
-  };
-
-  Read = VoltageReadP.Read[RESID];
-  
-  VoltageReadP.ActualRead[RESID] -> AdcReadClientC;
-  VoltageReadP.Resource[RESID] -> VoltageDeviceP.Resource[RESID];
-
+  Read = AdcReadClientC;
   AdcReadClientC.Atm128AdcConfig -> VoltageDeviceP;
+  AdcReadClientC.ResourceConfigure -> VoltageDeviceP;
 }

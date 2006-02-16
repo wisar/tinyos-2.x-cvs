@@ -19,17 +19,9 @@ generic configuration VoltageStreamC() {
   provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components VoltageReadStreamP, VoltageDeviceP, new AdcReadStreamClientC();
+  components VoltageDeviceP, new AdcReadStreamClientC();
 
-  enum {
-    RESID = unique(UQ_VOLTAGEDEVICE),
-    STREAMID = unique(UQ_VOLTAGEDEVICE_STREAM)
-  };
-
-  ReadStream = VoltageReadStreamP.ReadStream[STREAMID];
-  
-  VoltageReadStreamP.ActualReadStream[STREAMID] -> AdcReadStreamClientC;
-  VoltageReadStreamP.Resource[STREAMID] -> VoltageDeviceP.Resource[RESID];
-
+  ReadStream = AdcReadStreamClientC;
   AdcReadStreamClientC.Atm128AdcConfig -> VoltageDeviceP;
+  AdcReadStreamClientC.ResourceConfigure -> VoltageDeviceP;
 }
