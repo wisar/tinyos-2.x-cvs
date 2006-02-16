@@ -7,7 +7,6 @@
 #
 push( @includes, qw(
 
-  %T/platforms/null
   %T/lib/timer
   %T/lib/serial
 
