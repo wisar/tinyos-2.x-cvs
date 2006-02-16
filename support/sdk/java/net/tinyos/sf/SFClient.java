@@ -59,12 +59,7 @@ public class SFClient extends SFProtocol implements Runnable, PacketListenerIF {
 
     public SFClient(Socket socket, SerialForwarder serialForward,
 		    SFListen listenSvr) {
-	this(socket, serialForward, listenSvr, Platform.defaultPlatform);
-    }
-
-    public SFClient(Socket socket, SerialForwarder serialForward,
-		    SFListen listenSvr, int plat) {
-	super("", plat);
+	super("");
 	thread = new Thread(this);
         sf = serialForward;
         listenServer = listenSvr;

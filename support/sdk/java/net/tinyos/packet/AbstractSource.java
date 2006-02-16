@@ -46,7 +46,6 @@ import net.tinyos.util.*;
 abstract public class AbstractSource implements PacketSource
 {
     protected String name;
-    protected int platform = Platform.defaultPlatform;
     protected boolean opened = false;
     protected Messenger messages;
 
@@ -61,10 +60,6 @@ abstract public class AbstractSource implements PacketSource
 
     public String getName() {
 	return name;
-    }
-
-    public int getPlatform() {
-	return platform;
     }
 
     synchronized public void open(Messenger messages) throws IOException {
