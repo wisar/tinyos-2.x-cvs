@@ -249,11 +249,9 @@ implementation
     call At45db.syncAll();
   }
 
-#if 0
-  command uint32_t BlockRead.getSize[blockstorage_t blockId]() {
+  command storage_len_t BlockRead.getSize[blockstorage_t blockId]() {
     return call At45dbVolume.volumeSize[blockId]();
   }
-#endif
 
   command error_t BlockRead.read[blockstorage_t id](storage_addr_t addr, void* buf, storage_len_t len) {
     return newRequest(S_READ, id, addr, buf, len);

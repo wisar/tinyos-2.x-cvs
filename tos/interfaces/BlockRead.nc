@@ -104,4 +104,10 @@ interface BlockRead {
   event void computeCrcDone( storage_addr_t addr, storage_len_t len,
 			     uint16_t crc, error_t error );
 
+  /**
+   * Report volume size in bytes.
+   * @return Volume size.
+   */
+  command storage_len_t getSize();
+
 }
