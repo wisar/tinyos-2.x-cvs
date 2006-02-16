@@ -19,17 +19,9 @@ generic configuration PhotoStreamC() {
   provides interface ReadStream<uint16_t>;
 }
 implementation {
-  components PhotoReadStreamP, PhotoDeviceP, new AdcReadStreamClientC();
+  components PhotoDeviceP, new AdcReadStreamClientC();
 
-  enum {
-    RESID = unique(UQ_PHOTODEVICE),
-    STREAMID = unique(UQ_PHOTODEVICE_STREAM)
-  };
-
-  ReadStream = PhotoReadStreamP.ReadStream[STREAMID];
-  
-  PhotoReadStreamP.ActualReadStream[STREAMID] -> AdcReadStreamClientC;
-  PhotoReadStreamP.Resource[STREAMID] -> PhotoDeviceP.Resource[RESID];
-
+  ReadStream = AdcReadStreamClientC;
   AdcReadStreamClientC.Atm128AdcConfig -> PhotoDeviceP;
+  AdcReadStreamClientC.ResourceConfigure -> PhotoDeviceP;
 }

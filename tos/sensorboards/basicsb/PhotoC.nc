@@ -19,16 +19,9 @@ generic configuration PhotoC() {
   provides interface Read<uint16_t>;
 }
 implementation {
-  components PhotoReadP, PhotoDeviceP, new AdcReadClientC();
+  components new AdcReadClientC(), PhotoDeviceP;
 
-  enum {
-    RESID = unique(UQ_PHOTODEVICE),
-  };
-
-  Read = PhotoReadP.Read[RESID];
-  
-  PhotoReadP.ActualRead[RESID] -> AdcReadClientC;
-  PhotoReadP.Resource[RESID] -> PhotoDeviceP.Resource[RESID];
-
+  Read = AdcReadClientC;
   AdcReadClientC.Atm128AdcConfig -> PhotoDeviceP;
+  AdcReadClientC.ResourceConfigure -> PhotoDeviceP;
 }

@@ -18,22 +18,15 @@
 
 configuration PhotoDeviceP {
   provides {
-    interface Resource[uint8_t client];
+    interface ResourceConfigure;
     interface Atm128AdcConfig;
   }
 }
 implementation {
-  components new RoundRobinArbiterC(UQ_PHOTODEVICE) as PhotoArbiter,
-    new StdControlPowerManagerC() as PM, MainC, PhotoP, MicaBusC;
+  components PhotoP, MicaBusC;
 
-  Resource = PhotoArbiter;
+  ResourceConfigure = PhotoP;
   Atm128AdcConfig = PhotoP;
-
-  PM.Init <- MainC;
-  PM.StdControl -> PhotoP;
-  PM.ArbiterInit -> PhotoArbiter;
-  PM.ResourceController -> PhotoArbiter;
-  PM.ArbiterInfo -> PhotoArbiter;
 
   PhotoP.PhotoPin -> MicaBusC.PW1;
   PhotoP.PhotoAdc -> MicaBusC.Adc6;

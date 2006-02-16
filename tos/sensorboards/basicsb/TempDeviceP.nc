@@ -18,22 +18,15 @@
 
 configuration TempDeviceP {
   provides {
-    interface Resource[uint8_t client];
+    interface ResourceConfigure;
     interface Atm128AdcConfig;
   }
 }
 implementation {
-  components new RoundRobinArbiterC(UQ_TEMPDEVICE) as TempArbiter,
-    new StdControlPowerManagerC() as PM, MainC, TempP, MicaBusC;
+  components TempP, MicaBusC;
 
-  Resource = TempArbiter;
+  ResourceConfigure = TempP;
   Atm128AdcConfig = TempP;
-
-  PM.Init <- MainC;
-  PM.StdControl -> TempP;
-  PM.ArbiterInit -> TempArbiter;
-  PM.ResourceController -> TempArbiter;
-  PM.ArbiterInfo -> TempArbiter;
 
   TempP.TempPin -> MicaBusC.PW2;
   TempP.TempAdc -> MicaBusC.Adc5;

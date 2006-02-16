@@ -19,16 +19,9 @@ generic configuration TempC() {
   provides interface Read<uint16_t>;
 }
 implementation {
-  components TempReadP, TempDeviceP, new AdcReadClientC();
+  components new AdcReadClientC(), TempDeviceP;
 
-  enum {
-    RESID = unique(UQ_TEMPDEVICE),
-  };
-
-  Read = TempReadP.Read[RESID];
-  
-  TempReadP.ActualRead[RESID] -> AdcReadClientC;
-  TempReadP.Resource[RESID] -> TempDeviceP.Resource[RESID];
-
+  Read = AdcReadClientC;
   AdcReadClientC.Atm128AdcConfig -> TempDeviceP;
+  AdcReadClientC.ResourceConfigure -> TempDeviceP;
 }
