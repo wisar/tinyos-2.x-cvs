@@ -293,8 +293,8 @@ implementation
 	  if (buffer[selected].busy)
 	    call HplAt45db.waitIdle();
 	  else
-	    call HplAt45db.read(OP(AT45_C_READ_BUFFER), 0, reqOffset,
-				reqBuf, reqBytes);
+	    call HplAt45db.readBuffer(OP(AT45_C_READ_BUFFER), reqOffset,
+				      reqBuf, reqBytes);
 	  break;
 
 	case R_READCRC:

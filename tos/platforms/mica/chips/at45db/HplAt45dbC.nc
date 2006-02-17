@@ -20,10 +20,12 @@ configuration HplAt45dbC {
   provides interface HplAt45db @atmostonce();
 }
 implementation {
-  components new HplAt45dbByteC(), HplAt45dbIOC;
+  // 9 because the AT45DB041B has 264 byte pages (log2 page size rounded up)
+  components new HplAt45dbByteC(9), HplAt45dbIOC;
 
   HplAt45db = HplAt45dbByteC;
 
+  HplAt45dbByteC.Resource -> HplAt45dbIOC;
   HplAt45dbByteC.FlashSpi -> HplAt45dbIOC;
   HplAt45dbByteC.HplAt45dbByte -> HplAt45dbIOC;
 }
