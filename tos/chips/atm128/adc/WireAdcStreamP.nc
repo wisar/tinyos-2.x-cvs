@@ -35,6 +35,6 @@ implementation {
 
   AdcStreamP.Init <- MainC;
   AdcStreamP.Atm128AdcSingle -> Atm128AdcC;
-  AdcStreamP.calibrateMicro -> PlatformC;
+  AdcStreamP.Atm128Calibrate -> PlatformC;
   AdcStreamP.Alarm -> AlarmMicro32C;
 }

@@ -59,6 +59,7 @@ implementation
   PlatformC.SubInit -> Atm128AdcP;
 
   Atm128AdcP.HplAtm128Adc -> HplAtm128AdcC;
+  Atm128AdcP.Atm128Calibrate -> PlatformC;
 
   PM.Init <- MainC;
   PM.StdControl -> Atm128AdcP;

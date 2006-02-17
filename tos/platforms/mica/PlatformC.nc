@@ -35,7 +35,10 @@
 configuration PlatformC {
   provides {
     interface Init;
-    command uint32_t calibrateMicro(uint32_t n);
+    /**
+     * Provides calibration information for other components.
+     */
+    interface Atm128Calibrate;
   }
   uses interface Init as SubInit;
 }
@@ -44,7 +47,7 @@ implementation
   components PlatformP, MotePlatformC, MeasureClockC;
   
   Init = PlatformP;
-  calibrateMicro = MeasureClockC;
+  Atm128Calibrate = MeasureClockC;
 
   PlatformP.MeasureClock -> MeasureClockC;
   PlatformP.MoteInit -> MotePlatformC;

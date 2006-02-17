@@ -16,6 +16,9 @@
  * MeasureClockC.calibrateMicro() command to convert a number of microseconds
  * to the near-microsecond units used by this component.
  *
+ * Assumes an ~8MHz CPU clock, replace this component if you are running at
+ * a radically different frequency.
+ *
  * Upto three of these alarms can be created (one per hardware compare
  * register). 
  *

@@ -90,7 +90,7 @@ implementation
     streamSuccess = TRUE;
   }
 
-  event void ReadStream.readDone(error_t result)
+  event void ReadStream.readDone(error_t result, uint32_t actualPeriod)
   {
     if (result == SUCCESS && streamSuccess)
       call Leds.led2On();

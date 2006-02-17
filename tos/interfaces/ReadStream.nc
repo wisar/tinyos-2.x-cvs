@@ -65,7 +65,7 @@ interface ReadStream<val_t> {
    *
    * @return SUCCESS if the post was successful
    */
-  command error_t postBuffer( val_t* buf, uint16_t count );
+  command error_t postBuffer(val_t* buf, uint16_t count);
 
   /**
    * Directs the device to start filling buffers by sampling with the
@@ -75,7 +75,7 @@ interface ReadStream<val_t> {
    * 
    * @return SUCCESS if the reading process began
    */
-  command error_t read( uint32_t usPeriod );
+  command error_t read(uint32_t usPeriod);
 
   /**
    * Signalled when a previously posted buffer has been filled by the
@@ -86,8 +86,8 @@ interface ReadStream<val_t> {
    * @param buf a pointer to the buffer that has been filled
    * @param count the number of values actually read
    */
-  event void bufferDone( error_t result, 
-			 val_t* buf, uint16_t count );
+  event void bufferDone(error_t result, 
+			 val_t* buf, uint16_t count);
 
   /**
    * Signalled when a buffer has been filled but no more buffers have
@@ -96,7 +96,9 @@ interface ReadStream<val_t> {
    * this event will be signalled with a non-SUCCESS argument.
    *
    * @param result SUCCESS if all buffers were filled without errors
+   * @param usActualPeriod Actual sampling period used - may be different
+   *   from period requested at read time. Undefined if result != SUCCESS.
    */
-  event void readDone( error_t result );
+  event void readDone(error_t result, uint32_t usActualPeriod);
 }    
 

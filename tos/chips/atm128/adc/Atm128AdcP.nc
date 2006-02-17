@@ -66,6 +66,7 @@ module Atm128AdcP
   }
   uses {
     interface HplAtm128Adc;
+    interface Atm128Calibrate;
   }
 }
 implementation
@@ -87,7 +88,7 @@ implementation
 	adcsr.adfr = ATM128_ADC_FREE_RUNNING_OFF; 
 	adcsr.adif = ATM128_ADC_INT_FLAG_OFF;               
 	adcsr.adie = ATM128_ADC_INT_ENABLE_OFF;       
-	adcsr.adps = ATM128_ADC_PRESCALE;
+	adcsr.adps = ATM128_ADC_PRESCALE_2;
 	call HplAtm128Adc.setAdcsra(adcsr);
       }
     return SUCCESS;
@@ -195,6 +196,8 @@ implementation
     adcsr.adfr = f.multiple;
     adcsr.adif = ATM128_ADC_INT_FLAG_ON; // clear any stale flag
     adcsr.adie = ATM128_ADC_INT_ENABLE_ON;
+    if (prescaler == ATM128_ADC_PRESCALE)
+      prescaler = call Atm128Calibrate.adcPrescaler();
     adcsr.adps = prescaler;
     call HplAtm128Adc.setAdcsra(adcsr);
   }

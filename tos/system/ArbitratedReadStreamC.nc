@@ -50,10 +50,10 @@ implementation {
     signal ReadStream.bufferDone[client](result, buf, count);
   }
 
-  event void Service.readDone[uint8_t client](error_t result)
+  event void Service.readDone[uint8_t client](error_t result, uint32_t actualPeriod)
   {
     call Resource.release[client]();
-    signal ReadStream.readDone[client](result);
+    signal ReadStream.readDone[client](result, actualPeriod);
   }
 
   event void Resource.granted[uint8_t client]() {
@@ -80,7 +80,7 @@ implementation {
   {
   }
 
-  default event void ReadStream.readDone[uint8_t client](error_t result)
+  default event void ReadStream.readDone[uint8_t client](error_t result, uint32_t actualPeriod)
   {
   }
 }

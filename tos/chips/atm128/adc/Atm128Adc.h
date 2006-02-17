@@ -101,6 +101,10 @@ enum {
     ATM128_ADC_PRESCALE_32,
     ATM128_ADC_PRESCALE_64,
     ATM128_ADC_PRESCALE_128,
+
+    // This special value is used to ask the platform for the prescaler
+    // which gives full precision.
+    ATM128_ADC_PRESCALE
 };
 
 /* ADC Enable Settings */
