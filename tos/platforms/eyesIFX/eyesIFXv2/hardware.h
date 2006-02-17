@@ -110,6 +110,12 @@ TOSH_ASSIGN_PIN(DEBUG_1, 1, 1);
 TOSH_ASSIGN_PIN(DEBUG_2, 1, 2);
 TOSH_ASSIGN_PIN(DEBUG_3, 1, 3);
 
+inline void uwait(uint16_t u) 
+{ 
+  uint16_t t0 = TAR;
+  while((TAR - t0) <= u);
+} 
+
 
 #undef atomic
 void TOSH_SET_PIN_DIRECTIONS(void)

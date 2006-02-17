@@ -32,6 +32,10 @@
 #ifndef CRC_H
 #define CRC_H
 
+/* We don't want to duplicate this function inside binary components. */
+#ifdef NESC_BUILD_BINARY
+uint16_t crcByte(uint16_t oldCrc, uint8_t byte);
+#else
 /*
  * Default CRC function. Some microcontrollers may provide more efficient
  * implementations.
@@ -60,5 +64,6 @@ uint16_t crcByte(uint16_t crc, uint8_t b)
 
   return crc;
 }
+#endif
 
 #endif

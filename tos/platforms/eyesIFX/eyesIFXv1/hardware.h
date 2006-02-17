@@ -109,6 +109,36 @@ void TOSH_FLASH_M25P_DP_bit(bool set) {
   TOSH_CLR_UCLK0_PIN();
 }
 
+inline void TOSH_wait(void)
+{
+  nop(); nop();
+}
+
+inline void uwait(uint16_t u) 
+{ 
+  /*
+  uint16_t i;
+  if (u < 500)
+    for (i=2; i < u; i++) { 
+      asm volatile("nop\n\t"
+                   "nop\n\t"
+                   "nop\n\t"
+                   "nop\n\t"
+                   ::);
+    }
+  else
+    for (i=0; i < u; i++) { 
+      asm volatile("nop\n\t"
+                   "nop\n\t"
+                   "nop\n\t"
+                   "nop\n\t"
+                   ::);
+    }
+  */
+  uint16_t t0 = TAR;
+  while((TAR - t0) <= u);
+} 
+
 void TOSH_FLASH_M25P_DP() {
   //  SIMO0, UCLK0
   TOSH_MAKE_SIMO0_OUTPUT();
