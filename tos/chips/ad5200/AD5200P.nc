@@ -84,10 +84,9 @@
     async command error_t Pot.set(uint8_t setting) {
       error_t result;
       call ENPOT.clr();
-      result = call SpiByte.write(setting, 0);
+      call SpiByte.write(setting, 0);
       call ENPOT.set();
-      if(result == SUCCESS)
-        atomic Pot_value = setting;
+      atomic Pot_value = setting;
       return result;
     }
 
