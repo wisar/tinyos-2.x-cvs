@@ -82,12 +82,11 @@
     }
 
     async command error_t Pot.set(uint8_t setting) {
-      error_t result;
       call ENPOT.clr();
       call SpiByte.write(setting, 0);
       call ENPOT.set();
       atomic Pot_value = setting;
-      return result;
+      return SUCCESS;
     }
 
     async command uint8_t Pot.get() {
