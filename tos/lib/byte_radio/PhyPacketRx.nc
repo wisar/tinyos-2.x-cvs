@@ -41,6 +41,12 @@
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  */ 
 interface PhyPacketRx {
+  /* FIXME: do this...
+  async event void detected();
+  
+  async command void reset();
+  */
+         
   /**
    * Start receiving a new packet header. This will also reset the current receiving state.
    */

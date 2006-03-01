@@ -63,7 +63,7 @@ configuration Tda5250ActiveMessageC {
 }
 implementation {
 
-  components Tda5250ActiveMessageP as AM, PacketSerializerC as Radio;
+  components Tda5250ActiveMessageP as AM, RadioDataLinkC as Radio;
   components ActiveMessageAddressC as Address;
 
   Init         = Radio;

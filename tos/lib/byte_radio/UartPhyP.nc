@@ -86,7 +86,7 @@ uint16_t numPreambles;  // Number of preambles to send before the packet
     /* Radio Init */
     command error_t Init.init(){
       atomic {
-        phyState = STATE_NULL;
+        atomic phyState = STATE_NULL;
       }
       return SUCCESS;
     }

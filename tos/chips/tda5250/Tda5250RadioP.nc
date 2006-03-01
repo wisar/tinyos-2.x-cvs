@@ -290,11 +290,14 @@ implementation {
       }
 
       async command error_t Tda5250Control.CCAMode() {
+        radioMode_t mode;
         atomic {
-          if(radioBusy() == FALSE)
+          if(radioBusy() == FALSE) {
             radioMode = RADIO_MODE_CCA_TRANSITION;
+          }
+          mode = radioMode;
         }
-        if(radioMode == RADIO_MODE_CCA_TRANSITION) {
+        if(mode == RADIO_MODE_CCA_TRANSITION) {
           call DataResource.release();
           call ConfigResource.request();
           return SUCCESS;
