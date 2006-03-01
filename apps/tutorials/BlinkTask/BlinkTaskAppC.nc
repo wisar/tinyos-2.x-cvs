@@ -43,8 +43,6 @@ implementation
   components new TimerMilliC() as Timer0;
 
   BlinkTaskC -> MainC.Boot;
-  MainC.SoftwareInit -> LedsC;
-
   BlinkTaskC.Timer0 -> Timer0;
   BlinkTaskC.Leds -> LedsC;
 }

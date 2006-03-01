@@ -50,8 +50,6 @@ implementation {
   components new AMSenderC(AM_BLINKTORADIO);
   components new AMReceiverC(AM_BLINKTORADIO);
 
-  MainC.SoftwareInit -> LedsC;
-
   App.Boot -> MainC;
   App.Leds -> LedsC;
   App.Timer0 -> Timer0;
