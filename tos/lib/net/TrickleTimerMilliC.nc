@@ -51,6 +51,7 @@ implementation {
   components new TimerMilliC();
   components new BitVectorC(count) as PendingVector;
   components new BitVectorC(count) as ChangeVector;
+  components LedsC;
   TrickleTimer = TrickleTimerImplP;
 
   TrickleTimerImplP.Timer -> TimerMilliC;
@@ -58,6 +59,7 @@ implementation {
   TrickleTimerImplP.Changed -> ChangeVector;
   TrickleTimerImplP.Pending -> PendingVector;
   
+  TrickleTimerImplP.Leds -> LedsC;
   MainC.SoftwareInit -> TrickleTimerImplP;
 }
 
