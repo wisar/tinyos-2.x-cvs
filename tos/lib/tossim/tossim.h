@@ -106,6 +106,7 @@ class Tossim {
   void init();
   
   long long int time();
+  long long int ticksPerSecond();
   char* timeStr();
   void setTime(long long int time);
   
@@ -113,7 +114,7 @@ class Tossim {
   Mote* getNode(unsigned long nodeID);
   void setCurrentNode(unsigned long nodeID);
 
-  bool addChannel(char* channel, FILE* file);
+  void addChannel(char* channel, FILE* file);
   bool removeChannel(char* channel, FILE* file);
   
   bool runNextEvent();

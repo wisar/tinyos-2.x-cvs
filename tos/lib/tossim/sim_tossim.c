@@ -89,7 +89,7 @@ void sim_set_time(sim_time_t t) __attribute__ ((C, spontaneous)) {
   sim_ticks = t;
 }
 
-sim_time_t sim_ticks_per_sec() {
+sim_time_t sim_ticks_per_sec() __attribute__ ((C, spontaneous)) {
   return 10000000000ULL;
 }
 
@@ -151,8 +151,8 @@ char* sim_time_string() __attribute__ ((C, spontaneous)) {
   return simTimeBuf;
 }
 
-bool sim_add_channel(char* channel, FILE* file) __attribute__ ((C, spontaneous)) {
-  return sim_log_add_channel(channel, file);
+void sim_add_channel(char* channel, FILE* file) __attribute__ ((C, spontaneous)) {
+  sim_log_add_channel(channel, file);
 }
 
 bool sim_remove_channel(char* channel, FILE* file)  __attribute__ ((C, spontaneous)) {

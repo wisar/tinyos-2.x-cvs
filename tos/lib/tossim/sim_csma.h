@@ -79,7 +79,7 @@
 #define SIM_CSMA_RXTX_DELAY 32
 #endif
 
-// 12 symbol delay + 11 bytes length * (2 bytes/symbol) = 32 symbols
+// 12 symbol delay + 11 bytes length * (2 bytes/symbol) = 34 symbols
 #ifndef SIM_CSMA_ACK_TIME
 #define SIM_CSMA_ACK_TIME 34
 #endif

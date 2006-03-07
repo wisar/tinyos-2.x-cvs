@@ -48,7 +48,7 @@ extern "C" {
 #endif
 
 void sim_log_init();
-bool sim_log_add_channel(char* output, FILE* file);
+void sim_log_add_channel(char* output, FILE* file);
 bool sim_log_remove_channel(char* output, FILE* file);
 void sim_log_commit_change();
 
