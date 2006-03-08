@@ -270,7 +270,7 @@ implementation {
     call XTAL_CONFIG.set(((uint16_t)cap_val) & 0x003F);
   }
 
-  command void HplTda5250Config.SetRFPower(uint8_t value) {
+  async command void HplTda5250Config.SetRFPower(uint8_t value) {
     call RF_POWER.set(value);
   }
 

@@ -334,7 +334,7 @@ interface HplTda5250Config {
    *
    * @param RF Power.
    */
-   command void SetRFPower(uint8_t value);
+   async command void SetRFPower(uint8_t value);
 
    /**
    * Sets the RSSI threshold for internal evaluation.
