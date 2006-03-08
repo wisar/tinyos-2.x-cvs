@@ -134,9 +134,9 @@ module Msp430RefVoltArbiterP
   {
   }
 
-  async command uint8_t ClientResource.isOwner()
+  async command uint8_t ClientResource.isOwner[uint8_t client]()
   {
-    return call AdcResource.isOwner();
+    return call AdcResource.isOwner[client]();
   }
 
   default event void ClientResource.granted[uint8_t client](){}

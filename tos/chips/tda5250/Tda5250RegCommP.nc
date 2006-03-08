@@ -71,7 +71,7 @@ implementation {
 
    async command uint8_t Resource.isOwner() {
 //     return call SpiResource.isOwner();
-       return false;
+       return FALSE;
    }
 
    async command void Resource.release() {

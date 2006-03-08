@@ -121,8 +121,8 @@ implementation {
   
   async command uint8_t Resource.isOwner[ uint8_t id ]() {
     atomic {
-      if(m_holder == id) return true;
-      else return false;
+      if(m_holder == id) return TRUE;
+      else return FALSE;
     }
   }
 
