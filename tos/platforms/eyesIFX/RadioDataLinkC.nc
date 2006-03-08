@@ -66,8 +66,6 @@ implementation
     Init = Mac;
     Init = Llc;
         
-//     SplitControl = Radio;
-//     SplitControl = Mac;
     SplitControl = Llc;
     Llc.MacSplitControl -> Mac.SplitControl;
     Llc.RadioSplitControl -> Radio.SplitControl;
