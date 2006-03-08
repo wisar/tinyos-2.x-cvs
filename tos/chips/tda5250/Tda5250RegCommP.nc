@@ -69,7 +69,7 @@ implementation {
      return SUCCESS;
    }
 
-   async command uint8_t Resource.isOwner() {
+   async command bool Resource.isOwner() {
 //     return call SpiResource.isOwner();
        return FALSE;
    }
@@ -84,7 +84,7 @@ implementation {
 
    async command error_t Tda5250RegComm.writeByte(uint8_t address, uint8_t data) {
      uint8_t rxbyte;
-//     if(call SpiResource.isOwner()) {
+//     if(call SpiResource.isOwner() == FALSE) {
 //       return FAIL;
 //     }
      call SpiByte.write(address,&rxbyte);
@@ -93,7 +93,7 @@ implementation {
    }
    async command error_t Tda5250RegComm.writeWord(uint8_t address, uint16_t data) {
       uint8_t rxbyte;
-//      if(call SpiResource.isOwner())
+//      if(call SpiResource.isOwner() == FALSE)
 //        return FAIL;
       call SpiByte.write(address, &rxbyte);
       call SpiByte.write(((uint8_t) (data >> 8)),&rxbyte);
@@ -103,7 +103,7 @@ implementation {
 
    async command uint8_t Tda5250RegComm.readByte(uint8_t address){
       uint8_t rxbyte;
-//      if(call SpiResource.isOwner())
+//      if(call SpiResource.isOwner() == FALSE)
 //        return 0x00;
       call SpiByte.write(address, &rxbyte);
 

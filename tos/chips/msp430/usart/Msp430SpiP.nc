@@ -80,7 +80,7 @@ implementation {
     return call UsartResource.request();
   }
 
-  async command uint8_t Resource.isOwner() {
+  async command bool Resource.isOwner() {
     return call UsartResource.isOwner();
   }
 
