@@ -119,8 +119,11 @@ implementation {
     }
   }
   
-  async command uint8_t Resource.getId[ uint8_t id ]() {
-    return id;
+  async command uint8_t Resource.isOwner[ uint8_t id ]() {
+    atomic {
+      if(m_holder == id) return true;
+      else return false;
+    }
   }
 
   event void SpiResource.granted() {

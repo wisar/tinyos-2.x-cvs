@@ -91,7 +91,6 @@
     TestPriorityArbiterC.PowerManager -> Arbiter.LowPriorityClient;
     TestPriorityArbiterC.Client2 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
     TestPriorityArbiterC.Client1 -> Arbiter.Resource[unique("Test.Arbiter.Resource")];
-    TestPriorityArbiterC.ArbiterInfo -> Arbiter.ArbiterInfo;
 
     TestPriorityArbiterC.Leds -> LedsC;
   }

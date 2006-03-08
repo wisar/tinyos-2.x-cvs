@@ -105,8 +105,8 @@ implementation {
     return call SpiResource.request();
   }
 
-  async command uint8_t Resource.getId() {
-    return call SpiResource.getId();
+  async command uint8_t Resource.isOwner() {
+    return call SpiResource.isOwner();
   }
 
   async command void Resource.release() {

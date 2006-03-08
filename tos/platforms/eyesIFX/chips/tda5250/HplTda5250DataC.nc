@@ -62,5 +62,4 @@ implementation {
   HplTda5250DataP.DATA -> Tda5250RadioIOC.Tda5250RadioDATA;
   HplTda5250DataP.Usart -> HplMsp430Usart0C;
   HplTda5250DataP.UartResource -> HplMsp430Usart0C.Resource[TDA5250_UART_BUS_ID];
-  HplTda5250DataP.ArbiterInfo -> HplMsp430Usart0C.ArbiterInfo;
 }

@@ -71,7 +71,6 @@ module TestPriorityArbiterC {
     interface Resource as Client2;
     interface ResourceController as PowerManager;
     interface ResourceController as HighClient;
-    interface ArbiterInfo;
     interface BusyWait<TMicro,uint16_t>;
     interface Timer<TMilli> as TimerClient1;
     interface Timer<TMilli> as TimerClient2;
@@ -216,7 +215,7 @@ implementation {
   //  release it if its safe
       async event void HighClient.requested() {
     if (!resReq) {
-      if (call ArbiterInfo.userId() == call HighClient.getId() ) {
+      if ( call HighClient.isOwner() ) {
         post startHighClientSafePeriod();
       } else {}
       atomic {resReq = TRUE;}

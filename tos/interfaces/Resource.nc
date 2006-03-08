@@ -103,8 +103,10 @@ interface Resource {
   async command void release();
 
   /**
-   *  Check what the id is for this instance of the parameterized
-   *  Resource interface.
+   *  Check if the user of this interface is the current
+   *  owner of the Resource
+   *  @return TRUE  It is the owner <br>
+   *          FALSE It is not the owner
    */
-  async command uint8_t getId();
+  async command bool isOwner();
 }

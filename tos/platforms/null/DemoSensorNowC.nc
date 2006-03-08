@@ -30,8 +30,8 @@ implementation
   async command void Resource.release() {
   }
 
-  async command uint8_t Resource.getId() {
-    return 0;
+  async command uint8_t Resource.isOwner() {
+    return true;
   }
 
   async command error_t ReadNow.read() {

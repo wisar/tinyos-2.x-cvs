@@ -115,8 +115,8 @@ implementation {
     call SpiResource.release();
   }
 
-  async command uint8_t ClientResource.getId() {
-    return call SpiResource.getId();
+  async command uint8_t ClientResource.isOwner() {
+    return call SpiResource.isOwner();
   }
 
   stm25p_len_t calcReadLen() {

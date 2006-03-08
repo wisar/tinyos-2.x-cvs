@@ -80,8 +80,8 @@ implementation {
     return call UsartResource.request();
   }
 
-  async command uint8_t Resource.getId() {
-    return call UsartResource.getId();
+  async command uint8_t Resource.isOwner() {
+    return call UsartResource.isOwner();
   }
 
   async command void Resource.release() {

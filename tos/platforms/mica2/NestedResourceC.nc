@@ -56,7 +56,7 @@ implementation
     call Resource2.release();
   }
 
-  async command uint8_t Resource.getId() {
-    return call Resource1.getId();
+  async command uint8_t Resource.isOwner() {
+    return call Resource1.isOwner();
   }
 }
