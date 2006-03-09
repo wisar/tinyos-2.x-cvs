@@ -98,6 +98,7 @@ unsigned long sim_node() __attribute__ ((C, spontaneous)) {
 }
 void sim_set_node(unsigned long node) __attribute__ ((C, spontaneous)) {
   current_node = node;
+  TOS_NODE_ID = node;
 }
 
 bool sim_run_next_event() __attribute__ ((C, spontaneous)) {

@@ -52,7 +52,8 @@ implementation {
 
   async command am_addr_t amAddress() {
     if (!set) {
-      addr = sim_node();
+      addr = TOS_NODE_ID;
+      set = TRUE;
     }
     return addr;
   }
