@@ -42,7 +42,7 @@
 #include <atm128_sim.h>
 #include <sim_tossim.h>
 
-uint8_t atm128RegFile[100][0xa0];
+uint8_t atm128RegFile[TOSSIM_MAX_NODES][0xa0];
 
 #define REG_ACCESS(x) atm128RegFile[sim_node()][x]
 
