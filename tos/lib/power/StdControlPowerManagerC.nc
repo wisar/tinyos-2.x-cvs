@@ -65,7 +65,6 @@ generic configuration StdControlPowerManagerC()
     interface PowerDownCleanup;
     interface Init as ArbiterInit;
     interface ResourceController;
-    interface ArbiterInfo;
   }
 }
 implementation {
@@ -79,6 +78,5 @@ implementation {
  
   PowerManager.ArbiterInit  = ArbiterInit;
   PowerManager.ResourceController = ResourceController;
-  PowerManager.ArbiterInfo = ArbiterInfo;
 }
 

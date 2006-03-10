@@ -56,7 +56,6 @@ generic module PowerManagerP() {
     interface PowerDownCleanup;
     interface Init as ArbiterInit;
     interface ResourceController;
-    interface ArbiterInfo;
   }
 }
 implementation {
