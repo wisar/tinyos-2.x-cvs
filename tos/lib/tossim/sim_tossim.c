@@ -107,12 +107,16 @@ bool sim_run_next_event() __attribute__ ((C, spontaneous)) {
     sim_event_t* event = sim_queue_pop();
     sim_set_time(event->time);
     sim_set_node(event->mote);
-    
+
+    dbg("Tossim", "CORE: popping event for %i at %llu... ", sim_node(), sim_time());
     if (sim_mote_is_on(event->mote) || event->force) {
       result = TRUE;
+      dbg_clear("Tossim", " mote is on (or forced event), run it.\n");
       event->handle(event);
     }
-    
+    else {
+      dbg_clear("Tossim", "\n");
+    }
     event->cleanup(event);
   }
 
