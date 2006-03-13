@@ -60,12 +60,14 @@ configuration HplAtm128SpiC {
 }
 implementation
 {
-    components HplAtm128GeneralIOC as IO, HplAtm128SpiP as HplSpi;
-    
-    SpiBus = HplSpi;
+  components HplAtm128GeneralIOC as IO, HplAtm128SpiP as HplSpi;
+  components McuSleepC;
+  
+  SpiBus = HplSpi;
 
-    HplSpi.SS   -> IO.PortB0;  // Slave set line
-    HplSpi.SCK  -> IO.PortB1;  // SPI clock line
-    HplSpi.MOSI -> IO.PortB2;  // Master out, slave in
-    HplSpi.MISO -> IO.PortB3;  // Master in, slave out
+  HplSpi.Mcu -> McuSleepC;
+  HplSpi.SS   -> IO.PortB0;  // Slave set line
+  HplSpi.SCK  -> IO.PortB1;  // SPI clock line
+  HplSpi.MOSI -> IO.PortB2;  // Master out, slave in
+  HplSpi.MISO -> IO.PortB3;  // Master in, slave out
 }

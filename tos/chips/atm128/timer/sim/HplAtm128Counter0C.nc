@@ -308,15 +308,13 @@ implementation
       return;
     }
     else {
-      char time[128];
-      sim_print_now(time, 128);
       if (READ_BIT(ATM128_TIMSK, TOIE0)) {
 	CLR_BIT(ATM128_TIFR, TOV0);
-	dbg("HplAtm128Counter0C", "Overflow interrupt at %s\n", time);
+	dbg("HplAtm128Counter0C", "Overflow interrupt at %s\n", sim_time_string());
 	SIG_OVERFLOW0();
       }
       else {
-	dbg("HplAtm128Counter0C", "Setting overflow bit at %s\n", time);
+	dbg("HplAtm128Counter0C", "Setting overflow bit at %s\n", sim_time_string());
 	SET_BIT(ATM128_TIFR, TOV0);
       }
       configure_overflow(evt);

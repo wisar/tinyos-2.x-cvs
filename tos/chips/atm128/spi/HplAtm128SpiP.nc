@@ -55,16 +55,27 @@
 
 module HplAtm128SpiP {
   provides interface Atm128Spi as SPI;
+  provides interface AsyncStdControl;
   
   uses {
     interface GeneralIO as SS;   // Slave set line
     interface GeneralIO as SCK;  // SPI clock line
     interface GeneralIO as MOSI; // Master out, slave in
     interface GeneralIO as MISO; // Master in, slave out
+    interface McuPowerState as Mcu;
   }
 }
 implementation {
 
+  async command error_t AsyncStdControl.start() {
+    call SPI.enableSpi(TRUE);
+  }
+
+  async command error_t AsyncStdControl.stop() {
+    call SPI.enableInterrupt(FALSE);
+    call SPI.enableSpi(FALSE);
+  }
+  
   async command void SPI.initMaster() {
     call MOSI.makeOutput();
     call MISO.makeInput();
@@ -105,9 +116,11 @@ implementation {
   async command void SPI.enableInterrupt(bool enabled) {
     if (enabled) {
       SET_BIT(SPCR, SPIE);
+      call Mcu.update();
     }
     else {
       CLR_BIT(SPCR, SPIE);
+      call Mcu.update();
     }
   }
 
@@ -118,9 +131,11 @@ implementation {
   async command void SPI.enableSpi(bool enabled) {
     if (enabled) {
       SET_BIT(SPCR, SPE);
+      call Mcu.update();
     }
     else {
       CLR_BIT(SPCR, SPE);
+      call Mcu.update();
     }
   }
 
