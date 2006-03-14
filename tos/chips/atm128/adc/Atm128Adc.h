@@ -104,8 +104,7 @@ enum {
 
     // This special value is used to ask the platform for the prescaler
     // which gives full precision.
-    // Removed this because it was causing compilation to fail. -pal
-    // ATM128_ADC_PRESCALE
+    ATM128_ADC_PRESCALE
 };
 
 /* ADC Enable Settings */
