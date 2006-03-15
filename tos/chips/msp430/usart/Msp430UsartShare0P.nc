@@ -27,42 +27,43 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
- *
- * $Revision$
- * $Date$
- *
- * @author Jonathan Hui <jhui@archedrock.com>
  */
 
-#include "msp430UsartResource.h"
+/**
+ * @author Jonathan Hui <jhui@archedrock.com>
+ * @version $Revision$ $Date$
+ */
 
-generic configuration Spi0C() {
-
-  provides interface Init;
-  provides interface Resource;
+configuration Msp430UsartShare0P {
+  
+  provides interface HplMsp430Usart as Usart;
+  provides interface HplMsp430UsartInterrupts as Interrupts[ uint8_t id ];
+  provides interface Resource[ uint8_t id ];
   provides interface ArbiterInfo;
-  provides interface SpiByte;
-  provides interface SpiPacket;
-
+  
 }
 
 implementation {
-
-  enum {
-    CLIENT_ID = unique(MSP430_SPIO_BUS)
-  };
-
-  components new Msp430SpiP() as SpiP;
-  Init = HplUsart;
-
-  components HplMsp430Usart0C as HplUsart;
-  Init = SpiP.Init;
-  Resource = SpiP.Resource;
-  ArbiterInfo = HplUsart;
-  SpiP.UsartResource -> HplUsart.Resource[ CLIENT_ID ];
-  SpiByte = SpiP.SpiByte;
-  SpiPacket = SpiP.SpiPacket[ CLIENT_ID ];
-  SpiP.HplUsart -> HplUsart;
+  
+  components HplMsp430Usart0C as UsartC;
+  Usart = UsartC;
+  
+  components new Msp430UsartShareP() as UsartShareP;
+  Interrupts = UsartShareP;
+  UsartShareP.RawInterrupts -> UsartC;
+  
+  components new FcfsArbiterC( MSP430_HPLUSART0_RESOURCE ) as ArbiterC;
+  Resource = ArbiterC;
+  ArbiterInfo = ArbiterC;
+  UsartShareP.ArbiterInfo -> ArbiterC;
+  
+  components new AsyncStdControlPowerManagerC() as PowerManagerC;
+  PowerManagerC.AsyncStdControl -> UsartC;
+  PowerManagerC.ArbiterInit -> ArbiterC;
+  PowerManagerC.ResourceController -> ArbiterC;
+  
+  components MainC;
+  MainC.SoftwareInit -> ArbiterC;
+  MainC.SoftwareInit -> PowerManagerC;
 
 }
-

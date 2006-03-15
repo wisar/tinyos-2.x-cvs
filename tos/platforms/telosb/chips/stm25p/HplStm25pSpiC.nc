@@ -47,12 +47,9 @@ configuration HplStm25pSpiC {
 
 implementation {
 
-  components new Spi0C() as SpiC;
+  components new Msp430Spi0C() as SpiC;
   Resource = SpiC;
   SpiByte = SpiC;
   SpiPacket = SpiC;
-
-  components MainC;
-  MainC.SoftwareInit -> SpiC;
 
 }

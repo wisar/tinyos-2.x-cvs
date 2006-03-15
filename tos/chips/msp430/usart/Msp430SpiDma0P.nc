@@ -30,28 +30,37 @@
  */
 
 /**
- * HPL implementation of the SPI bus for the ChipCon CC2420 radio
- * connected to a TI MSP430 processor.
- *
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
-generic configuration HplCC2420SpiC() {
+configuration Msp430SpiDma0P {
   
-  provides interface Resource;
+  provides interface Resource[ uint8_t id ];
   provides interface SpiByte;
-  provides interface SpiPacket;
+  provides interface SpiPacket[ uint8_t id ];
+  
+  uses interface Resource as UsartResource[ uint8_t id ];
+  uses interface HplMsp430Usart as Usart;
+  uses interface HplMsp430UsartInterrupts as UsartInterrupts;
   
 }
 
 implementation {
-
-  components new Msp430Spi0C() as SpiC;
   
-  Resource = SpiC;
-  SpiByte = SpiC;
-  SpiPacket = SpiC;
+  components new Msp430SpiDmaP() as SpiP;
+  Resource = SpiP.Resource;
+  SpiByte = SpiP.SpiByte;
+  SpiPacket = SpiP.SpiPacket;
+  UsartResource = SpiP.UsartResource;
+  Usart = SpiP.Usart;
+  UsartInterrupts = SpiP.UsartInterrupts;
+
+  components Msp430DmaC as DmaC;
+  SpiP.DmaChannel1 -> DmaC.Channel1;
+  SpiP.DmaChannel2 -> DmaC.Channel2;
+  
+  components LedsC as Leds;
+  SpiP.Leds -> Leds;
   
 }
-

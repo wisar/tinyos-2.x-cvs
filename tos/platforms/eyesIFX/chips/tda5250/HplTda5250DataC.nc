@@ -50,16 +50,16 @@ implementation {
 
 
   components HplTda5250DataP
-      , HplMsp430Usart0C
+      , new Msp430Usart0C()
       , Tda5250RadioIOC
       ;
 
   Init = HplTda5250DataP;
-  Init = HplMsp430Usart0C;
   Resource = HplTda5250DataP.Resource;
   HplTda5250Data = HplTda5250DataP;
 
   HplTda5250DataP.DATA -> Tda5250RadioIOC.Tda5250RadioDATA;
-  HplTda5250DataP.Usart -> HplMsp430Usart0C;
-  HplTda5250DataP.UartResource -> HplMsp430Usart0C.Resource[TDA5250_UART_BUS_ID];
+  HplTda5250DataP.Usart -> Msp430Usart0C;
+  HplTda5250DataP.UsartInterrupts -> Msp430Usart0C;
+  HplTda5250DataP.UartResource -> Msp430Usart0C.Resource;
 }

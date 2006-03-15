@@ -53,7 +53,7 @@ configuration Tda5250RegCommC {
   }
 }
 implementation {
-  components new Spi0C() as Spi
+  components new Msp430Spi0C() as Spi
            , Tda5250RegCommP
            , Tda5250RadioIOC
            , AD5200P

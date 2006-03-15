@@ -78,6 +78,5 @@ implementation {
  
   PowerManager.ArbiterInit  = ArbiterInit;
   PowerManager.ResourceController = ResourceController;
-  PowerManager.ArbiterInfo = ArbiterInfo;
 }
 
