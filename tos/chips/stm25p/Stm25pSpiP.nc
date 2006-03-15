@@ -66,7 +66,6 @@ implementation {
 
   norace uint8_t m_cmd[ 4 ];
 
-  norace bool m_is_on = FALSE;
   norace bool m_is_writing = FALSE;
   norace bool m_computing_crc = FALSE;
 
@@ -123,6 +122,16 @@ implementation {
     return ( m_cur_len < CRC_BUF_SIZE ) ? m_cur_len : CRC_BUF_SIZE;
   }  
 
+  async command error_t Spi.powerDown() {
+    sendCmd( 0xb9, 1 );
+    return SUCCESS;
+  }
+
+  async command error_t Spi.powerUp() {
+    sendCmd( 0xab, 5 );
+    return SUCCESS;
+  }
+
   async command error_t Spi.read( stm25p_addr_t addr, uint8_t* buf, 
 				  stm25p_len_t len ) {
     m_cmd[ 0 ] = S_READ;
@@ -165,8 +174,6 @@ implementation {
     m_cmd[ 1 ] = m_addr >> 16;
     m_cmd[ 2 ] = m_addr >> 8;
     m_cmd[ 3 ] = m_addr;
-    if ( !m_is_on )
-      sendCmd( 0xab, 5 );
     if ( write )
       sendCmd( 0x6, 1 );
     call CSN.clr();

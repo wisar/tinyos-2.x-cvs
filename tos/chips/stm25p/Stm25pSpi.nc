@@ -37,6 +37,22 @@
  */
 
 interface Stm25pSpi {
+
+  /**
+   * Put chip into deep power down mode.
+   *
+   * @return SUCCESS if the request completed successfully, FAIL
+   * otherwise.
+   */
+  async command error_t powerDown();
+
+  /**
+   * Release chip from power down mode.
+   *
+   * @return SUCCESS if the request completed successfully, FAIL
+   * otherwise.
+   */
+  async command error_t powerUp();
   
   /**
    * Initiate a read operation. On SUCCESS, the <code>readDone</cdoe>

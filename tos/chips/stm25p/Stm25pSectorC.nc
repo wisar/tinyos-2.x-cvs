@@ -55,9 +55,16 @@ implementation {
   Volume = SectorP;
   MainC.SoftwareInit -> SectorP;
 
-  components new FcfsArbiterC( "Stm25p.Volume" ) as Arbiter;
-  MainC.SoftwareInit -> Arbiter;
-  SectorP.Stm25pResource -> Arbiter;
+  components new FcfsArbiterC( "Stm25p.Volume" ) as ArbiterC;
+  MainC.SoftwareInit -> ArbiterC;
+  SectorP.Stm25pResource -> ArbiterC;
+
+  components new SplitControlDeferredPowerManagerC( 1024 ) as PowerManagerC;
+  MainC.SoftwareInit -> PowerManagerC;
+  PowerManagerC.SplitControl -> SectorP;
+  PowerManagerC.ArbiterInit -> ArbiterC;
+  PowerManagerC.ResourceController -> ArbiterC;
+  PowerManagerC.ArbiterInfo -> ArbiterC;
 
   components Stm25pSpiC as SpiC;
   SectorP.SpiResource -> SpiC;
