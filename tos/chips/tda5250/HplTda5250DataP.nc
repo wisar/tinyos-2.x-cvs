@@ -46,6 +46,7 @@ module HplTda5250DataP {
   uses {
     interface GeneralIO as DATA;
     interface HplMsp430Usart as Usart;
+    interface HplMsp430UsartInterrupts as UsartInterrupts;
     interface Resource as UartResource;
   }
 }
@@ -143,13 +144,13 @@ implementation {
     return SUCCESS;
   }
 
-  async event void Usart.txDone() {
+  async event void UsartInterrupts.txDone() {
     if(call UartResource.isOwner() == FALSE)
       return;
     signal HplTda5250Data.txReady();
   }
 
-  async event void Usart.rxDone(uint8_t data) {
+  async event void UsartInterrupts.rxDone(uint8_t data) {
     if(call UartResource.isOwner() == FALSE)
       return;
     signal HplTda5250Data.rxDone(data);
