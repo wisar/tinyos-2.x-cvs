@@ -38,10 +38,17 @@
 #ifndef SIM_LOG_H_INCLUDED
 #define SIM_LOG_H_INCLUDED
 
+#ifndef TOSSIM_NO_DEBUG
 #define dbg(s, ...) sim_log_debug(unique("TOSSIM.debug"), s, __VA_ARGS__)
 #define dbg_clear(s, ...) sim_log_debug_clear(unique("TOSSIM.debug"), s, __VA_ARGS__)
 #define dbgerror(s, ...) sim_log_error(unique("TOSSIM.debug"), s, __VA_ARGS__)
 #define dbgerror_clear(s, ...) sim_log_error_clear(unique("TOSSIM.debug"), s, __VA_ARGS__)
+#else
+#define dbg(s, ...)
+#define dbg_clear(s, ...)
+#define dbgerror(s, ...)
+#define dbgerror_clear(s, ...)
+#endif
 
 #ifdef __cplusplus
 extern "C" {

@@ -108,11 +108,11 @@ implementation {
     memcpy(bufferPointer, msg, sizeof(message_t));
 
     if (call AMPacket.isForMe(msg)) {
-      dbg("AM", "Received active message (%p) of type %hhu and length %hhu for me.\n", bufferPointer, call AMPacket.type(bufferPointer), len);
+      dbg("AM", "Received active message (%p) of type %hhu and length %hhu for me @ %s.\n", bufferPointer, call AMPacket.type(bufferPointer), len, sim_time_string());
       bufferPointer = signal Receive.receive[call AMPacket.type(bufferPointer)](bufferPointer, payload, len);
     }
     else {
-      dbg("AM", "Snooped on active message of type %hhu and length %hhu for %hu.\n", call AMPacket.type(bufferPointer), len, call AMPacket.destination(bufferPointer));
+      dbg("AM", "Snooped on active message of type %hhu and length %hhu for %hu @ %s.\n", call AMPacket.type(bufferPointer), len, call AMPacket.destination(bufferPointer), sim_time_string());
       bufferPointer = signal Snoop.receive[call AMPacket.type(bufferPointer)](bufferPointer, payload, len);
     }
   }

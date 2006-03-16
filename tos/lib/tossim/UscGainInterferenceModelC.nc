@@ -102,7 +102,7 @@ implementation {
 
   sim_event_t receiveEvent;
   // This clear threshold comes from the CC2420 data sheet
-  double clearThreshold = -77.0;
+  double clearThreshold = -95.0;
   bool collision = FALSE;
   message_t* incoming = NULL;
   int incomingSource;
