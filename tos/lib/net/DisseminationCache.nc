@@ -44,7 +44,7 @@
 interface DisseminationCache {
   event void init();
   command void* requestData( uint8_t* size );
-  command void storeData( void* data, uint8_t size, uint16_t seqno );
-  command uint16_t requestSeqno();
+  command void storeData( void* data, uint8_t size, uint32_t seqno );
+  command uint32_t requestSeqno();
   event void newData();
 }
