@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *
@@ -30,35 +30,70 @@
  */
 
 /**
- * @author Alec Woo <awoo@archedrock.com>
+ * An HAL abstraction of the ChipCon CC2420 radio. This abstraction
+ * deals specifically with radio power operations (e.g. voltage
+ * regulator, oscillator, etc). However, it does not include
+ * transmission power, see the CC2420Config interface.
+ *
+ * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
-module CC2420MetadataP{
-  provides interface CC2420Metadata;
-}
+interface CC2420Power {
 
-implementation{
+  /**
+   * Start the voltage regulator on the CC2420. On SUCCESS,
+   * <code>startVReg()</code> will be signalled when the voltage
+   * regulator is fully on.
+   *
+   * @return SUCCESS if the request was accepted, FAIL otherwise.
+   */
+  async command error_t startVReg();
 
-  command uint8_t CC2420Metadata.linkQual(message_t* pMsg){
-    uint8_t result;
-    cc2420_metadata_t * mdata = (cc2420_metadata_t *) pMsg->metadata;
+  /**
+   * Signals that the voltage regulator has been started.
+   */
+  async event void startVRegDone();
+  
+  /**
+   * Stop the voltage regulator immediately.
+   *
+   * @return SUCCESS always
+   */
+  async command error_t stopVReg();
 
-    // Assume range is 64 from 48 (lowest) to 112 (highest) 
-    if(mdata->lqi <48) 
-      result = 0;
-    else if (mdata->lqi > 112)
-      result = 255;
-    else 
-      // (lqi - 48)/64 * 256
-      result = (mdata->lqi - 48) << 2; 
+  /**
+   * Start the oscillator. On SUCCESS, <code>startOscillator</code>
+   * will be signalled when the oscillator has been started.
+   *
+   * @return SUCCESS if the request was accepted, FAIL otherwise.
+   */
+  async command error_t startOscillator();
 
-    return result;    
-  }
+  /**
+   * Signals that the oscillator has been started.
+   */
+  async event void startOscillatorDone();
 
-  command int16_t CC2420Metadata.rssi(message_t* pMsg){
-    cc2420_metadata_t * mdata = (cc2420_metadata_t *) pMsg->metadata;
-    return ((int16_t) mdata->strength - (int16_t) 45); // do no scaling for now    
-  }
+  /**
+   * Stop the oscillator.
+   *
+   * @return SUCCESS if the oscillator was stopped, FAIL otherwise.
+   */
+  async command error_t stopOscillator();
+
+  /**
+   * Enable RX.
+   *
+   * @return SUCCESS if receive mode has been enabled, FAIL otherwise.
+   */
+  async command error_t rxOn();
+
+  /**
+   * Disable RX.
+   *
+   * @return SUCCESS if receive mode has been disabled, FAIL otherwise.
+   */
+  async command error_t rfOff();
 
 }

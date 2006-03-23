@@ -30,64 +30,57 @@
  */
 
 /**
- * Implementation for configuring a ChipCon CC2420 radio.
- *
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
-#include "CC2420.h"
-#include "IEEE802154.h"
+module CC2420PacketC {
 
-configuration CC2420ControlC {
-
-  provides interface Init;
-  provides interface Resource;
-  provides interface CC2420Config;
-  provides interface CC2420Power;
-
-  uses interface AMPacket;
+  provides interface CC2420Packet;
+  provides interface PacketAcknowledgements as Acks;
 
 }
 
 implementation {
-  
-  components CC2420ControlP;
-  Init = CC2420ControlP;
-  Resource = CC2420ControlP;
-  CC2420Config = CC2420ControlP;
-  CC2420Power = CC2420ControlP;
-  AMPacket = CC2420ControlP;
 
-  components AlarmMultiplexC as Alarm;
-  CC2420ControlP.StartupTimer -> Alarm;
+  cc2420_header_t* getHeader( message_t* msg ) {
+    return (cc2420_header_t*)( msg->data - sizeof( cc2420_header_t ) );
+  }
 
-  components HplCC2420PinsC as Pins;
-  CC2420ControlP.CSN -> Pins.CSN;
-  CC2420ControlP.RSTN -> Pins.RSTN;
-  CC2420ControlP.VREN -> Pins.VREN;
+  cc2420_metadata_t* getMetadata( message_t* msg ) {
+    return (cc2420_metadata_t*)msg->metadata;
+  }
 
-  components HplCC2420InterruptsC as Interrupts;
-  CC2420ControlP.InterruptCCA -> Interrupts.InterruptCCA;
+  async command error_t Acks.requestAck( message_t* p_msg ) {
+    getHeader( p_msg )->fcf |= 1 << IEEE154_FCF_ACK_REQ;
+    return SUCCESS;
+  }
 
-  components new CC2420SpiC() as Spi;
-  CC2420ControlP.SpiResource -> Spi;
-  CC2420ControlP.SRXON -> Spi.SRXON;
-  CC2420ControlP.SRFOFF -> Spi.SRFOFF;
-  CC2420ControlP.SXOSCON -> Spi.SXOSCON;
-  CC2420ControlP.SXOSCOFF -> Spi.SXOSCOFF;
-  CC2420ControlP.FSCTRL -> Spi.FSCTRL;
-  CC2420ControlP.IOCFG0 -> Spi.IOCFG0;
-  CC2420ControlP.IOCFG1 -> Spi.IOCFG1;
-  CC2420ControlP.MDMCTRL0 -> Spi.MDMCTRL0;
-  CC2420ControlP.MDMCTRL1 -> Spi.MDMCTRL1;
-  CC2420ControlP.PANID -> Spi.PANID;
+  async command error_t Acks.noAck( message_t* p_msg ) {
+    getHeader( p_msg )->fcf &= ~(1 << IEEE154_FCF_ACK_REQ);
+    return SUCCESS;
+  }
 
-  components new CC2420SpiC() as SyncSpiC;
-  CC2420ControlP.SyncResource -> SyncSpiC;
+  async command bool Acks.wasAcked( message_t* p_msg ) {
+    return getMetadata( p_msg )->ack;
+  }
 
-  components LedsC as Leds;
-  CC2420ControlP.Leds -> Leds;
+  async command void CC2420Packet.setPower( message_t* p_msg, uint8_t power ) {
+    if ( power > 31 )
+      power = 31;
+    getMetadata( p_msg )->tx_power = power;
+  }
+
+  async command uint8_t CC2420Packet.getPower( message_t* p_msg ) {
+    return getMetadata( p_msg )->tx_power;
+  }
+   
+  async command int8_t CC2420Packet.getRssi( message_t* p_msg ) {
+    return getMetadata( p_msg )->rssi;
+  }
+
+  async command error_t CC2420Packet.getLqi( message_t* p_msg ) {
+    return getMetadata( p_msg )->lqi;
+  }
 
 }
-

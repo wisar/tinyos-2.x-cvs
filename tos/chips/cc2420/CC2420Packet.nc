@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2005 Arched Rock Corporation
+/**
+ * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,32 +27,45 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE
- *
- * $ Revision: $
- * $ Date: $
- *
- * @author Gilman Tolle <gtolle@archedrock.com>
- * @author Alec Woo <awoo@archedrock.com>
- * @author Philip Levis
  */
 
-interface CC2420Metadata {
+/**
+ * @author Jonathan Hui <jhui@archedrock.com>
+ * @version $Revision$ $Date$
+ */
 
-  /*
-   * @param msg Message that contains the metadata
+interface CC2420Packet {
+  
+  /**
+   * Get transmission power setting for current packet.
    *
-   * @return Should return a linear scale of the link quality from 0-100% using uint8_t
-   * 
-   * (0 means 0% and 255 means 100%)
+   * @param the message
    */
-  command uint8_t linkQual(message_t* pMsg);
+  async command uint8_t getPower( message_t* p_msg );
 
-  /*
-   * @param msg Message that contains the metadata
+  /**
+   * Set transmission power for a given packet. Valid ranges are
+   * between 0 and 31.
    *
-   * @return Should return signal strength dBm using int16_t
-   * 
+   * @param p_msg the message.
+   * @param power transmission power.
    */
-  command int16_t rssi(message_t* pMsg);
+  async command void setPower( message_t* p_msg, uint8_t power );
+  
+  /**
+   * Get rssi value for a given packet. For received packets, it is
+   * the received signal strength when receiving that packet. For sent
+   * packets, it is the received signal strength of the ack if an ack
+   * was received.
+   */
+  async command int8_t getRssi( message_t* p_msg );
 
+  /**
+   * Get lqi value for a given packet. For received packets, it is the
+   * link quality indicator value when receiving that packet. For sent
+   * packets, it is the link quality indicator value of the ack if an
+   * ack was received.
+   */
+  async command uint8_t getLqi( message_t* p_msg );
+  
 }

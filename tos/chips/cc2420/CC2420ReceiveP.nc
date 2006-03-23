@@ -230,7 +230,7 @@ implementation {
     uint8_t length = buf[ 0 ];
     
     metadata->crc = buf[ length ] >> 7;
-    metadata->strength = buf[ length - 1 ];
+    metadata->rssi = buf[ length - 1 ];
     metadata->lqi = buf[ length ] & 0x7f;
     m_p_rx_buf = signal Receive.receive( m_p_rx_buf, m_p_rx_buf->data, 
 					 length );

@@ -46,7 +46,6 @@ configuration CC2420CsmaC {
 
   provides interface Send;
   provides interface Receive;
-  provides interface PacketAcknowledgements as Acks;
 
   uses interface AMPacket;
 
@@ -59,14 +58,13 @@ implementation {
   Init = CsmaP;
   SplitControl = CsmaP;
   Send = CsmaP;
-  Acks = CsmaP;
   AMPacket = CsmaP;
 
   components CC2420ControlC;
   Init = CC2420ControlC;
   AMPacket = CC2420ControlC;
   CsmaP.Resource -> CC2420ControlC;
-  CsmaP.CC2420Config -> CC2420ControlC;
+  CsmaP.CC2420Power -> CC2420ControlC;
 
   components CC2420TransmitC;
   Init = CC2420TransmitC;

@@ -49,15 +49,6 @@ configuration CC2420TransmitC {
 implementation {
 
   components CC2420TransmitP;
-  components AlarmMultiplexC as Alarm;
-  components new CC2420SpiC() as Spi;
-
-  components HplCC2420InterruptsC as Interrupts;
-  components HplCC2420PinsC as Pins;
-
-  components LedsC as Leds;
-  CC2420TransmitP.Leds -> Leds;
-
   Init = Alarm;
   Init = CC2420TransmitP;
   AsyncStdControl = CC2420TransmitP;
@@ -65,22 +56,31 @@ implementation {
   CsmaBackoff = CC2420TransmitP;
   RadioTimeStamping = CC2420TransmitP;
 
+  components AlarmMultiplexC as Alarm;
   CC2420TransmitP.BackoffTimer -> Alarm;
 
+  components HplCC2420PinsC as Pins;
   CC2420TransmitP.CCA -> Pins.CCA;
   CC2420TransmitP.CSN -> Pins.CSN;
   CC2420TransmitP.SFD -> Pins.SFD;
+
+  components HplCC2420InterruptsC as Interrupts;
   CC2420TransmitP.CaptureSFD -> Interrupts.CaptureSFD;
 
+  components new CC2420SpiC() as Spi;
   CC2420TransmitP.SpiResource -> Spi;
   CC2420TransmitP.SNOP        -> Spi.SNOP;
   CC2420TransmitP.STXON       -> Spi.STXON;
   CC2420TransmitP.STXONCCA    -> Spi.STXONCCA;
   CC2420TransmitP.SFLUSHTX    -> Spi.SFLUSHTX;
+  CC2420TransmitP.TXCTRL      -> Spi.TXCTRL;
   CC2420TransmitP.TXFIFO      -> Spi.TXFIFO;
   CC2420TransmitP.TXFIFO_RAM  -> Spi.TXFIFO_RAM;
 
   components CC2420ReceiveC;
   CC2420TransmitP.CC2420Receive -> CC2420ReceiveC;
+
+  components LedsC as Leds;
+  CC2420TransmitP.Leds -> Leds;
 
 }
