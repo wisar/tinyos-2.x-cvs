@@ -30,7 +30,6 @@
  */
 configuration HplPXA27xPI2CC
 {
-  provides interface Init;
   provides interface HplPXA27xI2C as I2C;
 }
 
@@ -38,9 +37,10 @@ implementation
 {
   components new HplPXA27xI2CP(1);
   components HplPXA27xInterruptM;
+  components PlatformP;
 
-  Init = HplPXA27xI2CP;
   I2C = HplPXA27xI2CP;
 
+  HplPXA27xI2CP.Init <- PlatformP.InitL1;
   HplPXA27xI2CP.I2CIrq -> HplPXA27xInterruptM.PXA27xIrq[PPID_PWR_I2C];
 }
