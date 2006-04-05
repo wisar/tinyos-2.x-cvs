@@ -36,7 +36,6 @@
 
 configuration Msp430UsartShare0P {
   
-  provides interface HplMsp430Usart as Usart;
   provides interface HplMsp430UsartInterrupts as Interrupts[ uint8_t id ];
   provides interface Resource[ uint8_t id ];
   provides interface ArbiterInfo;
@@ -44,9 +43,6 @@ configuration Msp430UsartShare0P {
 }
 
 implementation {
-  
-  components HplMsp430Usart0C as UsartC;
-  Usart = UsartC;
   
   components new Msp430UsartShareP() as UsartShareP;
   Interrupts = UsartShareP;
@@ -58,9 +54,11 @@ implementation {
   UsartShareP.ArbiterInfo -> ArbiterC;
   
   components new AsyncStdControlPowerManagerC() as PowerManagerC;
-  PowerManagerC.AsyncStdControl -> UsartC;
   PowerManagerC.ArbiterInit -> ArbiterC;
   PowerManagerC.ResourceController -> ArbiterC;
+  
+  components HplMsp430Usart0C as UsartC;
+  PowerManagerC.AsyncStdControl -> UsartC;
   
   components MainC;
   MainC.SoftwareInit -> ArbiterC;

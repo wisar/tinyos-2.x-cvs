@@ -55,14 +55,13 @@ implementation {
     CLIENT_ID = unique( MSP430_SPIO_BUS ),
   };
   
-  components Msp430SpiNoDma0P as SpiP;
+  components Msp430SpiDma0P as SpiP;
   Resource = SpiP.Resource[ CLIENT_ID ];
   SpiByte = SpiP.SpiByte;
   SpiPacket = SpiP.SpiPacket[ CLIENT_ID ];
 
   components new Msp430Usart0C() as UsartC;
   SpiP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
-  SpiP.Usart -> UsartC.HplMsp430Usart;
   SpiP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;
   
 }

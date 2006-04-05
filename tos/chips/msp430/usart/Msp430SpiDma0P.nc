@@ -41,7 +41,6 @@ configuration Msp430SpiDma0P {
   provides interface SpiPacket[ uint8_t id ];
   
   uses interface Resource as UsartResource[ uint8_t id ];
-  uses interface HplMsp430Usart as Usart;
   uses interface HplMsp430UsartInterrupts as UsartInterrupts;
   
 }
@@ -53,9 +52,11 @@ implementation {
   SpiByte = SpiP.SpiByte;
   SpiPacket = SpiP.SpiPacket;
   UsartResource = SpiP.UsartResource;
-  Usart = SpiP.Usart;
   UsartInterrupts = SpiP.UsartInterrupts;
-
+  
+  components HplMsp430Usart0C as UsartC;
+  SpiP.Usart -> UsartC;
+  
   components Msp430DmaC as DmaC;
   SpiP.DmaChannel1 -> DmaC.Channel1;
   SpiP.DmaChannel2 -> DmaC.Channel2;

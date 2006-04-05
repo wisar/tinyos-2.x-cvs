@@ -55,7 +55,9 @@ implementation {
   
   Resource = UsartShareP.Resource[ CLIENT_ID ];
   ArbiterInfo = UsartShareP.ArbiterInfo;
-  HplMsp430Usart = UsartShareP;
   HplMsp430UsartInterrupts = UsartShareP.Interrupts[ CLIENT_ID ];
 
+  components HplMsp430Usart0C as UsartC;
+  HplMsp430Usart = UsartC;
+  
 }
