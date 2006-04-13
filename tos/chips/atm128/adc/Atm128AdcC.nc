@@ -65,5 +65,4 @@ implementation
   PM.StdControl -> Atm128AdcP;
   PM.ArbiterInit -> AdcArbiter;
   PM.ResourceController -> AdcArbiter;
-  PM.ArbiterInfo -> AdcArbiter;
 }
