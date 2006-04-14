@@ -146,7 +146,8 @@ implementation
     }
     
     ctrl = call Timer0Ctrl.getControl();
-    ctrl.bits.cs = s;
+    ctrl.flat &= ~(0x7);
+    ctrl.flat |= (s & 0x7);
     call Timer0Ctrl.setControl(ctrl);  
 
     if (currentScale != s) {
