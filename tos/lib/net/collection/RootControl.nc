@@ -21,15 +21,13 @@
  *
  */
 
-/** Provides an additive quality measure for a neighbor. The
- * provided quality increases when the true link quality increases.
+/** Controls whether the current node is a root of the tree
  *  @author Rodrigo Fonseca
  *  @date   $Date$
  */
-interface LinkEstimator {
-    command uint8_t getLinkQuality(uint16_t neighbor);
-    command uint8_t getReverseQuality(uint16_t neighbor);
-    command uint8_t getForwardQuality(uint16_t neighbor);
+
+interface RootControl {
+    command error_t setRoot();
+    command error_t unsetRoot();
+    command bool isRoot();
 }
-
-

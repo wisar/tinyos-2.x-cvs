@@ -21,15 +21,25 @@
  *
  */
 
-/** Provides an additive quality measure for a neighbor. The
- * provided quality increases when the true link quality increases.
+/*
  *  @author Rodrigo Fonseca
  *  @date   $Date$
  */
-interface LinkEstimator {
-    command uint8_t getLinkQuality(uint16_t neighbor);
-    command uint8_t getReverseQuality(uint16_t neighbor);
-    command uint8_t getForwardQuality(uint16_t neighbor);
+module TreeRoutingEngineP {
+    provides {
+        interface BasicRouting;
+        interface RoutingEngineControl;
+        interface RootControl;
+        interface SplitControl;
+    } 
+    uses {
+        interface AMSend;
+        interface AMReceive;
+        interface NeighborTable;
+        interface LinkEstimator;
+        interface Timer;
+        interface Random;
+    }
 }
-
-
+implementation {
+}

@@ -1,3 +1,4 @@
+/* $Id$ */
 /*
  * "Copyright (c) 2005 The Regents of the University  of California.  
  * All rights reserved.
@@ -21,6 +22,8 @@
  */
 
 /** BasicRouting is to be implemented by all routing engines.
+ *  @author Rodrigo Fonseca
+ *  @date   $Date$
  */
 interface BasicRouting {
     /** Get a set of neighbors that make progress towards the destination.

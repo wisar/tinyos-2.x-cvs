@@ -21,15 +21,14 @@
  *
  */
 
-/** Provides an additive quality measure for a neighbor. The
- * provided quality increases when the true link quality increases.
+/** The public component of the link estimator that provides the
+ * quality to and from a neighbor 
+ * 
  *  @author Rodrigo Fonseca
  *  @date   $Date$
  */
-interface LinkEstimator {
-    command uint8_t getLinkQuality(uint16_t neighbor);
-    command uint8_t getReverseQuality(uint16_t neighbor);
-    command uint8_t getForwardQuality(uint16_t neighbor);
+configuration LinkEstimatorC {
+    provides {
+        interface LinkEstimator;
+    }
 }
-
-

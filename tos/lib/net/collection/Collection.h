@@ -21,15 +21,16 @@
  *
  */
 
-/** Provides an additive quality measure for a neighbor. The
- * provided quality increases when the true link quality increases.
+/*
  *  @author Rodrigo Fonseca
  *  @date   $Date$
  */
-interface LinkEstimator {
-    command uint8_t getLinkQuality(uint16_t neighbor);
-    command uint8_t getReverseQuality(uint16_t neighbor);
-    command uint8_t getForwardQuality(uint16_t neighbor);
+#ifndef COLLECTION_H
+#define COLLECTION_H
+
+enum {
+    AM_COLLECTION_DATA = 20,
+    AM_COLLECTION_CONTROL = 21,
 }
 
-
+#endif
