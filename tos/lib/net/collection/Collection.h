@@ -33,4 +33,6 @@ enum {
     AM_COLLECTION_CONTROL = 21,
 }
 
+typedef nx_uint8_t collection_id_t;
+
 #endif
