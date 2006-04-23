@@ -44,16 +44,16 @@
 #include "Serial.h"
 
 typedef union message_header {
-  CC1KHeader cc1k;
+  cc1000_header_t cc1k;
   serial_header_t serial;
 } message_header_t;
 
 typedef union message_footer {
-  CC1KFooter cc1k;
+  cc1000_footer_t cc1k;
 } message_footer_t;
 
 typedef union message_metadata {
-  CC1KMetadata cc1k;
+  cc1000_metadata_t cc1k;
 } message_metadata_t;
 
 #endif
