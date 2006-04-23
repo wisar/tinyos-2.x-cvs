@@ -34,6 +34,6 @@ interface Pool<t> {
   command uint8_t size();
   command uint8_t maxSize();
 
-  command t* pop();
-  command error_t push(t* newVal);
+  command t* put();
+  command error_t get(t* newVal);
 }

@@ -209,7 +209,7 @@ implementation {
     }
     else if (call Pool.size() < Pool.maxSize()) {
       // A successfully forwarded packet.
-      call Pool.push(msg);
+      call Pool.put(msg);
     }
     else {
       // It's a forwarded packet, but there's no room the pool;
@@ -227,7 +227,7 @@ implementation {
       return m;
     }
     else {
-      message_t* newMsg = call Pool.pop();
+      message_t* newMsg = call Pool.get();
       uint8_t len = call SubPacket.payloadLength(m);x
       call Packet.setPayloadLength(m, len + sizeof(network_header_t));
       call Queue.push(m);
