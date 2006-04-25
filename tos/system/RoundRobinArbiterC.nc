@@ -159,7 +159,7 @@ implementation {
   } 
 
   async command error_t ResourceController.request() {
-    call Resource.request[CONTROLLER_ID]();
+    return call Resource.request[CONTROLLER_ID]();
   }
   
   /**

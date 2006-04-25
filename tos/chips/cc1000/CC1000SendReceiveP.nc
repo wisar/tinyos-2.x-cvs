@@ -653,7 +653,7 @@ implementation
   }
 
   command void* Receive.getPayload(message_t* m, uint8_t* len) {
-    call Packet.getPayload(m, len);
+    return call Packet.getPayload(m, len);
   }
 
   command uint8_t Receive.payloadLength(message_t* m) {
