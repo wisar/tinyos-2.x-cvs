@@ -36,6 +36,7 @@
  */
 
 #include "Atm128Adc.h"
+#include "CC1000Const.h"
 
 module HplCC1000P {
   provides {
@@ -61,6 +62,16 @@ implementation
     call PALE.set();
     call PDATA.set();
     call PCLK.set();
+
+    // MAIN register to power down mode. Shut everything off
+    call HplCC1000.write(CC1K_MAIN,
+			 1 << CC1K_RX_PD |
+			 1 << CC1K_TX_PD | 
+			 1 << CC1K_FS_PD |
+			 1 << CC1K_CORE_PD |
+			 1 << CC1K_BIAS_PD |
+			 1 << CC1K_RESET_N);
+    call HplCC1000.write(CC1K_PA_POW, 0);  // turn off rf amp
     return SUCCESS;
   }
   
