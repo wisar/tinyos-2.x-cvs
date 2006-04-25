@@ -45,7 +45,7 @@ implementation
   inline async command bool IO.get()        { return READ_BIT (pin, bit); }
   inline async command void IO.set()        { SET_BIT  (port, bit); }
   inline async command void IO.clr()        { CLR_BIT  (port, bit); }
-  inline async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
+  async command void IO.toggle()     { atomic FLIP_BIT (port, bit); }
     
   inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
   inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
