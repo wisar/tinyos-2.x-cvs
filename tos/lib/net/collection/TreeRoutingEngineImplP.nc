@@ -36,6 +36,7 @@ generic module TreeRoutingEngineImplP(uint8_t routingTableSize) {
     uses {
         interface AMSend as BeaconSend;
         interface AMReceive as BeaconReceive;
+        interface LinkSrcPacket;
         interface TreeNeighborTable as RoutingTable;
         interface LinkEstimator;
         interface Timer<TMilli> as BeaconTimer;
@@ -124,7 +125,7 @@ implementation {
         beacon_msg_t* rcvBeacon;
 
         //need to get the am_addr_t of the source
-        from = call LinkSrcPacket.src(msg);
+        from = call LinkSrcPacket.getSrc(msg);
         rcvBeacon = (beacon_msg_t*)payload;
 
         //update neighbor table
