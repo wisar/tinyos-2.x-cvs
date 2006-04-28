@@ -9,35 +9,33 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 /**
- * 16-bit microsecond Alarm component as per TEP102 HAL guidelines. The
- * mica family microsecond Alarm is built on hardware timer 3, and actually
- * runs at CPU frequency / 8. You can use the MeasureClockC.cyclesPerJiffy() 
- * command to figure out the exact frequency, or the 
- * MeasureClockC.calibrateMicro() command to convert a number of microseconds
- * to the near-microsecond units used by this component.
+ * 16-bit 32kHz Alarm component as per TEP102 HAL guidelines. The mica
+ * family 32kHz Alarm is built on hardware timer 1, and actually runs at
+ * CPU frequency / 256. You can use the MeasureClockC.cyclesPerJiffy()
+ * command to figure out the exact frequency.
  *
  * Assumes an ~8MHz CPU clock, replace this component if you are running at
  * a radically different frequency.
  *
  * Upto three of these alarms can be created (one per hardware compare
- * register). 
+ * register).
  *
  * @author David Gay <dgay@intel-research.net>
  */
 
-#include "Atm128Timer.h"
+#include <MicaTimer.h>
 
-generic configuration AlarmMicro16C()
+generic configuration AlarmOne16C()
 {
-  provides interface Alarm<TMicro, uint16_t>;
+  provides interface Alarm<TOne, uint16_t>;
 }
 implementation
 {
-  components HplAtm128Timer3C as HWTimer, InitMicroP,
-    new Atm128AlarmC(TMicro, uint16_t, 100) as NAlarm;
+  components HplAtm128Timer1C as HWTimer, InitOneP,
+    new Atm128AlarmC(TOne, uint16_t, 3) as NAlarm;
   
   enum {
-    COMPARE_ID = unique(UQ_TIMER3_COMPARE)
+    COMPARE_ID = unique(UQ_TIMER1_COMPARE)
   };
 
   Alarm = NAlarm;

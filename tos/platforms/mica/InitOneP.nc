@@ -16,11 +16,13 @@
  * @author David Gay
  */
 
-configuration Init32khzP { }
+#include <MicaTimer.h>
+
+configuration InitOneP { }
 implementation {
   components PlatformC, HplAtm128Timer1C as HWTimer,
-    new Atm128TimerInitC(uint16_t, ATM128_CLK16_DIVIDE_256) as Init32khz;
+    new Atm128TimerInitC(uint16_t, MICA_PRESCALER_ONE) as InitOne;
 
-  PlatformC.SubInit -> Init32khz;
-  Init32khz.Timer -> HWTimer;
+  PlatformC.SubInit -> InitOne;
+  InitOne.Timer -> HWTimer;
 }

@@ -23,15 +23,17 @@
  * @author David Gay <dgay@intel-research.net>
  */
 
+#include <MicaTimer.h>
+
 generic configuration AlarmMicro32C()
 {
   provides interface Alarm<TMicro, uint32_t>;
 }
 implementation
 {
-  components new AlarmMicro16C() as Alarm16, CounterMicro32C as Counter32,
-    new TransformAlarmC(TMicro, uint32_t, TMicro, uint16_t, 0)
-      as Transform32;
+  components new AlarmThree16C() as Alarm16, CounterMicro32C as Counter32,
+    new TransformAlarmC(TMicro, uint32_t, TThree, uint16_t,
+			MICA_DIVIDE_THREE_FOR_MICRO_LOG2) as Transform32;
 
   Alarm = Transform32;
   Transform32.AlarmFrom -> Alarm16;

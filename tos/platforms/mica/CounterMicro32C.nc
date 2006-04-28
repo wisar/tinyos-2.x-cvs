@@ -17,6 +17,8 @@
  * @author David Gay <dgay@intel-research.net>
  */
 
+#include <MicaTimer.h>
+
 configuration CounterMicro32C
 {
   provides interface Counter<TMicro, uint32_t>;
@@ -24,7 +26,7 @@ configuration CounterMicro32C
 implementation
 {
   components CounterMicro16C as Counter16, 
-    new TransformCounterC(TMicro, uint32_t, TMicro, uint16_t, 0, uint16_t)
+    new TransformCounterC(TMicro, uint32_t, TMicro, uint16_t, 0, counter_three_overflow_t)
       as Transform32;
 
   Counter = Transform32;

@@ -16,11 +16,13 @@
  * @author David Gay
  */
 
-configuration InitMicroP { }
+#include <MicaTimer.h>
+
+configuration InitThreeP { }
 implementation {
   components PlatformC, HplAtm128Timer3C as HWTimer,
-    new Atm128TimerInitC(uint16_t, ATM128_CLK16_DIVIDE_8) as InitMicro;
+    new Atm128TimerInitC(uint16_t, MICA_PRESCALER_THREE) as InitThree;
 
-  PlatformC.SubInit -> InitMicro;
-  InitMicro.Timer -> HWTimer;
+  PlatformC.SubInit -> InitThree;
+  InitThree.Timer -> HWTimer;
 }
