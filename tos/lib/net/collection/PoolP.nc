@@ -24,6 +24,7 @@
 
 /*
  *  @author Philip Levis
+ *  @author Kyle Jamieson
  *  @date   $Date$
  */
 
@@ -58,18 +59,18 @@ implementation {
     return size;
   }
 
-  command t* Pool.pop() {
-    if (free == 0) {
-      return NULL;
-    }
-    else {
+  command t* Pool.get() {
+    if (free) {
       t* rval = queue[index];
       queue[index] = NULL;
       free--;
       index = (index + 1) % size;
+      return rval;
     }
+    return NULL;
   }
-  command error_t Pool.push(t* newVal) {
+
+  command error_t Pool.put(t* newVal) {
     if (free >= size) {
       return FAIL;
     }

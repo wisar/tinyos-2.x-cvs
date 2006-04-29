@@ -24,6 +24,7 @@
 
 /*
  *  @author Philip Levis
+ *  @author Kyle Jamieson
  *  @date   $Date$
  */
 
@@ -34,6 +35,10 @@ interface Pool<t> {
   command uint8_t size();
   command uint8_t maxSize();
 
-  command t* put();
-  command error_t get(t* newVal);
+  // Put an object of type t back into the pool.
+  command error_t put(t* newVal);
+
+  // Get a pointer to an object of type t from the pool, or NULL if we
+  // are out of t.
+  command t* get();
 }
