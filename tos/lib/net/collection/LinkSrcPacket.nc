@@ -27,7 +27,9 @@
  *  @date   $Date$
  */
 
+// Om: added the keyword "command"
+
 interface LinkSrcPacket {
     /** Returns the am_addr of the link this message came from */
-    am_addr_t getSrc(message_t* msg);
+    command am_addr_t getSrc(message_t* msg);
 }
