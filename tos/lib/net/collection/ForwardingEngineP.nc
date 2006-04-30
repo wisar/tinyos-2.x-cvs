@@ -28,7 +28,7 @@
  */
 
    
-generic module ForwardingEngineP(uint8_t messagePoolSize) {
+generic module ForwardingEngineP() {
   provides {
     interface Init;
     interface StdControl;
