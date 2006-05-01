@@ -19,10 +19,13 @@
 configuration RandRWAppC { }
 implementation {
   components RandRWC, new BlockStorageC(VOLUME_BLOCKTEST),
-    MainC, LedsC, PlatformC;
+    MainC, LedsC, PlatformC, SerialActiveMessageC;
 
   MainC.Boot <- RandRWC;
-  
+  MainC.SoftwareInit -> SerialActiveMessageC;
+
+  RandRWC.SerialControl -> SerialActiveMessageC;
+  RandRWC.AMSend -> SerialActiveMessageC.AMSend[1];
   RandRWC.BlockRead -> BlockStorageC.BlockRead;
   RandRWC.BlockWrite -> BlockStorageC.BlockWrite;
   RandRWC.Leds -> LedsC;
