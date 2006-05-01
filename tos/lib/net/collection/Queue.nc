@@ -24,6 +24,7 @@
 
 /*
  *  @author Philip Levis
+ *  @author Kyle Jamieson
  *  @date   $Date$
  */
 
@@ -35,6 +36,6 @@ interface Queue<t> {
   command uint8_t maxSize();
 
   command t head();
-  command t pop();
-  command error_t push(t newVal);
+  command t dequeue();
+  command error_t enqueue(t newVal);
 }

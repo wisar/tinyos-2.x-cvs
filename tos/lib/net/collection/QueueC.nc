@@ -28,7 +28,7 @@
  */
 
    
-generic module QueueC(uint8_t QUEUE_SIZE, typedef queue_type) {
+generic module QueueC(typedef queue_type, uint8_t QUEUE_SIZE) {
   provides {
     interface Queue<t>;
   }
@@ -57,7 +57,7 @@ implementation {
     return queue[head];
   }
 
-  command queue_type Queue.pop() {
+  command queue_type Queue.dequeue() {
     queue_type t = call Queue.head();
     if (!Queue.empty()) {
       head++;
@@ -67,7 +67,7 @@ implementation {
     return t;
   }
 
-  command error_t Queue.push(queue_type newVal) {
+  command error_t Queue.enqueue(queue_type newVal) {
     if (Queue.size() < Queue.maxSize()) {
       queue[tail] = newVal;
       tail++;
