@@ -30,6 +30,7 @@ interface LinkEstimator {
     command uint8_t getLinkQuality(uint16_t neighbor);
     command uint8_t getReverseQuality(uint16_t neighbor);
     command uint8_t getForwardQuality(uint16_t neighbor);
+    event void evicted(am_addr_t neighbor);
 }
 
 
