@@ -27,8 +27,8 @@
 #ifndef _H_Atm128I2C_h
 #define _H_Atm128I2C_h
 
-#define ATM128_I2C_SLA_W 0x00
-#define ATM128_I2C_SLA_R 0x01
+#define ATM128_I2C_SLA_WRITE 0x00
+#define ATM128_I2C_SLA_READ 0x01
 
 typedef uint8_t Atm128_TWBR_t;  //!< Two Wire Bit Rate Register
 typedef uint8_t Atm128_TWDR_t;  //!< Two Wire Data Register
