@@ -43,7 +43,7 @@ implementation {
     return CHANNEL_BATTERY_THERMISTOR;
   }
 
-  async command uint8_t TempConfig.getRefTemp() {
+  async command uint8_t TempConfig.getRefVoltage() {
     return ATM128_ADC_VREF_OFF;
   }
 
