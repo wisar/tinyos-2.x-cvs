@@ -51,8 +51,10 @@ enum {
   CHANNEL_BATTERY    = ATM128_ADC_SNGL_ADC7,
 };
 
-enum {
-  PLATFORM_MHZ = 8 // Approximate clock frequency (closest power of 2)
-};
+#ifndef MHZ
+/* Clock rate is ~8MHz except if specified by user 
+   (this value must be a power of 2, see MicaTimer.h and MeasureClockC.nc) */
+#define MHZ 8
+#endif
 
 #endif //HARDWARE_H

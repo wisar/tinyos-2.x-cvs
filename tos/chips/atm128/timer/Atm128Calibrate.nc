@@ -32,15 +32,14 @@ interface Atm128Calibrate {
 
   /**
    * Convert n microseconds into a value suitable for use with
-   * AlarmMicro16C and AlarmMicro32C Alarms.
+   * AlarmMicro32C Alarms.
    * @param n Time in microseconds.
    * @return AlarmMicro argument that best approximates n microseconds.
    */
   async command uint32_t calibrateMicro(uint32_t n);
 
   /**
-   * Convert values used by AlarmMicro16C and AlarmMicro32C Alarms into
-   * actual microseconds.
+   * Convert values used by AlarmMicro32C Alarms into actual microseconds.
    * @param n A time expressed in AlarmMicro time units.
    * @return Time in microseconds that corresponds to AlarmMicro argument n.
    */
