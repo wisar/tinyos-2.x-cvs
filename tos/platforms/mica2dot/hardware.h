@@ -56,4 +56,8 @@ enum {
 #define MHZ 4
 #endif
 
+enum {
+  PLATFORM_BAUDRATE = 19200L
+};
+
 #endif //HARDWARE_H

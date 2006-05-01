@@ -55,7 +55,7 @@ implementation
     stts.bits = (struct Atm128_UCSRA_t) {u2x:1};
     mode.bits = (struct Atm128_UCSRC_t) {ucsz:ATM128_UART_DATA_SIZE_8_BITS};
 
-    ubrr0 = call Atm128Calibrate.baudrateRegister(57600L);
+    ubrr0 = call Atm128Calibrate.baudrateRegister(PLATFORM_BAUDRATE);
     UBRR0L = ubrr0;
     UBRR0H = ubrr0 >> 8;
     UCSR0A = stts.flat;
@@ -112,7 +112,7 @@ implementation
     stts.bits = (struct Atm128_UCSRA_t) {u2x:1};
     mode.bits = (struct Atm128_UCSRC_t) {ucsz:ATM128_UART_DATA_SIZE_8_BITS};
 
-    ubrr1 = call Atm128Calibrate.baudrateRegister(57600L);
+    ubrr1 = call Atm128Calibrate.baudrateRegister(PLATFORM_BAUDRATE);
     UBRR1L = ubrr1;
     UBRR1H = ubrr1 >> 8;
     UCSR1A = stts.flat;
