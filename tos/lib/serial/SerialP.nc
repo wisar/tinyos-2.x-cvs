@@ -669,16 +669,19 @@ implementation {
         break;
         
       case TXSTATE_INFO:
-        atomic {          
+        atomic {
+	  uint8_t nextByte;
+
           txResult = call SerialFrameComm.putData(txBuf[txIndex].buf);
           txCRC = crcByte(txCRC,txBuf[txIndex].buf);
           ++txByteCnt;
           
+	  nextByte = signal SendBytePacket.nextByte();
           if (txBuf[txIndex].state == BUFFER_COMPLETE || txByteCnt >= SERIAL_MTU){
             txState = TXSTATE_FCS1;
           }
           else { /* never called on ack b/c ack is BUFFER_COMPLETE initially */
-            txBuf[txIndex].buf = signal SendBytePacket.nextByte();
+            txBuf[txIndex].buf = nextByte;
           }
         }
         break;
