@@ -453,7 +453,7 @@ public class Message implements Cloneable {
 	// get some high order bits
 	if (bitOffset > 0) {
 	    length -= 8 - bitOffset;
-	    val = (ubyte(byteOffset) & ((1 << (8 - bitOffset)) - 1)) << length;
+	    val = (long)(ubyte(byteOffset) & ((1 << (8 - bitOffset)) - 1)) << length;
 	    byteOffset++;
 	}
 
