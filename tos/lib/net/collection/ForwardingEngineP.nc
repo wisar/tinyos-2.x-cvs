@@ -40,8 +40,8 @@ generic module ForwardingEngineP() {
   }
   uses {
     interface AMSend;
-    interface AMReceive as SubReceive;
-    interface AMReceive as SubSnoop;
+    interface Receive as SubReceive;
+    interface Receive as SubSnoop;
     interface Packet as SubPacket;
     interface UnicastNameFreeRouting;
     interface SplitControl as RadioControl;
@@ -241,7 +241,7 @@ implementation {
       qe->msg = m;
       qe->client = CLIENT_COUNT;
 
-      uint8_t len = call SubPacket.payloadLength(m);x
+      uint8_t len = call SubPacket.payloadLength(m);
       call Packet.setPayloadLength(m, len + sizeof(network_header_t));
       if (call SendQueue.enqueue(qe))
         return newMsg;
