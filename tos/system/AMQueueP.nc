@@ -36,7 +36,11 @@ configuration AMQueueP {
 }
 
 implementation {
-  components AMQueueImplP, ActiveMessageC;
+  enum {
+    NUM_CLIENTS = uniqueCount(UQ_AMQUEUE_SEND)
+  };
+  
+  components new AMQueueImplP(NUM_CLIENTS), ActiveMessageC;
 
   Send = AMQueueImplP;
   AMQueueImplP.AMSend -> ActiveMessageC;
