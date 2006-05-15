@@ -71,6 +71,8 @@
 
 typedef uint8_t uart_id_t;
 
+#define UQ_SERIALQUEUE_SEND "SerialQueueP.Send"
+
 enum {
   HDLC_FLAG_BYTE	   = 0x7e,
   HDLC_CTLESC_BYTE	   = 0x7d,
