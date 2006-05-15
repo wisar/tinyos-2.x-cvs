@@ -71,7 +71,7 @@ typedef nx_struct cc2420_packet_t {
 #endif
 
 #ifndef CC2420_DEF_CHANNEL
-#define CC2420_DEF_CHANNEL 11
+#define CC2420_DEF_CHANNEL 26
 #endif
 
 #ifndef CC2420_DEF_RFPOWER
