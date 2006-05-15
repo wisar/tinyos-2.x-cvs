@@ -163,10 +163,17 @@ implementation {
     }
     
     if (!mine->lost) {
-      dbg_clear("Gain", "  -signaling reception.\n");
+      dbg_clear("Gain", "  -signaling reception, ");
       signal Model.receive(mine->msg);
+      if (mine->ack) {
+        dbg_clear("Gain", " acknowledgment requested, ");
+      }
+      else {
+        dbg_clear("Gain", " no acknowledgment requested.\n");
+      }
       // If we scheduled an ack, receiving = 0 when it completes
       if (mine->ack && signal Model.shouldAck(mine->msg)) {
+        dbg_clear("Gain", " scheduling ack.\n");
 	sim_gain_schedule_ack(mine->source, sim_time() + 1); 
       }
       // If no ack, then we're searching for new packets again
@@ -194,6 +201,7 @@ implementation {
     rcv->power = power;
     rcv->msg = msg;
     rcv->lost = 0;
+    rcv->ack = receive;
     
     // If I'm off, I never receive the packet, but I need to keep track of
     // it in case I turn on and someone else starts sending me a weaker
