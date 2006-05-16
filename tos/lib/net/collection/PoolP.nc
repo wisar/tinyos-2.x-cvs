@@ -29,11 +29,12 @@
  */
 
 generic module PoolP(typedef pool_t, uint8_t size) {
-  provides interface Init;
-  provides interface Pool<pool_t>;
+  provides {
+    interface Init;
+    interface Pool<pool_t>;
+  }
 }
 implementation {
-
   uint8_t free;
   uint8_t index;
   pool_t* queue[size];
@@ -59,9 +60,9 @@ implementation {
     return size;
   }
 
-  command t* Pool.get() {
+  command pool_t* Pool.get() {
     if (free) {
-      t* rval = queue[index];
+      pool_t* rval = queue[index];
       queue[index] = NULL;
       free--;
       index = (index + 1) % size;
@@ -70,7 +71,7 @@ implementation {
     return NULL;
   }
 
-  command error_t Pool.put(t* newVal) {
+  command error_t Pool.put(pool_t* newVal) {
     if (free >= size) {
       return FAIL;
     }

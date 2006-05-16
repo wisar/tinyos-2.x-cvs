@@ -27,13 +27,13 @@
  *  @date   $Date$
  */
 
-generic module PoolC(typedef pool_t, uint8_t size) {
+generic configuration PoolC(typedef pool_t, uint8_t POOL_SIZE) {
   provides interface Pool<pool_t>;
-}
-implementation {
-  components MainC, new PoolP(pool_t, size);
+} 
 
-  MainC.SofwareInit -> PoolP;
+implementation {
+  components MainC, new PoolP(pool_t, POOL_SIZE);
+
+  MainC.SoftwareInit -> PoolP;
   Pool = PoolP;
-  
 }

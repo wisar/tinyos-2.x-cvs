@@ -30,7 +30,6 @@
 
    
 interface Pool<t> {
-
   command bool empty();
   command uint8_t size();
   command uint8_t maxSize();
