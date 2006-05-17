@@ -1,6 +1,6 @@
 #include <Timer.h>
 #include <TreeRouting.h>
-#define TEST_INSERT
+//#define TEST_INSERT
 /* $Id$ */
 /*
  * "Copyright (c) 2005 The Regents of the University  of California.  
