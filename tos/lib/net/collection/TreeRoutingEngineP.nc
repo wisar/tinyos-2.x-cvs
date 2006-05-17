@@ -92,6 +92,7 @@ implementation {
 
 
     command error_t Init.init() {
+        uint8_t maxLength;
         radioOn = FALSE;
         running = FALSE;
         parentChanges = 0;
@@ -100,7 +101,9 @@ implementation {
         routingTableInit();
         my_ll_addr = call AMPacket.address();
         beaconMsg = call BeaconSend.getPayload(&beaconMsgBuffer);
-        dbg("TreeRoutingCtl","TreeRouting initialized!\n");
+        maxLength = call BeaconSend.maxPayloadLength();
+        dbg("TreeRoutingCtl","TreeRouting initialized. (used payload:%d max payload:%d!\n", 
+              sizeof(beaconMsg), maxLength);
 #ifdef TEST_INSERT
         victim = 0;
 #endif
@@ -252,7 +255,7 @@ implementation {
 
         eval = call BeaconSend.send(AM_BROADCAST_ADDR, 
                                     &beaconMsgBuffer, 
-                                    sizeof(beaconMsgBuffer));
+                                    sizeof(beaconMsg));
         if (eval == SUCCESS) {
             sending = TRUE;
         } else if (eval == EOFF) {
