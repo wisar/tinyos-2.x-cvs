@@ -110,9 +110,9 @@ radio start completion event.
 
 The TinyOS 2.x boot sequence uses three interfaces:
 
-  o Init, for initializing component/hardware state
-  o Scheduler, for initializing and running tasks
-  o Boot, for signalling that the system has successfully booted
+  * Init, for initializing component/hardware state
+  * Scheduler, for initializing and running tasks
+  * Boot, for signalling that the system has successfully booted
 
 The Init interface has a single command, init():
 
