@@ -222,7 +222,7 @@ component named PlatformC. PlatformInit is for initializations which
 must follow a very specific order due to hidden dependencies, e.g., as
 part of making the overall hardware platform operable. One example of
 this sort of initialization is clock calibration. Because PlatformInit
-calls the component PlatformC, each platform can specify the requires
+calls the component PlatformC, each platform can specify the required
 initialization order. As these hidden dependencies must be due to
 hardware, the sequence is platform-specific.
 
