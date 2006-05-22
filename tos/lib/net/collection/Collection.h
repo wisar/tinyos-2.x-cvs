@@ -35,4 +35,6 @@ enum {
 
 typedef nx_uint8_t collection_id_t;
 
+#define UQ_COLLECTION_ID "CollectionSenderC.CollectId"
+
 #endif
