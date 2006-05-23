@@ -42,9 +42,9 @@ generic configuration AMSnooperC(am_id_t AMId) {
 }
 
 implementation {
-  components ActiveMessageImpl;
+  components ActiveMessageImplP;
 
-  Receive = ActiveMessageImpl.Snoop[AMId];
-  Packet = ActiveMessageImpl;
-  AMPacket = ActiveMessageImpl;
+  Receive = ActiveMessageImplP.Snoop[AMId];
+  Packet = ActiveMessageImplP;
+  AMPacket = ActiveMessageImplP;
 }
