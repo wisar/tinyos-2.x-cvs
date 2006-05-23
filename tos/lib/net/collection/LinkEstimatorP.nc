@@ -452,7 +452,7 @@ implementation {
   uint8_t computeBidirEETX(uint8_t q1, uint8_t q2) {
     uint16_t q;
     if ((q1 > 0) && (q2 > 0)) {
-      q =  65025 / q1;
+      q =  65025u / q1;
       q = (10*q) / q2 - 10;
       if (q > 255) {
 	q = INFINITY;
