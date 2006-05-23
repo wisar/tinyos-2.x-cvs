@@ -47,6 +47,7 @@ implementation {
     }
     free = size;
     index = 0;
+    return SUCCESS;
   }
   
   command bool Pool.empty() {
