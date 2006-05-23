@@ -19,10 +19,10 @@ implementation {
   components new DemoSensorC();
 
   TestNetworkC.Boot -> MainC;
-  TestDisseminationC.Leds -> LedsC;
-  TestDisseminationC.Timer -> TimerMilliC;
-  TestDisseminationC.RadioControl -> ActiveMessageC;
-  TestDisseminationC.DisseminationPeriod -> Object16C;
-  TestDisseminationC.Send -> CollectionSenderC;
+  TestNetworkC.RadioControl -> ActiveMessageC;
+  TestNetworkC.Leds -> LedsC;
+  TestNetworkC.Timer -> TimerMilliC;
+  TestNetworkC.DisseminationPeriod -> Object16C;
+  TestNetworkC.Send -> CollectionSenderC;
+  TestNetworkC.ReadSensor -> DemoSensorC;
 }
-

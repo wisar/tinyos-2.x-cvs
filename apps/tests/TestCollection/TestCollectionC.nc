@@ -24,6 +24,9 @@ implementation {
       call Timer.startPeriodic(20000);
     }
   }
+  
+  event void Send.sendDone(message_t* m, error_t error) {
+  }
 
   event void Timer.fired() {
     call Leds.led0Toggle();
