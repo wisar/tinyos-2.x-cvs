@@ -149,11 +149,19 @@ implementation {
   event void LogWrite.eraseDone(error_t result) {
     if (scheck(result))
       {
-	call Leds.led2Toggle();
-	state = S_WRITE;
-	count = 0;
-	resetSeed();
-	nextWrite();
+	call Leds.led2On();
+	if (TOS_NODE_ID & 3)
+	  {
+	    state = S_WRITE;
+	    count = 0;
+	    resetSeed();
+	    nextWrite();
+	  }
+	else
+	  {
+	    call Leds.led1On();
+	    report(0x90);
+	  }
       }
   }
 
@@ -191,7 +199,7 @@ implementation {
 
     switch (TOS_NODE_ID & 3)
       {
-      case 1:
+      case 0: case 1:
 	state = S_ERASE;
 	scheck(call LogWrite.erase());
 	break;
