@@ -50,5 +50,5 @@ implementation {
   async command void Leds.led2Toggle() {}
 
   async command uint8_t Leds.get() {return 0;}
-  async command void Leds.set(uint8_t) {}
+  async command void Leds.set(uint8_t val) {}
 }
