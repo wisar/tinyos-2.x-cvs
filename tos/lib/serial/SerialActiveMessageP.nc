@@ -37,6 +37,7 @@ generic module SerialActiveMessageP () {
     interface Receive[am_id_t id];
     interface AMPacket;
     interface Packet;
+    interface PacketAcknowledgements;
   }
   uses {
     interface Send as SubSend;
@@ -147,6 +148,17 @@ implementation {
   command void AMPacket.setType(message_t* amsg, am_id_t type) {
     serial_header_t* header = getHeader(amsg);
     header->type = type;
+  }
+
+  async command error_t PacketAcknowledgements.requestAck( message_t* msg ) {
+    return FAIL;
+  }
+  async command error_t PacketAcknowledgements.noAck( message_t* msg ) {
+    return SUCCESS;
+  }
+   
+  async command bool PacketAcknowledgements.wasAcked(message_t* msg) {
+    return FALSE;
   }
 
 }

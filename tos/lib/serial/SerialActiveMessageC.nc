@@ -32,20 +32,20 @@
 #include "Serial.h"
 configuration SerialActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];
     interface Packet;
     interface AMPacket;
+    interface PacketAcknowledgements;
   }
   uses interface Leds;
 }
 implementation {
   components new SerialActiveMessageP() as AM, SerialDispatcherC;
-  components SerialPacketInfoActiveMessageP as Info;
+  components SerialPacketInfoActiveMessageP as Info, MainC;
 
-  Init = SerialDispatcherC;
+  MainC.SoftwareInit -> SerialDispatcherC;
   Leds = SerialDispatcherC;
   SplitControl = SerialDispatcherC;
   
@@ -53,6 +53,7 @@ implementation {
   Receive = AM;
   Packet = AM;
   AMPacket = AM;
+  PacketAcknowledgements = AM;
   
   AM.SubSend -> SerialDispatcherC.Send[TOS_SERIAL_ACTIVE_MESSAGE_ID];
   AM.SubReceive -> SerialDispatcherC.Receive[TOS_SERIAL_ACTIVE_MESSAGE_ID];
