@@ -2,7 +2,7 @@
  * Copyright (c) 2005-2006 Arch Rock Corporation
  * All rights reserved.
  *
- * Redistribution and use in so1urce and binary forms, with or without
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
  * - Redistributions of source code must retain the above copyright
@@ -30,44 +30,39 @@
  */
 
 /**
- * Types and definitions for the Taos TSL256x sensor
+ * HplTSL256x is the Hpl inteface to the Taos TSL256x series 
+ * Light-to-Digital converters.
  *
  * @author Phil Buonadonna <pbuonadonna@archrock.com>
  * @version $Revision$ $Date$
  */
 
-#ifndef _TAOSTSL256X_H
-#define _TAOSTSL256X_H
-
-#define TSL256X_PTR_CONTROL	(0x0)
-#define TSL256X_PTR_TIMING	(0x1)
-#define TSL256X_PTR_THRESHLOWLOW	(0x2)
-#define TSL256X_PTR_THRESHLOWHIGH	(0x3)
-#define TSL256X_PTR_THRESHHIGHLOW	(0x4)
-#define TSL256X_PTR_THRESHHIGHIGH	(0x5)
-#define TSL256X_PTR_INTERRUPT	(0x6)
-#define TSL256X_PTR_CRC		(0x8)
-#define TSL256X_PTR_ID		(0xA)
-#define TSL256X_PTR_DATA0LOW	(0xC)
-#define TSL256X_PTR_DATA0HIGH	(0xD)
-#define TSL256X_PTR_DATA1LOW	(0xE)
-#define TSL256X_PTR_DATA1HIGH	(0xF)
-
-#define TSL256X_COMMAND_CMD	(1<<7)
-#define TSL256X_COMMAND_CLEAR	(1<<6)
-#define TSL256X_COMMAND_WORD	(1<<5)
-#define TSL256X_COMMAND_BLOCK	(1<<4)
-#define TSL256X_COMMAND_ADDRESS(_x) ((_x) & 0xF)
-
-#define TSL256X_CONTROL_POWER_ON (0x3)
-#define TSL256X_CONTROL_POWER_OFF (0x0)
-
-#define TSL256X_TIMING_GAIN	(1<<4)
-#define TSL256X_TIMING_MANUAL	(1<<3)
-#define TSL256X_TIMING_INTEG(_x) ((_x) & 0x3)
-
-#define TSL256X_INTERRUPT_INTR(_x) (((_x) & 0x3) << 4)
-#define TSL256X_INTERRUPT_PERSIST(_x) ((_x) & 0xF)
+interface HplTSL256x {
 
 
-#endif /* _TAOSTSL256X_H */
+  command error_t measureCh0();
+  async event void measureCh0Done( error_t error, uint16_t val );
+
+  command error_t measureCh1();
+  async event void measureCh1Done( error_t error, uint16_t val );
+
+  command error_t setCONTROL( uint8_t val );
+  async event void setCONTROLDone( error_t error );
+
+  command error_t setTIMING( uint8_t val );
+  async event void setTIMINGDone( error_t error );
+
+  command error_t setTHRESHLOW(uint16_t val);
+  async event setTHRESHLOWDone(error_t error);
+
+  command error_t setTHRESHHIGH(uint16_t val);
+  async event void setTHRESHHIGHDone(error_t error);
+
+  command error_t setINTERRUPT(uint8_t val);
+  async event void setINTERRUPTDone(error_t error);
+
+  command error_t getID();
+  async event void getIDDone(error_t error, uint8_t idval);
+
+  async event void alertThreshold();
+}
