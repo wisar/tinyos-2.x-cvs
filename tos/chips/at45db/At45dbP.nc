@@ -359,6 +359,7 @@ implementation
       case R_SYNC: case R_SYNCALL: signal At45db.syncDone(result); break;
       case R_FLUSH: case R_FLUSHALL: signal At45db.flushDone(result); break;
       case R_ERASE: signal At45db.eraseDone(result); break;
+      case R_COPY: signal At45db.copyPageDone(result); break;
       }
   }
 

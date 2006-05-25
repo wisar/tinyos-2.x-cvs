@@ -39,7 +39,7 @@ implementation {
 
   ConfigStorageP.BlockRead[CONFIG_ID] -> BlockStorageP.BlockRead[BLOCK_ID];
   ConfigStorageP.BlockWrite[CONFIG_ID] -> BlockStorageP.BlockWrite[BLOCK_ID];
-  ConfigStorageP.BLog[CONFIG_ID] -> BlockStorageP.BLog[BLOCK_ID];
+  ConfigStorageP.BConfig[CONFIG_ID] -> BlockStorageP.BConfig[BLOCK_ID];
 
   BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerP.At45dbVolume[volid];
   BlockStorageP.Resource[BLOCK_ID] -> At45dbC.Resource[RESOURCE_ID];
