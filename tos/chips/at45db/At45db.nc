@@ -69,6 +69,22 @@ interface At45db {
   event void writeDone(error_t error);
 
   /**
+   * Copy one flash page to another. copyDone will be signaled. If page
+   * from had been modified, it is first flushed to flash. Page
+   * <code>to</code> will only actually be written when the buffer holding
+   * it is flushed (see flush, flushAll, sync, syncAll).
+   *
+   * @param from Flash page to copy. Must be less than AT45_MAX_PAGES.
+   * @param to Flash page to overwrite. Must be less than AT45_MAX_PAGES.
+   */
+  command void copyPage(at45page_t from, at45page_t to);
+  /**
+   * Signal completion of a copyPage operation. 
+   * @param error SUCCESS if the copy was successful, FAIL otherwise
+   */
+  event void copyPageDone(error_t error);
+
+  /**
    * Erase an AT45DB page. eraseDone will be signaled.
    * @param page Flash page to erase. Must be less than AT45_MAX_PAGES.
    * @param eraseKind How to handle the erase:
