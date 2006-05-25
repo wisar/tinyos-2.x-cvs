@@ -30,25 +30,52 @@
  */
 
 /**
- * Types and definitions for the TI TMP175
+ * HplTMP175 is the HPL inteface to the Texas Instrument TMP175 
+ * Digital Temperature Sensor. 
  *
  * @author Phil Buonadonna <pbuonadonna@archrock.com>
  * @version $Revision$ $Date$
  */
 
-#ifndef _TITMP175_H
-#define _TITMP175_H
+interface HplTMP175 {
 
-#define TMP175_PTR_TEMP		(0x0)
-#define TMP175_PTR_CFG		(0x1)
-#define TMP175_PTR_TLOW		(0x2)
-#define TMP175_PTR_THIGH	(0x3)
+  /**
+   * Starts a temperature measurement.
+   *
+   * @return SUCCESS if the measurement will be made
+   */
+  command error_t measureTemperature();
 
-#define TMP175_CFG_OS		(1 << 7)
-#define TMP175_CFG_RES(_x)	(((_x) & 0x3) << 5)
-#define TMP175_CFG_FQ(_x)	(((_x) & 0x3) << 3)
-#define TMP175_CFG_POL		(1 << 2)
-#define TMP175_CFG_TM		(1 << 1)
-#define TMP175_CFG_SD		(1 << 0)
+  /**
+   * Presents the result of a temperature measurement.
+   *
+   * @param error SUCCESS if the measurement was successful
+   * @param val the temperature reading
+   */
+  async event void measureTemperatureDone( error_t error, uint16_t val );
 
-#endif /* _TITMP175_H */
+  /**
+   * Sets a new value to the TMP175 configuration register.
+   *
+   * @param val the new value to be written
+   *
+   * @return SUCCESS if the set will be performed
+   */
+  command error_t setConfigReg( uint8_t val );
+
+  /**
+   * Signals the completion of the configuration register set.
+   *
+   * @param error SUCCESS if the set was successful
+   */
+  async event void setConfigRegDone( error_t error );
+
+  command error_t setTLowReg(uint16_t val);
+  async event void setTLowRegDone(error_t error);
+
+  command error_t setTHighReg(uint16_t val);
+  async event void setTHighRegDone(error_t error);
+
+  async event void alertThreshold();
+
+}
