@@ -27,7 +27,6 @@ generic configuration ConfigStorageC(volume_id_t volid) {
 implementation {
   enum {
     CONFIG_ID = unique(UQ_CONFIG_STORAGE),
-    BLOCK_ID = uniqueCount(UQ_BLOCK_STORAGE) + CONFIG_ID,
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
@@ -37,10 +36,6 @@ implementation {
   SplitControl = ConfigStorageP.SplitControl[CONFIG_ID];
   ConfigStorage = ConfigStorageP.ConfigStorage[CONFIG_ID];
 
-  ConfigStorageP.BlockRead[CONFIG_ID] -> BlockStorageP.BlockRead[BLOCK_ID];
-  ConfigStorageP.BlockWrite[CONFIG_ID] -> BlockStorageP.BlockWrite[BLOCK_ID];
-  ConfigStorageP.BConfig[CONFIG_ID] -> BlockStorageP.BConfig[BLOCK_ID];
-
-  BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerP.At45dbVolume[volid];
-  BlockStorageP.Resource[BLOCK_ID] -> At45dbC.Resource[RESOURCE_ID];
+  BlockStorageP.At45dbVolume[CONFIG_ID] -> StorageManagerP.At45dbVolume[volid];
+  BlockStorageP.Resource[CONFIG_ID] -> At45dbC.Resource[RESOURCE_ID];
 }

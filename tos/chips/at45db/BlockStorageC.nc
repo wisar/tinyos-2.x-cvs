@@ -26,7 +26,7 @@ generic configuration BlockStorageC(volume_id_t volid) {
 }
 implementation {
   enum {
-    BLOCK_ID = unique(UQ_BLOCK_STORAGE),
+    BLOCK_ID = unique(UQ_BLOCK_STORAGE) + uniqueCount(UQ_CONFIG_STORAGE),
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
