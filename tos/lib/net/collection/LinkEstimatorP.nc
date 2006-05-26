@@ -315,7 +315,7 @@ implementation {
     uint8_t minPkt;
 
     minPkt = TABLEUPDATE_INTERVAL / BEACON_INTERVAL;
-    
+    dbg("LI", "%s\n", __FUNCTION__);
     for (i = 0; i < NEIGHBOR_TABLE_SIZE; i++) {
       ne = &NeighborTable[i];
       if (ne->flags & VALID_ENTRY) {
@@ -338,11 +338,15 @@ implementation {
 	    ne->inquality = (ALPHA * ne->inquality) / 10;
 	  } else {
 	    newEst = (255 * ne->rcvcnt) / totalPkt;
+	    dbg("LI", "  %hu: %hhu -> %hhu", ne->ll_addr, ne->inquality, (ALPHA * ne->inquality + (10-ALPHA) * newEst)/10);
 	    ne->inquality = (ALPHA * ne->inquality + (10-ALPHA) * newEst)/10;
 	  }
 	  ne->rcvcnt = 0;
 	  ne->failcnt = 0;
 	}
+      }
+      else {
+	dbg("LI", " - entry %i is invalid.\n", (int)i);
       }
     }
   }

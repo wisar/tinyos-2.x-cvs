@@ -39,33 +39,31 @@ configuration CollectionC {
 }
 
 implementation {
-    components ForwardingEngineP
-             , TreeRoutingEngineP
-             , LinkEstimatorC;
+  components new ForwardingEngineP(), new TreeRoutingEngineP(8), LinkEstimatorC;
     
-    Send = ForwardingEngineP;
-    Receive = ForwardingEngineP;
-    Snoop = ForwardingEngineP;
-    Intercept = ForwardingEngineP;
-    Packet = ForwardingEngineP;
-    RootControl = TreeRoutingEngineP;
-    
-    ForwardingEngineP.BasicRouting -> TreeRoutingEngineP;
-    TreeRoutingEngineP.LinkEstimator -> LinkEstimatorC;
-   
-    components new LinkEstimatorAMSenderC(AM_COLLECTION_DATA) 
-               as DataAMSender; 
-    ForwardingEngineP.AMSend -> DataAMSender;
-
-    components new LinkEstimatorAMReceiverC(AM_COLLECTION_DATA) 
-               as DataAMReceiver;
-    ForwardingEngineP.AMReceive -> DataAMReceiver;
-
-    components new LinkEstimatorAMSenderC(AM_COLLECTION_CONTROL) 
-               as ControlAMSender; 
-    TreeRoutingEngineP.AMSend -> ControlAMSender;
-
-    components new LinkEstimatorAMReceiverC(AM_COLLECTION_CONTROL)
-               as ControlAMReceiver;
-    TreeRoutingEngineP.AMReceive -> ControlAMReceiver;     
+  Send = ForwardingEngineP;
+  Receive = ForwardingEngineP;
+  Snoop = ForwardingEngineP;
+  Intercept = ForwardingEngineP;
+  Packet = ForwardingEngineP;
+  RootControl = TreeRoutingEngineP;
+  
+  ForwardingEngineP.BasicRouting -> TreeRoutingEngineP;
+  TreeRoutingEngineP.LinkEstimator -> LinkEstimatorC;
+  
+  components new LinkEstimatorAMSenderC(AM_COLLECTION_DATA) 
+    as DataAMSender; 
+  ForwardingEngineP.AMSend -> DataAMSender;
+  
+  components new LinkEstimatorAMReceiverC(AM_COLLECTION_DATA) 
+    as DataAMReceiver;
+  ForwardingEngineP.AMReceive -> DataAMReceiver;
+  
+  components new LinkEstimatorAMSenderC(AM_COLLECTION_CONTROL) 
+    as ControlAMSender; 
+  TreeRoutingEngineP.AMSend -> ControlAMSender;
+  
+  components new LinkEstimatorAMReceiverC(AM_COLLECTION_CONTROL)
+    as ControlAMReceiver;
+  TreeRoutingEngineP.AMReceive -> ControlAMReceiver;     
 }

@@ -190,13 +190,18 @@ implementation {
             if (entry->info.parent == my_ll_addr) continue;
 
             linkMetric = evaluateMetric(call LinkEstimator.getLinkQuality(entry->neighbor));
+	    dbg("TreeRouting", "   metric: %hu.\n", linkMetric);
             pathMetric =linkMetric + entry->info.metric;
             //for current parent
             if (entry->neighbor == routeInfo.parent) {
-                currentMetric = pathMetric;    
+                currentMetric = pathMetric;
+		dbg("TreeRouting", "   already parent.\n");
                 continue;
             }
-            if (!passLinkMetricThreshold(linkMetric)) continue; 
+            if (!passLinkMetricThreshold(linkMetric)) {
+	      dbg("TreeRouting", "   did not pass threshold.\n");
+	      continue;
+	    }
             
             if (pathMetric < minMetric) {
                 minMetric = pathMetric;
