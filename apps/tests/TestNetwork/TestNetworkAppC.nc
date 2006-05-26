@@ -15,14 +15,18 @@ implementation {
   components TestNetworkC, MainC, LedsC, ActiveMessageC;
   components new DisseminatorC(uint16_t, 0x1) as Object16C;
   components new CollectionSenderC(0);
+  components TreeCollectionC as Collector;
   components new TimerMilliC();
   components new DemoSensorC();
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
+  TestNetworkC.RoutingControl -> Collector;
   TestNetworkC.Leds -> LedsC;
   TestNetworkC.Timer -> TimerMilliC;
   TestNetworkC.DisseminationPeriod -> Object16C;
   TestNetworkC.Send -> CollectionSenderC;
   TestNetworkC.ReadSensor -> DemoSensorC;
+  TestNetworkC.RootControl -> Collector;
+  TestNetworkC.Receive -> Collector.Receive[0];
 }
