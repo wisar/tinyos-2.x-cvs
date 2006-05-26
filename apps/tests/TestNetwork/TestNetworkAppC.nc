@@ -18,6 +18,7 @@ implementation {
   components TreeCollectionC as Collector;
   components new TimerMilliC();
   components new DemoSensorC();
+  components new SerialAMSenderC(0);
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
@@ -29,4 +30,5 @@ implementation {
   TestNetworkC.ReadSensor -> DemoSensorC;
   TestNetworkC.RootControl -> Collector;
   TestNetworkC.Receive -> Collector.Receive[0];
+  TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
 }
