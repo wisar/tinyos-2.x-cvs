@@ -14,7 +14,6 @@
 
 module ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
 
     interface AMSend[uint8_t id];
@@ -28,9 +27,6 @@ module ActiveMessageC {
 }
 implementation {
 
-  command error_t Init.init() {
-    return SUCCESS;
-  }
 
   command error_t SplitControl.start() {
     return SUCCESS;

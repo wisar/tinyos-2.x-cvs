@@ -42,7 +42,6 @@
 
 configuration CC2420ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];
@@ -59,7 +58,6 @@ implementation {
   components CC2420CsmaC as Radio;
   components ActiveMessageAddressC as Address;
   
-  Init         = Radio;
   SplitControl = Radio;
   Packet       = AM;
 

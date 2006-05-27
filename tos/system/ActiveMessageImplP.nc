@@ -53,9 +53,7 @@ configuration ActiveMessageImplP {
 }
 
 implementation {
-  components ActiveMessageC, MainC;
-
-  MainC.SoftwareInit -> ActiveMessageC;
+  components ActiveMessageC;
 
   SplitControl = ActiveMessageC;
   AMSend = ActiveMessageC;

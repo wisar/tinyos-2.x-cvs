@@ -43,7 +43,6 @@
 
 configuration CC1000ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];
@@ -58,7 +57,6 @@ implementation {
   components CC1000ActiveMessageP as AM, CC1000CsmaRadioC as Radio;
   components ActiveMessageAddressC as Address;
   
-  Init         = Radio;
   SplitControl = Radio;
   Packet       = Radio;
   PacketAcknowledgements = Radio;

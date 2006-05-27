@@ -72,10 +72,6 @@ implementation {
   
   MainC.Boot <- BaseStationP;
 
-  MainC.SoftwareInit -> Radio;
-  
-  MainC.SoftwareInit -> Serial;
-  
   BaseStationP.RadioControl -> Radio;
   BaseStationP.SerialControl -> Serial;
   

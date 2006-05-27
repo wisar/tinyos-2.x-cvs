@@ -51,7 +51,6 @@
 
 configuration CC1000CsmaRadioC {
   provides {
-    interface Init;
     interface SplitControl;
     interface Send;
     interface Receive;
@@ -73,10 +72,10 @@ implementation {
   components CC1000ControlP as Control;
   components HplCC1000C as Hpl;
 
-  components RandomC, new TimerMilliC(), ActiveMessageAddressC, BusyWaitMicroC;
+  components MainC, RandomC, new TimerMilliC(), ActiveMessageAddressC, BusyWaitMicroC;
 
-  Init = Csma;
-  Init = Squelch;
+  MainC.SoftwareInit -> Csma;
+  MainC.SoftwareInit -> Squelch;
 
   SplitControl = Csma;
   Send = SendReceive;

@@ -45,7 +45,6 @@
 
 configuration ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
 
     interface AMSend[uint8_t id];
@@ -60,7 +59,6 @@ configuration ActiveMessageC {
 implementation {
   components CC1000ActiveMessageC as AM;
 
-  Init         = AM;
   SplitControl = AM;
   
   AMSend       = AM;

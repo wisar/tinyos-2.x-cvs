@@ -41,7 +41,6 @@
 
 configuration CC2420CsmaC {
 
-  provides interface Init;
   provides interface SplitControl;
 
   provides interface Send;
@@ -55,25 +54,22 @@ implementation {
 
   components CC2420CsmaP as CsmaP;
 
-  Init = CsmaP;
   SplitControl = CsmaP;
   Send = CsmaP;
   AMPacket = CsmaP;
 
   components CC2420ControlC;
-  Init = CC2420ControlC;
   AMPacket = CC2420ControlC;
   CsmaP.Resource -> CC2420ControlC;
   CsmaP.CC2420Power -> CC2420ControlC;
 
   components CC2420TransmitC;
-  Init = CC2420TransmitC;
+
   CsmaP.SubControl -> CC2420TransmitC;
   CsmaP.CC2420Transmit -> CC2420TransmitC;
   CsmaP.CsmaBackoff -> CC2420TransmitC;
 
   components CC2420ReceiveC;
-  Init = CC2420ReceiveC;
   Receive = CC2420ReceiveC;
   CsmaP.SubControl -> CC2420ReceiveC;
 
@@ -83,4 +79,9 @@ implementation {
   components LedsC as Leds;
   CsmaP.Leds -> Leds;
 
+  components MainC;
+  MainC.SoftwareInit -> CsmaP;
+  MainC.SoftwareInit -> CC2420ControlC;
+  MainC.SoftwareInit -> CC2420TransmitC;
+  MainC.SoftwareInit -> CC2420ReceiveC;
 }
