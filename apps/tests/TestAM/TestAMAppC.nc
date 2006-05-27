@@ -43,10 +43,7 @@ implementation {
   components MainC, TestAMC as App, LedsC;
   components ActiveMessageC;
   components new TimerMilliC();
-  
-  
-  MainC.SoftwareInit -> ActiveMessageC;
-  
+    
   App.Boot -> MainC.Boot;
 
   App.Receive -> ActiveMessageC.Receive[240];

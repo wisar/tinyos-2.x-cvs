@@ -53,8 +53,6 @@ implementation {
   components new TimerMilliC();
   components new AMSenderC(240), new AMReceiverC(240); 
   
-  MainC.SoftwareInit -> ActiveMessageC;
-  
   App.Boot -> MainC.Boot;
 
   App.Receive -> AMReceiverC;
