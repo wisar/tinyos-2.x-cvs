@@ -47,7 +47,6 @@
 
 configuration ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
 
     interface AMSend[uint8_t id];
@@ -63,7 +62,6 @@ configuration ActiveMessageC {
 implementation {
   components Tda5250ActiveMessageC as AM;
 
-  Init         = AM;
   SplitControl = AM;
   AMSend       = AM;
   Receive      = AM.Receive;

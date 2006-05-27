@@ -38,7 +38,6 @@
 configuration RadioDataLinkC {
     provides {
       
-      interface Init;
       interface SplitControl; 
       interface Send;
       interface Receive;
@@ -60,11 +59,9 @@ implementation
     //Don't change wirings below this point, just change which components
     //They are compposed of in the list above             
     
-    Init = Radio;
-    Init = UartPhy;
-    Init = PacketSerializer;
-    Init = Mac;
-    Init = Llc;
+    components MainC;
+    MainC.SoftwareInit -> UartPhy;
+    MainC.SoftwareInit -> PacketSerializer;
         
     SplitControl = Llc;
     Llc.MacSplitControl -> Mac.SplitControl;
