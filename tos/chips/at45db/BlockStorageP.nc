@@ -82,7 +82,6 @@ implementation
     nx_uint32_t maxAddr;
   } sig;
 
-  /* The requests */
   struct {
     /* The latest request made for this client, and it's arguments */
     uint8_t request; /* automatically initialised to R_IDLE */
@@ -90,12 +89,13 @@ implementation
     storage_addr_t addr;
     storage_len_t len;
 
+    /* Maximum address written in this block */
     storage_addr_t maxAddr;
   } s[N];
 
 
   /* ------------------------------------------------------------------ */
-  /* Interface with ConfigStorageP					*/
+  /* Interface with ConfigStorageP (see also writeHook call below)	*/
   /* ------------------------------------------------------------------ */
 
   at45page_t pageRemap(at45page_t p) {
@@ -221,6 +221,7 @@ implementation
   }
 
   event void BConfig.writeContinue[blockstorage_t blockId](error_t error) {
+    /* Config intercept complete. Resume operation. */
     client = blockId;
     if (error == SUCCESS)
       startRequest();
