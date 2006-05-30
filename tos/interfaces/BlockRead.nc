@@ -105,7 +105,8 @@ interface BlockRead {
 			     uint16_t crc, error_t error );
 
   /**
-   * Report volume size in bytes.
+   * Report the usable volume size in bytes (this may be different than
+   * the actual volume size because of metadata overheads).
    * @return Volume size.
    */
   command storage_len_t getSize();
