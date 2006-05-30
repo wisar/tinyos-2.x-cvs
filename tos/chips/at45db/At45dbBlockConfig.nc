@@ -24,11 +24,6 @@ interface At45dbBlockConfig {
   command int isConfig();
 
   /**
-   * Set which half of the block is used by the current config state
-   * @param flip TRUE for 2nd half, FALSE for 1st half
-   */
-  command void setFlip(bool flip);
-  /**
    * Query which half of the block is used by the current config state
    * @return TRUE for 2nd half, FALSE for 1st half
    */

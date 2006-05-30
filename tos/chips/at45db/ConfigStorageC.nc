@@ -20,7 +20,7 @@
 
 generic configuration ConfigStorageC(volume_id_t volid) {
   provides {
-    interface SplitControl;
+    interface Mount;
     interface ConfigStorage;
   }
 }
@@ -33,7 +33,7 @@ implementation {
   components ConfigStorageP, WireConfigStorageP, StorageManagerP, At45dbC;
   components BlockStorageP, WireBlockStorageP;
 
-  SplitControl = ConfigStorageP.SplitControl[CONFIG_ID];
+  Mount = ConfigStorageP.Mount[CONFIG_ID];
   ConfigStorage = ConfigStorageP.ConfigStorage[CONFIG_ID];
 
   BlockStorageP.At45dbVolume[CONFIG_ID] -> StorageManagerP.At45dbVolume[volid];
