@@ -118,7 +118,7 @@ implementation {
   }
 
   event void LogRead.readDone(void* buf, storage_len_t rlen, error_t result) __attribute__((noinline)) {
-    if (result == ESIZE)
+    if (len != 0 && rlen == 0)
       done();
     else if (scheck(result) && bcheck(rlen == len && buf == rdata) &&
 	     bcheck(call LogRead.currentOffset() % 7 == 0))
