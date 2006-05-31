@@ -138,4 +138,12 @@ interface ConfigStorage {
    *    been mounted.
    */
   command storage_len_t getSize();
+
+  /**
+   * Report whether this config volume contains valid data. Committing
+   * a volume makes it valid.
+   *
+   * @return TRUE if the volume contains valid data, FALSE otherwise.
+   */
+  command bool valid();
 }
