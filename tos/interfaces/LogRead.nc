@@ -49,7 +49,6 @@
 #include "Storage.h"
 
 interface LogRead {
-  
   /**
    * Initiate a read operation from the current position within a given log
    * volume. On SUCCESS, the <code>readDone</code> event will signal

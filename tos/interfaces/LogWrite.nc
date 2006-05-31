@@ -62,7 +62,15 @@ interface LogWrite {
    */
   event void appendDone(void* buf, storage_len_t len, error_t error);
   
-  command uint32_t currentOffset();
+  /**
+   * Return a "cookie" representing the current append offset within the
+   * log. This cookie can be used in a subsequent seek operation (see
+   * <code>LogRead</code> to start reading from this place in the log (if
+   * it hasn't been overwritten).
+   *
+   * @return Cookie representing current offset. 
+   */
+  command storage_cookie_t currentOffset();
 
   /**
    * Initiate an erase operation. On SUCCESS, the
@@ -95,5 +103,4 @@ interface LogWrite {
    * @param error notification of how the operation went.
    */
   event void syncDone(error_t error);
-  
 }
