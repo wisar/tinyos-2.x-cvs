@@ -31,26 +31,23 @@
  **/
 
 #include "Timer.h"
-configuration TestTDA5250ControlC {
+configuration TestTda5250ControlC {
 }
 implementation {
-  components MainC, TestTDA5250ControlP
+  components MainC, TestTda5250ControlP
            , new AlarmMilliC() as ModeTimer
            , LedsC
-           , TDA5250RadioC
+           , Tda5250RadioC
            , RandomLfsrC
            ;
 
-  MainC.SoftwareInit -> TDA5250RadioC.Init;
-  MainC.SoftwareInit -> RandomLfsrC.Init;
-  MainC.SoftwareInit -> LedsC.Init;
-  TestTDA5250ControlP -> MainC.Boot;
+  TestTda5250ControlP -> MainC.Boot;
 
-  TestTDA5250ControlP.Random -> RandomLfsrC.Random;
-  TestTDA5250ControlP.ModeTimer -> ModeTimer;
-  TestTDA5250ControlP.Leds  -> LedsC;
-  TestTDA5250ControlP.TDA5250Control -> TDA5250RadioC.TDA5250Control;
-  TestTDA5250ControlP.RadioSplitControl -> TDA5250RadioC.SplitControl;
+  TestTda5250ControlP.Random -> RandomLfsrC.Random;
+  TestTda5250ControlP.ModeTimer -> ModeTimer;
+  TestTda5250ControlP.Leds  -> LedsC;
+  TestTda5250ControlP.Tda5250Control -> Tda5250RadioC.Tda5250Control;
+  TestTda5250ControlP.RadioSplitControl -> Tda5250RadioC.SplitControl;
 }
 
 
