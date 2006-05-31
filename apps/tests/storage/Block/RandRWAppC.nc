@@ -22,7 +22,6 @@ implementation {
     MainC, LedsC, PlatformC, SerialActiveMessageC;
 
   MainC.Boot <- RandRWC;
-  MainC.SoftwareInit -> SerialActiveMessageC;
 
   RandRWC.SerialControl -> SerialActiveMessageC;
   RandRWC.AMSend -> SerialActiveMessageC.AMSend[1];

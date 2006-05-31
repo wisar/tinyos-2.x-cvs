@@ -122,7 +122,7 @@ implementation {
   }
 
   event void LogRead.readDone(void* buf, storage_len_t rlen, error_t result) __attribute__((noinline)) {
-    if (result == ESIZE && rlen == 0 /*&& count == 1*/)
+    if (len != 0 && rlen == 0)
       done();
     else if (scheck(result) && bcheck(rlen == len && buf == rdata && memcmp(data + offset, rdata, rlen) == 0))
       nextRead();
