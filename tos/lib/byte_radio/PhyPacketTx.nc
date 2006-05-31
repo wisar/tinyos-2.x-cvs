@@ -43,14 +43,6 @@
  
 interface PhyPacketTx {
   /**
-  * Cancel the current packet transmission.
-  *
-  * @return SUCCESS if we are actually sending a packet
-  *         FAIL otherwise.
-  */
-  async command error_t cancel();
-  
-  /**
   * Start sending a new packet header. 
   */
   async command void sendHeader();
@@ -58,9 +50,8 @@ interface PhyPacketTx {
   /**
   * Notification that the packet header was sent.
   *
-  * @param error Success-Notification.
   */
-  async event void sendHeaderDone(error_t error);
+  async event void sendHeaderDone();
   
   /**
   * Start sending the packet footer.
@@ -70,7 +61,6 @@ interface PhyPacketTx {
   /**
   * Notification that the the packet footer was sent.
   *
-  * @param error Success-Notification.
   */
-  async event void sendFooterDone(error_t error);  
+  async event void sendFooterDone();  
 }

@@ -98,14 +98,6 @@ interface Tda5250Control {
    async command error_t RxMode();
    
    /**
-   * Switches radio to CCAMode.
-   * 
-   * @return SUCCESS on success
-   *         FAIL otherwise.
-   */
-   async command error_t CCAMode();
-   
-   /**
    * Switches radio to SleepMode.
    * 
    * @return SUCCESS on success
@@ -135,9 +127,9 @@ interface Tda5250Control {
    async event void RxModeDone();
    
    /**
-   * Notification that radio mode is switched to CCAMode.
+   * Notification that the rssi is stable.
    */
-   async event void CCAModeDone();
+   async event void RssiStable();
    
    /**
    * Notification that radio mode is switched to SleepMode.

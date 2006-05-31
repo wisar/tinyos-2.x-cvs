@@ -25,44 +25,31 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$
- * ========================================================================
  */
- 
+
 /**
- * Physical Packet Receive Interface.
- * Commands and event provided by the Radio Interface
- * to communicate with upper layers about the status of a 
- * received packet.
+ * This interface is similar to the Receive interface.
+ *   
+ * The interface provides two events in async context which indicate that
+ * a packet is detected or was received.
  *
- * @author Kevin Klues <klues@tkn.tu-berlin.de>
+ * @author Philipp Huppertz
  */ 
-interface PhyPacketRx {
-  
+
+
+#include <TinyError.h>
+#include <message.h>
+
+interface PhyReceive {
+
   /**
-   * Start receiving a new packet header. This will also reset the current receiving state.
-   * -> not used anymore 
-  async command void recvHeader();
-  */
-  
-  
+   FIXME: Fill in description here
+   */
+  async event message_t* receiveDone(message_t* msg, void* payload, uint8_t len, error_t error);
+
   /**
-  * Notification that the packet header was received. This event will only
-  * occur if recvHeader() is called before.
+   FIXME: Fill in description here
   */
-  async event void recvHeaderDone(error_t error);
+  async event void receiveDetected();
   
-  /**
-  * Start receiving the packet footer.
-  */
-  async command void recvFooter();
-  
-  /**
-  * Notification that the the packet footer was received.
-  *
-  */
-  async event void recvFooterDone(error_t error);
 }

@@ -485,28 +485,6 @@ interface HplTda5250Config {
    async command void SetSleepMode();
 
    /**
-   * Signals that the radio is switched to TxMode.
-   */
-   async event void SetTxModeDone();
-   
-   /**
-   * Signals that the radio is switched to RxMode.
-   */
-   async event void SetRxModeDone();
-   
-   /**
-   * Signals that the radio is switched to SleepMode.
-   */
-   async event void SetSleepModeDone();
-
-
-   /**
-   *  Signals that the RSSI level is stable after
-   *  being switched into Rx Mode.
-   */
-   async event void RSSIStable();
-
-   /**
    * Notification of interrupt when in
    * TimerMode or SelfPollingMode.
    */

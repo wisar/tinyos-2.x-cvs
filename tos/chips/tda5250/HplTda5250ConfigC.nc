@@ -51,9 +51,6 @@ configuration HplTda5250ConfigC {
 implementation {
   components HplTda5250ConfigP
            , Tda5250RegistersC
-           , new Alarm32khzC() as TransmitterDelay
-           , new Alarm32khzC() as ReceiverDelay
-           , new Alarm32khzC() as RSSIStableDelay
            , Tda5250RadioIOC
            , Tda5250RadioInterruptC
            ;
@@ -78,10 +75,6 @@ implementation {
   HplTda5250ConfigP.BLOCK_PD -> Tda5250RegistersC.BLOCK_PD;
   HplTda5250ConfigP.STATUS -> Tda5250RegistersC.STATUS;
   HplTda5250ConfigP.ADC -> Tda5250RegistersC.ADC;
-
-  HplTda5250ConfigP.TransmitterDelay -> TransmitterDelay.Alarm32khz16;
-  HplTda5250ConfigP.ReceiverDelay -> ReceiverDelay.Alarm32khz16;
-  HplTda5250ConfigP.RSSIStableDelay -> RSSIStableDelay.Alarm32khz16;
 
   HplTda5250ConfigP.PWDDD -> Tda5250RadioIOC.Tda5250RadioPWDDD;
   HplTda5250ConfigP.TXRX -> Tda5250RadioIOC.Tda5250RadioTXRX;

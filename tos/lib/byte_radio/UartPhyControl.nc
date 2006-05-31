@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, Technische Universitaet Berlin
+ * Copyright (c) 2006, Technische Universitaet Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,43 +26,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$
- * ========================================================================
  */
  
 /**
- * Physical Packet Receive Interface.
- * Commands and event provided by the Radio Interface
- * to communicate with upper layers about the status of a 
- * received packet.
+ * PhyUart Control Interface
+ * Commands to control the strucutre of the transmitted (physical) packet.
  *
- * @author Kevin Klues <klues@tkn.tu-berlin.de>
+ * @author Philipp Huppertz (huppertz@tkn.tu-berlin.de)
  */ 
-interface PhyPacketRx {
+interface UartPhyControl {
   
   /**
-   * Start receiving a new packet header. This will also reset the current receiving state.
-   * -> not used anymore 
-  async command void recvHeader();
-  */
-  
-  
-  /**
-  * Notification that the packet header was received. This event will only
-  * occur if recvHeader() is called before.
-  */
-  async event void recvHeaderDone(error_t error);
-  
-  /**
-  * Start receiving the packet footer.
-  */
-  async command void recvFooter();
-  
-  /**
-  * Notification that the the packet footer was received.
+  * Sets the number of transmitted preamble bytes.
   *
+  * @param numPreambleBytes the numbeof preamble bytes.
+  *
+  * @return SUCCESS if it could be set (no current receiving/transmitting)
+            FALSE otherwise
   */
-  async event void recvFooterDone(error_t error);
+  command error_t setNumPreambles(uint16_t numPreambleBytes);
+    
+  /*
+  * Sets the timeout after the byte-stream is considered dead if no more
+  * bytes occur on the sending or receiving side. This means isBusy()
+  * returns FALSE.
+  *
+  * @param byteTimeout
+  *
+  * @return SUCCESS if it could be set (no current receiving/transmitting)
+  *         FALSE otherwise
+  */
+  command error_t setByteTimeout(uint8_t byteTimeout);
+  
+  /** 
+  * Tests if the UartPhy is busy with sending or receiving a packet. 
+  *
+  * @return TRUE if active
+  *         FALSE otherwise.
+  */
+  async command bool isBusy();
+
 }

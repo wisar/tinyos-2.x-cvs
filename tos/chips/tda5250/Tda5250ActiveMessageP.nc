@@ -143,10 +143,6 @@ implementation {
     header->type = type;
   }
 
-  //command am_group_t AMPacket.group(message_t* amsg) {
-  //  return amsg->header.group;
-  //}
-
  default event message_t* Receive.receive[am_id_t id](message_t* msg, void* payload, uint8_t len) {
     return msg;
   }

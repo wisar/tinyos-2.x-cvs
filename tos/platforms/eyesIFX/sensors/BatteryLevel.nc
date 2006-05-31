@@ -1,4 +1,4 @@
-/*
+/* -*- mode:c++; indent-tabs-mode: nil -*-
  * Copyright (c) 2004, Technische Universitaet Berlin
  * All rights reserved.
  *
@@ -20,49 +20,20 @@
  * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
  * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES {} LOSS OF USE, DATA,
+ * OR PROFITS {} OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$
+ * - Description ---------------------------------------------------------
+ * Measure Battery Level in mV using the internal voltage
+ * - Author --------------------------------------------------------------
+ * @author: Andreas Koepke (koepke@tkn.tu-berlin.de)
  * ========================================================================
  */
- 
-/**
- * Physical Packet Receive Interface.
- * Commands and event provided by the Radio Interface
- * to communicate with upper layers about the status of a 
- * received packet.
- *
- * @author Kevin Klues <klues@tkn.tu-berlin.de>
- */ 
-interface PhyPacketRx {
-  
-  /**
-   * Start receiving a new packet header. This will also reset the current receiving state.
-   * -> not used anymore 
-  async command void recvHeader();
-  */
-  
-  
-  /**
-  * Notification that the packet header was received. This event will only
-  * occur if recvHeader() is called before.
-  */
-  async event void recvHeaderDone(error_t error);
-  
-  /**
-  * Start receiving the packet footer.
-  */
-  async command void recvFooter();
-  
-  /**
-  * Notification that the the packet footer was received.
-  *
-  */
-  async event void recvFooterDone(error_t error);
+
+interface BatteryLevel {
+    // get the batterylevel in mV
+    async command uint16_t getLevel();
 }

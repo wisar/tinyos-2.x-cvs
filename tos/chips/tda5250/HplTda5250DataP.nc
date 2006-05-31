@@ -45,6 +45,7 @@ module HplTda5250DataP {
   }
   uses {
     interface GeneralIO as DATA;
+    // FIXME: platform dependence at HPL-level!
     interface HplMsp430Usart as Usart;
     interface HplMsp430UsartInterrupts as UsartInterrupts;
     interface Resource as UartResource;
