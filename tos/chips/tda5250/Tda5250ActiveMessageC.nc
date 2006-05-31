@@ -51,7 +51,6 @@
 
 configuration Tda5250ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
     interface AMSend[am_id_t id];
     interface Receive[am_id_t id];
@@ -66,7 +65,6 @@ implementation {
   components Tda5250ActiveMessageP as AM, RadioDataLinkC as Radio;
   components ActiveMessageAddressC as Address;
 
-  Init         = Radio;
   SplitControl = Radio;
 
   Packet       = Radio;

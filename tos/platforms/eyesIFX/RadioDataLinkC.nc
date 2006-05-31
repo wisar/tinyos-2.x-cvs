@@ -37,7 +37,6 @@
 
 configuration RadioDataLinkC {
     provides {
-      interface Init;
       interface SplitControl; 
       interface Send;
       interface Receive;
@@ -52,19 +51,17 @@ implementation
         Tda5250RadioC as Radio,                  //The actual Tda5250 radio over which data is receives/transmitted
         UartPhyC as UartPhy,                     //The UartPhy turns Bits into Bytes
         PacketSerializerP  as PacketSerializer,  //The PacketSerializer turns Bytes into Packets
-        CsmaMacC as Mac,                         //The MAC protocol to use
+        //CsmaMacAckC as Mac,                      //The MAC protocol to use
         //SyncSampleMacC as Mac,
+        CsmaMacC as Mac,
         LinkLayerC as Llc;                       //The Link Layer Control module to use
     
     //Don't change wirings below this point, just change which components
     //They are compposed of in the list above             
     
-    Init = Radio;
-    Init = UartPhy;
-    Init = PacketSerializer;
-    Init = Mac;
-    Init = Llc;
-        
+    components MainC;
+    MainC.SoftwareInit -> PacketSerializer;
+            
     SplitControl = Llc;
     Llc.MacSplitControl -> Mac.SplitControl;
     Llc.RadioSplitControl -> Radio.SplitControl;
