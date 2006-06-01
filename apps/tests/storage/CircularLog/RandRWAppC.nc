@@ -18,14 +18,14 @@
 
 configuration RandRWAppC { }
 implementation {
-  components RandRWC, new LogStorageC(VOLUME_LOGTEST),
+  components RandRWC, new LogStorageC(VOLUME_LOGTEST, TRUE),
     MainC, LedsC, PlatformC, SerialActiveMessageC;
 
   MainC.Boot <- RandRWC;
 
   RandRWC.SerialControl -> SerialActiveMessageC;
   RandRWC.AMSend -> SerialActiveMessageC.AMSend[1];
-  RandRWC.LogRead -> LogStorageC.CircularRead;
-  RandRWC.LogWrite -> LogStorageC.CircularWrite;
+  RandRWC.LogRead -> LogStorageC.LogRead;
+  RandRWC.LogWrite -> LogStorageC.LogWrite;
   RandRWC.Leds -> LedsC;
 }
