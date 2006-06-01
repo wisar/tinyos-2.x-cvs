@@ -210,12 +210,13 @@ implementation {
     A_WRITE,
     A_READ,
     A_ERASE,
-    A_READ
+    A_READ,
+    A_WRITE,
+    A_WRITE
   };
 
   void done() {
-    if (testCount)
-      call Leds.led2Toggle();
+    call Leds.led2Toggle();
 
     if (TOS_NODE_ID & 3)
       {

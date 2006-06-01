@@ -212,8 +212,7 @@ implementation {
   };
 
   void done() {
-    if (testCount)
-      call Leds.led2Toggle();
+    call Leds.led2Toggle();
 
     if (TOS_NODE_ID & 3)
       {
