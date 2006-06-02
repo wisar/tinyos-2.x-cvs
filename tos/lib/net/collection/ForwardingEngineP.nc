@@ -138,6 +138,7 @@ implementation {
     hdr->collectid = call CollectionId.fetch[client]();
 
     if (call QEntryPool.empty()) {
+      dbg("PhilTest", "Send failed as pool is empty.\n");
       // Queue pool is empty; fail the send.
       return EBUSY;
     }
@@ -153,6 +154,7 @@ implementation {
       return SUCCESS;
     }
     else {
+      dbg("PhilTest", "Send failed as packet could not be enqueued.\n");
       return FAIL;
     }
   }
@@ -194,6 +196,7 @@ implementation {
       if (eval == SUCCESS) {
 	// Successfully submitted to the data-link layer.
 	sending = TRUE;
+        call QEntryPool.put(qe);
         return;
       }
       if (eval == EOFF) {
