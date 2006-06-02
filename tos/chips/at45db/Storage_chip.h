@@ -6,12 +6,7 @@
 #include "At45db.h"
 
 #define UQ_BLOCK_STORAGE "BlockStorageP.BlockRead"
-typedef uint8_t blockstorage_t;
-
 #define UQ_LOG_STORAGE "LogStorageP.LogRead"
-typedef uint8_t logstorage_t;
-
 #define UQ_CONFIG_STORAGE "ConfigStorageP.ConfigRead"
-typedef uint8_t configstorage_t;
 
 #endif
