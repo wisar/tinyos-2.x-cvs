@@ -30,11 +30,11 @@ implementation {
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
-  components BlockStorageP, WireBlockStorageP, StorageManagerP, At45dbC;
+  components BlockStorageP, WireBlockStorageP, At45dbStorageManagerC, At45dbC;
 
   BlockWrite = BlockStorageP.BlockWrite[BLOCK_ID];
   BlockRead = BlockStorageP.BlockRead[BLOCK_ID];
 
-  BlockStorageP.At45dbVolume[BLOCK_ID] -> StorageManagerP.At45dbVolume[volid];
+  BlockStorageP.At45dbVolume[BLOCK_ID] -> At45dbStorageManagerC.At45dbVolume[volid];
   BlockStorageP.Resource[BLOCK_ID] -> At45dbC.Resource[RESOURCE_ID];
 }

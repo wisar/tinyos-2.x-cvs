@@ -53,6 +53,26 @@ module BlockStorageP {
 }
 implementation 
 {
+  /* The AT45DB block storage implementation simply provides direct
+     read/write access to the underlying pages of the volume. Random
+     writes to the block storage will thus lead to pages being 
+     erased/programmed many times (there is a 2 page cache, but
+     random writes are unlikely to hit in it).
+
+     The cache is only flushed on commit.
+
+     The first page of a block storage volume stores the maximum address
+     written in the block and a CRC of the block's contents (up to that
+     maximum address). This CRC is written at commit time and verified at
+     validate time.
+
+     This BlockStorage code is reused in the implementation of
+     ConfigStorage.  See the ConfigStorageP component and the
+     At45dbBlockConfig interface for more discussion. If there are m
+     ConfigStorage volumes and n BlockStorage volumes, the ids 0..m-1 are
+     for ConfigStorage and m..m+n-1 are for BlockStorage.
+  */
+
   enum {
     R_IDLE,
     R_WRITE,

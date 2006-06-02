@@ -31,11 +31,11 @@ implementation {
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
-  components LogStorageP, WireLogStorageP, StorageManagerP, At45dbC;
+  components LogStorageP, WireLogStorageP, At45dbStorageManagerC, At45dbC;
 
   LogWrite = LogStorageP.LogWrite[INTF_ID];
   LogRead = LogStorageP.LogRead[INTF_ID];
 
-  LogStorageP.At45dbVolume[LOG_ID] -> StorageManagerP.At45dbVolume[volid];
+  LogStorageP.At45dbVolume[LOG_ID] -> At45dbStorageManagerC.At45dbVolume[volid];
   LogStorageP.Resource[LOG_ID] -> At45dbC.Resource[RESOURCE_ID];
 }

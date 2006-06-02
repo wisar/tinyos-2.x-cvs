@@ -30,12 +30,12 @@ implementation {
     RESOURCE_ID = unique(UQ_AT45DB)
   };
     
-  components ConfigStorageP, WireConfigStorageP, StorageManagerP, At45dbC;
+  components ConfigStorageP, WireConfigStorageP, At45dbStorageManagerC, At45dbC;
   components BlockStorageP, WireBlockStorageP;
 
   Mount = ConfigStorageP.Mount[CONFIG_ID];
   ConfigStorage = ConfigStorageP.ConfigStorage[CONFIG_ID];
 
-  BlockStorageP.At45dbVolume[CONFIG_ID] -> StorageManagerP.At45dbVolume[volid];
+  BlockStorageP.At45dbVolume[CONFIG_ID] -> At45dbStorageManagerC.At45dbVolume[volid];
   BlockStorageP.Resource[CONFIG_ID] -> At45dbC.Resource[RESOURCE_ID];
 }
