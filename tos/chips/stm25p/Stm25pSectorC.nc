@@ -53,8 +53,7 @@ implementation {
   ClientResource = SectorP;
   Sector = SectorP;
   Volume = SectorP;
-  MainC.SoftwareInit -> SectorP;
-
+  
   components new FcfsArbiterC( "Stm25p.Volume" ) as ArbiterC;
   MainC.SoftwareInit -> ArbiterC;
   SectorP.Stm25pResource -> ArbiterC;

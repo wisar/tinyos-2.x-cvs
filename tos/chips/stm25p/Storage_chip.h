@@ -38,6 +38,5 @@
 typedef uint8_t storage_volume_t;
 typedef uint8_t storage_block_t;
 typedef uint8_t storage_log_t;
-typedef storage_addr_t storage_cookie_t;
 
 #endif
