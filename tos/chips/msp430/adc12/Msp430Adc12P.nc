@@ -184,6 +184,7 @@ implementation
     }
     resetAdcPin( memctl.inch );
     call HplAdc12.stopConversion();
+    call HplAdc12.adcOff();
     call HplAdc12.setIEFlags(0);
     call HplAdc12.resetIFGs();
     clientAccessFinished();
