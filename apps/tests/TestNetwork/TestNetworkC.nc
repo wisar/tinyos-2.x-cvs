@@ -67,10 +67,15 @@ implementation {
   event void ReadSensor.readDone(error_t err, uint16_t val) {
     TestNetworkMsg* msg = (TestNetworkMsg*)call Send.getPayload(&packet);
     msg->data = val;
-    if (err != SUCCESS ||
-        call Send.send(&packet, sizeof(TestNetworkMsg)) != SUCCESS) {
-      call Leds.led0On();
+    if (err != SUCCESS) {
       busy = FALSE;
+      call Leds.led0On();
+      dbg("TestNetworkC", "Sensor sample failed.\n");
+    }
+    else if (call Send.send(&packet, sizeof(TestNetworkMsg)) != SUCCESS) {
+      busy = FALSE;      
+      call Leds.led0On();
+      dbg("TestNetworkC", "Transmission failed.\n");
     }
   }
 
@@ -78,7 +83,10 @@ implementation {
     if (err != SUCCESS) {
       call Leds.led0On();
     }
-    busy = FALSE;
+    else {
+      busy = FALSE;
+    }
+    dbg("TestNetworkC", "Send completed.\n");
   }
   
   event void DisseminationPeriod.changed() {
@@ -87,8 +95,7 @@ implementation {
     call Timer.startPeriodic(*newVal);
   }
 
-  event message_t* 
-  Receive.receive(message_t* msg, void* payload, uint8_t len) {
+  event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len) {
     dbg("TestNetworkC", "Received packet at %s.\n", sim_time_string());
     if (!uartbusy) {
       uartbusy = TRUE;
