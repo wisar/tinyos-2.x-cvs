@@ -9,16 +9,17 @@
  * @author Philip Levis
  * @version $Revision$ $Date$
  */
+#include "TestNetwork.h"
 
 configuration TestNetworkAppC {}
 implementation {
   components TestNetworkC, MainC, LedsC, ActiveMessageC;
-  components new DisseminatorC(uint16_t, 0x1) as Object16C;
-  components new CollectionSenderC(0);
+  components new DisseminatorC(uint16_t, SAMPLE_RATE_KEY) as Object16C;
+  components new CollectionSenderC(CL_TEST);
   components TreeCollectionC as Collector;
   components new TimerMilliC();
   components new DemoSensorC();
-  components new SerialAMSenderC(0);
+  components new SerialAMSenderC(CL_TEST);
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
@@ -29,6 +30,6 @@ implementation {
   TestNetworkC.Send -> CollectionSenderC;
   TestNetworkC.ReadSensor -> DemoSensorC;
   TestNetworkC.RootControl -> Collector;
-  TestNetworkC.Receive -> Collector.Receive[0];
+  TestNetworkC.Receive -> Collector.Receive[CL_TEST];
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
 }
