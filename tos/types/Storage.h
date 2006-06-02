@@ -41,6 +41,11 @@
 typedef uint8_t volume_id_t;
 typedef uint32_t storage_addr_t;
 typedef uint32_t storage_len_t;
+typedef uint32_t storage_cookie_t;
+
+enum {
+  SEEK_BEGINNING = 0
+};
 
 #include "Storage_chip.h"
 
