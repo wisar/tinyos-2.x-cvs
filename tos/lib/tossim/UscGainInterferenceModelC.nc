@@ -35,7 +35,7 @@
  * interference signal strength is more complex than this.
  *
  * @author Philip Levis
- * @date   December 2 2005
+ * @date   Jun 1 2006
  */ 
 
 #include <sim_gain.h>
