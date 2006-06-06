@@ -35,8 +35,4 @@
 #ifndef __STORAGE_CHIP_H__
 #define __STORAGE_CHIP_H__
 
-typedef uint8_t storage_volume_t;
-typedef uint8_t storage_block_t;
-typedef uint8_t storage_log_t;
-
 #endif

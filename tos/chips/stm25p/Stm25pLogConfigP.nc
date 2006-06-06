@@ -30,21 +30,20 @@
  */
 
 /**
- * Abstraction to provide the id of a volume.
- *
  * @author Jonathan Hui <jhui@archrock.com>
  * @version $Revision$ $Date$
  */
 
-#include "Stm25p.h"
+generic module Stm25pLogConfigP( bool IS_CIRCULAR ) {
 
-interface Stm25pVolume {
+  provides interface Get<bool> as Circular;
 
-  /**
-   * Signals a request to provide the id of a volume.
-   *
-   * @return the id of the volume.
-   */
-  async event volume_id_t getVolumeId();
+}
+
+implementation {
+  
+  command bool Circular.get() {
+    return IS_CIRCULAR;
+  }
 
 }
