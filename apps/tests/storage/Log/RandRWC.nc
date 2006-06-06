@@ -106,8 +106,10 @@ implementation {
   }
 
   void setParameters() {
-    len = rand() >> 7;
-    offset = rand() >> 8;
+    len = rand() >> 8;
+    offset = rand() >> 9;
+    if ( len > 254 )
+      len = 254;
     if (offset + len > sizeof data)
       offset = sizeof data - len;
   }
