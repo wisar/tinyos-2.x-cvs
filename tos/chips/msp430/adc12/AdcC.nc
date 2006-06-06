@@ -116,9 +116,9 @@ implementation
       return;
     }
     readSync = TRUE;
-    owner = client;
     hal1request = call SingleChannel.getSingleData[client](&settings);
     if (hal1request != SUCCESS){
+      readSync = FALSE;
       call Resource.release[client]();
       signal Read.readDone[client](FAIL, 0);
     }
@@ -134,6 +134,7 @@ implementation
   {
     if (readSync){ // was Read.read request
       readSync = FALSE;
+      owner = client;
       value = data;
       post readDone();
     } else { // was ReadNow.read request
