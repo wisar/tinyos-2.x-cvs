@@ -52,7 +52,8 @@ interface ConfigStorage {
   /**
    * Initiate a read operation within a given volume. On SUCCESS, the
    * <code>readDone</code> event will signal completion of the
-   * operation.
+   * operation. The data read is the contents of the config volume
+   * as of the last commit operation.
    * 
    * @param addr starting address to begin reading.
    * @param buf buffer to place read data.
@@ -62,6 +63,8 @@ interface ConfigStorage {
    *   <li>EINVAL if the parameters are invalid
    *   <li>EOFF if the volume has not been mounted
    *   <li>EBUSY if a request is already being processed.
+   *   <li>FAIL if the volume does not contain valid data 
+   *       (see <code>valid</code>)
    */
   command error_t read(storage_addr_t addr, void* buf, storage_len_t len);
 
@@ -143,7 +146,8 @@ interface ConfigStorage {
    * Report whether this config volume contains valid data. Committing
    * a volume makes it valid.
    *
-   * @return TRUE if the volume contains valid data, FALSE otherwise.
+   * @return TRUE if the volume contains valid data, FALSE otherwise. The
+   *    result is undefined if the volume hasn't been mounted.
    */
   command bool valid();
 }
