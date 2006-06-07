@@ -74,6 +74,6 @@ implementation {
     as DisseminationProbeReceiveC;
   DisseminationEngineImplP.ProbeReceive -> DisseminationProbeReceiveC.Receive;
 
-  components LedsC;
-  DisseminationEngineImplP.Leds -> LedsC;
+  components NoLedsC;
+  DisseminationEngineImplP.Leds -> NoLedsC;
 }
