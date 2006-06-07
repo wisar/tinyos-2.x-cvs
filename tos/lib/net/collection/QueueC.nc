@@ -55,21 +55,40 @@ implementation {
     return queue[head];
   }
 
+  void printQueue() {
+    int i, j;
+    dbg("QueueC", "head <-");
+    for (i = head; i < head + size; i++) {
+      dbg_clear("QueueC", "[");
+      for (j = 0; j < sizeof(queue_t); j++) {
+	uint8_t v = ((uint8_t*)&queue[i % QUEUE_SIZE])[j];
+	dbg_clear("QueueC", "%0.2hhx", v);
+      }
+      dbg_clear("QueueC", "] ");
+    }
+    dbg_clear("QueueC", "<- tail\n");
+  }
+  
   command queue_t Queue.dequeue() {
     queue_t t = call Queue.head();
+    dbg("QueueC", "%s: size is %hhu\n", __FUNCTION__, size);
     if (!call Queue.empty()) {
       head++;
       head %= QUEUE_SIZE;
       size--;
+      printQueue();
     }
     return t;
   }
 
   command error_t Queue.enqueue(queue_t newVal) {
     if (call Queue.size() < call Queue.maxSize()) {
+      dbg("QueueC", "%s: size is %hhu\n", __FUNCTION__, size);
       queue[tail] = newVal;
       tail++;
+      tail %= QUEUE_SIZE;
       size++;
+      printQueue();
       return SUCCESS;
     }
     else {
