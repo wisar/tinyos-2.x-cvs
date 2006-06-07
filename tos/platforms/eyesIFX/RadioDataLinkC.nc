@@ -51,9 +51,8 @@ implementation
         Tda5250RadioC as Radio,                  //The actual Tda5250 radio over which data is receives/transmitted
         UartPhyC as UartPhy,                     //The UartPhy turns Bits into Bytes
         PacketSerializerP  as PacketSerializer,  //The PacketSerializer turns Bytes into Packets
-        //CsmaMacAckC as Mac,                      //The MAC protocol to use
+        CsmaMacC as Mac,                         //The MAC protocol to use
         //SyncSampleMacC as Mac,
-        CsmaMacC as Mac,
         LinkLayerC as Llc;                       //The Link Layer Control module to use
     
     //Don't change wirings below this point, just change which components

@@ -130,9 +130,6 @@ implementation {
           case RADIO_MODE_ON_TRANSITION:
             call HplTda5250Config.reset();
             call HplTda5250Config.SetRFPower(255);
-            call HplTda5250Config.UsePeakDetector();
-            call HplTda5250Config.SetClockOnDuringPowerDown();
-            call HplTda5250Config.UseRSSIDataValidDetection(INIT_RSSI_THRESHOLD, TH1_VALUE, TH2_VALUE);
             call ConfigResource.release();
             atomic radioMode = RADIO_MODE_ON;
             post startDoneTask();
