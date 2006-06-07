@@ -64,7 +64,4 @@ implementation {
   components new Stm25pBinderP( volume_id ) as BinderP;
   BinderP.Volume -> SectorC.Volume[ VOLUME_ID ];
   
-  components LedsC;
-  ConfigP.Leds -> LedsC;
-  
 }

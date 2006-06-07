@@ -70,9 +70,6 @@ implementation {
   components new Stm25pLogConfigP( circular ) as ConfigP;
   LogP.Circular[ LOG_ID ] -> ConfigP;
   
-  components LedsC;
-  LogP.Leds -> LedsC;
-  
   components MainC;
   MainC.SoftwareInit -> LogP;
   
