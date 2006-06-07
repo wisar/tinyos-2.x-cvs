@@ -33,7 +33,6 @@
 
 configuration ActiveMessageC {
   provides {
-    interface Init;
     interface SplitControl;
 
     interface AMSend[uint8_t id];
@@ -50,8 +49,9 @@ implementation {
   components TossimPacketModelC as Network;
   components UscGainInterferenceModelC as Model;
   components ActiveMessageAddressC as Address;
-
-  Init         = Network;
+  components MainC;
+  
+  MainC.SoftwareInit -> Network;
   SplitControl = Network;
   
   AMSend       = AM;
