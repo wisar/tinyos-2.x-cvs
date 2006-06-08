@@ -120,7 +120,7 @@ implementation {
     } else if  (byteCnt == (header->length + sizeof(message_header_t)+1)) {
       ++byteCnt;
       call RadioByteComm.txByte((uint8_t)(crc >> 8));
-    } else { // (byteCnt > (header->length + sizeof(message_header_t)+1))
+    } else { /* (byteCnt > (header->length + sizeof(message_header_t)+1)) */
         call PhyPacketTx.sendFooter();  
     }
   }
@@ -148,7 +148,7 @@ implementation {
     message_radio_header_t* header = getHeader((message_t*)(rxBufPtr));
     message_radio_footer_t* footer = getFooter((message_t*)rxBufPtr);
     // we care about wrong crc in this layer
-    if (footer->crc == 0) error = FAIL;
+    if (footer->crc != 1) error = FAIL;
     rxBufPtr = signal PhyReceive.receiveDone((message_t*)rxBufPtr, ((message_t*)rxBufPtr)->data, header->length, error);
   }
 
