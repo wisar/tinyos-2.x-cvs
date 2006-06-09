@@ -20,9 +20,11 @@ implementation {
   components new TimerMilliC();
   components new DemoSensorC();
   components new SerialAMSenderC(CL_TEST);
+  components SerialActiveMessageC;
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
+  TestNetworkC.SerialControl -> SerialActiveMessageC;
   TestNetworkC.RoutingControl -> Collector;
   TestNetworkC.Leds -> LedsC;
   TestNetworkC.Timer -> TimerMilliC;
@@ -32,4 +34,5 @@ implementation {
   TestNetworkC.RootControl -> Collector;
   TestNetworkC.Receive -> Collector.Receive[CL_TEST];
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
+  TestNetworkC.CollectionPacket -> Collector;
 }
