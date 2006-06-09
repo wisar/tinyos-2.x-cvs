@@ -380,5 +380,14 @@ connect a sensor into a more general system.
 |
 | phone - +1 650 725 9046
 | email - pal@cs.stanford.edu
-
+|
+|
+| David Gay
+| 2150 Shattuck Ave, Suite 1300
+| Intel Research
+| Berkeley, CA 94704
+|
+| phone - +1 510 495 3055
+| email - david.e.gay@intel.com
+|
 
