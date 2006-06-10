@@ -41,9 +41,9 @@ generic configuration SerialAMReceiverC(am_id_t amId) {
 }
 
 implementation {
-  components SerialAMImplP as Impl;
+  components SerialActiveMessageC as AM;
 
-  Receive = Impl.Receive[amId];
-  Packet = Impl;
-  AMPacket = Impl;
+  Receive = AM.Receive[amId];
+  Packet = AM;
+  AMPacket = AM;
 }
