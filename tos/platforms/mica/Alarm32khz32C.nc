@@ -30,8 +30,8 @@ generic configuration Alarm32khz32C()
 implementation
 {
   components new AlarmOne16C() as Alarm16, Counter32khz32C as Counter32,
-    new TransformAlarmC(T32khz, uint32_t, TOne, uint16_t, MICA_DIVIDE_ONE_FOR_32KHZ_LOG2)
-      as Transform32;
+    new TransformAlarmC(T32khz, uint32_t, TOne, uint16_t,
+			MICA_DIVIDE_ONE_FOR_32KHZ_LOG2) as Transform32;
 
   Alarm = Transform32;
   Transform32.AlarmFrom -> Alarm16;
