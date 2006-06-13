@@ -45,6 +45,10 @@
 
 #include "Timer.h"
 
+#if !(defined(SERVICE_SLAVE) || defined(SERVICE_MASTER)) || (defined(SERVICE_SLAVE) && defined(SERVICE_MASTER))
+#error "You must compile with either -DSERVICE_SLAVE or -DSERVICE_MASTER"
+#endif
+
 module TestAMOnOffC {
   uses {
     interface Leds;
