@@ -144,6 +144,11 @@ module Msp430RefVoltArbiterP
   {
     return FAIL;
   }
+  default async command error_t AdcResource.immediateRequest[uint8_t client]()
+  {
+    return FAIL;
+  }
+
   default async command void AdcResource.release[uint8_t client](){}
   default async command msp430adc12_channel_config_t 
     Config.getChannelSettings[uint8_t client]()
