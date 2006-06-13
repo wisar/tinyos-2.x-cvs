@@ -409,7 +409,7 @@ TaskHighPriority with the key "TinySchedulerC.TaskHighPriority"::
     SomethingElseP.RetransmitTask -> Sched.TaskHighPriority[unique("TinySchedulerC.TaskHighPriority")];  
   }  
 
-6. Reference
+6. Implementation
 ====================================================================
 
 The following files in ``tinyos-2.x/tos/system`` contain the reference

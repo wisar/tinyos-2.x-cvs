@@ -312,7 +312,7 @@ to the boot sequence, unless there is a temporal ordering requirement to
 the initialization. The purpose of this convention is to simplify
 component initialization and the initialization sequence.
 
-5. Reference
+5. Implementation
 ====================================================================
 
 The following files in ``tinyos-2.x/tos/system`` contain the reference

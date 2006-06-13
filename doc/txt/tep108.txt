@@ -463,7 +463,7 @@ MspBusC (the arbiter for the MSP bus)::
   } ...
 
 
-4. Reference 
+4. Implementation 
 ====================================================================
 
 Because most components use one of a small number of arbitration
