@@ -75,7 +75,9 @@ module CC1000SendReceiveP {
 implementation 
 {
   enum {
-    INACTIVE_STATE,		/* Off */
+    OFF_STATE,
+
+    INACTIVE_STATE,		/* Not listening, but will accept sends */
 
     LISTEN_STATE,		/* Listening for packets */
 
@@ -143,6 +145,10 @@ implementation
   
   /* State transition functions */
   /*----------------------------*/
+
+  void enterOffState() {
+    radioState = OFF_STATE;
+  }
 
   void enterInactiveState() {
     radioState = INACTIVE_STATE;
@@ -227,6 +233,7 @@ implementation
   command error_t StdControl.start() {
     atomic 
       {
+	enterInactiveState();
 	f.txBusy = FALSE;
 	f.invert = call CC1000Control.getLOStatus();
       }
@@ -234,7 +241,7 @@ implementation
   }
 
   command error_t StdControl.stop() {
-    atomic enterInactiveState();
+    atomic enterOffState();
     return SUCCESS;
   }
 
@@ -244,7 +251,7 @@ implementation
   command error_t Send.send(message_t *msg, uint8_t len) {
     atomic
       {
-	if (f.txBusy)
+	if (f.txBusy || radioState == OFF_STATE)
 	  return FAIL;
 	else {
 	  cc1000_header_t* header = getHeader(msg);
@@ -557,7 +564,8 @@ implementation
       {
 	if (pBuf) 
 	  rxBufPtr = pBuf;
-	enterListenState();
+	if (radioState == RECEIVED_STATE) // receiver might've done something
+	  enterListenState();
 	signal ByteRadio.rxDone();
       }
   }

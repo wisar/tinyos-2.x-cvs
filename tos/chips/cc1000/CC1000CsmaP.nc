@@ -437,7 +437,8 @@ implementation
   }
 
   async event void ByteRadio.rxDone() {
-    enterIdleStateSetWakeup();
+    if (radioState == RX_STATE)
+      enterIdleStateSetWakeup();
   }
 
   /* Noise floor */
