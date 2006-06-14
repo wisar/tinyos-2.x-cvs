@@ -35,4 +35,5 @@ implementation {
   TestNetworkC.Receive -> Collector.Receive[CL_TEST];
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
   TestNetworkC.CollectionPacket -> Collector;
+  TestNetworkC.TreeRoutingInspect -> Collector;
 }

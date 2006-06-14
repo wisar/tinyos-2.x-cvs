@@ -27,6 +27,7 @@ module TestNetworkC {
   uses interface Receive;
   uses interface AMSend as UARTSend;
   uses interface CollectionPacket;
+  uses interface TreeRoutingInspect;
 }
 implementation {
   task void uartEchoTask();
@@ -74,7 +75,19 @@ implementation {
   
   event void ReadSensor.readDone(error_t err, uint16_t val) {
     TestNetworkMsg* msg = (TestNetworkMsg*)call Send.getPayload(&packet);
+    uint8_t hopcount;
+    uint16_t metric;
+    am_addr_t parent;
+
+    call TreeRoutingInspect.getParent(&parent);
+    call TreeRoutingInspect.getHopcount(&hopcount);
+    call TreeRoutingInspect.getMetric(&metric);
+
     msg->data = val;
+    msg->parent = parent;
+    msg->hopcount = hopcount;
+    msg->metric = metric;
+
     if (err != SUCCESS) {
       dbg("App", "%s: read done failed.\n", __FUNCTION__);
       busy = FALSE;
