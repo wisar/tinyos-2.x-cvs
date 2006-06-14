@@ -296,7 +296,6 @@ implementation {
             uint16_t nextInt;
             nextInt = call Random.rand16() % BEACON_INTERVAL;
             nextInt += BEACON_INTERVAL >> 1;
-            call CollectionDebug.logEvent(NET_C_TREE_ROUTE_INFO);
             call BeaconTimer.startOneShot(nextInt);
             post updateRouteTask();
             post sendBeaconTask();
