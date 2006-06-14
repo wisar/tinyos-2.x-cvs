@@ -21,6 +21,8 @@ implementation {
   components new DemoSensorC();
   components new SerialAMSenderC(CL_TEST);
   components SerialActiveMessageC;
+  components new SerialAMSenderC(0x09) as UARTSender;
+  components UARTDebugSenderP as DebugSender;
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
@@ -36,4 +38,8 @@ implementation {
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
   TestNetworkC.CollectionPacket -> Collector;
   TestNetworkC.TreeRoutingInspect -> Collector;
+
+  DebugSender.Boot -> MainC;
+  DebugSender.UARTSend -> UARTSender;
+  Collector.CollectionDebug -> DebugSender;
 }
