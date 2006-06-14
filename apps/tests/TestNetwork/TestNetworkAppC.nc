@@ -10,6 +10,7 @@
  * @version $Revision$ $Date$
  */
 #include "TestNetwork.h"
+#include "Collection.h"
 
 configuration TestNetworkAppC {}
 implementation {
@@ -21,7 +22,7 @@ implementation {
   components new DemoSensorC();
   components new SerialAMSenderC(CL_TEST);
   components SerialActiveMessageC;
-  components new SerialAMSenderC(0x09) as UARTSender;
+  components new SerialAMSenderC(AM_COLLECTION_DEBUG) as UARTSender;
   components UARTDebugSenderP as DebugSender;
 
   TestNetworkC.Boot -> MainC;
