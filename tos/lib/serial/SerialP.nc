@@ -670,13 +670,15 @@ implementation {
         
       case TXSTATE_INFO:
         atomic {
-	  uint8_t nextByte;
+          uint8_t nextByte;
 
           txResult = call SerialFrameComm.putData(txBuf[txIndex].buf);
           txCRC = crcByte(txCRC,txBuf[txIndex].buf);
           ++txByteCnt;
           
-	  nextByte = signal SendBytePacket.nextByte();
+          if (txIndex == TX_DATA_INDEX){
+            nextByte = signal SendBytePacket.nextByte();
+          }
           if (txBuf[txIndex].state == BUFFER_COMPLETE || txByteCnt >= SERIAL_MTU){
             txState = TXSTATE_FCS1;
           }
