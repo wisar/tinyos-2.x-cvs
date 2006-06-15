@@ -150,7 +150,7 @@ implementation {
     fe_queue_entry_t *qe;
     dbg("Forwarder", "%s: sending packet from client %hhu: %x, len %hhu\n", __FUNCTION__, client, msg, len);
     if (!running) {return EOFF;}
-    if (len > call Send.maxPayloadLength) {return ESIZE;}
+    if (len > call Send.maxPayloadLength[client]()) {return ESIZE;}
     
     call Packet.setPayloadLength(msg, len);
     hdr = getHeader(msg);
