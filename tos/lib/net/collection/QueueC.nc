@@ -56,6 +56,7 @@ implementation {
   }
 
   void printQueue() {
+#ifdef TOSSIM
     int i, j;
     dbg("QueueC", "head <-");
     for (i = head; i < head + size; i++) {
@@ -67,6 +68,7 @@ implementation {
       dbg_clear("QueueC", "] ");
     }
     dbg_clear("QueueC", "<- tail\n");
+#endif
   }
   
   command queue_t Queue.dequeue() {
