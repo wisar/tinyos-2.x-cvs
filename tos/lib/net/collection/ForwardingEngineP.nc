@@ -151,7 +151,7 @@ implementation {
     dbg("Forwarder", "%s: sending packet from client %hhu: %x, len %hhu\n", __FUNCTION__, client, msg, len);
     if (!running) {return EOFF;}
     
-    call Packet.setPayloadLength(msg, len + sizeof(network_header_t));
+    call Packet.setPayloadLength(msg, len);
     hdr = getHeader(msg);
     hdr->origin = TOS_NODE_ID;
     hdr->collectid = call CollectionId.fetch[client]();
@@ -353,12 +353,10 @@ implementation {
     else {
       message_t* newMsg = call MessagePool.get();
       fe_queue_entry_t *qe = call QEntryPool.get();
-      uint8_t len = call SubPacket.payloadLength(m);
 
       qe->msg = m;
       qe->client = 0xff;
       
-      call Packet.setPayloadLength(m, len + sizeof(network_header_t));
       if (call SendQueue.enqueue(qe) == SUCCESS) {
 	dbg("Forwarder,Route", "%s forwarding packet %p with queue size %hhu\n", __FUNCTION__, m, call SendQueue.size());
 	if (!call RetxmitTimer.isRunning()) {
