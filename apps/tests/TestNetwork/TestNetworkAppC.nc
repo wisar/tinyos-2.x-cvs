@@ -24,6 +24,7 @@ implementation {
   components SerialActiveMessageC;
   components new SerialAMSenderC(AM_COLLECTION_DEBUG) as UARTSender;
   components UARTDebugSenderP as DebugSender;
+  components RandomC;
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
@@ -39,6 +40,7 @@ implementation {
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
   TestNetworkC.CollectionPacket -> Collector;
   TestNetworkC.TreeRoutingInspect -> Collector;
+  TestNetworkC.Random -> RandomC;
 
   DebugSender.Boot -> MainC;
   DebugSender.UARTSend -> UARTSender;
