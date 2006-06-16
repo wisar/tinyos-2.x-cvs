@@ -252,7 +252,6 @@ implementation {
 	}
 	else {
 	  dbg("Forwarder", "%s: forwarded packet.\n", __FUNCTION__);
-          call CollectionDebug.logEventRoute(NET_C_FE_FWD_MSG, 0xaa, TOS_NODE_ID, dest);
 	}
         return;
       }
