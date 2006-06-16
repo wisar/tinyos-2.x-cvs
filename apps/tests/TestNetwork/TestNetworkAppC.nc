@@ -42,7 +42,11 @@ implementation {
   TestNetworkC.TreeRoutingInspect -> Collector;
   TestNetworkC.Random -> RandomC;
 
+  components new PoolC(message_t, 10) as DebugMessagePool;
+  components new QueueC(message_t*, 10) as DebugSendQueue;
   DebugSender.Boot -> MainC;
   DebugSender.UARTSend -> UARTSender;
+  DebugSender.MessagePool -> DebugMessagePool;
+  DebugSender.SendQueue -> DebugSendQueue;
   Collector.CollectionDebug -> DebugSender;
 }
