@@ -32,7 +32,7 @@ module RandRWC {
 implementation {
   enum {
     SIZE = 1024L * 256,
-    NWRITES = SIZE / 4096,
+    NWRITES = SIZE / 512,
   };
 
   uint16_t shiftReg;
@@ -59,9 +59,9 @@ implementation {
   }
 
   void resetSeed() {
-    shiftReg = 119 * 119 * ((TOS_NODE_ID >> 2) + 1);
+    shiftReg = 119 * 119 * ((TOS_NODE_ID % 100) + 1);
     initSeed = shiftReg;
-    mask = 137 * 29 * ((TOS_NODE_ID >> 2) + 1);
+    mask = 137 * 29 * ((TOS_NODE_ID % 100) + 1);
   }
   
   uint8_t data[512], rdata[512];
@@ -218,19 +218,30 @@ implementation {
   };
 
   void done() {
+    uint8_t act = TOS_NODE_ID / 100;
+
     call Leds.led2Toggle();
 
-    if (TOS_NODE_ID & 3)
+    switch (act)
       {
+      case 0:
+	if (testCount < sizeof actions)
+	  doAction(actions[testCount]);
+	else
+	  success();
+	break;
+
+      case A_ERASE: case A_READ: case A_WRITE:
 	if (testCount)
 	  success();
 	else
-	  doAction(TOS_NODE_ID & 3);
+	  doAction(act);
+	break;
+
+      default:
+	fail(FAIL);
+	break;
       }
-    else if (testCount < sizeof actions)
-      doAction(actions[testCount]);
-    else
-      success();
     testCount++;
   }
 }
