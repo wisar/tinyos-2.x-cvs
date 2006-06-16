@@ -269,6 +269,7 @@ implementation {
                   beaconMsg->parent, 
                   beaconMsg->hopcount, 
                   beaconMsg->metric);
+        call CollectionDebug.logEventRoute(NET_C_TREE_SENT_BEACON, beaconMsg->parent, beaconMsg->hopcount, beaconMsg->metric);
 
         eval = call BeaconSend.send(AM_BROADCAST_ADDR, 
                                     &beaconMsgBuffer, 
@@ -320,6 +321,7 @@ implementation {
         dbg("TreeRouting","%s from: %d  [ parent: %d hopcount: %d metric: %d]\n",
             __FUNCTION__, from, 
             rcvBeacon->parent, rcvBeacon->hopcount, rcvBeacon->metric);
+        //call CollectionDebug.logEventRoute(NET_C_TREE_RCV_BEACON, rcvBeacon->parent, rcvBeacon->hopcount, rcvBeacon->metric);
         //update neighbor table
         if (rcvBeacon->parent != INVALID_ADDR) {
 #ifdef TEST_INSERT
@@ -397,6 +399,7 @@ implementation {
         if (route_found) 
             signal Routing.routeFound();
         dbg("TreeRouting","%s I'm a root now!\n",__FUNCTION__);
+        call CollectionDebug.logEventRoute(NET_C_TREE_NEW_PARENT, routeInfo.parent, routeInfo.hopcount, routeInfo.metric);
         return SUCCESS;
     }
 
