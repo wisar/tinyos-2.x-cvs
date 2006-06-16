@@ -120,16 +120,7 @@ implementation
     }
   }
 
-  async command void I2C.setISR(uint32_t val) {
-    switch(dev) {
-    case 0: ISR = val; break;
-    case 1: PISR = val; break;
-    default: break;
-    }
-    return;
-  }
-
-  async command uint32_t I2C.getISR() { 
+ async command uint32_t I2C.getISR() { 
     switch(dev) {
     case 0: return ISR; break;
     case 1: return PISR; break;
