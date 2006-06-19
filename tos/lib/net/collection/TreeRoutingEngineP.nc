@@ -162,8 +162,10 @@ implementation {
     }
 
     /* updates the routing information, using the info that has been received
-     * from neighbor beacons. Two things can cause this info to change: 
-     * neighbor beacons, changes in link estimates, including neighbor eviction */
+     * from neighbor beacons. Three things can cause this info to change: 
+     * neighbor beacons, changes in link estimates (including neighbor
+     * evictions), and feedback from the forwarding layer that a route is
+     * bad (which can change link estimates). */
     task void updateRouteTask() {
         uint8_t i;
         routing_table_entry* entry;
@@ -531,11 +533,21 @@ implementation {
 
     /* Will tell the link estimator to blacklist this neighbor until the next
      * update time */
-    command void reportBadRoute(am_addr_t neighbor) {
+    command void TreeRoutingInspect.reportBadRoute(am_addr_t neighbor) {
+      call LinkEstimator.reportBadLink(neighbor);
+      post updateRouteTask();
     }
 
     /* Send a beacon */
-    command void triggerRouteUpdate() {
+    command void TreeRoutingInspect.triggerRouteUpdate() {
+      // Random time in interval 64-127ms
+      uint16_t time = call Random.rand16();
+      time &= 0x3f; 
+      time += 64;
+      if (call BeaconTimer.gett0() + call BeaconTimer.getdt() - call BeaconTimer.getNow() >= time) {
+	call BeaconTimer.stop();
+	call BeaconTimer.startOneShot(time);
+      }
     }
 
     /* if this gets expensive, introduce indirection through an array of pointers */
