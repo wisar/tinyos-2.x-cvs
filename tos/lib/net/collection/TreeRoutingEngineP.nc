@@ -529,6 +529,15 @@ implementation {
         return SUCCESS;
     }
 
+    /* Will tell the link estimator to blacklist this neighbor until the next
+     * update time */
+    command void reportBadRoute(am_addr_t neighbor) {
+    }
+
+    /* Send a beacon */
+    command void triggerRouteUpdate() {
+    }
+
     /* if this gets expensive, introduce indirection through an array of pointers */
     error_t routingTableEvict(am_addr_t neighbor) {
         uint8_t idx,i;
