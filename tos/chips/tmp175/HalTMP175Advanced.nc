@@ -30,58 +30,28 @@
  */
 
 /**
- * HalTMP175ReaderP provides the service level HIL and device
- * specific Hal interfaces for the TI TMP175 Chip.
+ * HalTMP175Advanced is the HAL control interface for the TI TMP175
+ * Digital Temperature Sensor. 
  *
- * Note that only the data path uses split phase resource arbitration
- * 
  * @author Phil Buonadonna <pbuonadonna@archrock.com>
  * @version $Revision$ $Date$
  */
 
-generic module HplTMP175ReaderP()
-{
-  provides interface Read<uint16_t> as Temperature;
+interface HalTMP175Advanced {
 
-  uses interface HplTMP175;
-  uses interface Resource as TMP175Resource;
-}
-
-implementation {
-
-  enum {
-    STATE_SET_MODE,
-    STATE_SET_POLARITY,
-    STATE_SET_FQ,
-    STATE_SET_RES,
-    STATE_NONE
-  };
-
-  uint8_t mState = STATE_NONE;
-  uint8_t mConfigRegVal = 0;
-  error_t mHplError;
-
-  command error_t Temperature.read() {
-    return call TMP175Resource.request();
-  }
-
-  event void TMP175Resource.granted() {
-    error_t error;
-    
-    error = call HplTMP175.measureTemperature();
-    if (error) {
-      call TMP175Resource.release();
-      signal Temperature.readDone(error,0);
-    }
-    return;
-  }
-
-  event void HplTMP175.measureTemperatureDone(error_t tmp175_error, uint16_t val) {
-    call TMP175Resource.release();
-    signal Temperature.readDone(tmp175_error,val);
-    return;
-  }
-
-  default event void Temperature.readDone(error_t error, uint16_t val) {return ;}
+  command error_t setThermostatMode(bool useInt);
+  event void setThermostatModeDone(error_t error);
+  command error_t setPolarity(bool polarity);
+  event void setPolarityDone(error_t error);
+  command error_t setFaultQueue(tmp175_fqd_t depth);
+  event void setFaultQueueDone(error_t error);
+  command error_t setResolution(tmp175_res_t res);
+  event void setResolutionDone(error_t error);
+  command error_t setTLow(uint16_t val);
+  event void setTLowDone(error_t error);
+  command error_t setTHigh(uint16_t val);
+  event void setTHighDone(error_t error);
+  
+  event void alertThreshold();
 
 }
