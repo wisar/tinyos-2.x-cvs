@@ -220,8 +220,8 @@ implementation {
         }
 
         //now choose between current/best
-        if (minMetric != MAX_METRIC) {
-            if (currentMetric == MAX_METRIC ||
+        if (minMetric < MAX_METRIC) {
+            if (currentMetric >= MAX_METRIC ||
                 minMetric + PARENT_SWITCH_THRESHOLD < currentMetric) {
                 // routeInfo.metric will not store the composed metric.
                 // since the linkMetric may change, we will compose whenever
@@ -237,11 +237,15 @@ implementation {
                 }
             }
         }    
-
+	else if (currentMetric >= MAX_METRIC) {
+	  routeInfo.parent = INVALID_ADDR;
+	  routeInfo.metric = MAX_METRIC;
+	  routeInfo.hopcount = 0;
+	}
         //finally, tell people what happened
         if (justEvicted && routeInfo.parent == INVALID_ADDR) 
             signal Routing.noRoute();
-        else if (!justEvicted && minMetric != MAX_METRIC)
+        else if (!justEvicted && minMetric <= MAX_METRIC)
             signal Routing.routeFound();
         justEvicted = FALSE; 
     }
