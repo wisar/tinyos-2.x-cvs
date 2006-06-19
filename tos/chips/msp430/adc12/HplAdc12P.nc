@@ -33,6 +33,15 @@
  * ========================================================================
  */
 
+/**
+ * The HplAdc12 interface exports low-level access to the ADC12 registers
+ * of the MSP430 MCU.
+ *
+ * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
+ */
+
 module HplAdc12P {
   provides interface HplAdc12;
 }

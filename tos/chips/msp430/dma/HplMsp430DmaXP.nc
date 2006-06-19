@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *
@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE
  */
 
-/**
+/*
  * "Copyright (c) 2000-2005 The Regents of the University of California.  
  * All rights reserved.
  *

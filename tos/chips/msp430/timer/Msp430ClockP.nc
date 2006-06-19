@@ -20,7 +20,9 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-//@author Cory Sharp <cssharp@eecs.berkeley.edu>
+/**
+ * @author Cory Sharp <cssharp@eecs.berkeley.edu>
+ */
 
 #include "Msp430Timer.h"
 

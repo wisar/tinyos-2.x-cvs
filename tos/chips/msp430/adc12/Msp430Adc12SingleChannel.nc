@@ -34,9 +34,7 @@
  */
 
 /** 
- *
- * Please refer to TEP 101 for more information about this interface and its
- * intended use.  This interface exports access to the ADC12 on the level of
+ * This interface exports access to the ADC12 on the level of
  * HAL1 on a per-channel basis. It allows to sample a channel once or
  * repeatedly (and signal an event per conversion result) or perform multiple
  * conversions for the same channel once or repeatedly (and signal an event per
@@ -44,6 +42,8 @@
  * with the same command.
  *
  * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
  */
 
 #include <Msp430Adc12.h> 

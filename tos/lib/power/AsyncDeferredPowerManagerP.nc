@@ -29,8 +29,6 @@
  */
  
 /**
- * Please refer to TEP 115 for more information about this component and its
- * intended use.<br><br>
  *
  * This is the internal implementation of the deffered power management
  * policy for managing the power states of non-virtualized devices.
@@ -47,6 +45,8 @@
  *                        before shutting down the device once it is free.
  * 
  * @author Kevin Klues (klueska@cs.wustl.edu)
+ * @see  Please refer to TEP 115 for more information about this component and its
+ *          intended use.
  */
  
 generic module AsyncDeferredPowerManagerP(uint32_t delay) {

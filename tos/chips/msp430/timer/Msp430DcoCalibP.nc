@@ -1,4 +1,3 @@
-//$Id$
 
 /* "Copyright (c) 2000-2003 The Regents of the University of California.
  * All rights reserved.
@@ -20,7 +19,9 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-//@author Cory Sharp <cssharp@eecs.berkeley.edu>
+/**
+ * @author Cory Sharp <cssharp@eecs.berkeley.edu>
+ */
 
 module Msp430DcoCalibP
 {

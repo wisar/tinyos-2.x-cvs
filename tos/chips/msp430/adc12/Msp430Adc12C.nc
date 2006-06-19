@@ -34,13 +34,14 @@
  */
 
 /** 
- * Please refer to TEP 101 for more information about this component and its
- * intended use. This component represents the HAL1 of the MSP430 ADC12
+ * This component represents the HAL1 of the MSP430 ADC12
  * subsystem. Clients SHOULD NOT wire to <code>Msp430Adc12C</code> directly but
  * should go via <code>Msp430Adc12ClientC</code> or
  * <code>Msp430Adc12RefVoltAutoClientC</code>.
  *
  * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
  */
 
 #include <Msp430Adc12.h> 

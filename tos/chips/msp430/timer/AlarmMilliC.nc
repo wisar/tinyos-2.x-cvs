@@ -1,4 +1,3 @@
-//$Id$
 
 /* "Copyright (c) 2000-2003 The Regents of the University of California.
  * All rights reserved.
@@ -20,11 +19,14 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-//@author Cory Sharp <cssharp@eecs.berkeley.edu>
-
-// The TinyOS Timer interfaces are discussed in TEP 102.
-
-// Alarm32khzC is the alarm for async 32khz alarms
+/**
+ * AlarmMilliC is the alarm for async millisecond alarms
+ *
+ * @author Cory Sharp <cssharp@eecs.berkeley.edu>
+ * @see  Please refer to TEP 102 for more information about this component and its
+ *          intended use.
+ */
+ 
 generic configuration AlarmMilliC()
 {
   provides interface Init;

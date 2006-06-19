@@ -34,9 +34,7 @@
  */
 
 /** 
- *
- * Please refer to TEP 101 for more information about this component and its
- * intended use. This component realizes the HAL1 representation and allows an
+ * This component realizes the HAL1 representation and allows an
  * MSP430-specific client to access the MSP430 ADC12 (12-bit analog-to-digital
  * converter) via the <code>Msp430Adc12SingleChannel</code> and
  * <code>Resource</code> interface.  According to TEP 108 a client must reserve
@@ -47,6 +45,8 @@
  * generator.  
  * 
  * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
  */
 
 generic configuration Msp430Adc12ClientC()

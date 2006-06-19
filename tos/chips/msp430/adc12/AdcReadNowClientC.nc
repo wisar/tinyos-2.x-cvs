@@ -34,8 +34,7 @@
  */
 
 /** 
- * Please refer to TEP 101 for more information about this component and its
- * intended use. This component allows a client to access the MSP430 ADC12
+ * This component allows a client to access the MSP430 ADC12
  * (12-bit analog-to-digital converter) via the <code>ReadNow</code> and
  * <code>Resource</code> interface. According to TEP 108 a client must reserve
  * the ADC before using it via the <code>Resource</code> interface (otherwise
@@ -48,6 +47,8 @@
  * that the reference voltage is stable. 
  *
  * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
  */
 
 #include <Msp430Adc12.h>

@@ -26,15 +26,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * - Description ----------------------------------------------------------
- * Implementation of USART0 lowlevel functionality - stateless.
- * Setting a mode will by default disable USART-Interrupts.
  * - Revision -------------------------------------------------------------
  * $Revision$
  * $Date$
- * @author: Jan Hauer (hauer@tkn.tu-berlin.de)
- * @author: Joe Polastre
  * ========================================================================
+ */
+
+/**
+ * Implementation of USART0 lowlevel functionality - stateless.
+ * Setting a mode will by default disable USART-Interrupts.
+ *
+ * @author Jan Hauer (hauer@tkn.tu-berlin.de)
+ * @author Joe Polastre
  */
 
 module HplMsp430Usart1P {

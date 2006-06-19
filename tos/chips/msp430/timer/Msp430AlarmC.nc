@@ -20,12 +20,15 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-//@author Cory Sharp <cssharp@eecs.berkeley.edu>
+/**
+ * Msp430Alarm is a generic component that wraps the MSP430 HPL timers and
+ * compares into a TinyOS Alarm.
+ *
+ * @author Cory Sharp <cssharp@eecs.berkeley.edu>
+ * @see  Please refer to TEP 102 for more information about this component and its
+ *          intended use.
+ */
 
-// The TinyOS Timer interfaces are discussed in TEP 102.
-
-// Msp430Alarm is a generic component that wraps the MSP430 HPL timers and
-// compares into a TinyOS Alarm.
 generic module Msp430AlarmC(typedef frequency_tag)
 {
   provides interface Init;

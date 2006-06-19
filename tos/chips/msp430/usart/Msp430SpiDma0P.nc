@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *

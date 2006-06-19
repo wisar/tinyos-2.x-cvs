@@ -34,11 +34,12 @@
  */
 
 /** 
- * Please refer to TEP 101 for more information about this interface and its
- * intended use. This interface is used by the ADC subsystem to pull a client's
+ * This interface is used by the ADC subsystem to pull a client's
  * ADC12 configuration in order to prepare the hardware.
  * 
  * @author Jan Hauer
+ * @see  Please refer to TEP 101 for more information about this component and its
+ *          intended use.
  */
 
 #include <Msp430Adc12.h>

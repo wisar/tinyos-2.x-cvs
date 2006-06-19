@@ -34,7 +34,6 @@
  */
 
 /** 
- *
  * This component is meant to intercept requests to the <code>Resource</code>
  * interface on their way to the arbiter. It checks whether the client requires
  * the internal reference voltage generator of the MSP430 to be switched on by

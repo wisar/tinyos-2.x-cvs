@@ -29,8 +29,6 @@
  */
  
 /**
- * Please refer to TEP 115 for more information about this component and its
- * intended use.<br><br>
  *
  * This is the internal implementation of the standard power management
  * policy for managing the power states of non-virtualized devices.
@@ -52,6 +50,8 @@
  * <code>SplitControlPowerManagerC</code> component respectively.
  * 
  * @author Kevin Klues (klueska@cs.wustl.edu)
+ * @see  Please refer to TEP 115 for more information about this component and its
+ *          intended use.
  */
  
 generic configuration AsyncStdControlPowerManagerC()
