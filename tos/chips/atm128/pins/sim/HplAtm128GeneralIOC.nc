@@ -1,6 +1,6 @@
 // $Id$
 
-/**
+/*
  * Copyright (c) 2004-2005 Crossbow Technology, Inc.  All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and its

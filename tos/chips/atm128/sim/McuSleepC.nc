@@ -1,4 +1,4 @@
-/**
+/*
  * "Copyright (c) 2005 Stanford University. All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this software and
