@@ -528,7 +528,7 @@ implementation {
 
   // pin a neighbor so that it does not get evicted */
   command error_t LinkEstimator.pinNeighbor(am_addr_t neighbor) {
-    uint8_t nidx = findIdx(addr);
+    uint8_t nidx = findIdx(neighbor);
     if (nidx == INVALID_RVAL) {
       return FAIL;
     }
@@ -537,12 +537,12 @@ implementation {
   }
 
   // pin a neighbor so that it does not get evicted
-  command error_t unpinNeighbor(am_addr_t neighbor) {
-    uint8_t nidx = findIdx(addr);
+  command error_t LinkEstimator.unpinNeighbor(am_addr_t neighbor) {
+    uint8_t nidx = findIdx(neighbor);
     if (nidx == INVALID_RVAL) {
       return FAIL;
     }
-    NeighborTable[idx].flags &= ~PINNED_ENTRY;
+    NeighborTable[nidx].flags &= ~PINNED_ENTRY;
     return SUCCESS;
   }
 
