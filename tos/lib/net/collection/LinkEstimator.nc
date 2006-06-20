@@ -46,8 +46,14 @@ interface LinkEstimator {
   /* insert this neighbor into the neighbor table */
   command error_t insertNeighbor(am_addr_t neighbor);
 
+  /* pin a neighbor so that it does not get evicted */
+  command error_t pinNeighbor(am_addr_t neighbor);
+
+  /* pin a neighbor so that it does not get evicted */
+  command error_t unpinNeighbor(am_addr_t neighbor);
+
   /* mark that the upper layer has a problem with this link */
-  command void reportBadLink(am_addr_t neighbor);
+  command error_t reportBadLink(am_addr_t neighbor);
   
   /* signal when this neighbor is evicted from the neighbor table */
   event void evicted(am_addr_t neighbor);

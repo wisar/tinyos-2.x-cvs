@@ -83,6 +83,9 @@ enum {
   INIT_ENTRY = 0x4,
   // The upper layer has said this link seems bad
   PROBLEM_ENTRY = 0x8
+  // The upper layer has requested that this link be pinned
+  // Useful if we don't want to lose the root from the table
+  PINNED_ENTRY = 0x10
 };
 
 
