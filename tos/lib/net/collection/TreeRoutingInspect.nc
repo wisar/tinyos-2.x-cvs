@@ -50,14 +50,4 @@ interface TreeRoutingInspect {
          * The caller MUST NOT use the value in parent if the return is not SUCCESS 
 	 */
 	command error_t getMetric(uint16_t* metric);
-
-	/* Inform the routing engine that the route through neighbor is bad.
-         * This should mean that the routing engine should do something to avoid
-         * this neighbor or fix the route */
-	command void reportBadRoute(am_addr_t neighbor);
-
-	/* This informs the routing engine to update its routing information,
-         * possibly by sending a beacon */
-	command void triggerRouteUpdate();
-
 }

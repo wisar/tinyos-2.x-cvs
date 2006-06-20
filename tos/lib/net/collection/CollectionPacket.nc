@@ -39,7 +39,4 @@ interface CollectionPacket {
 
   command uint8_t getControl(message_t* msg);
   command void setControl(message_t* msg, uint8_t control);
-
-  command uint8_t getGradient(message_t* msg);
-  command void setGradient(message_t* msg, uint8_t control);
 }
