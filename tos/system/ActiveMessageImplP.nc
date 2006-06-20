@@ -30,9 +30,8 @@
 
 
 /**
- * The underlying configuration of the AM layer. Wires the AM
- * implementation (ActiveMessageC) to the boot sequence, and exports
- * the AM interfaces.
+ * The underlying configuration of the AM layer.  and exports
+ * the AM interfaces. <b>Deprecated</b> and so should not be wired to.
  *
  * @author Philip Levis
  * @date   January 5 2005

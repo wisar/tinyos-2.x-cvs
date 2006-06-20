@@ -45,10 +45,19 @@ module ActiveMessageAddressC  {
 implementation {
   am_addr_t addr = TOS_AM_ADDRESS;
 
+  /**
+   * Get the node's default AM address.
+   * @return address
+   */
   async command am_addr_t amAddress() {
     return addr;
   }
-
+  
+  /**
+   * Set the node's default AM address.
+   *
+   * @param a - the address.
+   */
   async command void setAmAddress(am_addr_t a) {
     addr = a;
   }

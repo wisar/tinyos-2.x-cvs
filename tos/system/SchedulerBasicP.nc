@@ -28,15 +28,9 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
-/*
- *
- * Authors:		Philip Levis
- * Date last modified:  $Id$
- *
- */
 
 /**
- * SchedulerBasic implements the default TinyOS scheduler sequence, as
+ * SchedulerBasicP implements the default TinyOS scheduler sequence, as
  * documented in TEP 106.
  *
  * @author Philip Levis

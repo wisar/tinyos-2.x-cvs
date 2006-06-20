@@ -23,7 +23,7 @@
  */
 
 /**
- * The fair-share AM send queue.
+ * The fair-share send queue for AM radio communication.
  *
  * @author Philip Levis
  * @date   Jan 16 2006

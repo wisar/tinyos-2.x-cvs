@@ -21,6 +21,12 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
  */
 /**
+ *
+ * The basic TinyOS LEDs abstraction.
+ *
+ * @author Phil Buonadonna
+ * @author David Gay
+ * @author Philip Levis
  * @author Joe Polastre
  */
 
