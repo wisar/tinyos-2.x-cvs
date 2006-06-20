@@ -32,8 +32,7 @@
  * chip-specific CC1000 packet structures.
  *
  * @author Philip Levis
- * @date   May 16 2005
- * Revision:  $Revision$
+ * @version $Revision$ $Date$
  */
 
 

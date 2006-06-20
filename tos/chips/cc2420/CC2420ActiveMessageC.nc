@@ -22,7 +22,6 @@
  */
 
 /**
- * 
  * The Active Message layer for the CC2420 radio. This configuration
  * just layers the AM dispatch (CC2420ActiveMessageM) on top of the
  * underlying CC2420 radio packet (CC2420CsmaRadioC), which is
@@ -31,11 +30,7 @@
  * early packet rejection if acknowledgements are enabled.
  *
  * @author Philip Levis
- * @date August 28 2005
-
- * <pre>
- *  $Id$
- * </pre>
+ * @version $Revision$ $Date$
  */
 
 #include "CC2420.h"

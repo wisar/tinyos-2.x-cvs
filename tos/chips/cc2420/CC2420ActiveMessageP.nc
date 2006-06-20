@@ -28,12 +28,8 @@
  * only additional byte it adds is the AM id byte, as the first byte
  * of the data payload.
  *
- * <pre>
- *   $Id$
- * </pre>
-
  * @author Philip Levis
- * @date   August 28 2005
+ * @version $Revision$ $Date$
  */
 
 module CC2420ActiveMessageP {

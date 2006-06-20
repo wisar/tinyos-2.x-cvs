@@ -31,12 +31,12 @@
  * ========================================================================
  */
 
- /**
- * Header file for creating string constants for arbitration of
- * USART0 and USART1 modules on the MSP430
- *
- * @author Kevin Klues <klues@tkn.tu-berlin.de>
- */
+ /*
+  * Header file for creating string constants for arbitration of
+  * USART0 and USART1 modules on the MSP430
+  *
+  * @author Kevin Klues <klues@tkn.tu-berlin.de>
+  */
 
  #ifndef MSP430USARTRESOURCE_H
  #define MSP430USARTRESOURCE_H

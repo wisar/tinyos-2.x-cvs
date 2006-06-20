@@ -57,7 +57,7 @@
  *
  * @author Philip Levis
  * @author Matt Miller
- * @date   September 11 2005
+ * @version @version $Revision$ $Date$
  */
 
 #include "Timer.h"

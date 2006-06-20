@@ -58,7 +58,7 @@
  * uses the Compare1A register.
  *
  * @author Philip Levis
- * @date   August 31 2005
+ * @version $Revision$ $Date$
  */
 
 #include "Atm128Timer.h"

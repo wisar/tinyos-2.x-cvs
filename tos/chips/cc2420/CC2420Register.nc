@@ -31,7 +31,7 @@
  * interacting with these registers over the CC2420 SPI bus.
  *
  * @author Philip Levis
- * @date   August 28 2005
+ * @version $Revision$ $Date$
  */
 
 #include "CC2420.h"

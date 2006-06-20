@@ -22,6 +22,7 @@
 
 /**
  * @author Joe Polastre
+ * @version $Revision$ $Date$
  */
 #include "hardware.h"
 

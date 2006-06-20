@@ -58,7 +58,7 @@
  * </pre>
  *
  * @author Philip Levis
- * @date   August 8 2005
+ * @version $Revision$ $Date$
  */
 
 configuration HplCC2420PinsC {

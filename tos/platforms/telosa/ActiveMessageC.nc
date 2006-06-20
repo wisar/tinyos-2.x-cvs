@@ -41,7 +41,7 @@
  * around the CC2420 Active Message layer.
  *
  * @author Philip Levis
- * @date June 19 2005
+ * @version $Revision$ $Date$
  */
 
 configuration ActiveMessageC {

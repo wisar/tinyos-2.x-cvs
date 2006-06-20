@@ -27,9 +27,8 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * - Revision -------------------------------------------------------------
- * $Revision$
- * $Date$
  * @author: Jan Hauer <hauer@tkn.tu-berlin.de>
+ * @version $Revision$ $Date$
  * ========================================================================
  */
 
