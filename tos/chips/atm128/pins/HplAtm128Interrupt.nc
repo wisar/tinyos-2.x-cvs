@@ -21,6 +21,8 @@
  */
 
 /**
+ * Interface to an Atmega128 external interrupt pin
+ *
  * @author Joe Polastre
  * @author Martin Turon
  */

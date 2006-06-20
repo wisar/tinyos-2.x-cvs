@@ -36,8 +36,8 @@
  */
 
 /**
- * Low-level CC1000 radio-access operations that must be provided by every
- * platform.
+ * Low-level CC1000 radio-access operations that must be provided by a
+ * platform wishing to use this CC1000 implementation.
  *
  * @author Jason Hill
  * @author David Gay

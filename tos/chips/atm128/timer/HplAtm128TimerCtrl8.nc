@@ -23,7 +23,7 @@
  */
 
 /**
- * HPL Interface to Atmega128 16-bit timer control registers
+ * HPL Interface to Atmega128 8-bit timer control registers
  *
  * @author Martin Turon <mturon@xbow.com>
  */

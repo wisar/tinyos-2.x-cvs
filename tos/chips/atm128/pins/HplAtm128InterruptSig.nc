@@ -26,10 +26,12 @@
  */
 
 /**
- * Exposes just the interrupt vector routine for 
- * easy linking to generic components.
+ * Interface to an Atmega128 external interrupt pin that exposes just the
+ * interrupt vector routine for easy linking to generic components (see
+ * HplAtm128Interrupt for the full interface).
  *
  * @author Martin Turon <mturon@xbow.com>
+ * @see HplAtm128Interrupt
  */
 interface HplAtm128InterruptSig
 {

@@ -38,14 +38,10 @@
  * 
  * 
  */
-/*
- *
- * Authors:		Phil Buonadonna
- * Date last modified:  1/10/03
- *
- */
 
 /**
+ * Constants for CC1000 radio
+ *
  * @author Phil Buonadonna
  */
 

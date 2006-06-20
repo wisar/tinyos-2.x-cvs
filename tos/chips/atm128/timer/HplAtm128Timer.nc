@@ -24,7 +24,7 @@
 
 /**
  * Basic interface to the hardware timers on an ATmega128.  
- * 
+ * <p>
  * This interface is designed to be independent of whether the underlying 
  * hardware is an 8-bit or 16-bit wide counter.  As such, timer_size is 
  * specified via a generics parameter.  Because this is exposing a common 
