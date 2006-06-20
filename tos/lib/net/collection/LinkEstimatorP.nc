@@ -461,9 +461,10 @@ implementation {
     idx = findIdx(neighbor);
     if (idx == INVALID_RVAL) {
       return INFINITY;
-    } else if (NeighborTable[idx].flags & PROBLEM_ENTRY) {
-      return INFINITY;
-    }
+    } 
+   // else if (NeighborTable[idx].flags & PROBLEM_ENTRY) {
+   //   return INFINITY;
+   // }
     else {
       return computeBidirEETX(NeighborTable[idx].inquality,
 			      NeighborTable[idx].outquality);
