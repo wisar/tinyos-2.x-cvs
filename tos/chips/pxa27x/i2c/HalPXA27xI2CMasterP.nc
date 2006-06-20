@@ -128,7 +128,7 @@ implementation
     }
 
     if (flags & I2C_START) {
-      tmpAddr = (rRnW) ? 0x1 : 0x0;
+      tmpAddr = (bRnW) ? 0x1 : 0x0;
       tmpAddr |= ((addr << 1) & 0xFE);
       call I2C.setIDBR(tmpAddr);
       call I2C.setICR( mBaseICRFlags | ICR_ITEIE | ICR_TB | ICR_START);
