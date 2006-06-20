@@ -434,7 +434,7 @@ implementation {
 	uint16_t r = call Random.rand16();
 	r &= 0x7f;
 	r += 128;
-	dbg("Forwarder", "%s: Asked to forward a packet from a node that is shallower in the tree (%hu < %hu). Back off, and send a beacon.\n", __FUNCTION__, call CollectionPacket.getGradient(qe->msg), gradient);
+	dbg("Forwarder", "%s: Asked to forward a packet from a node that is shallower in the tree (%hu < %hu). Back off, and send a beacon.\n", __FUNCTION__, call CollectionPacket.getGradient(m), gradient);
 	call TreeRoutingInspect.triggerRouteUpdate();
 	call RetxmitTimer.startOneShot(r);
       }
