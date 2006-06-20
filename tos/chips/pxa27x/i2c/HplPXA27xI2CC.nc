@@ -46,7 +46,5 @@ implementation
 
   I2C = HplPXA27xI2CP;
 
-  HplPXA27xI2CP.Init <- PlatformP.InitL1;
-
   HplPXA27xI2CP.I2CIrq -> HplPXA27xInterruptM.PXA27xIrq[PPID_I2C];
 }

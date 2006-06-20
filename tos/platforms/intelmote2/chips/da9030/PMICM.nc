@@ -261,7 +261,7 @@ implementation {
       update |= ISR_BED;
       //trace(DBG_USR1,"bus error");
     }
-    call PI2C.setISR(update); //PISR = update;
+    call PI2C.setISAR(update); //PISR = update;
   }
   
   async event void PMICGPIO.interruptGPIOPin(){
