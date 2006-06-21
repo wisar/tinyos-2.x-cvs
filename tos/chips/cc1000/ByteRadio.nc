@@ -43,12 +43,6 @@ interface ByteRadio
   async event void sendDone();
 
   /**
-   * Enable/disable synchronous acknowledgments
-   * @param on TRUE to turn acks on, FALSE to turn them off.
-   */
-  async command void setAck(bool on);
-
-  /**
    * Set message preamble length.
    * @param bytes Preamble length in bytes
    */

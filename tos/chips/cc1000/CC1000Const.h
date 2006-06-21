@@ -39,7 +39,7 @@
  * 
  */
 
-/**
+/*
  * Constants for CC1000 radio
  *
  * @author Phil Buonadonna

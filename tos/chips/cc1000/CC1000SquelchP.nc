@@ -26,6 +26,8 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+#include "CC1000Const.h"
+
 /**
  * Clear threshold estimation based on RSSI measurements.
  *
@@ -35,8 +37,6 @@
  * @author David Gay
  */
   
-#include "CC1000Const.h"
-
 module CC1000SquelchP
 {
   provides {

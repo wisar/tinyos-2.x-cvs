@@ -26,6 +26,9 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+#include "CC1000Const.h"
+#include "Timer.h"
+
 /**
  * This module provides the CONTROL functionality for the Chipcon1000
  * series radio.  It exports a custom interface to control CC1000
@@ -35,9 +38,6 @@
  * @author Jaein Jeong
  * @author David Gay
  */
-#include "CC1000Const.h"
-#include "Timer.h"
-
 module CC1000ControlP {
   provides {
     interface CC1000Control;
