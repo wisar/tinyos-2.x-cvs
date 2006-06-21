@@ -144,9 +144,7 @@ implementation {
           case RADIO_MODE_SLEEP_TRANSITION:
             call HplTda5250Config.SetSlaveMode();
             call HplTda5250Config.SetSleepMode();
-            call HplTda5250Data.disableTx();
-            call HplTda5250Data.disableRx();
-            call DataResource.release();
+            call ConfigResource.release();
             atomic radioMode = RADIO_MODE_SLEEP;
             signal Tda5250Control.SleepModeDone();
             break;
@@ -295,6 +293,8 @@ implementation {
           }
         }
         if(mode == RADIO_MODE_SLEEP_TRANSITION) {
+          call HplTda5250Data.disableTx();	
+          call HplTda5250Data.disableRx();	
           call DataResource.release();
           if (call ConfigResource.immediateRequest() == SUCCESS) {
             switchConfigResource();

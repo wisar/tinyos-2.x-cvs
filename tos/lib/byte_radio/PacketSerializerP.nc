@@ -37,7 +37,10 @@
 #include "radiopacketfunctions.h"
 
 /**
- * PacketSerializerP module
+ * This module in conjunction with the UartPhyC turns byte streams
+ * into packtes.
+ *
+ * @see UartPhyC
  *
  * @author Kevin Klues <klues@tkn.tu-berlin.de>
  * @author Philipp Huppertz <huppertz@tkn.tu-berlin.de>

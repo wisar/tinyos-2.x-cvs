@@ -36,7 +36,10 @@
 */
 
 /**
- * UartPhyC
+ * Configuration for the byte radio physical layer. Together with the
+ * PacketSerializerP the UartPhyP module turns byte streams into packets.
+ *
+ * @see PacketSerializerP
  *
  * @author Philipp Huppertz <huppertz@tkn.tu-berlin.de>
  */
