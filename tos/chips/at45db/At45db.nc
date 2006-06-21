@@ -36,13 +36,13 @@
  * reasonably high-level operations on AT45DB pages, including automatic
  * buffer management. Writes are only guaranteed to happen after a flush,
  * flushAll, sync or syncAll.
- *
+ * <p>
  * When buffers are flushed to the flash (either explicitly or implicitly),
  * their contents are checked to ensure the write was succesful. If this
  * check fails, the flush is retried some number of times. If this fails
  * more than some number of times, all access to the flash is disabled
  * (all requests will report FAIL in their completion event).
- *
+ * <p>
  * This interface only supports one operation at a time - components offering
  * At45db should use the <code>Resource</code> interface for resource sharing.
  *

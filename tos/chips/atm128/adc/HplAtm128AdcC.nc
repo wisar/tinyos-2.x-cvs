@@ -22,11 +22,15 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-/// @author Hu Siquan <husq@xbow.com>
-/// @author David Gay
-
 #include "Atm128Adc.h"
+
+/**
+ * HPL for the Atmega128 A/D conversion susbsystem.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ * @author Hu Siquan <husq@xbow.com>
+ * @author David Gay
+ */
 
 module HplAtm128AdcC {
   provides interface HplAtm128Adc;

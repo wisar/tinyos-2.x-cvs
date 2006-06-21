@@ -46,15 +46,18 @@
  * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR 
  * MODIFICATIONS.
  */
+
+#include "Atm128Adc.h"
+
 /**
+ * Internal component of the Atmega128 A/D HAL.
+ *
  * @author Jason Hill
  * @author David Gay
  * @author Philip Levis
  * @author Phil Buonadonna
  * @author Hu Siquan <husq@xbow.com>
  */
-
-#include "Atm128Adc.h"
 
 module Atm128AdcP 
 {

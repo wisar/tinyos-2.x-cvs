@@ -8,6 +8,9 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+#include <MicaTimer.h>
+#include <scale.h>
+
 /**
  * Measure cpu clock frequency at boot time. Provides an Atm128Calibrate
  * interface so that other components can adjust their calibration as
@@ -15,9 +18,6 @@
  *
  * @author David Gay
  */
-
-#include <MicaTimer.h>
-#include <scale.h>
 
 module MeasureClockC {
   provides {

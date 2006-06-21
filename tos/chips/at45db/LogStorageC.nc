@@ -10,8 +10,11 @@
  */
 
 /**
- * Implementation of the block storage abstraction from TEP103 for the
+ * Implementation of the log storage abstraction from TEP103 for the
  * Atmel AT45DB serial data flash.
+ *
+ * @param volid Volume to use for log storage
+ * @param circular TRUE if you want a circular log, FALSE for a linear log
  *
  * @author David Gay
  */

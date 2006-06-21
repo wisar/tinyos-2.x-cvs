@@ -22,10 +22,14 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-/// @author David Gay
-
 #include <Atm128Uart.h>
+
+/** 
+ * Private component of the Atmega128 serial port HPL.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ * @author David Gay
+ */
 
 module HplAtm128UartP
 {

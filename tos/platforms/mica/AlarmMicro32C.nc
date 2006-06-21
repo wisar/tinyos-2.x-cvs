@@ -15,7 +15,7 @@
  * command to figure out the exact frequency, or the 
  * MeasureClockC.calibrateMicro() command to convert a number of microseconds
  * to the near-microsecond units used by this component.
- *
+ * <p>
  * Upto three of these alarms can be created (one per hardware compare
  * register). Note that creating one of these Alarms consumes a 16-bit
  * microsecond Alarm (see AlarmMicro16C).

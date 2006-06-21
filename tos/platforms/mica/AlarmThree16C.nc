@@ -15,10 +15,10 @@
  * command to figure out the exact frequency, or the 
  * MeasureClockC.calibrateMicro() command to convert a number of microseconds
  * to the near-microsecond units used by this component.
- *
+ * <p>
  * Assumes an ~8MHz CPU clock, replace this component if you are running at
  * a radically different frequency.
- *
+ * <p>
  * Upto three of these alarms can be created (one per hardware compare
  * register). 
  *

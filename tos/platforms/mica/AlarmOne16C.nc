@@ -13,10 +13,10 @@
  * family 32kHz Alarm is built on hardware timer 1, and actually runs at
  * CPU frequency / 256. You can use the MeasureClockC.cyclesPerJiffy()
  * command to figure out the exact frequency.
- *
+ * <p>
  * Assumes an ~8MHz CPU clock, replace this component if you are running at
  * a radically different frequency.
- *
+ * <p>
  * Upto three of these alarms can be created (one per hardware compare
  * register).
  *

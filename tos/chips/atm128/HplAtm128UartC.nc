@@ -22,11 +22,16 @@
  * MODIFICATIONS.
  */
 
-/// @author Martin Turon <mturon@xbow.com>
-/// @author David Gay
+/// 
 
 #include <Atm128Uart.h>
 
+/**
+ * HPL for the Atmega 128 serial ports.
+ *
+ * @author Martin Turon <mturon@xbow.com>
+ * @author David Gay
+ */
 configuration HplAtm128UartC
 {
   provides {

@@ -13,6 +13,8 @@
  * Implementation of the block storage abstraction from TEP103 for the
  * Atmel AT45DB serial data flash.
  *
+ * @param volid Volume to use for block storage
+ *
  * @author David Gay
  */
 

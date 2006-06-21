@@ -32,12 +32,13 @@
  * that is exposed is access to the overflow capability.  Compare and capture
  * functionality are exposed on separate interfaces to allow easy 
  * configurability via wiring.
- *  
- * This interface provides four major groups of functionality:
- *      1) Timer Value: get/set current time
- *      2) Overflow Interrupt event
- *      3) Control of Overflow Interrupt: start/stop/clear...
- *      4) Timer Initialization: turn on/off clock source
+ * <p>
+ * This interface provides four major groups of functionality:<ol>
+ *      <li>Timer Value: get/set current time
+ *      <li>Overflow Interrupt event
+ *      <li>Control of Overflow Interrupt: start/stop/clear...
+ *      <li>Timer Initialization: turn on/off clock source
+ * </ol>
  *
  * @author Martin Turon <mturon@xbow.com>
  */

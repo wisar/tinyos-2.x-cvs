@@ -30,7 +30,7 @@
  */
 /**
  * Low level hardware access to the onboard AT45DB flash chip.
- *
+ * <p>
  * Note: This component includes optimised bit-banging SPI code with the
  * pins hardwired.  Don't copy it to some other platform without
  * understanding it (see txByte).

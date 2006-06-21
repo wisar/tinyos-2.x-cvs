@@ -29,12 +29,15 @@
  * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
  * 94704.  Attention:  Intel License Inquiry.
  */
+
+#include "Atm128Adc.h"
+
 /**
+ * HAL for the Atmega128 A/D conversion susbsystem.
+ *
  * @author Hu Siquan <husq@xbow.com>
  * @author David Gay
  */
-
-#include "Atm128Adc.h"
 
 configuration Atm128AdcC
 {

@@ -13,6 +13,8 @@
  * Implementation of the config storage abstraction from TEP103 for the
  * Atmel AT45DB serial data flash.
  *
+ * @param volid Volume to use for config storage
+ *
  * @author David Gay
  */
 
