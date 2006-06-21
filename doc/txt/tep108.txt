@@ -112,7 +112,7 @@ Generally, a physical and dedicated abstraction is just an interface
 which its user wires to. For example, on the Atmega128, Timer 2 is
 presented by the component HplAtm128Timer2C::
 
-  module HplAtmTimer2C {
+  module HplAtm128Timer2C {
     provides {
       interface HplTimer<uint8_t>   as Timer2;
       interface HplTimerCtrl8       as Timer2Ctrl;
