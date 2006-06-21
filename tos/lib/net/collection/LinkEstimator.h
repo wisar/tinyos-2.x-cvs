@@ -24,6 +24,8 @@
  *
  */
 
+#ifndef LINK_ESITIMATOR_H
+#define LINK_ESITIMATOR_H
 /*
  @ author Omprakash Gnawali
  @ Created: June 08, 2006
@@ -78,7 +80,10 @@ enum {
   MATURE_ENTRY = 0x2,
   // Flag to indicate that this link has received the
   // first sequence number
-  INIT_ENTRY = 0x4
+  INIT_ENTRY = 0x4,
+  // The upper layer has requested that this link be pinned
+  // Useful if we don't want to lose the root from the table
+  PINNED_ENTRY = 0x8
 };
 
 
@@ -96,3 +101,4 @@ typedef struct neighbor_table_entry {
 } neighbor_table_entry_t;
 
 
+#endif
