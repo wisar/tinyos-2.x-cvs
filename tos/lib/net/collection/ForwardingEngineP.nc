@@ -467,12 +467,14 @@ implementation {
         return msg;
     }
     //... and in the queue for duplicates
-    for (i = call SendQueue.size(); --i ;) {
-        qe = call SendQueue.element(i);
-        if (call CollectionPacket.getPacketID(qe->msg) == msg_uid) {
-            duplicate = TRUE;
-            break;
-        }
+    atomic {
+    	for (i = call SendQueue.size(); --i ;) {
+        	qe = call SendQueue.element(i);
+	        if (call CollectionPacket.getPacketID(qe->msg) == msg_uid) {
+        	    duplicate = TRUE;
+	            break;
+        	}
+	    }
     }
     if (duplicate) {
         call CollectionDebug.logEvent(NET_C_FE_DUPLICATE_QUEUE);
