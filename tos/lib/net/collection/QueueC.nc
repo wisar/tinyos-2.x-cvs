@@ -98,4 +98,10 @@ implementation {
     }
   }
   
+  command t Queue.element(uint8_t index) {
+    index += head;
+    index %= QUEUE_SIZE;
+    return queue[index];
+  }  
+
 }

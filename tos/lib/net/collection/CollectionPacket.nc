@@ -39,4 +39,11 @@ interface CollectionPacket {
 
   command uint8_t getControl(message_t* msg);
   command void setControl(message_t* msg, uint8_t control);
+
+  command uint8_t getSequenceNumber(message_t* msg);
+  command void setSequenceNumber(message_t* msg, uint8_t seqno);
+
+  /* Returns a 32bit number which is a concatenation of
+   * the origin and the sequence number */
+  command uint32_t getPacketID(message_t* msg);
 }
