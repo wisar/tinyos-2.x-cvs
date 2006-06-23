@@ -45,6 +45,7 @@ interface HplPXA27xI2C
   async command void setICR(uint32_t val);
   async command uint32_t getICR();
 
+ async command void setISR(uint32_t val);
   async command uint32_t getISR();
   
   async command void setISAR(uint32_t val);
