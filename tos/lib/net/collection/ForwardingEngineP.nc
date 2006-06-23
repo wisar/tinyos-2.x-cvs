@@ -224,7 +224,8 @@ implementation {
       dbg("Forwarder", "%s: queue empty, don't send\n", __FUNCTION__);
       return;
     }
-    else if (!call UnicastNameFreeRouting.hasRoute()) {
+    else if (!call RootControl.isRoot() && 
+             !call UnicastNameFreeRouting.hasRoute()) {
       dbg("Forwarder", "%s: no route, don't send, start retry timer\n", __FUNCTION__);
       call RetxmitTimer.startOneShot(10000);
 
