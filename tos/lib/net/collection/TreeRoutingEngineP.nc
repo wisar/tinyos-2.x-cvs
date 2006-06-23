@@ -383,6 +383,18 @@ implementation {
         return SUCCESS;
     }
 
+    command void TreeRoutingInspect.triggerRouteUpdate() {
+      // Random time in interval 64-127ms
+      uint16_t time = call Random.rand16();
+      time &= 0x3f; 
+      time += 64;
+      if (call BeaconTimer.gett0() + call BeaconTimer.getdt() -
+  call BeaconTimer.getNow() >= time) {
+         call BeaconTimer.stop();
+         call BeaconTimer.startOneShot(time);
+        }
+     }
+
     /* RootControl interface */
     /** sets the current node as a root, if not already a root */
     /*  returns FAIL if it's not possible for some reason      */
