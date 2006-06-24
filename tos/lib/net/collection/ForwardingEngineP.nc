@@ -219,10 +219,12 @@ implementation {
     dbg("Forwarder", "%s: Trying to send a packet. Queue size is %hhu.\n", __FUNCTION__, call SendQueue.size());
     if (sending) {
       dbg("Forwarder", "%s: busy, don't send\n", __FUNCTION__);
+      call CollectionDebug.logEvent(NET_C_FE_SENDING_BUSY);
       return;
     }
     else if (call SendQueue.empty()) {
       dbg("Forwarder", "%s: queue empty, don't send\n", __FUNCTION__);
+      call CollectionDebug.logEvent(NET_C_FE_SENDQUEUE_EMPTY);
       return;
     }
     else if (!call RootControl.isRoot() && 
