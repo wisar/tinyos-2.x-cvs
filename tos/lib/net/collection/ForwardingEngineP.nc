@@ -448,6 +448,7 @@ implementation {
         return m;
       }
 
+      memset(newMsg, 0, sizeof(message_t));
       qe->msg = m;
       qe->client = 0xff;
       qe->retries = MAX_RETRIES;
