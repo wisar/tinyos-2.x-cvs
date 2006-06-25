@@ -22,7 +22,9 @@
  * ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-/*
+/**
+ *  A general FIFO queue component, whose queue has a bounded size.
+ *
  *  @author Philip Levis
  *  @date   $Date$
  */

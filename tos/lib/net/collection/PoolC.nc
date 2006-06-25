@@ -22,7 +22,9 @@
  * ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-/*
+/**
+ *  A general dynamic memory pool component.
+ *
  *  @author Philip Levis
  *  @date   $Date$
  */

@@ -22,7 +22,10 @@
  * ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-/*
+/**
+ *  Interface to a FIFO list (queue) that contains items
+ *  of a specific type. The queue has a maximum size.
+ *
  *  @author Philip Levis
  *  @author Kyle Jamieson
  *  @date   $Date$

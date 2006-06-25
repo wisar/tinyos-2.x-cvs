@@ -22,7 +22,9 @@
  * ENHANCEMENTS, OR MODIFICATIONS."
  */
 
-/*
+/**
+ *  Implementation of a general dynamic memory pool component.
+ *
  *  @author Philip Levis
  *  @author Kyle Jamieson
  *  @date   $Date$
