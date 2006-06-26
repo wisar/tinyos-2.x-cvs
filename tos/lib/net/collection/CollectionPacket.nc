@@ -54,7 +54,8 @@ interface CollectionPacket {
   command uint16_t getGradient(message_t* msg);
   command void setGradient(message_t* msg, uint16_t gradient);
 
-  /* Returns a 32bit number which is a concatenation of
+  /** 
+   * Returns a 32bit number which is a concatenation of
    * the origin and the sequence number */
   command uint32_t getPacketID(message_t* msg);
 }
