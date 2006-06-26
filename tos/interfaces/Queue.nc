@@ -98,5 +98,5 @@ interface Queue<t> {
    * @param index - the index of the element to return
    * @return the requested element in the queue.
    */
-  command t element(uint8_t index);
+  command t element(uint8_t idx);
 }
