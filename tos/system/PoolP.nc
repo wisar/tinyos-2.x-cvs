@@ -33,6 +33,16 @@
 
 /**
  *  Implementation of a general dynamic memory pool component.
+ *  Note that the allocation/deallocation policies are 
+ *  different than traditional dynamic allocators such as
+ *  malloc or slab allocators. When initialized, the Pool
+ *  contains <code>size</code> items of type <code>pool_t</code>.
+ *  These elements can be removed from the pool for use with 
+ *  <code>Pool.get</code>, and new elements can be placed in
+ *  the pool with <code>Pool.put</code>. The pool allows 
+ *  components to <code>put</code> elements besides those which
+ *  were obtained with <code>get</code>. The pool can never have
+ *  more than <code>size</code> elements in it.
  *
  *  @author Philip Levis
  *  @author Kyle Jamieson
