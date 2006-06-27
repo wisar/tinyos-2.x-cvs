@@ -48,13 +48,15 @@ import net.tinyos.packet.*;
 import net.tinyos.util.*;
 
 public class SerialForwarder implements Messenger {
+  public static final int DEFAULT_PORT = 9002;
+  
     // appication defaults
     public SFRenderer renderer;
     public SFListen listenServer;
     public String motecom = "serial@com1:57600";
     public boolean logDB;
 
-    public int serverPort = 9001;
+    public int serverPort = DEFAULT_PORT;
 
     private boolean guiMode = true;
     private boolean displayHelp = false;
@@ -141,7 +143,7 @@ public class SerialForwarder implements Messenger {
 
     private static void printHelp() {
 	System.err.println ("optional arguments:");
-	System.err.println ("-port [server port] (default 9001)");
+	System.err.println ("-port [server port] (default " + DEFAULT_PORT + ")");
 	System.err.println ("-comm [motecom spec] (default serial@com1:57600)");
 	System.err.println ("-packetsize [size] (default 36)");
 	System.err.println ("-no-gui      = do not display graphic interface");
