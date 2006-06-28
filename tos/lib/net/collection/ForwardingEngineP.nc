@@ -625,7 +625,10 @@ implementation {
             // own gradient.  Trigger a route update and backoff.
             call TreeRoutingInspect.triggerRouteUpdate();
             startRetxmitTimer(LOOPY_WINDOW, LOOPY_OFFSET);
-            call CollectionDebug.logEvent(NET_C_FE_LOOP_DETECTED);
+            call CollectionDebug.logEventMsg(NET_C_FE_LOOP_DETECTED,
+					 call CollectionPacket.getSequenceNumber(m), 
+					 call CollectionPacket.getOrigin(m), 
+                                         call AMPacket.destination(m));
           }
         }
 
