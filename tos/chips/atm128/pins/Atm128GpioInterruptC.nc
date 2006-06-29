@@ -14,6 +14,8 @@ implementation {
 
   error_t enable( bool rising ) {
     atomic {
+      call Atm128Interrupt.disable();
+      call Atm128Interrupt.clear();
       call Atm128Interrupt.edge( rising );
       call Atm128Interrupt.enable();
     }
