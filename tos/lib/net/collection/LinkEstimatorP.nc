@@ -71,7 +71,7 @@ implementation {
     INVALID_NEIGHBOR_ADDR = 0xff,
     INFINITY = 0xff,
     // update the link estimate this often
-    TABLEUPDATE_INTERVAL = 4,
+    TABLEUPDATE_INTERVAL = 6,
     // send a beacon this often unless user of
     // this component is sending a beacon atleast
     // at this rate
