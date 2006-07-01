@@ -128,7 +128,7 @@ implementation
   void task readDone()
   {
     call Resource.release[owner]();
-    signal Read.readDone[owner](SUCCESS, value);
+    signal Read.readDone[owner](SUCCESS, (value << 4));
   }
 
   async event error_t SingleChannel.singleDataReady[uint8_t client](uint16_t data)
@@ -139,7 +139,7 @@ implementation
       value = data;
       post readDone();
     } else { // was ReadNow.read request
-      signal ReadNow.readDone[client](SUCCESS, data);
+      signal ReadNow.readDone[client](SUCCESS, (data << 4));
     }
     return SUCCESS;
   }
@@ -227,8 +227,11 @@ implementation
       uint16_t *buf, uint16_t length)
   {
     error_t nextRequest;
+    uint16_t i;
     
     if (!resultBuf){
+      for (i=0; i<length/2; i++)
+        buf[i] = (buf[i] << 4);
       value = length;
       resultBuf = buf;
       post signalBufferDone();
