@@ -85,7 +85,6 @@ implementation{
   Init = PMICM;
   PMIC = PMICM;
 
-  HplPXA27xPI2CC.Init <- PlatformP.InitL1;
   PMICM.Init <- PlatformP.InitL2;
 
   PMICM.chargeMonitorTimer -> TimerMilliC;
