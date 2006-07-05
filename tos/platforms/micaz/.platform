@@ -10,7 +10,6 @@
 #
 push( @includes, qw(
 
-  %T/platforms/micaz
   %T/platforms/mica
   %T/platforms/micaz/chips/cc2420
   %T/chips/cc2420
