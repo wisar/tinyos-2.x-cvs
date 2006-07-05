@@ -44,6 +44,7 @@ configuration GeneralIOC
 {
   provides {
     interface GeneralIO[uint8_t pin];
+    interface HalPXA27xGpioInterrupt[uint8_t pin];
     interface GpioInterrupt[uint8_t pin];
   }
 }
@@ -54,6 +55,7 @@ implementation
   components HplPXA27xGPIOC;
 
   GeneralIO = HalPXA27xGeneralIOM;
+  HalPXA27xGpioInterrupt = HalPXA27xGeneralIOM;
   GpioInterrupt = HalPXA27xGeneralIOM;
 
   HalPXA27xGeneralIOM.HplPXA27xGPIOPin -> HplPXA27xGPIOC;
