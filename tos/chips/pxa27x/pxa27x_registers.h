@@ -1192,6 +1192,8 @@
 
 #define IPR_VALID	(1 << 31) 
 
+#define ICCR_DIM	(1 << 0)
+
 // Interrupt Controller Shortcuts 
 // Argument _id is a peripheral ID number
 #define _PPID_Bit(_id)	(1 << ((_id) & 0x1f))
