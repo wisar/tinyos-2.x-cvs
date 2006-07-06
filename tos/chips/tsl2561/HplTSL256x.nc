@@ -53,7 +53,7 @@ interface HplTSL256x {
   async event void setTIMINGDone( error_t error );
 
   command error_t setTHRESHLOW(uint16_t val);
-  async event setTHRESHLOWDone(error_t error);
+  async event void setTHRESHLOWDone(error_t error);
 
   command error_t setTHRESHHIGH(uint16_t val);
   async event void setTHRESHHIGHDone(error_t error);
