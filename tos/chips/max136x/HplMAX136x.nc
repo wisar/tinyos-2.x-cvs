@@ -36,7 +36,7 @@
  * @version $Revision$ $Date$
  */
 
-interface HplMAX163x {
+interface HplMAX136x {
 
   command error_t measureChannels(uint8_t *buf,uint8_t len);
   async event void measureChannelsDone( error_t error, uint8_t *buf, uint8_t len );
