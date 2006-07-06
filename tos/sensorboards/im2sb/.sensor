@@ -40,5 +40,10 @@
 #
 push( @includes, qw(
   %T/sensorboards/im2sb
+  %T/chips/lis3l02dq
+  %T/chips/max136x
   %T/chips/sht11
+  %T/chips/tmp175
+  %T/chips/tsl2561
+
 ) );
