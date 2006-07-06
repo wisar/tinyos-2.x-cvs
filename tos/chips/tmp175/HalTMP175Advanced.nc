@@ -37,6 +37,8 @@
  * @version $Revision$ $Date$
  */
 
+#include "TMP175.h"
+
 interface HalTMP175Advanced {
 
   command error_t setThermostatMode(bool useInt);
