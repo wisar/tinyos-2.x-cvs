@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, Technische Universitaet Berlin
+ * Copyright (c) 2006, Technische Universitaet Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,32 +33,16 @@
  * ========================================================================
  */
 
-/**
- *
- * Please refer to TEP 109 for more information about this component and its
- * intended use. This component is an example component that provides
- * platform-independent access to a sensor via the <code>Read</code> and
- * <code>ReadStream</code> interface. Which actual sensor this is, is variable
- * defined in the implementation part below.
- *
- * @author Jan Hauer
- */
-
-
-#include <sensors.h>
-generic configuration DemoSensorStreamC()
+generic module ReadNowShiftC(uint8_t bits)
 {
-  provides {
-    interface ReadStream<uint16_t>;
-  }
+  provides interface ReadNow<uint16_t> as ReadNowShifted;
+  uses interface ReadNow<uint16_t> as ReadNowRaw;
 }
 implementation
 {
-  components SensorSettingsC as Settings;
-  components new AdcReadStreamClientC() as AdcReadStreamClient;
-  components new ReadStreamShiftC(4) as ReadStreamShift;
-    
-  ReadStream = ReadStreamShift;
-  ReadStreamShift.ReadStreamRaw -> AdcReadStreamClient;
-  AdcReadStreamClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
+  async command error_t ReadNowShifted.read() { return call ReadNowRaw.read(); }
+  async event void ReadNowRaw.readDone(error_t result, uint16_t val) 
+  { 
+    signal ReadNowShifted.readDone(result, (val << bits)); 
+  }
 }
