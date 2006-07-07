@@ -65,7 +65,7 @@ implementation
       break;
     case 3: 
       CKEN |= CKEN4_SSP3;
-      call SSP3Irq.allocate();
+      //call SSP3Irq.allocate();
       call SSP3Irq.enable(); 
       break;
     default: 
