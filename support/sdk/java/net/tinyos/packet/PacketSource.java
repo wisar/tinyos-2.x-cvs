@@ -89,7 +89,7 @@ public interface PacketSource
 
     /**
      * Write a packet
-     * @param The packet to write. The format is decribed above.
+     * @param packet The packet to write. The format is decribed above.
      * @return Some packet sources will return false if the packet
      *   could not be written.
      */

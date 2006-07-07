@@ -106,7 +106,7 @@ public class Receiver implements PacketListenerIF {
     /**
      * Register a particular listener for a particular message type.
      * More than one listener can be registered for each message type.
-     * @param m specify message type and template we're listening for
+     * @param template specify message type and template we're listening for
      * @param listener destination for received messages
      */
     public void registerListener(Message template, MessageListener listener) {
@@ -121,7 +121,7 @@ public class Receiver implements PacketListenerIF {
 
     /**
      * Stop listening for messages of the given type with the given listener.
-     * @param m specify message type and template we're listening for
+     * @param template specify message type and template we're listening for
      * @param listener destination for received messages
      */
     public void deregisterListener(Message template, MessageListener listener) {
