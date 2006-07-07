@@ -164,5 +164,6 @@ interface Msp430Adc12SingleChannel
    * <code>getMultipleData()</code>.
    */    
   async event uint16_t* multipleDataReady(uint16_t *buffer, uint16_t
-      numSamples); }
+      numSamples); 
+}
 
