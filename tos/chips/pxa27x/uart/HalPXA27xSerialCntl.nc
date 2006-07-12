@@ -28,25 +28,36 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+
 /**
- *
  * @author Phil Buonadonna
  */
 
-configuration HplPXA27xSTUARTC 
+interface HalPXA27xSerialCntl
 {
-  provides interface Init;
-  provides interface HplPXA27xUART as STUART;
+  /** 
+   * Modify runtime port parameters
+   *
+   * @param baudrate The integer value of baudrate
+   * @param databits The Number of data bits
+   * @param partiy Values of EVEN,ODD or NONE
+   * @param stopbits Values of 1 or 2
+   * @param flow_cntl TRUE to enable hardware flow control
+   *
+   * @return SUCCESS if parameters successfully applied. FAIL otherwise
+   */
+  async command error_t configPort(uint32_t baudrate, 
+				    uint8_t databits, 
+				    enum parity, 
+				    uin8_t stopbits, 
+				    bool flow_cntl);
+    
+  /**
+   * Flush the port FIFOs
+   *
+   * @return SUCCESS if flushed, FAIL otherwise.
+   */
+  async command error_t flushPort();
+
 }
 
-implementation 
-{
-  components HplPXA27xUARTP(&STRBR);
-  components HplPXA27xInterruptM;
-
-  Init = HplPXA27xUARTP;
-  STUART = HplPXA27xUARTP.UART;
-
-  HplPXA27xUARTP.UARTIrq -> HplPXA27xInterruptM.PXA27xIrq[PPID_STUART];
-
-}

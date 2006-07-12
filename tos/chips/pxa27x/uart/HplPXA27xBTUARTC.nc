@@ -33,20 +33,20 @@
  * @author Phil Buonadonna
  */
 
-configuration HplPXA27xSTUARTC 
+configuration HplPXA27xBTUARTC 
 {
   provides interface Init;
-  provides interface HplPXA27xUART as STUART;
+  provides interface HplPXA27xUART as BTUART;
 }
 
 implementation 
 {
-  components HplPXA27xUARTP(&STRBR);
+  components HplPXA27xUARTP(&BTRBR);
   components HplPXA27xInterruptM;
 
   Init = HplPXA27xUARTP;
-  STUART = HplPXA27xUARTP.UART;
+  BTUART = HplPXA27xUARTP.UART;
 
-  HplPXA27xUARTP.UARTIrq -> HplPXA27xInterruptM.PXA27xIrq[PPID_STUART];
+  HplPXA27xUARTP.UARTIrq -> HplPXA27xInterruptM.PXA27xIrq[PPID_BTUART];
 
 }
