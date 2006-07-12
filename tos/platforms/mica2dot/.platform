@@ -10,6 +10,7 @@
 #
 push( @includes, qw(
 
+  %T/platforms/mica2dot
   %T/platforms/mica2
   %T/platforms/mica
   %T/platforms/mica2dot/chips/cc1000
