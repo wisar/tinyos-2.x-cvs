@@ -41,7 +41,7 @@ configuration HplPXA27xFFUARTC
 
 implementation 
 {
-  components HplPXA27xUARTP(&FFRBR);
+  components new HplPXA27xUARTP((uint32_t)&FFRBR);
   components HplPXA27xInterruptM;
 
   Init = HplPXA27xUARTP;

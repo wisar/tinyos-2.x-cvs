@@ -41,7 +41,7 @@ configuration HplPXA27xSTUARTC
 
 implementation 
 {
-  components HplPXA27xUARTP(&STRBR);
+  components new HplPXA27xUARTP((uint32_t)&STRBR);
   components HplPXA27xInterruptM;
 
   Init = HplPXA27xUARTP;

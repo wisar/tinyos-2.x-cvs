@@ -33,10 +33,12 @@
 #ifndef _pxa27x_serial_h
 #define _pxa27x_serial_h
 
-enum {
+typedef uint8_t uart_status_t; // ??? if this is supposed to be a uint8_t
+
+typedef enum {
   EVEN,
   ODD,
   NONE
-};
+} uart_parity_t;
 
 #endif /* _pxa27x_serial_h */

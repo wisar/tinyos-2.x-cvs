@@ -48,8 +48,8 @@ interface HalPXA27xSerialCntl
    */
   async command error_t configPort(uint32_t baudrate, 
 				    uint8_t databits, 
-				    enum parity, 
-				    uin8_t stopbits, 
+				    uart_parity_t parity, 
+				    uint8_t stopbits, 
 				    bool flow_cntl);
     
   /**

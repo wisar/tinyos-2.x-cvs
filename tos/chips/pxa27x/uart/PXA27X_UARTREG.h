@@ -45,7 +45,7 @@
 #define UARTMCR(_base) _PXAREG_OFFSET(_base,0x10)
 #define UARTLSR(_base) _PXAREG_OFFSET(_base,0x14)
 #define UARTMSR(_base) _PXAREG_OFFSET(_base,0x18)
-#define UARTSCR(_base) _PXAREG_OFFSET(_base,0x1C)
+#define UARTSPR(_base) _PXAREG_OFFSET(_base,0x1C)
 #define UARTISR(_base) _PXAREG_OFFSET(_base,0x20)
 #define UARTFOR(_base) _PXAREG_OFFSET(_base,0x24)
 #define UARTABR(_base) _PXAREG_OFFSET(_base,0x28)
