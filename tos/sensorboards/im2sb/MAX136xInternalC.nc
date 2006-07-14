@@ -50,7 +50,7 @@ implementation {
   components new HplMAX136xLogicP(MAX136_SLAVE_ADDR) as Logic;
   MainC.SoftwareInit -> Logic;
 
-  components HalPXA27xI2CMasterC as I2CC;
+  components new HalPXA27xI2CMasterC(TRUE) as I2CC;
   Logic.I2CPacket -> I2CC;
 
   components MAX136xInternalP as Internal;

@@ -64,4 +64,5 @@ implementation {
 
   default async event void HplLIS3L02DQ.getRegDone[uint8_t id](error_t error, uint8_t regAddr, uint8_t val) { }
   default async event void HplLIS3L02DQ.setRegDone[uint8_t id](error_t error, uint8_t regAddr, uint8_t val) { }
+  default async event void HplLIS3L02DQ.alertThreshold[uint8_t id]() { }
 }

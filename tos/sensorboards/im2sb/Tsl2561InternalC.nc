@@ -58,7 +58,7 @@ implementation {
   Logic.InterruptAlert -> GeneralIOC.GpioInterrupt[GPIO_TSL2561_LIGHT_INT];
   Logic.InterruptPin -> GeneralIOC.GeneralIO[GPIO_TSL2561_LIGHT_INT];
 
-  components HalPXA27xI2CMasterC as I2CC;
+  components new HalPXA27xI2CMasterC(TRUE) as I2CC;
   Logic.I2CPacket -> I2CC;
 
   components Tsl2561InternalP as Internal;

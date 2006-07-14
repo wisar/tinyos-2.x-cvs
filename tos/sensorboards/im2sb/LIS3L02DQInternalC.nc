@@ -51,6 +51,10 @@ implementation {
   components HplLIS3L02DQLogicSPIP as Logic;
   MainC.SoftwareInit -> Logic;
 
+  components GeneralIOC;
+  Logic.InterruptPin -> GeneralIOC.GeneralIO[GPIO_LIS3L02DQ_RDY_INT];
+  Logic.InterruptAlert -> GeneralIOC.GpioInterrupt[GPIO_LIS3L02DQ_RDY_INT];
+
   components HplPXA27xSSP1C;
   // 0: Motorola SPI
   // 3: random guess what SSP Clock Rate should be
