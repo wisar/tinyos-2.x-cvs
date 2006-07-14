@@ -33,6 +33,8 @@
  * @author Phil Buonadonna
  */
 
+#include "pxa27x_serial.h"
+
 interface HalPXA27xSerialPacket
 {
   /**
