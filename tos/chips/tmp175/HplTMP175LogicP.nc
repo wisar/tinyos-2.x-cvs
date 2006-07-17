@@ -139,7 +139,7 @@ implementation {
   command error_t Init.init() {
     // careful! this can be changed via polarity I believe
     call InterruptPin.makeInput();
-    call AlertInterrupt.enableFallingEdge();
+    call AlertInterrupt.enableRisingEdge();
     mfPtrReset = FALSE;
     mConfigRegVal = 0;
     mState = STATE_STOPPED;
