@@ -56,4 +56,13 @@ implementation {
 
   IM2InitSerialP.TXD -> HplPXA27xGPIOC.HplPXA27xGPIOPin[STUART_TXD];
   IM2InitSerialP.RXD -> HplPXA27xGPIOC.HplPXA27xGPIOPin[STUART_RXD];
+
+  components new HplPXA27xDMAInfoC(19, (uint32_t) &STRBR) as DMAInfoRx;
+  components new HplPXA27xDMAInfoC(20, (uint32_t) &STTHR) as DMAInfoTx;
+  components HplPXA27xDMAC;
+  // how are these channels picked?
+  HalPXA27xSerialP.TxDMA -> HplPXA27xDMAC.HplPXA27xDMAChnl[2];
+  HalPXA27xSerialP.RxDMA -> HplPXA27xDMAC.HplPXA27xDMAChnl[3];
+  DMAInfoRx.HplPXA27xDMAInfo <- HalPXA27xSerialP.UARTRxDMAInfo;
+  DMAInfoTx.HplPXA27xDMAInfo <- HalPXA27xSerialP.UARTTxDMAInfo;
 }
