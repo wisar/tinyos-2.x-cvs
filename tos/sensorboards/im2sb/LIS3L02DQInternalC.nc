@@ -60,7 +60,7 @@ implementation {
   // 3: random guess what SSP Clock Rate should be
   // 7: 8 bit data size OR 15: 16 bit data size?
   // FALSE: No "Receive without transmit"
-  components new HalPXA27xSpiPioM(0, 128, 7, FALSE) as HalSpi;
+  components new HalPXA27xSpiPioC(128, 7, FALSE) as HalSpi;
   HalSpi.SSP -> HplPXA27xSSP1C;
   MainC.SoftwareInit -> HalSpi;
   Logic.SpiPacket -> HalSpi.SpiPacket[unique("SPIInstance")];
