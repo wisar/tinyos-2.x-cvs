@@ -56,7 +56,7 @@ interface HalPXA27xSerialPacket
    * @param status UART error status.
    *
    * @return buf A pointer to a new buffer of equal length
-   * as in the original <code>senc</code> call that is to be transmitted (chained
+   * as in the original <code>send</code> call that is to be transmitted (chained
    * send). Set to NULL to end further transmissions.
    */
   async event uint8_t *sendDone(uint8_t *buf, uint16_t len, uart_status_t status);
