@@ -274,7 +274,7 @@ implementation
   }
 
   default async event void HplPXA27xSSP.interruptSSP[uint8_t chnl]() {
-    call SSP.setSSSR(SSSR_BCE | SSSR_TUR | SSSR_EOC | SSSR_TINT | 
+    call HplPXA27xSSP.setSSSR[chnl](SSSR_BCE | SSSR_TUR | SSSR_EOC | SSSR_TINT | 
 		     SSSR_PINT | SSSR_ROR );
     return;
   }
