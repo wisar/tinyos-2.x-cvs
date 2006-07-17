@@ -274,7 +274,8 @@ implementation
   }
 
   default async event void HplPXA27xSSP.interruptSSP[uint8_t chnl]() {
-#warning "HplPXA27xSSP default event handler is empty."
+    call SSP.setSSSR(SSSR_BCE | SSSR_TUR | SSSR_EOC | SSSR_TINT | 
+		     SSSR_PINT | SSSR_ROR );
     return;
   }
 
