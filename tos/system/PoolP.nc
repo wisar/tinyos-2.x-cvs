@@ -46,6 +46,7 @@
  *
  *  @author Philip Levis
  *  @author Kyle Jamieson
+ *  @author Geoffrey Mainland
  *  @date   $Date$
  */
 
