@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004, Technische Universitat Berlin
+ * Copyright (c) 2006, Technische Universitat Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,45 +31,16 @@
  * ========================================================================
  */
 
- /**
- * Controlling the Tda5250 at the Hpl layer.
- *
- * @author Kevin Klues (klues@tkn.tu-berlin.de)
- */
+#include "msp430usart.h"
 
-#include "tda5250Const.h"
-#include "tda5250RegDefaultSettings.h"
-#include "tda5250RegTypes.h"
-configuration Tda5250RadioC {
-  provides {
-    interface SplitControl;
-    interface Tda5250Control;
-//     interface ResourceRequested;
-    interface RadioByteComm;
-  }
-}
-implementation {
-  components Tda5250RadioP
-           , HplTda5250ConfigC
-           , HplTda5250DataC
-           , new Alarm32khzC() as DelayTimer
-           , MainC;
+#ifndef TDA5250BUSRESOURCEID_H
+#define TDA5250BUSRESOURCEID_H
 
-  MainC.SoftwareInit -> HplTda5250ConfigC;
-  MainC.SoftwareInit -> HplTda5250DataC;
-  MainC.SoftwareInit -> Tda5250RadioP;
-           
-  Tda5250Control = Tda5250RadioP;
-//   ResourceRequested = Tda5250RadioP;
-  RadioByteComm = Tda5250RadioP;
-  SplitControl = Tda5250RadioP;
+enum {
+    TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
+};
 
-  Tda5250RadioP.DelayTimer -> DelayTimer.Alarm32khz16;
-  
-  Tda5250RadioP.ConfigResource -> HplTda5250ConfigC;
-  Tda5250RadioP.DataResource -> HplTda5250DataC;
-//   Tda5250RadioP.DataResourceRequested -> HplTda5250DataC;
-  
-  Tda5250RadioP.HplTda5250Config -> HplTda5250ConfigC;
-  Tda5250RadioP.HplTda5250Data -> HplTda5250DataC;
-}
+msp430_uart_config_t tda5250_uart_config = {ubr: UBR_1MHZ_38400, umctl: UMCTL_1MHZ_38400, ssel: 0x02, pena: 0, pev: 0, spb: 0, clen: 1, listen: 0, mm: 0, ckpl: 0, urxse: 0, urxeie: 1, urxwie: 0};
+
+
+#endif
