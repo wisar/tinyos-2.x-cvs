@@ -30,38 +30,41 @@
  */
 
 /**
- * An implementation of the UART on USART1 for the MSP430.
- * @author Vlado Handziski <handzisk@tkn.tu-berlin.de>
+ * An implementation of the SPI on USART0 for the MSP430. The current
+ * implementation defaults not using the DMA and performing the SPI
+ * transfers in software. To utilize the DMA, use Msp430SpiDma0P in
+ * place of Msp430SpiNoDma0P.
+ *
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
 #include "msp430usart.h"
 
-generic configuration Msp430Uart1C() {
+generic configuration Msp430Spi1C() {
 
   provides interface Resource;
-  provides interface SerialByteComm;
-  provides interface Msp430UartControl as UartControl;
+  provides interface SpiByte;
+  provides interface SpiPacket;
 
-  uses interface Msp430UartConfigure;
+  uses interface Msp430SpiConfigure;
 }
 
 implementation {
 
   enum {
-    CLIENT_ID = unique( MSP430_UART1_BUS ),
+    CLIENT_ID = unique( MSP430_SPI1_BUS ),
   };
 
-  components Msp430Uart1P as UartP;
-  Resource = UartP.Resource[ CLIENT_ID ];
-  SerialByteComm = UartP.SerialByteComm;
-  UartControl = UartP.UartControl[ CLIENT_ID ];
-  Msp430UartConfigure = UartP.Msp430UartConfigure[ CLIENT_ID ];
+  components Msp430SpiNoDma1P as SpiP;
+  Resource = SpiP.Resource[ CLIENT_ID ];
+  SpiByte = SpiP.SpiByte;
+  SpiPacket = SpiP.SpiPacket[ CLIENT_ID ];
+  Msp430SpiConfigure = SpiP.Msp430SpiConfigure[ CLIENT_ID ];
 
   components new Msp430Usart1C() as UsartC;
-  UartP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
-  UartP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
-  UartP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;
+  SpiP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
+  SpiP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
+  SpiP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;
 
 }

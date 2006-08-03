@@ -30,38 +30,38 @@
  */
 
 /**
- * An implementation of the UART on USART1 for the MSP430.
- * @author Vlado Handziski <handzisk@tkn.tu-berlin.de>
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
-#include "msp430usart.h"
+configuration Msp430SpiNoDma1P {
 
-generic configuration Msp430Uart1C() {
+  provides interface Resource[ uint8_t id ];
+  provides interface ResourceConfigure[uint8_t id ];
+  provides interface SpiByte;
+  provides interface SpiPacket[ uint8_t id ];
 
-  provides interface Resource;
-  provides interface SerialByteComm;
-  provides interface Msp430UartControl as UartControl;
+  uses interface Resource as UsartResource[ uint8_t id ];
+  uses interface Msp430SpiConfigure[ uint8_t id ];
+  uses interface HplMsp430UsartInterrupts as UsartInterrupts;
 
-  uses interface Msp430UartConfigure;
 }
 
 implementation {
 
-  enum {
-    CLIENT_ID = unique( MSP430_UART1_BUS ),
-  };
+  components new Msp430SpiNoDmaP() as SpiP;
+  Resource = SpiP.Resource;
+  ResourceConfigure = SpiP.ResourceConfigure;
+  Msp430SpiConfigure = SpiP.Msp430SpiConfigure;
+  SpiByte = SpiP.SpiByte;
+  SpiPacket = SpiP.SpiPacket;
+  UsartResource = SpiP.UsartResource;
+  UsartInterrupts = SpiP.UsartInterrupts;
 
-  components Msp430Uart1P as UartP;
-  Resource = UartP.Resource[ CLIENT_ID ];
-  SerialByteComm = UartP.SerialByteComm;
-  UartControl = UartP.UartControl[ CLIENT_ID ];
-  Msp430UartConfigure = UartP.Msp430UartConfigure[ CLIENT_ID ];
+  components HplMsp430Usart1C as UsartC;
+  SpiP.Usart -> UsartC;
 
-  components new Msp430Usart1C() as UsartC;
-  UartP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
-  UartP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
-  UartP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;
+  components LedsC as Leds;
+  SpiP.Leds -> Leds;
 
 }

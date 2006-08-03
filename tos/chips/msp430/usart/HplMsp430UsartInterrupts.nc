@@ -52,5 +52,6 @@ interface HplMsp430UsartInterrupts {
    * A byte of data has been received.
    */
   async event void rxDone(uint8_t data);
-  
+
 }
+

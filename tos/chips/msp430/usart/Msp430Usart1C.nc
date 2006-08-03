@@ -30,38 +30,37 @@
  */
 
 /**
- * An implementation of the UART on USART1 for the MSP430.
- * @author Vlado Handziski <handzisk@tkn.tu-berlin.de>
+ * Provides an interface for USART1 on the MSP430.
+ *
+ * @author Vlado Handziski <handisk@tkn.tu-berlin.de>
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
-#include "msp430usart.h"
-
-generic configuration Msp430Uart1C() {
+generic configuration Msp430Usart1C() {
 
   provides interface Resource;
-  provides interface SerialByteComm;
-  provides interface Msp430UartControl as UartControl;
+  provides interface ArbiterInfo;
+  provides interface HplMsp430Usart;
+  provides interface HplMsp430UsartInterrupts;
 
-  uses interface Msp430UartConfigure;
+  uses interface ResourceConfigure;
 }
 
 implementation {
 
   enum {
-    CLIENT_ID = unique( MSP430_UART1_BUS ),
+    CLIENT_ID = unique( MSP430_HPLUSART1_RESOURCE ),
   };
 
-  components Msp430Uart1P as UartP;
-  Resource = UartP.Resource[ CLIENT_ID ];
-  SerialByteComm = UartP.SerialByteComm;
-  UartControl = UartP.UartControl[ CLIENT_ID ];
-  Msp430UartConfigure = UartP.Msp430UartConfigure[ CLIENT_ID ];
+  components Msp430UsartShare1P as UsartShareP;
 
-  components new Msp430Usart1C() as UsartC;
-  UartP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
-  UartP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
-  UartP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;
+  Resource = UsartShareP.Resource[ CLIENT_ID ];
+  ResourceConfigure = UsartShareP.ResourceConfigure[ CLIENT_ID ];
+  ArbiterInfo = UsartShareP.ArbiterInfo;
+  HplMsp430UsartInterrupts = UsartShareP.Interrupts[ CLIENT_ID ];
+
+  components HplMsp430Usart1C as UsartC;
+  HplMsp430Usart = UsartC;
 
 }

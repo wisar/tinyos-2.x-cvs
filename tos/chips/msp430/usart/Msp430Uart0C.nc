@@ -30,7 +30,7 @@
  */
 
 /**
- * An implementation of the UART on USART1 for the MSP430.
+ * An implementation of the UART on USART0 for the MSP430.
  * @author Vlado Handziski <handzisk@tkn.tu-berlin.de>
  * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
@@ -38,7 +38,7 @@
 
 #include "msp430usart.h"
 
-generic configuration Msp430Uart1C() {
+generic configuration Msp430Uart0C() {
 
   provides interface Resource;
   provides interface SerialByteComm;
@@ -50,16 +50,16 @@ generic configuration Msp430Uart1C() {
 implementation {
 
   enum {
-    CLIENT_ID = unique( MSP430_UART1_BUS ),
+    CLIENT_ID = unique( MSP430_UARTO_BUS ),
   };
 
-  components Msp430Uart1P as UartP;
+  components Msp430Uart0P as UartP;
   Resource = UartP.Resource[ CLIENT_ID ];
   SerialByteComm = UartP.SerialByteComm;
   UartControl = UartP.UartControl[ CLIENT_ID ];
   Msp430UartConfigure = UartP.Msp430UartConfigure[ CLIENT_ID ];
 
-  components new Msp430Usart1C() as UsartC;
+  components new Msp430Usart0C() as UsartC;
   UartP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
   UartP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
   UartP.UsartInterrupts -> UsartC.HplMsp430UsartInterrupts;

@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2005-2006 Arch Rock Corporation
+/**
+ * Copyright (c) 2005-2006 Arched Rock Corporation
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -11,7 +11,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the
  *   distribution.
- * - Neither the name of the Arch Rock Corporation nor the names of
+ * - Neither the name of the Arched Rock Corporation nor the names of
  *   its contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  *
@@ -30,41 +30,41 @@
  */
 
 /**
- * @author Jonathan Hui <jhui@archrock.com>
+ * @author Jonathan Hui <jhui@archedrock.com>
  * @version $Revision$ $Date$
  */
 
 configuration Msp430UsartShare0P {
-  
+
   provides interface HplMsp430UsartInterrupts as Interrupts[ uint8_t id ];
-  provides interface HplMsp430I2CInterrupts as I2CInterrupts[ uint8_t id ];
+	provides interface HplMsp430I2CInterrupts as I2CInterrupts[ uint8_t id ];
   provides interface Resource[ uint8_t id ];
   provides interface ArbiterInfo;
-  
+
+  uses interface ResourceConfigure[ uint8_t id ];
 }
 
 implementation {
-  
+
   components new Msp430UsartShareP() as UsartShareP;
   Interrupts = UsartShareP;
-  I2CInterrupts = UsartShareP;
+	I2CInterrupts = UsartShareP;
   UsartShareP.RawInterrupts -> UsartC;
-  UsartShareP.RawI2CInterrupts -> UsartC;
 
   components new FcfsArbiterC( MSP430_HPLUSART0_RESOURCE ) as ArbiterC;
   Resource = ArbiterC;
+  ResourceConfigure = ArbiterC;
   ArbiterInfo = ArbiterC;
   UsartShareP.ArbiterInfo -> ArbiterC;
-  
+
   components new AsyncStdControlPowerManagerC() as PowerManagerC;
-  PowerManagerC.ArbiterInit -> ArbiterC;
   PowerManagerC.ResourceController -> ArbiterC;
-  
+	PowerManagerC.ArbiterInit -> ArbiterC;
+
   components HplMsp430Usart0C as UsartC;
   PowerManagerC.AsyncStdControl -> UsartC;
-  
-  components MainC;
-  MainC.SoftwareInit -> ArbiterC;
-  MainC.SoftwareInit -> PowerManagerC;
-
+	
+	components MainC;
+	MainC.SoftwareInit -> ArbiterC;
+	MainC.SoftwareInit -> PowerManagerC;
 }

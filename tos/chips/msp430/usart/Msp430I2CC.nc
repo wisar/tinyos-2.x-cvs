@@ -35,13 +35,14 @@
  */
 
 #include <I2C.h>
-#include "msp430UsartResource.h"
+#include "msp430usart.h"
 
 generic configuration Msp430I2CC() {
   
   provides interface Resource;
   provides interface I2CPacket<TI2CBasicAddr> as I2CBasicAddr;
   
+	uses interface Msp430I2CConfigure;
 }
 
 implementation {
@@ -53,8 +54,10 @@ implementation {
   components Msp430I2C0P as I2CP;
   Resource = I2CP.Resource[ CLIENT_ID ];
   I2CBasicAddr = I2CP.I2CBasicAddr;
+	Msp430I2CConfigure = I2CP.Msp430I2CConfigure[ CLIENT_ID ];
   
   components new Msp430Usart0C() as UsartC;
+	I2CP.ResourceConfigure[ CLIENT_ID ] <- UsartC.ResourceConfigure;
   I2CP.UsartResource[ CLIENT_ID ] -> UsartC.Resource;
   I2CP.I2CInterrupts -> UsartC.HplMsp430I2CInterrupts;
   
