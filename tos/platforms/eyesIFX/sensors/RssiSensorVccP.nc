@@ -62,9 +62,8 @@ implementation
         return call FastChannel.getSingleData();
     }
     
-    async event error_t FastChannel.singleDataReady(uint16_t data) {
+    async event void FastChannel.singleDataReady(uint16_t data) {
         signal ReadNow.readDone(SUCCESS, data);
-        return SUCCESS;
     }
 
     async command error_t ReadNowResource.request() {
