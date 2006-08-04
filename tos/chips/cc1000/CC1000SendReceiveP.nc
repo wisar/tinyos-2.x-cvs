@@ -524,7 +524,7 @@ implementation
 
     if (f.ack &&
 	rxFooter->crc &&
-	rxHeader->addr == call amAddress())
+	rxHeader->dest == call amAddress())
       {
 	enterAckState();
 	call CC1000Control.txMode();
