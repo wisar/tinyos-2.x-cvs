@@ -40,6 +40,7 @@
 #include <mac.h>
 #include <radio.h>
 #include <packet.h>
+#include <hashtable.h>
 
 typedef struct variable_string {
   char* type;
@@ -96,6 +97,7 @@ class Mote {
  private:
   unsigned long nodeID;
   nesc_app_t* app;
+  struct hashtable* varTable;
 };
 
 class Tossim {
