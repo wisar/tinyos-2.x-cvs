@@ -33,13 +33,20 @@
 
  /**
  * Interface for sending and receiving bytes of data over the TDA5250 Radio.
+ * This interface lets you receive and send bytes of data.
+ * In conjunction to this the HplTda5250DataControl interface is used to 
+ * switch between receiving and sending.
  *
+ * @see HplTda5250DataControl
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 interface HplTda5250Data {
 
  /**
    * Transmit a byte of data over the radio.
+   * Before you call this command you must switch 
+   * the radio to Tx mode via the HplTda5250DataControl
+   * interface.
    * @param data The data byte to be transmitted.
    * @return SUCCESS Byte successfully transmitted.
              FAIL    Byte could not be transmitted.
@@ -64,25 +71,11 @@ interface HplTda5250Data {
 
   /**
    * Signaled when a byte of data has been received from the radio.
+	 * Before you call this command you must switch 
+	 * the radio to Rx mode via the HplTda5250DataControl
+   * interface.
    * @param data The data byte received.
    */
   async event void rxDone(uint8_t data);
-
-  /**
-   * Sets the radio to transmit. 
-   * 
-   * @return SUCCESS on success
-   *         FAIL otherwise.
-   */
-  async command error_t setToTx();
-
-
-  /**
-   * Sets the radio to receive.
-   *
-   * @return SUCCESS on success
-   *         FAIL otherwise.
-  */
-  async command error_t setToRx();
 }
 

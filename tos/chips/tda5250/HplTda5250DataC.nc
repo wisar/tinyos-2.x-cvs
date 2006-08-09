@@ -34,34 +34,33 @@
 
 /**
  * Controlling the TDA5250 at the HPL layer.
- *
+ * 
  * @author Kevin Klues (klues@tkn.tu-berlin.de)
  */
 configuration HplTda5250DataC {
   provides {
     interface Init;
     interface HplTda5250Data;
+		interface HplTda5250DataControl;
 //     interface ResourceRequested;
     interface Resource as Resource;
   }
 }
 implementation {
 
-
   components HplTda5250DataP,
-      new Msp430Uart0C(),
       Tda5250RadioIOC,
-			Tda5250BusResourceConfigureP;
+			HplTda5250DataIOC;
 
   Init = HplTda5250DataP;
   Resource = HplTda5250DataP.Resource;
-//   ResourceRequested = HplTda5250DataP.ResourceRequested;
+//   ResourceRequested = HplTda5250Data.ResourceRequested;
   HplTda5250Data = HplTda5250DataP;
+	HplTda5250DataControl = HplTda5250DataIOC;
 
   HplTda5250DataP.DATA -> Tda5250RadioIOC.Tda5250RadioDATA;
-  HplTda5250DataP.Uart -> Msp430Uart0C.SerialByteComm;
-  HplTda5250DataP.UartControl -> Msp430Uart0C.UartControl;
-	Tda5250BusResourceConfigureP.UartResourceConfigure <- Msp430Uart0C.Msp430UartConfigure;  
-  HplTda5250DataP.UartResource -> Msp430Uart0C.Resource;
-//   HplTda5250DataP.UartResourceRequested -> Msp430Uart0C.ResourceRequested;
+	HplTda5250DataP.Uart -> HplTda5250DataIOC.SerialByteComm;
+	HplTda5250DataP.UartResource -> HplTda5250DataIOC.Resource;
+//	HplTda5250DataP.UartResourceRequested -> HplTda5250DataIOC.ResourceRequested;
+
 }

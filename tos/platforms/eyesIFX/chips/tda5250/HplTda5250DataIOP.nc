@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, Technische Universitat Berlin
+ * Copyright (c) 2004, Technische Universitat Berlin
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,13 +31,45 @@
  * ========================================================================
  */
 
-#include "msp430UsartResource.h"
+#include "msp430usart.h"
+#include "tda5250BusResourceSettings.h"
 
-#ifndef TDA5250BUSRESOURCEID_H
-#define TDA5250BUSRESOURCEID_H
+ /**
+ * Wrapper module for the Msp430 Uart abstraction.
+ *
+ * @author Philipp Hupertz (huppertz@tkn.tu-berlin.de)
+  */
+module HplTda5250DataIOP {
+  provides {
+    interface HplTda5250DataControl;
+		interface Msp430UartConfigure as UartResourceConfigure;
+  }
+  uses {
+    interface Msp430UartControl as UartControl;
+    interface Resource as UartResource;
+  }
+}
 
-enum {
-    TDA5250_UART_BUS_ID = unique(MSP430_UARTO_BUS)
-};
+implementation {
+  
+  async command error_t HplTda5250DataControl.setToTx() {
+    if(call UartResource.isOwner() == FALSE)
+      return FAIL;
+    call UartControl.setModeTx();
+    return SUCCESS;
+  }
 
-#endif
+  async command error_t HplTda5250DataControl.setToRx() {
+   if(call UartResource.isOwner() == FALSE)
+     return FAIL;
+   call UartControl.setModeRx();
+   return SUCCESS;
+  }
+	
+	async command msp430_uart_config_t* UartResourceConfigure.getConfig() {
+		return &tda5250_uart_config;
+	}
+
+	/* don't touch this */
+	event void UartResource.granted() {};
+}
