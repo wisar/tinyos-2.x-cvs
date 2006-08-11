@@ -60,12 +60,18 @@ configuration ActiveMessageC {
   }
 }
 implementation {
+  components ActiveMessageFilterC as Filter;
   components Tda5250ActiveMessageC as AM;
+  
+  AMSend       = Filter;
+  Receive      = Filter.Receive;
+  Snoop        = Filter.Snoop;
+
+  Filter.SubAMSend -> AM;
+  Filter.SubReceive -> AM.Receive;
+  Filter.SubSnoop  -> AM.Snoop;
 
   SplitControl = AM;
-  AMSend       = AM;
-  Receive      = AM.Receive;
-  Snoop        = AM.Snoop;
   Packet       = AM;
   AMPacket     = AM;
 
