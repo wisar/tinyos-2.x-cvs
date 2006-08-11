@@ -109,7 +109,7 @@ interface HplDS2745 {
    *
    * @return SUCCESS if the measurement will be made
    */
-  command measureAccCurrent();
+  command error_t measureAccCurrent();
 
   /**
    * Presents the result of a accumulated current measurement.
