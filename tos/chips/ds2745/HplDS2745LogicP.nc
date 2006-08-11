@@ -248,11 +248,11 @@ implementation {
       break;
     case STATE_SETBIAS:
       atomic mState = STATE_IDLE;
-      signal HplDS2745.setConfigRegDone(error);
+      signal HplDS2745.setOffsetBiasDone(error);
       break;
     case STATE_SETACCBIAS:
       atomic mState = STATE_IDLE;
-      signal HplDS2745.setTHighRegDone(error);
+      signal HplDS2745.setAccOffsetBiasDone(error);
       break;
     default:
       atomic mState = STATE_IDLE;
