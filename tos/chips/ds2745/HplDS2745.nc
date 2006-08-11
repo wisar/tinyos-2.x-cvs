@@ -46,14 +46,14 @@ interface HplDS2745 {
    *
    * @return SUCCESS if the set will be performed
    */
-  command error_t setConfigReg( uint8_t val );
+  command error_t setConfig( uint8_t val );
 
   /**
    * Signals the completion of the configuration register set.
    *
    * @param error SUCCESS if the set was successful
    */
-  async event void setConfigRegDone( error_t error );
+  async event void setConfigDone( error_t error );
 
 
   /**
