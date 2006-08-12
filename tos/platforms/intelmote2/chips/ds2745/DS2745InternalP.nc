@@ -35,7 +35,7 @@
  * @version $Revision$ $Date$
  */
 
-module Tsl2561InternalP {
+module DS2745InternalP {
   provides interface HplDS2745[uint8_t id];
   uses interface HplDS2745 as ToHPLC;
 }
@@ -43,7 +43,7 @@ module Tsl2561InternalP {
 implementation {
   uint8_t currentId;
   
-  command error_t HplDS2745.setConfig[uint8_t id](int8_t val) {
+  command error_t HplDS2745.setConfig[uint8_t id](uint8_t val) {
     currentId = id;
     return call ToHPLC.setConfig(val);
   }
