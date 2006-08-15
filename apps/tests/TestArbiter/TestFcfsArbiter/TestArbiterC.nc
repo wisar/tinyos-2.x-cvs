@@ -67,7 +67,7 @@ module TestArbiterC {
     interface Leds;
     interface Resource as Resource0;
     interface Resource as Resource1;
-    interface Resource as Resource2;  
+    interface Resource as Resource2;
     interface Timer<TMilli> as Timer0;
     interface Timer<TMilli> as Timer1;
     interface Timer<TMilli> as Timer2;

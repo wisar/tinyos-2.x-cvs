@@ -76,8 +76,6 @@ implementation {
   };
 
   TestArbiterC -> MainC.Boot;
-  
-  MainC.SoftwareInit -> Arbiter;
  
   TestArbiterC.Resource0 -> Arbiter.Resource[RESOURCE0_ID];
   TestArbiterC.Resource1 -> Arbiter.Resource[RESOURCE1_ID];
