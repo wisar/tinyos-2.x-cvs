@@ -133,7 +133,7 @@ implementation {
   }
 
   command error_t Init.init() {
-    mState = STATE_STOPPING;
+    mState = STATE_STOPPED;
     return SUCCESS;
   }
 
