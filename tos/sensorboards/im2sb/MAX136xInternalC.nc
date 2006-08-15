@@ -42,10 +42,9 @@ configuration MAX136xInternalC {
 }
 
 implementation {
-  components new FcfsArbiterC( "MAX136x.Resource" )as Arbiter;
+  components new SimpleFcfsArbiterC( "MAX136x.Resource" )as Arbiter;
   components MainC;
   Resource = Arbiter;
-  MainC.SoftwareInit -> Arbiter;
 
   components new HplMAX136xLogicP(MAX136_SLAVE_ADDR) as Logic;
   MainC.SoftwareInit -> Logic;

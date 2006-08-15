@@ -42,10 +42,9 @@ configuration DS2745InternalC {
 }
 
 implementation {
-  components new FcfsArbiterC( "Ds2745.Resource" ) as Arbiter;
+  components new SimpleFcfsArbiterC( "Ds2745.Resource" ) as Arbiter;
   components MainC;
   Resource = Arbiter;
-  MainC.SoftwareInit -> Arbiter;
   
   components new HplDS2745LogicP(DS2745_SLAVE_ADDR) as Logic;
   MainC.SoftwareInit -> Logic;

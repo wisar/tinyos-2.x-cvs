@@ -46,10 +46,9 @@ implementation {
 
   };
 
-  components new FcfsArbiterC( "Tsl2561.Resource" ) as Arbiter;
+  components new SimpleFcfsArbiterC( "Tsl2561.Resource" ) as Arbiter;
   components MainC;
   Resource = Arbiter;
-  MainC.SoftwareInit -> Arbiter;
   
   components new HplTSL2561LogicP(TSL2561_SLAVE_ADDR) as Logic;
   MainC.SoftwareInit -> Logic;

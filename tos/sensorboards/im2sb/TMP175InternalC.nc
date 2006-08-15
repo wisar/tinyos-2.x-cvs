@@ -46,10 +46,9 @@ implementation {
     ADV_ID = unique("TMP175.HplAccess"),
   };
   
-  components new FcfsArbiterC( "TMP175.Resource" ) as Arbiter;
+  components new SimpleFcfsArbiterC( "TMP175.Resource" ) as Arbiter;
   components MainC;
   Resource = Arbiter;
-  MainC.SoftwareInit -> Arbiter;
 
   components new HplTMP175LogicP(TMP175_SLAVE_ADDR) as Logic;
   MainC.SoftwareInit -> Logic;

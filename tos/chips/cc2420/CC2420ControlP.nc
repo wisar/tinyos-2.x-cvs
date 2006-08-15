@@ -110,10 +110,10 @@ implementation {
     return call SpiResource.isOwner();
   }
 
-  async command void Resource.release() {
+  async command error_t Resource.release() {
     atomic {
       call CSN.set();
-      call SpiResource.release();
+      return call SpiResource.release();
     }
   }
 

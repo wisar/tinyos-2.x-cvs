@@ -84,8 +84,8 @@ implementation
         signal ReadNowResource.granted();
     }
 
-    async command void ReadNowResource.release() {
-        call SubResource.release();
+    async command error_t ReadNowResource.release() {
+        return call SubResource.release();
     }
     
     async command bool ReadNowResource.isOwner() {

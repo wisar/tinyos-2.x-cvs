@@ -52,13 +52,12 @@ configuration Msp430Adc12C
   provides interface Msp430Adc12FastSingleChannel as FastSingleChannel[uint8_t id]; 
 } implementation { 
   components Msp430Adc12P,HplAdc12P, Msp430TimerC, MainC, HplMsp430GeneralIOC, 
-             new RoundRobinArbiterC(MSP430ADC12_RESOURCE) as Arbiter;
+             new SimpleRoundRobinArbiterC(MSP430ADC12_RESOURCE) as Arbiter;
 
   Resource = Arbiter;
   SingleChannel = Msp430Adc12P.SingleChannel;
   FastSingleChannel = Msp430Adc12P.FastSingleChannel;
   
-  Arbiter.Init <- MainC;
   Msp430Adc12P.Init <- MainC;
   Msp430Adc12P.ADCArbiterInfo -> Arbiter;
   Msp430Adc12P.HplAdc12 -> HplAdc12P;

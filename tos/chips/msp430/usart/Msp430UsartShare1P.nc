@@ -58,12 +58,7 @@ implementation {
 
   components new AsyncStdControlPowerManagerC() as PowerManagerC;
   PowerManagerC.ResourceController -> ArbiterC;
-	PowerManagerC.ArbiterInit -> ArbiterC;
 	
   components HplMsp430Usart1C as UsartC;
   PowerManagerC.AsyncStdControl -> UsartC;
-	
-	components MainC;
-	MainC.SoftwareInit -> ArbiterC;
-	MainC.SoftwareInit -> PowerManagerC;
 }

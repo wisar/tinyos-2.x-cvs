@@ -81,8 +81,8 @@ implementation {
     return SUCCESS;
   }
 
-  async command void Resource.release() {
-    call UartResource.release();
+  async command error_t Resource.release() {
+    return call UartResource.release();
   }
 
   async command bool Resource.isOwner() {

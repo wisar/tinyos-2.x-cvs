@@ -113,8 +113,8 @@ implementation {
     return call SpiResource.immediateRequest();
   }
   
-  async command void ClientResource.release() {
-    call SpiResource.release();
+  async command error_t ClientResource.release() {
+    return call SpiResource.release();
   }
 
   async command uint8_t ClientResource.isOwner() {

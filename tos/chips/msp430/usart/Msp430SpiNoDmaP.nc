@@ -77,8 +77,8 @@ implementation {
     return call UsartResource.isOwner[ id ]();
   }
 
-  async command void Resource.release[ uint8_t id ]() {
-    call UsartResource.release[ id ]();
+  async command error_t Resource.release[ uint8_t id ]() {
+    return call UsartResource.release[ id ]();
   }
 
   async command void ResourceConfigure.configure[ uint8_t id ]() {
@@ -103,7 +103,7 @@ implementation {
   default async command error_t UsartResource.isOwner[ uint8_t id ]() { return FAIL; }
   default async command error_t UsartResource.request[ uint8_t id ]() { return FAIL; }
   default async command error_t UsartResource.immediateRequest[ uint8_t id ]() { return FAIL; }
-  default async command void UsartResource.release[ uint8_t id ]() { }
+  default async command error_t UsartResource.release[ uint8_t id ]() { return FAIL; }
   default async command msp430_spi_config_t* Msp430SpiConfigure.getConfig[uint8_t id]() {
     return &msp430_spi_default_config;
   }

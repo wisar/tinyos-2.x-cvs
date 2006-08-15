@@ -291,13 +291,14 @@ implementation {
    return call ResourceArbiter.request[ id ]();
  }
 
- async command void Resource.release[ uint8_t id ]() {
-   call ResourceArbiter.release[ id ]();
+ async command error_t Resource.release[ uint8_t id ]() {
+   error_t error = call ResourceArbiter.release[ id ]();
    atomic {
      if (!call ArbiterInfo.inUse()) {
        stopSpi();
      }
    }
+   return error;
  }
 
  async command uint8_t Resource.isOwner[uint8_t id]() {

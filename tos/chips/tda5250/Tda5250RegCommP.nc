@@ -73,8 +73,8 @@ implementation {
      return call SpiResource.isOwner();
    }
 
-   async command void Resource.release() {
-     call SpiResource.release();
+   async command error_t Resource.release() {
+     return call SpiResource.release();
    }
 
    event void SpiResource.granted() {

@@ -43,10 +43,9 @@ configuration LIS3L02DQInternalC {
 }
 
 implementation {
-  components new FcfsArbiterC( "LIS3L02DQ.Resource" ) as Arbiter;
+  components new SimpleFcfsArbiterC( "LIS3L02DQ.Resource" ) as Arbiter;
   components MainC;
   Resource = Arbiter;
-  MainC.SoftwareInit -> Arbiter;
 
   components HplLIS3L02DQLogicSPIP as Logic;
   MainC.SoftwareInit -> Logic;
