@@ -46,22 +46,17 @@ module HplTda5250DataIOP {
   }
   uses {
     interface Msp430UartControl as UartControl;
-    interface Resource as UartResource;
   }
 }
 
 implementation {
   
   async command error_t HplTda5250DataControl.setToTx() {
-    if(call UartResource.isOwner() == FALSE)
-      return FAIL;
     call UartControl.setModeTx();
     return SUCCESS;
   }
 
   async command error_t HplTda5250DataControl.setToRx() {
-   if(call UartResource.isOwner() == FALSE)
-     return FAIL;
    call UartControl.setModeRx();
    return SUCCESS;
   }
@@ -70,6 +65,4 @@ implementation {
 		return &tda5250_uart_config;
 	}
 
-	/* don't touch this */
-	event void UartResource.granted() {};
 }

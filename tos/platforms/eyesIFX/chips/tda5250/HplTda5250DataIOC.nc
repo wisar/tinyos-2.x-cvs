@@ -40,7 +40,7 @@
 configuration HplTda5250DataIOC {
   provides {
 		interface Resource;
-		// interfcace ResourceRequested;
+    interface ResourceRequested;
 		interface SerialByteComm;
 		interface HplTda5250DataControl;		
   }
@@ -52,11 +52,10 @@ implementation {
 			HplTda5250DataIOP;
 
 	Resource = Msp430Uart0C.Resource;
-	// ResourceRequested = Msp430Uart0C.ResourceRequested
+  ResourceRequested = Msp430Uart0C.ResourceRequested;
 	SerialByteComm = Msp430Uart0C.SerialByteComm;
 	
 	HplTda5250DataControl = HplTda5250DataIOP;
-	HplTda5250DataIOP.UartResource -> Msp430Uart0C.Resource;
   HplTda5250DataIOP.UartControl -> Msp430Uart0C.UartControl;
 	HplTda5250DataIOP.UartResourceConfigure <- Msp430Uart0C.Msp430UartConfigure;  
 }
