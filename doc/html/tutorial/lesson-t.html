@@ -77,6 +77,28 @@ $Id$
         contains TOSSIM implementations of some of the Atmega128 timer
         abstractions.</p>
 
+        <p>Before compiling TOSSIM, you need to configure it for the
+        version of Python you have on your machine. At the command
+        line, type</p>
+
+        <pre>
+          $ python -V
+        </pre>
+
+        <p>If you have Python 2.4 (or a subversion, such as 2.4.2), then
+        TOSSIM will compile for you with no changes. TOSSIM has been tested
+        for Python 2.3 and 2.4. If you have a version other than 2.4, you need
+        to modify the TOSSIM makefile in 
+        <tt>tinyos-2.x/support/make/sim.extra</tt>. Open the file and
+        modify the line</p>
+        
+        <pre>
+          PYTHON_VERSION=2.4
+        </pre>
+
+        <p>to indicate your Python version (e.g., 
+          <tt>PYTHON_VERSION=2.3</tt>).</p>
+
         <p>To compile TOSSIM, you pass the <tt>sim</tt> option to make:</p>
 
         <pre>
