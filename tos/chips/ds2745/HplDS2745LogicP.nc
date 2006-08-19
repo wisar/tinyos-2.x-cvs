@@ -178,11 +178,11 @@ implementation {
   }
 
   command error_t HplDS2745.measureVoltage() { 
-    return doReadReg(STATE_READTEMP,DS2745_PTR_VOLTMSB);
+    return doReadReg(STATE_READVOLTAGE,DS2745_PTR_VOLTMSB);
   }
 
   command error_t HplDS2745.measureCurrent() { 
-    return doReadReg(STATE_READTEMP,DS2745_PTR_CURRMSB);
+    return doReadReg(STATE_READCURRENT,DS2745_PTR_CURRMSB);
   }
 
   command error_t HplDS2745.measureAccCurrent() { 
