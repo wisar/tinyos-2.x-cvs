@@ -46,7 +46,7 @@ implementation {
   }
 
   command error_t Init.init() {
-    memset(resQ, NO_ENTRY, sizeof(resQ));
+    memset(resQ, 0, sizeof(resQ));
     return SUCCESS;
   }  
   
