@@ -55,6 +55,7 @@ implementation {
   SerialPacketInfo = SerialDispatcherP.PacketInfo;
   SplitControl = SerialP;
 
+  Init = PlatformSerialC;
   Init = SerialP;
   Leds = SerialP;
   Leds = SerialDispatcherP;
