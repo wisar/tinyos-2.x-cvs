@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  * Copyright (c) 2006 Stanford University.
  * All rights reserved.
@@ -30,23 +29,58 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
- *  @author Philip Levis
- *  @author Kyle Jamieson
- *  @date   $Date$
+#include "Ctp.h"
+
+/**
+ * A data collection service that uses a tree routing protocol
+ * to deliver data to collection roots, following TEP 119.
+ *
+ * @author Rodrigo Fonseca
+ * @author Omprakash Gnawali
+ * @author Kyle Jamieson
+ * @author Philip Levis
  */
 
-#include <AM.h>
-#include <Collection.h>
 
-interface CollectionPacket {
-  command am_addr_t getOrigin(message_t* msg);
-  command void setOrigin(message_t* msg, am_addr_t addr);
-  
-  command collection_id_t getType(message_t* msg);
-  command void setType(message_t* msg, collection_id_t id);
-  
-  command uint8_t getSequenceNumber(message_t* msg);
-  command void setSequenceNumber(message_t* msg, uint8_t seqno);
+configuration CollectionC {
+  provides {
+    interface StdControl;
+    interface Send[uint8_t client];
+    interface Receive[collection_id_t id];
+    interface Receive as Snoop[collection_id_t];
+    interface Intercept[collection_id_t id];
+
+    interface Packet;
+    interface CollectionPacket;
+    interface CtpPacket;
+
+    interface CtpInfo;
+    interface RootControl;    
+  }
+
+  uses {
+    interface CollectionId[uint8_t client];
+    interface CollectionDebug;
+  }
+}
+
+implementation {
+  components CtpC;
+
+  StdControl = CtpC;
+  Send = CtpC;
+  Receive = CtpC.Receive;
+  Snoop = CtpC.Snoop;
+  Intercept = CtpC;
+
+  Packet = CtpC;
+  CollectionPacket = CtpC;
+  CtpPacket = CtpC;
+
+  CtpInfo = CtpC;
+  RootControl = CtpC;
+
+  CollectionId = CtpC;
+  CollectionDebug = CtpC;
 }
 

@@ -44,31 +44,36 @@
 #define CTP_H
 
 #include <Collection.h>
+#include <AM.h>
 
-#define UQ_CTP_ID "CtpSenderC.CollectId"
+#define UQ_CTP_CLIENT "CtpSenderC.CollectId"
 
 enum {
-    AM_CTP_DATA = 22,
-    AM_CTP_ROUTING = 23,
+    AM_CTP_DATA    = 23,
+    AM_CTP_ROUTING = 24,
+    AM_CTP_DEBUG   = 25,
     CTP_PULL_OPT = 0x80,
     CTP_ECN_OPT  = 0x40,
 };
 
+typedef nx_uint8_t nx_ctp_options_t;
 typedef uint8_t ctp_options_t;
 
 typedef nx_struct {
-  ctp_options_t options;
-  uint8_t       thl;
-  uint16_t      etx;
-  am_addr_t     origin;
-  uint8_t       originSeqNo;
-  collect_id_t  type;
+  nx_ctp_options_t    options;
+  nx_uint8_t          thl;
+  nx_uint16_t         etx;
+  nx_am_addr_t        origin;
+  nx_uint8_t          originSeqNo;
+  nx_collection_id_t  type;
+  nx_uint8_t          data[0];
 } ctp_data_header_t;
 
 typedef nx_struct {
-  ctp_options_t options;
-  am_addr_t     parent;
-  uint16_t      etx;
+  nx_ctp_options_t    options;
+  nx_am_addr_t        parent;
+  nx_uint16_t         etx;
+  nx_uint8_t          data[0];
 } ctp_routing_header_t;
 
 #endif

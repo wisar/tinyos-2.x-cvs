@@ -30,23 +30,24 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
+/**
+ *  ADT for CTP routing frames.
+ *
  *  @author Philip Levis
  *  @author Kyle Jamieson
  *  @date   $Date$
  */
 
 #include <AM.h>
-#include <Collection.h>
+   
+interface CtpRoutingPacket {
 
-interface CollectionPacket {
-  command am_addr_t getOrigin(message_t* msg);
-  command void setOrigin(message_t* msg, am_addr_t addr);
-  
-  command collection_id_t getType(message_t* msg);
-  command void setType(message_t* msg, collection_id_t id);
-  
-  command uint8_t getSequenceNumber(message_t* msg);
-  command void setSequenceNumber(message_t* msg, uint8_t seqno);
+  command ctp_options_t getOptions(message_t* msg);
+  command void          setOptions(message_t* msg, ctp_options_t options);
+
+  command am_addr_t     getParent(message_t* msg);
+  command void          setParent(message_t* msg, am_addr_t addr);
+
+  command uint16_t      getEtx(message_t* msg);
+  command void          setEtx(message_t* msg, uint8_t seqno);
 }
-

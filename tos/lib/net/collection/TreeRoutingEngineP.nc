@@ -250,7 +250,9 @@ implementation {
                   i, entry->neighbor, entry->info.parent, entry->info.hopcount);
               continue;
             }
-            
+	    if (TOS_NODE_ID > 10 && entry->neighbor == 0) {
+	      continue;
+	    }
             /* Compute this neighbor's path metric */
             linkMetric = evaluateMetric(call LinkEstimator.getLinkQuality(entry->neighbor));
             dbg("TreeRouting", 

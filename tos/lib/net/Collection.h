@@ -28,6 +28,7 @@
 #ifndef COLLECTION_H
 #define COLLECTION_H
 
+typedef nx_uint8_t nx_collection_id_t;
 typedef uint8_t collection_id_t;
 
 #endif
