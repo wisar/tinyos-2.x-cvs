@@ -44,7 +44,7 @@
 #include "Collection.h"
 #include "Ctp.h"
 
-generic configuration CollectionSenderC(collection_id_t collectid) {
+generic configuration CtpSenderC(collection_id_t collectid) {
   provides {
     interface Send;
     interface Packet;
@@ -52,7 +52,7 @@ generic configuration CollectionSenderC(collection_id_t collectid) {
 }
 
 implementation {
-  components new CollectionSenderP(collectid, unique(UQ_CTP_CLIENT));
-  Send = CollectionSenderP;
-  Packet = CollectionSenderP;
+  components new CtpSenderP(collectid, unique(UQ_CTP_CLIENT));
+  Send = CtpSenderP;
+  Packet = CtpSenderP;
 }

@@ -34,7 +34,7 @@
 
 #include "Collection.h"
 
-generic configuration CollectionSenderP(collection_id_t collectid, uint8_t clientid) {
+generic configuration CtpSenderP(collection_id_t collectid, uint8_t clientid) {
   provides {
     interface Send;
     interface Packet;
