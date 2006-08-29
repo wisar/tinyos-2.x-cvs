@@ -812,14 +812,15 @@ implementation {
   command void CtpPacket.setEtx(message_t* msg, uint16_t e) {getHeader(msg)->etx = e;}
   command void CtpPacket.setSequenceNumber(message_t* msg, uint8_t _seqno) {getHeader(msg)->originSeqNo = _seqno;}
 
+  // A CTP packet ID is based on the origin and the THL field, to
+  // implement duplicate suppression as described in TEP 123.
 
-  
   command uint32_t CtpPacket.getPacketId(message_t* msg) {
     uint32_t id = call CtpPacket.getOrigin(msg);
     id = id << 8;
     id |= call CtpPacket.getType(msg);
     id = id << 8;
-    id |= call CtpPacket.getSequenceNumber(msg);
+    id |= call CtpPacket.getThl(msg);
     return id;
   }
   
