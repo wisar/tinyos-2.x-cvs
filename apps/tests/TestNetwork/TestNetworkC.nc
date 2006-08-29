@@ -27,7 +27,7 @@ module TestNetworkC {
   uses interface Receive;
   uses interface AMSend as UARTSend;
   uses interface CollectionPacket;
-  uses interface TreeRoutingInspect;
+  uses interface CtpInfo;
   uses interface Random;
 }
 implementation {
@@ -87,9 +87,9 @@ implementation {
     uint16_t metric;
     am_addr_t parent;
 
-    call TreeRoutingInspect.getParent(&parent);
-    call TreeRoutingInspect.getHopcount(&hopcount);
-    call TreeRoutingInspect.getMetric(&metric);
+    call CtpInfo.getParent(&parent);
+    call CtpInfo.getHopcount(&hopcount);
+    call CtpInfo.getMetric(&metric);
 
     msg->source = TOS_NODE_ID;
     msg->seqno = seqno;
