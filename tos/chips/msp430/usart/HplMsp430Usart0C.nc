@@ -68,6 +68,7 @@ configuration HplMsp430Usart0C {
   provides interface AsyncStdControl;
   provides interface HplMsp430Usart;
   provides interface HplMsp430UsartInterrupts;
+  provides interface HplMsp430I2C;
   provides interface HplMsp430I2CInterrupts;
 
 }
@@ -75,17 +76,24 @@ configuration HplMsp430Usart0C {
 implementation {
   
   components HplMsp430Usart0P as HplUsartP;
-  components HplMsp430GeneralIOC as GIO;
-  
   AsyncStdControl = HplUsartP;
   HplMsp430Usart = HplUsartP;
   HplMsp430UsartInterrupts = HplUsartP;
   HplMsp430I2CInterrupts = HplUsartP;
   
+  components HplMsp430I2C0P as HplI2CP;
+  HplMsp430I2C = HplI2CP;
+  HplUsartP.HplI2C -> HplI2CP;
+  HplI2CP.HplUsart -> HplUsartP;
+  
+  components HplMsp430GeneralIOC as GIO;
   HplUsartP.SIMO -> GIO.SIMO0;
   HplUsartP.SOMI -> GIO.SOMI0;
   HplUsartP.UCLK -> GIO.UCLK0;
   HplUsartP.URXD -> GIO.URXD0;
   HplUsartP.UTXD -> GIO.UTXD0;
+  
+  HplI2CP.SIMO -> GIO.SIMO0;
+  HplI2CP.UCLK -> GIO.UCLK0;
   
 }
