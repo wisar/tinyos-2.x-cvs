@@ -52,6 +52,8 @@ module Msp430I2CP {
 
 implementation {
   
+  MSP430REG_NORACE(I2CIE);
+  
   enum {
     TIMEOUT = 64,
   };

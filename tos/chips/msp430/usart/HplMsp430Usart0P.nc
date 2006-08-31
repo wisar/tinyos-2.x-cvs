@@ -464,5 +464,7 @@ implementation
   }
 
   default async event void I2CInterrupts.fired() {}
+  default async command bool HplI2C.isI2C() { return FALSE; }
+  default async command void HplI2C.clearModeI2C() {}
   
 }

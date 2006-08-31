@@ -56,8 +56,8 @@ implementation {
   UsartResource = I2CP.UsartResource;
   I2CInterrupts = I2CP.I2CInterrupts;
   
-  components HplMsp430Usart0C as UsartC;
-  I2CP.HplI2C -> UsartC;
+  components HplMsp430I2C0C as HplI2CC;
+  I2CP.HplI2C -> HplI2CC;
   
   components LedsC as Leds;
   I2CP.Leds -> Leds;
