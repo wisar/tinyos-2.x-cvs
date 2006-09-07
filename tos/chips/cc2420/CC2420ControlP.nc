@@ -270,6 +270,7 @@ implementation {
 		       ( ( (channel - 11)*5+357 ) << CC2420_FSCTRL_FREQ ) );
     call PANID.write( 0, (uint8_t*)id, sizeof( id ) );
     call CSN.set();
+    call SyncResource.release();
     
     post syncDone_task();
     
