@@ -49,11 +49,14 @@
 #define UQ_CTP_CLIENT "CtpSenderC.CollectId"
 
 enum {
+    // AM types:
     AM_CTP_DATA    = 23,
     AM_CTP_ROUTING = 24,
     AM_CTP_DEBUG   = 25,
-    CTP_PULL_OPT = 0x80,
-    CTP_ECN_OPT  = 0x40,
+
+    // CTP Options:
+    CTP_OPT_PULL      = 0x80, // TEP 123: P field
+    CTP_OPT_ECN       = 0x40, // TEP 123: C field
 };
 
 typedef nx_uint8_t nx_ctp_options_t;

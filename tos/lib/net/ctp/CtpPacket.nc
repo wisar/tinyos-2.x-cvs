@@ -41,9 +41,14 @@
 #include <AM.h>
    
 interface CtpPacket {
+  // Sets the given options bit.
+  command void          setOption(message_t* msg, ctp_options_t option);
 
-  command ctp_options_t getOptions(message_t* msg);
-  command void          setOptions(message_t* msg, ctp_options_t options);
+  // Clears the given options bit.
+  command void          clearOption(message_t* msg, ctp_options_t option);
+
+  // Returns TRUE iff all of the given options bits are set.
+  command bool          option(message_t* msg, ctp_options_t opt);
 
   command uint8_t       getThl(message_t* msg);
   command void          setThl(message_t* msg, uint8_t thl);
