@@ -257,6 +257,10 @@ bool Tossim::removeChannel(char* channel, FILE* file) {
   return sim_remove_channel(channel, file);
 }
 
+void Tossim::randomSeed(int seed) {
+  return sim_random_seed(seed);
+}
+
 bool Tossim::runNextEvent() {
   return sim_run_next_event();
 }
