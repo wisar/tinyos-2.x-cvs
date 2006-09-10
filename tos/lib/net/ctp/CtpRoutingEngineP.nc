@@ -157,8 +157,8 @@ implementation {
     bool tHasPassed;
 
     void chooseAdvertiseTime() {
-       uint16_t t = call Random.random16() % (currentInterval / 2);
-       t += currentInterval;
+       uint32_t t = currentInterval * 512; // * 1024 / 2
+       t += call Random.random32() % t;
        tHasPassed = FALSE;
        call BeaconTimer.stop();
        call BeaconTimer.start(t);
@@ -178,8 +178,7 @@ implementation {
     }
 
     void remainingInterval() {
-       uint16_t t = call BeaconTimer.getdt();
-       t = currentInterval - t;
+       uint32_t t = (currentInterval * 1024) - call BeaconTimer.getdt();
        tHasPassed = TRUE;
        call BeaconTimer.start(t);
     }
