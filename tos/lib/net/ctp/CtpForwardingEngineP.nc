@@ -443,9 +443,9 @@ implementation {
 
       // Set or clear the congestion bit on *outgoing* packets.
       if (congested)
-        call CtpPacket.setOption(qe->msg, CTP_OPTION_ECN);
+        call CtpPacket.setOption(qe->msg, CTP_OPT_ECN);
       else
-        call CtpPacket.clearOption(qe->msg, CTP_OPTION_ECN);
+        call CtpPacket.clearOption(qe->msg, CTP_OPT_ECN);
       
       subsendResult = call SubSend.send(dest, qe->msg, payloadLen);
       if (subsendResult == SUCCESS) {
@@ -775,14 +775,14 @@ implementation {
   event message_t* 
   SubSnoop.receive(message_t* msg, void *payload, uint8_t len) {
     am_addr_t parent = call UnicastNameFreeRouting.nextHop();
-    am_addr_t proximalSrc = call AMPacket.address(msg);
+    am_addr_t proximalSrc = call AMPacket.source(msg);
 
     // Check for the pull bit (P) [TEP123] and act accordingly.  This
     // check is made for all packets, not just ones addressed to us.
     if (call CtpPacket.option(msg, CTP_OPT_PULL))
       call CtpInfo.triggerRouteUpdate();
 
-    if (call CtpPacket.option(msg, CTP_OPT_ECN) && proximalSrc == parent)
+    if (call CtpPacket.option(msg, CTP_OPT_ECN) && proximalSrc == parent) {
       // We've overheard our parent's ECN bit set.
       startCongestionTimer(CONGESTED_WAIT_WINDOW, CONGESTED_WAIT_OFFSET);
     } else if (proximalSrc == parent) {
@@ -851,8 +851,8 @@ implementation {
   command void CtpPacket.setOrigin(message_t* msg, am_addr_t addr) {getHeader(msg)->origin = addr;}
   command void CtpPacket.setType(message_t* msg, uint8_t id) {getHeader(msg)->type = id;}
 
-  command bool CollectionPacket.option(message_t* msg, ctp_options_t opt) {
-    return (getHeader(msg)->options & opt == opt) ? TRUE : FALSE;
+  command bool CtpPacket.option(message_t* msg, ctp_options_t opt) {
+    return ((getHeader(msg)->options & opt) == opt) ? TRUE : FALSE;
   }
 
   command void CtpPacket.setOption(message_t* msg, ctp_options_t opt) {
@@ -927,7 +927,7 @@ implementation {
   static inline bool congested() {
     // A simple predicate for now to determine congestion state of
     // this node.
-    return (call SendQueue.size() + 2 >= SendQueue.maxSize()) ? 
+    return (call SendQueue.size() + 2 >= call SendQueue.maxSize()) ? 
       TRUE : FALSE;
   }
 
