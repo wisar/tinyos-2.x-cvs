@@ -158,10 +158,10 @@ implementation {
 
     void chooseAdvertiseTime() {
        uint32_t t = currentInterval * 512; // * 1024 / 2
-       t += call Random.random32() % t;
+       t += call Random.rand32() % t;
        tHasPassed = FALSE;
        call BeaconTimer.stop();
-       call BeaconTimer.start(t);
+       call BeaconTimer.startPeriodic(t);
     }
 
     void resetInterval() {
@@ -180,7 +180,7 @@ implementation {
     void remainingInterval() {
        uint32_t t = (currentInterval * 1024) - call BeaconTimer.getdt();
        tHasPassed = TRUE;
-       call BeaconTimer.start(t);
+       call BeaconTimer.startPeriodic(t);
     }
 
     command error_t Init.init() {
@@ -398,7 +398,7 @@ implementation {
 
     event void BeaconTimer.fired() {
       if (radioOn && running) {
-        if (!t.hasPassed()) {
+        if (!tHasPassed) {
           post updateRouteTask();
           post sendBeaconTask();
           remainingInterval();
@@ -406,6 +406,7 @@ implementation {
         else {
           decayInterval();
         }
+      }
     }
 
 
