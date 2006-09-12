@@ -60,6 +60,7 @@ module HplTda5250ConfigP {
     interface Tda5250ReadReg<TDA5250_REG_TYPE_STATUS>       as STATUS;
     interface Tda5250ReadReg<TDA5250_REG_TYPE_ADC>          as ADC;
 
+    interface GeneralIO as ASKNFSK;
     interface GeneralIO as TXRX;
     interface GeneralIO as PWDDD;
     interface GpioInterrupt as PWDDDInterrupt;
@@ -180,8 +181,7 @@ implementation {
       call CONFIG.set(currentConfig);
     }
     else {
-      // ***** For Platforms that have a connection to the FSK pin *******
-      //call FSK.set(); 
+      call ASKNFSK.clr(); 
     }
     call FSK.set(((uint16_t)((((uint16_t)pos_shift) << 8) + neg_shift)));
   }
@@ -192,8 +192,7 @@ implementation {
       call CONFIG.set(currentConfig);
     } 
     else {
-      // ***** For Platforms that have a connection to the FSK pin *******
-      //call FSK.set(); 
+      call ASKNFSK.set(); 
     }
     call FSK.set((((uint16_t)value) << 8));
   }

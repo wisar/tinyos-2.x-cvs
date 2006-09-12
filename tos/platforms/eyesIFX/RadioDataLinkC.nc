@@ -49,7 +49,7 @@ implementation
     components 
         //Change components below as desired
         Tda5250RadioC as Radio,                  //The actual Tda5250 radio over which data is receives/transmitted
-        UartPhyC as UartPhy,                     //The UartPhy turns Bits into Bytes
+        UartManchPhyC as UartPhy,                 //The UartPhy turns Bits into Bytes
         PacketSerializerP  as PacketSerializer,  //The PacketSerializer turns Bytes into Packets
         CsmaMacC as Mac,                         //The MAC protocol to use
         LinkLayerC as Llc;                       //The Link Layer Control module to use

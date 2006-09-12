@@ -68,7 +68,6 @@ implementation {
     header->type = id;
     header->dest = addr;
     header->src = call amAddress();
-    header->group = TOS_AM_GROUP;
     return call SubSend.send(msg, len);
   }
 
