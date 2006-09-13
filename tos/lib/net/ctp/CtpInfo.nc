@@ -40,14 +40,6 @@ interface CtpInfo {
   command error_t getParent(am_addr_t* parent);
   
   /**
-   * Get the depth (hopcount) of the node in the tree.  The pointer is
-   * allocated by the caller.  If the parent is invalid, return FAIL
-   * (no info).  The caller MUST NOT use the value in parent if the
-   * return is not SUCCESS.
-   */
-  command error_t getHopcount(uint8_t* hopcount);
-  
-  /**
    * Get the path quality metric for the current path to the root
    * through the current parent.  The pointer is allocated by the
    * caller.  If the parent is invalid, return FAIL (no info).  The
@@ -55,7 +47,7 @@ interface CtpInfo {
    * SUCCESS.
    */
   
-  command error_t getMetric(uint16_t* metric);
+  command error_t getEtx(uint16_t* etx);
 
   /**
    * This informs the routing engine to update its routing
