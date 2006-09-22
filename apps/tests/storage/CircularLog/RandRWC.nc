@@ -141,7 +141,7 @@ implementation {
       }
   }
 
-  event void LogWrite.appendDone(void *buf, storage_len_t y, error_t result) {
+  event void LogWrite.appendDone(void *buf, storage_len_t y, bool recordsLost, error_t result) {
     if (scheck(result))
       nextWrite();
   }
