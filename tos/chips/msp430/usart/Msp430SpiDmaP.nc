@@ -101,11 +101,11 @@ implementation {
 
   default event void Resource.granted[ uint8_t id ]() {}
 
-  async command void SpiByte.write( uint8_t tx, uint8_t* rx ) {
+  async command uint8_t SpiByte.write( uint8_t tx ) {
 
     call Usart.tx( tx );
     while( !call Usart.isRxIntrPending() );
-    *rx = call Usart.rx();
+    return call Usart.rx();
 
   }
 

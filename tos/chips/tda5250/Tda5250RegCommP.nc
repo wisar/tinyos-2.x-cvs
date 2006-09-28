@@ -82,33 +82,30 @@ implementation {
    }
 
    async command error_t Tda5250RegComm.writeByte(uint8_t address, uint8_t data) {
-     uint8_t rxbyte;
      if(call SpiResource.isOwner() == FALSE) {
        return FAIL;
      }
-     call SpiByte.write(address,&rxbyte);
-     call SpiByte.write(data,&rxbyte);
+     call SpiByte.write(address);
+     call SpiByte.write(data);
      return SUCCESS;
    }
    
    async command error_t Tda5250RegComm.writeWord(uint8_t address, uint16_t data) {
-      uint8_t rxbyte;
       if(call SpiResource.isOwner() == FALSE)
         return FAIL;
-      call SpiByte.write(address, &rxbyte);
-      call SpiByte.write(((uint8_t) (data >> 8)),&rxbyte);
-      call SpiByte.write(((uint8_t) data),&rxbyte);
+      call SpiByte.write(address);
+      call SpiByte.write(((uint8_t) (data >> 8)));
+      call SpiByte.write(((uint8_t) data));
       return SUCCESS;
    }
 
    async command uint8_t Tda5250RegComm.readByte(uint8_t address){
-      uint8_t rxbyte;
       if(call SpiResource.isOwner() == FALSE)
         return 0x00;
-      call SpiByte.write(address, &rxbyte);
+      call SpiByte.write(address);
 
       // FIXME: Put SIMO/SOMI in input
-      call SpiByte.write(0x00, &rxbyte);
+      call SpiByte.write(0x00);
       return rxbyte;
    }
 

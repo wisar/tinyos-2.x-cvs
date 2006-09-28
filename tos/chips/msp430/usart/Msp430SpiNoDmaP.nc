@@ -92,12 +92,14 @@ implementation {
     signal Resource.granted[ id ]();
   }
 
-  async command void SpiByte.write( uint8_t tx, uint8_t* rx ) {
+  async command uint8_t SpiByte.write( uint8_t tx ) {
+    uint8_t byte;
     call Usart.disableRxIntr();
     call Usart.tx( tx );
     while( !call Usart.isRxIntrPending() );
-    *rx = call Usart.rx();
+    byte = call Usart.rx();
     call Usart.enableRxIntr();
+    return byte;
   }
 
   default async command error_t UsartResource.isOwner[ uint8_t id ]() { return FAIL; }
