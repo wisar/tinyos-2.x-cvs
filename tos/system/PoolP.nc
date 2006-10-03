@@ -88,7 +88,10 @@ implementation {
       pool_t* rval = queue[index];
       queue[index] = NULL;
       free--;
-      index = (index + 1) % size;
+      index++;
+      if (index == size) {
+        index = 0;
+      }
       return rval;
     }
     return NULL;
@@ -99,7 +102,10 @@ implementation {
       return FAIL;
     }
     else {
-      uint8_t emptyIndex = (index + free) % size;
+      uint8_t emptyIndex = (index + free);
+      if (emptyIndex >= size) {
+        emptyIndex -= size;
+      }
       queue[emptyIndex] = newVal;
       free++;
       return SUCCESS;
