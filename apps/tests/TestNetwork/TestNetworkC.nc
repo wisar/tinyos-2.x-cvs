@@ -88,8 +88,8 @@ implementation {
     am_addr_t parent;
 
     call CtpInfo.getParent(&parent);
-    call CtpInfo.getHopcount(&hopcount);
-    call CtpInfo.getMetric(&metric);
+    //    call CtpInfo.getHopcount(&hopcount);
+    call CtpInfo.getEtx(&metric);
 
     msg->source = TOS_NODE_ID;
     msg->seqno = seqno;
