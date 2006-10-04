@@ -105,8 +105,7 @@ implementation {
       call SpiByte.write(address);
 
       // FIXME: Put SIMO/SOMI in input
-      call SpiByte.write(0x00);
-      return rxbyte;
+      return call SpiByte.write(0x00);
    }
 
 }
