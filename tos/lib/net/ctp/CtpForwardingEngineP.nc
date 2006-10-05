@@ -150,6 +150,8 @@ generic module CtpForwardingEngineP() {
     interface Pool<message_t> as MessagePool;
     interface Timer<TMilli> as RetxmitTimer;
 
+    interface LinkEstimator;
+
     // Counts down from the last time we heard from our parent; used
     // to expire local state about parent congestion.
     interface Timer<TMilli> as CongestionTimer;
@@ -523,6 +525,7 @@ implementation {
     }
     else if (ackPending && !call PacketAcknowledgements.wasAcked(msg)) {
       // AckPending is for case when DL cannot support acks.
+      call LinkEstimator.txNoAck(call AMPacket.destination(msg));
       if (--qe->retries) { 
         dbg("Forwarder", "%s: not acked\n", __FUNCTION__);
         call CollectionDebug.logEventMsg(NET_C_FE_SENDDONE_WAITACK, 
@@ -563,6 +566,7 @@ implementation {
 					 call CollectionPacket.getSequenceNumber(msg), 
 					 call CollectionPacket.getOrigin(msg), 
                                          call AMPacket.destination(msg));
+      call LinkEstimator.txAck(call AMPacket.destination(msg));
       clientPtrs[client] = qe;
       hdr = getHeader(qe->msg);
       call SendQueue.dequeue();
@@ -577,6 +581,7 @@ implementation {
 					 call CollectionPacket.getSequenceNumber(msg), 
 					 call CollectionPacket.getOrigin(msg), 
                                          call AMPacket.destination(msg));
+      call LinkEstimator.txAck(call AMPacket.destination(msg));
       call SentCache.insert(qe->msg);
       call SendQueue.dequeue();
       if (call MessagePool.put(qe->msg) != SUCCESS)
@@ -930,6 +935,11 @@ implementation {
     return (call SendQueue.size() + 2 >= call SendQueue.maxSize()) ? 
       TRUE : FALSE;
   }
+
+  /* signalled when this neighbor is evicted from the neighbor table */
+  event void LinkEstimator.evicted(am_addr_t neighbor) {
+  }
+
 
   /* Default implementations for CollectionDebug calls.
    * These allow CollectionDebug not to be wired to anything if debugging

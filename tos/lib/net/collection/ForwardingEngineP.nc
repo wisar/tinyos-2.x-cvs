@@ -546,6 +546,7 @@ implementation {
 					 call CollectionPacket.getSequenceNumber(msg), 
 					 call CollectionPacket.getOrigin(msg), 
                                          call AMPacket.destination(msg));
+      call LinkEstimator.txAck(AMPacket.destination(msg));
       clientPtrs[client] = qe;
       hdr = getHeader(qe->msg);
       call SendQueue.dequeue();
@@ -869,6 +870,9 @@ implementation {
     r += offset;
     call RetxmitTimer.startOneShot(r);
     dbg("Forwarder", "started rexmit timer in %hu ms\n", r);
+  }
+
+  event void LinkEstimator.evicted(am_addr_t neighbor) {
   }
 
   /* Default implementations for CollectionDebug calls.
