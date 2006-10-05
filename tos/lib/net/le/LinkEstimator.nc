@@ -52,6 +52,17 @@ interface LinkEstimator {
   /* pin a neighbor so that it does not get evicted */
   command error_t unpinNeighbor(am_addr_t neighbor);
 
+  /* called when an acknowledgement is received; sign of a successful
+     data transmission; to update forward link quality */
+  command error_t txAck(am_addr_t neighbor);
+
+  /* called when an acknowledgement is not received; could be due to
+     data pkt or acknowledgement loss; to update forward link quality */
+  command error_t txNoAck(am_addr_t neighbor);
+
+  /* called when the parent changes; clear state about data-driven link quality  */
+  command error_t clearDLQ(am_addr_t neighbor);
+
   /* signal when this neighbor is evicted from the neighbor table */
   event void evicted(am_addr_t neighbor);
 }

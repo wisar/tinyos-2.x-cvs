@@ -325,6 +325,7 @@ implementation {
                 call CollectionDebug.logEventRoute(NET_C_TREE_NEW_PARENT, best->neighbor, 0, best->info.etx); 
                 call LinkEstimator.unpinNeighbor(routeInfo.parent);
                 call LinkEstimator.pinNeighbor(best->neighbor);
+		call LinkEstimator.clearDLQ(best->neighbor);
                 atomic {
                     routeInfo.parent = best->neighbor;
                     routeInfo.etx = best->info.etx;

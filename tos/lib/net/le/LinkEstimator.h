@@ -99,6 +99,9 @@ typedef struct neighbor_table_entry {
   uint8_t outage;
   uint8_t inquality;
   uint8_t outquality;
+  uint16_t etx;
+  uint8_t data_success;
+  uint8_t data_total;
 } neighbor_table_entry_t;
 
 
