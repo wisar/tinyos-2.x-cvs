@@ -60,5 +60,5 @@ implementation
 
   Read = ReadShift;
   ReadShift.ReadRaw -> AdcReadClient;
-  AdcReadClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];
+  AdcReadClient.AdcConfigure -> Settings.AdcConfigure[PHOTO_SENSOR_DEFAULT];
 }

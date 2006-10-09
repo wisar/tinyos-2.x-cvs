@@ -63,5 +63,5 @@ implementation
   ReadNow = ReadNowShift;
   ReadNowShift.ReadNowRaw -> AdcReadNowClient;
   Resource = AdcReadNowClient;
-  AdcReadNowClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[PHOTO_SENSOR_DEFAULT];  
+  AdcReadNowClient.AdcConfigure -> Settings.AdcConfigure[PHOTO_SENSOR_DEFAULT];  
 }
