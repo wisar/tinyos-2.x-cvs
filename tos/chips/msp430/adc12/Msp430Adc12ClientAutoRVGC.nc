@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2004, Technische Universitaet Berlin All rights reserved.
+ * Copyright (c) 2006, Technische Universitaet Berlin All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -31,37 +31,31 @@
  */
  
 /** 
- * This component realizes the HAL1 representation and allows an
- * MSP430-specific client to access the MSP430 ADC12 (12-bit analog-to-digital
- * converter) via the <code>Msp430Adc12SingleChannel</code> and
- * <code>Resource</code> interface.  According to TEP 108 a client must reserve
- * the ADC before using it via the <code>Resource</code> interface (otherwise
- * the request will fail). In contrast to the <code>Msp430Adc12ClientC</code>
- * the <code>Msp430Adc12RefVoltAutoClientC</code> automatically enables the
- * internal reference voltage generator if and only if the configuration data
- * defined via the <code>Msp430Adc12Config</code> interface includes VREF as
- * reference voltage. I.e. the <code>Resource.granted()</code> event implies
- * that the reference voltage is stable. 
+ * This component virtualizes access to the HAL of the MSP430 ADC12.
+ * Reference voltage is enabled automatically as required by the configuration.
  * 
- * @author Jan Hauer
- * @see  Please refer to TEP 101 for more information about this component and its
- *          intended use.
+ * @author Jan Hauer 
+ *
+ * @see  Please refer to the README.txt and TEP 101 for more information about
+ * this component and its intended use.
  */
 
-generic configuration Msp430Adc12RefVoltAutoClientC()
+generic configuration Msp430Adc12ClientAutoRVGC()
 {
-  provides interface Resource;
-  provides interface Msp430Adc12SingleChannel;
-  uses interface Msp430Adc12Config;
+  provides {
+    interface Resource;
+    interface Msp430Adc12SingleChannel;
+  }
+  uses interface AdcConfigure<const msp430adc12_channel_config_t*>;
 } implementation {
-  components Msp430Adc12C, Msp430RefVoltArbiterC;
+  components Msp430Adc12P, Msp430RefVoltArbiterP;
 
   enum {
     ID = unique(MSP430ADC12_RESOURCE),
   };
-  Resource = Msp430RefVoltArbiterC.ClientResource[ID];
-  Msp430Adc12SingleChannel = Msp430Adc12C.SingleChannel[ID];
+  Resource = Msp430RefVoltArbiterP.ClientResource[ID];
+  Msp430Adc12SingleChannel = Msp430Adc12P.SingleChannel[ID];
   
-  Msp430RefVoltArbiterC.AdcResource[ID] -> Msp430Adc12C.Resource[ID];
-  Msp430Adc12Config = Msp430RefVoltArbiterC.Config[ID]; 
+  Msp430RefVoltArbiterP.AdcResource[ID] -> Msp430Adc12P.Resource[ID];
+  AdcConfigure = Msp430RefVoltArbiterP.Config[ID]; 
 }
