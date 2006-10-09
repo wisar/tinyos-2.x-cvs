@@ -70,6 +70,7 @@ implementation {
   Filter.SubAMSend -> AM;
   Filter.SubReceive -> AM.Receive;
   Filter.SubSnoop  -> AM.Snoop;
+  Filter.AMPacket  -> AM;
 
   SplitControl = AM;
   Packet       = AM;
