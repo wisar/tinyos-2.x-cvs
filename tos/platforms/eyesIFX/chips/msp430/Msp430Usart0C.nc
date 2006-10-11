@@ -43,6 +43,7 @@ generic configuration Msp430Usart0C() {
   provides interface ArbiterInfo;
   provides interface HplMsp430Usart;
   provides interface HplMsp430UsartInterrupts;
+  provides interface HplMsp430I2CInterrupts;
 
   uses interface ResourceConfigure;
 }
@@ -60,6 +61,7 @@ implementation {
   ResourceConfigure = UsartShareP.ResourceConfigure[ CLIENT_ID ];
   ArbiterInfo = UsartShareP.ArbiterInfo;
   HplMsp430UsartInterrupts = UsartShareP.Interrupts[ CLIENT_ID ];
+  HplMsp430I2CInterrupts = UsartShareP.I2CInterrupts[ CLIENT_ID ];
 
   components HplMsp430Usart0C as UsartC;
   HplMsp430Usart = UsartC;
