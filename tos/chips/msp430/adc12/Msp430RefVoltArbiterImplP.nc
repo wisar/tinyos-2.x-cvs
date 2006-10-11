@@ -148,7 +148,7 @@ module Msp430RefVoltArbiterImplP
   {
     return FAIL;
   }
-
+  default async command bool AdcResource.isOwner[uint8_t client]() { return FALSE; }
   default async command error_t AdcResource.release[uint8_t client](){return FAIL;}
   const msp430adc12_channel_config_t defaultConfig = {INPUT_CHANNEL_NONE,0,0,0,0,0,0,0}; 
   default async command const msp430adc12_channel_config_t*
