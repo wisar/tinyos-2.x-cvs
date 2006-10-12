@@ -34,21 +34,24 @@
  */
 
 /** 
- * This interface is used by the ADC subsystem to retrieve a client's
- * ADC configuration. 
+ * This interface is intended to be provided by an ADC client and used by the
+ * ADC subsystem to retrieve the client's ADC configuration. 
  * 
- * @author Jan Hauer
- * @see  Please refer to TEP 101 for more information about this 
- * interface and its intended use.
+ * @author Jan Hauer 
+ * @see  Please refer to TEP 101 for more information about this interface and
+ * its intended use.
  */
 
 interface AdcConfigure<adc_config_t> 
 {
+
   /** 
-   * Returns the ADC configuration of an ADC client.
-   * <code>adc_config_t</code> is an ADC specific data type that
-   * contains all information necessary to configure the respective
-   * ADC hardware for a client. 
+   * Returns the configuration of an ADC client.  <code>adc_config_t</code> is
+   * a hardware specific data type that contains all information necessary to
+   * configure the respective ADC hardware for the client. A client MUST always
+   * return the same configuration and, if configuration data is passed as a
+   * pointer, the ADC subsystem (HIL component) MUST NOT reference it after the
+   * return of this command.
    *  
    * @return chip specific configuration.
    */
