@@ -38,6 +38,7 @@
 generic module Msp430SpiDmaP() {
 
   provides interface Resource[ uint8_t id ];
+  provides interface ResourceConfigure[ uint8_t id ];
   provides interface SpiByte;
   provides interface SpiPacket[ uint8_t id ];
 
