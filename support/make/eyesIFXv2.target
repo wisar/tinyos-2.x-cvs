@@ -27,6 +27,9 @@ endif
 
 NESC_FLAGS:=-Wnesc-all -mdisable-hwmul
 
+VOLUME_FILE = volumes-at45db.xml
+VOLUME_ALLOCATOR = tos-storage-at45db
+
 $(call TOSMake_include_platform,msp)
 
 eyesIFXv2: $(BUILD_DEPS)
