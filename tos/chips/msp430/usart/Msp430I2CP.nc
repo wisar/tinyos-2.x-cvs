@@ -88,6 +88,7 @@ implementation {
   }
   
   async command void ResourceConfigure.unconfigure[ uint8_t id ]() {
+    call HplI2C.clearModeI2C();
   }
   
   event void UsartResource.granted[ uint8_t id ]() {
@@ -220,4 +221,6 @@ implementation {
       signal I2CBasicAddr.readDone( error, I2CSA, m_len, m_buf );
   }
   
+  default async command error_t UsartResource.isOwner[ uint8_t id ]() { return FAIL; }
+
 }
