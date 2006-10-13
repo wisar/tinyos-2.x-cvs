@@ -83,7 +83,7 @@ implementation {
                  ( config->txdmaen << 6 ) |
                  ( config->xa << 4 ) |
                  ( config->listen << 3 ) );
-      I2CTCTL = TXEPT;
+      I2CTCTL = 0;
       I2CTCTL = ( ( config->i2cword << 7 ) |
 		  ( config->i2crm << 6 ) |
 		  ( config->i2cssel << 4 ) );
