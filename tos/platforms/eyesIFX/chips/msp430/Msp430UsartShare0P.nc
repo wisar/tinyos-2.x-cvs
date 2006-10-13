@@ -59,10 +59,10 @@ implementation {
   ResourceConfigure = ArbiterC;
   ArbiterInfo = ArbiterC;
   UsartShareP.ArbiterInfo -> ArbiterC;
-  
-  components new AsyncStdControlDeferredPowerManagerC(1) as PowerManagerC;
-  PowerManagerC.ResourceController -> ArbiterC;
+
+//  components new AsyncStdControlDeferredPowerManagerC(1) as PowerManagerC;
+//  PowerManagerC.ResourceController -> ArbiterC;
 
   components HplMsp430Usart0C as UsartC;
-  PowerManagerC.AsyncStdControl -> UsartC;
+  //PowerManagerC.AsyncStdControl -> UsartC;
 }
