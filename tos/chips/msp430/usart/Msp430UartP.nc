@@ -84,6 +84,7 @@ implementation {
 
   async command void ResourceConfigure.unconfigure[ uint8_t id ]() {
     call Usart.disableIntr();
+    call Usart.disableUart();
   }
 
   event void UsartResource.granted[ uint8_t id ]() {

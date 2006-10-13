@@ -49,18 +49,15 @@ implementation {
   components new Msp430UsartShareP() as UsartShareP;
   Interrupts = UsartShareP;
   I2CInterrupts = UsartShareP;
-  UsartShareP.RawInterrupts -> UsartC;
-  UsartShareP.RawI2CInterrupts -> UsartC;
-
+  
   components new FcfsArbiterC( MSP430_HPLUSART0_RESOURCE ) as ArbiterC;
   Resource = ArbiterC;
   ResourceConfigure = ArbiterC;
   ArbiterInfo = ArbiterC;
   UsartShareP.ArbiterInfo -> ArbiterC;
 
-  components new AsyncStdControlPowerManagerC() as PowerManagerC;
-  PowerManagerC.ResourceController -> ArbiterC;
+  components HplMsp430Usart0C as HplUsartC;
+  UsartShareP.RawInterrupts -> HplUsartC;
+  UsartShareP.RawI2CInterrupts -> HplUsartC;
 
-  components HplMsp430Usart0C as UsartC;
-  PowerManagerC.AsyncStdControl -> UsartC;
 }

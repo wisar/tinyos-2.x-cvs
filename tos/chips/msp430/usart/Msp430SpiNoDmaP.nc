@@ -86,6 +86,7 @@ implementation {
   }
 
   async command void ResourceConfigure.unconfigure[ uint8_t id ]() {
+    call Usart.disableSpi();
   }
 
   event void UsartResource.granted[ uint8_t id ]() {
@@ -96,7 +97,9 @@ implementation {
     uint8_t byte;
     call Usart.disableRxIntr();
     call Usart.tx( tx );
+    TOSH_CLR_GREEN_LED_PIN();
     while( !call Usart.isRxIntrPending() );
+    TOSH_SET_GREEN_LED_PIN();
     byte = call Usart.rx();
     call Usart.enableRxIntr();
     return byte;
