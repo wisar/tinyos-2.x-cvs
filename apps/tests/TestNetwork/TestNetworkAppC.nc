@@ -50,4 +50,6 @@ implementation {
   DebugSender.MessagePool -> DebugMessagePool;
   DebugSender.SendQueue -> DebugSendQueue;
   Collector.CollectionDebug -> DebugSender;
+  TestNetworkC.CollectionDebug -> DebugSender;
+  TestNetworkC.AMPacket -> ActiveMessageC;
 }
