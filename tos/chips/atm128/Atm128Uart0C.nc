@@ -52,16 +52,10 @@ implementation{
   UartStream = UartP;
   UartP.Counter = Counter;
   
-  components HplAtm128UartP as HplUartP;
-  UartP.HplUartTxControl -> HplUartP.Uart0TxControl;
-  UartP.HplUartRxControl -> HplUartP.Uart0RxControl;
-  UartP.HplUart -> HplUartP.HplUart0;
-  
-  components PlatformC;
-  HplUartP.Atm128Calibrate -> PlatformC;
-  
-  components McuSleepC;
-  HplUartP.McuPowerState -> McuSleepC;
+  components HplAtm128UartC as HplUartC;
+  UartP.HplUartTxControl -> HplUartC.Uart0TxControl;
+  UartP.HplUartRxControl -> HplUartC.Uart0RxControl;
+  UartP.HplUart -> HplUartC.HplUart0;
   
   components MainC;
   MainC.SoftwareInit -> UartP;
