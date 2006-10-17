@@ -68,11 +68,13 @@ implementation{
   
   command error_t StdControl.start(){
     call HplUartTxControl.start();
+    call HplUartRxControl.start();
     return SUCCESS;
   }
 
   command error_t StdControl.stop(){
     call HplUartTxControl.stop();
+    call HplUartRxControl.stop();
     return SUCCESS;
   }
 
