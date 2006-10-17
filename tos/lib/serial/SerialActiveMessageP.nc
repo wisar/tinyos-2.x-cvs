@@ -145,7 +145,7 @@ implementation {
     serial_header_t* header = getHeader(amsg);
     header->dest = addr;
   }
-  
+
   command void AMPacket.setSource(message_t* amsg, am_addr_t addr) {
     serial_header_t* header = getHeader(amsg);
     header->src = addr;
