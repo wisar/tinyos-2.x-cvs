@@ -85,10 +85,10 @@ implementation {
     return;
   }
   
-  async command void GeneralIO.isInput[uint8_t pin]() {
+  async command bool GeneralIO.isInput[uint8_t pin]() {
     bool result;
     result = !call HplPXA27xGPIOPin.getGPLRbit[pin]();
-    return;
+    return result;
   }
   
   async command void GeneralIO.makeOutput[uint8_t pin]() {
@@ -96,7 +96,7 @@ implementation {
     return;
   }
 
-  async command void GeneralIO.isOutput[uint8_t pin]() {
+  async command bool GeneralIO.isOutput[uint8_t pin]() {
     bool result;
     result = call HplPXA27xGPIOPin.getGPDRbit[pin]();
     return result;
