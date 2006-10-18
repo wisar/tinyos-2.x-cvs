@@ -59,7 +59,7 @@ configuration UartManchPhyC
 implementation
 {
     components 
-        new Alarm32khzC() as RxByteTimer,
+        new Alarm32khz16C() as RxByteTimer,
         UartManchPhyP,
 //         PlatformLedsC,
         MainC;

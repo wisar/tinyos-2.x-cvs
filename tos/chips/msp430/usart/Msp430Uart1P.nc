@@ -64,7 +64,7 @@ implementation {
   components HplMsp430Usart1C as UsartC;
   UartP.Usart -> UsartC;
   
-  components Counter32khzC as CounterC;
+  components Counter32khz16C as CounterC;
   UartP.Counter -> CounterC;
   
   components LedsC as Leds;
