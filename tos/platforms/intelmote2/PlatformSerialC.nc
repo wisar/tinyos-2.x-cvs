@@ -37,7 +37,8 @@
 configuration PlatformSerialC {
   provides interface Init;
   provides interface StdControl;
-  provides interface SerialByteComm;
+  provides interface UartByte;
+  provides interface UartStream;
 }
 implementation {
 
@@ -49,7 +50,8 @@ implementation {
   Init = HalPXA27xSerialP;
   Init = IM2InitSerialP;
   StdControl = HalPXA27xSerialP;
-  SerialByteComm = HalPXA27xSerialP;
+  UartByte = HalPXA27xSerialP;
+  UartStream = HalPXA27xSerialP;
   
   HalPXA27xSerialP.UARTInit -> HplPXA27xSTUARTC.Init;
   HalPXA27xSerialP.UART -> HplPXA27xSTUARTC.STUART;
