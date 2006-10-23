@@ -156,7 +156,7 @@ implementation {
   	  return;
   	}
     atomic state = S_STOPPED;
-    signal PrintfControl.startDone(error); 
+    signal PrintfControl.stopDone(error); 
   }
   
   async command error_t Printf.printString(const char var[]) {
@@ -183,7 +183,7 @@ implementation {
   }
   
   async command error_t Printf.printUint16(uint16_t var) {
-  	atomic {                                         //Uint8 has maximum 5 digits
+  	atomic {                                         //Uint16 has maximum 5 digits
   	  if(state == S_STARTED && (next_byte-buffer+5) < max_buffer_size) {
   	    uint16_to_string(var, next_byte);
   	    return SUCCESS;
