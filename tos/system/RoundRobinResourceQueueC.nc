@@ -69,13 +69,13 @@ implementation {
       for (i = last+1; ; i++) {
         if(i == size)
           i = 0;
-        if (i == last)
-          break;
         if (call RoundRobinQueue.isEnqueued(i)) {
           clearEntry(i);
           last = i;
           return i;
         }
+        if (i == last)
+          break;
       }
       return NO_ENTRY;
     }
