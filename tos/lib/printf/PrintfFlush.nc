@@ -27,12 +27,10 @@
  * @date $Date$
  */
  
-interface Printf
+#include "printf.h"
+ 
+interface PrintfFlush
 {
-  async command error_t printString(const char var[]);
-  async command error_t printUint8(uint8_t var);
-  async command error_t printUint16(uint16_t var);
-  async command error_t printUint32(uint32_t var);
   command error_t flush();
   event void flushDone(error_t error);
 }

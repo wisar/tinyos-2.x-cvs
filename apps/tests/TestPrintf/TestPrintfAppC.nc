@@ -26,16 +26,18 @@
  * @version $Revision$
  * @date $Date$
  */
+ 
+#include "printf.h"
 
 configuration TestPrintfAppC{
 }
 implementation {
   components MainC, TestPrintfC, LedsC;
-  components new PrintfC(500);
+  components PrintfC;
 
   TestPrintfC.Boot -> MainC;
   TestPrintfC.Leds -> LedsC;
   TestPrintfC.PrintfControl -> PrintfC;
-  TestPrintfC.Printf -> PrintfC;
+  TestPrintfC.PrintfFlush -> PrintfC;
 }
 

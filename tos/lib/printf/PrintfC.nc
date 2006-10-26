@@ -29,23 +29,24 @@
 
 #include "printf.h"
 
-generic configuration PrintfC(uint16_t max_buffer_size) {
+configuration PrintfC {
   provides {
   	interface SplitControl as PrintfControl;
-    interface Printf;
+  	interface PrintfFlush;
   }
 }
 implementation {
   components SerialActiveMessageC;
-  components new PrintfP(max_buffer_size);
+  components new SerialAMSenderC(AM_PRINTFMSG);
+  components PrintfP;
   components LedsC;
 
-  Printf = PrintfP;
   PrintfControl = PrintfP;
+  PrintfFlush = PrintfP;
   
   PrintfP.Leds -> LedsC;
   PrintfP.SerialControl -> SerialActiveMessageC;
-  PrintfP.AMSend -> SerialActiveMessageC.AMSend[AM_PRINTFMSG];
-  PrintfP.Packet -> SerialActiveMessageC;
+  PrintfP.AMSend -> SerialAMSenderC;
+  PrintfP.Packet -> SerialAMSenderC;
 }
 
