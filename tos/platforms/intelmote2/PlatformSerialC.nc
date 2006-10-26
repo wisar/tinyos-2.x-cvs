@@ -35,7 +35,6 @@
  */
 
 configuration PlatformSerialC {
-  provides interface Init;
   provides interface StdControl;
   provides interface UartByte;
   provides interface UartStream;
@@ -46,18 +45,20 @@ implementation {
   components HplPXA27xSTUARTC;
   components HplPXA27xGPIOC;
   components IM2InitSerialP;
-
-  Init = HalPXA27xSerialP;
-  Init = IM2InitSerialP;
+  
   StdControl = HalPXA27xSerialP;
   UartByte = HalPXA27xSerialP;
   UartStream = HalPXA27xSerialP;
-  
+
   HalPXA27xSerialP.UARTInit -> HplPXA27xSTUARTC.Init;
   HalPXA27xSerialP.UART -> HplPXA27xSTUARTC.STUART;
 
   IM2InitSerialP.TXD -> HplPXA27xGPIOC.HplPXA27xGPIOPin[STUART_TXD];
   IM2InitSerialP.RXD -> HplPXA27xGPIOC.HplPXA27xGPIOPin[STUART_RXD];
+
+  components PlatformP;
+  IM2InitSerialP.Init <- PlatformP.InitL2;
+  HalPXA27xSerialP.Init <- PlatformP.InitL3;
 
   components new HplPXA27xDMAInfoC(19, (uint32_t) &STRBR) as DMAInfoRx;
   components new HplPXA27xDMAInfoC(20, (uint32_t) &STTHR) as DMAInfoTx;
