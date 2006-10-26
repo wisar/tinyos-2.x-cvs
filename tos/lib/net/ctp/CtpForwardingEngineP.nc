@@ -685,12 +685,11 @@ implementation {
       }
     }
 
-    // Resource acquisition problem.  Send a debug message to the
-    // uart.
+    // NB: at this point, we have a resource acquistion problem.
+    // Trigger an immediate route update, log the event, and drop the
+    // packet on the floor.
+    call CtpInfo.triggerImmediateRouteUpdate();
     call CollectionDebug.logEvent(NET_C_FE_SEND_QUEUE_FULL);
-
-    // We'll have to drop the packet on the floor: not enough
-    // resources available to forward.
     return m;
   }
  
