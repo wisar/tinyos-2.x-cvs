@@ -50,9 +50,16 @@ interface CtpInfo {
   command error_t getEtx(uint16_t* etx);
 
   /**
-   * This informs the routing engine to update its routing
-   * information, possibly by sending a beacon.
+   * This informs the routing engine that sending a beacon soon is
+   * advisable, e.g., in response to a pull bit.
    */
   
   command void triggerRouteUpdate();
+
+  /**
+   * This informs the routing engine that sending a beacon as soon
+   * as possible is advisable, e.g., due to queue overflow or
+   * a detected loop.
+   */
+  command void triggerImmediateRouteUpdate();
 }

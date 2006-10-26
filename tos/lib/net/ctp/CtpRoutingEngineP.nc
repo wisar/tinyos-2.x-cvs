@@ -68,7 +68,7 @@
  *  
  *  <p>The second use is to actually choose a next hop towards any root at
  *  message forwarding time.  This need not be the current parent, even though
- *  it is currently implemented as such.
+3 *  it is currently implemented as such.
  *
  *  <p>The operation of the routing engine has two main tasks and one main
  *  event: updateRouteTask is called periodically and chooses a new parent;
@@ -204,15 +204,14 @@ implementation {
     }
 
     command error_t StdControl.start() {
-        //start will (re)start the sending of messages
-        uint16_t nextInt;
-        if (!running) {
-            running = TRUE;
-	    resetInterval();
-	    call RouteTimer.startPeriodic(BEACON_INTERVAL);
-            dbg("TreeRoutingCtl","%s running: %d radioOn: %d\n", __FUNCTION__, running, radioOn);
-        }     
-        return SUCCESS;
+      //start will (re)start the sending of messages
+      if (!running) {
+	running = TRUE;
+	resetInterval();
+	call RouteTimer.startPeriodic(BEACON_INTERVAL);
+	dbg("TreeRoutingCtl","%s running: %d radioOn: %d\n", __FUNCTION__, running, radioOn);
+      }     
+      return SUCCESS;
     }
 
     command error_t StdControl.stop() {
@@ -516,6 +515,16 @@ implementation {
         }
      }
 
+
+    command void CtpInfo.triggerImmediateRouteUpdate() {
+      // Random time in interval 64-127ms
+      uint16_t time = call Random.rand16();
+      time &= 0x7; 
+      time += 4;
+      call BeaconTimer.stop();
+      call BeaconTimer.startOneShot(time);
+    }
+    
     /* RootControl interface */
     /** sets the current node as a root, if not already a root */
     /*  returns FAIL if it's not possible for some reason      */

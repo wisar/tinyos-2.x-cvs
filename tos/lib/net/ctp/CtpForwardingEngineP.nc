@@ -659,7 +659,7 @@ implementation {
           if (call CtpPacket.getEtx(m) < gradient) {
             // The incoming packet's metric (gradient) is less than our
             // own gradient.  Trigger a route update and backoff.
-            call CtpInfo.triggerRouteUpdate();
+            call CtpInfo.triggerImmediateRouteUpdate();
             startRetxmitTimer(LOOPY_WINDOW, LOOPY_OFFSET);
             call CollectionDebug.logEventMsg(NET_C_FE_LOOP_DETECTED,
 					 call CollectionPacket.getSequenceNumber(m), 
