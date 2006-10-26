@@ -46,7 +46,7 @@ implementation {
 #if defined(PLATFORM_MICA2) || defined(PLATFORM_MICA2DOT)
   components CC1000CsmaRadioC as LplRadio;
 #elif defined(PLATFORM_MICAZ) || defined(PLATFORM_TELOSB)
-  components CC2420CsmaC as LplRadio;
+  components CC2420ActiveMessageC as LplRadio;
 #else
 #error "LPL testing not supported on this platform"
 #endif
