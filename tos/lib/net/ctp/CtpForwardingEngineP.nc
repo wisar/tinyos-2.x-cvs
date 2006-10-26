@@ -124,7 +124,7 @@
  */
 
 #include <CtpForwardingEngine.h>
-#include <CollectionDebugMsg.h>
+#include <CtpDebugMsg.h>
    
 generic module CtpForwardingEngineP() {
   provides {
@@ -398,7 +398,15 @@ implementation {
 
       return;
     }
+    else if (parentCongested) {
+      // Do nothing; the congestion timer is necessarily set which
+      // will clear parentCongested and repost sendTask().
+      dbg("Forwarder", "%s: sendTask deferring for congested parent\n",
+          __FUNCTION__);
+      call CollectionDebug.logEvent(NET_C_FE_CONGESTION_SENDWAIT);
+    }
     else {
+      // Once we are here, we have decided to send the packet.
       error_t subsendResult;
       fe_queue_entry_t* qe = call SendQueue.head();
       uint8_t payloadLen = call SubPacket.payloadLength(qe->msg);
@@ -790,10 +798,13 @@ implementation {
     if (call CtpPacket.option(msg, CTP_OPT_ECN) && proximalSrc == parent) {
       // We've overheard our parent's ECN bit set.
       startCongestionTimer(CONGESTED_WAIT_WINDOW, CONGESTED_WAIT_OFFSET);
+      parentCongested = TRUE;
+      call CollectionDebug.logEvent(NET_C_FE_CONGESTION_BEGIN);
     } else if (proximalSrc == parent) {
       // We've overheard out parent's ECN bit cleared.
       call CongestionTimer.stop();
       parentCongested = FALSE;
+      call CollectionDebug.logEventSimple(NET_C_FE_CONGESTION_END, 1);
       post sendTask();
     }
 
@@ -809,6 +820,7 @@ implementation {
 
   event void CongestionTimer.fired() {
     parentCongested = FALSE;
+    call CollectionDebug.logEventSimple(NET_C_FE_CONGESTION_END, 0);
     post sendTask();
   }
   
