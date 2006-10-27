@@ -175,6 +175,7 @@ implementation {
   event void UARTSend.sendDone(message_t *msg, error_t error) {
     dbg("Traffic", "UART send done.\n");
     uartbusy = FALSE;
+    call Pool.put(msg);
     if (!call Queue.empty()) {
       post uartEchoTask();
     } 
