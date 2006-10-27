@@ -23,6 +23,7 @@
 
 /*
  *  @author Rodrigo Fonseca
+ *  @author Philip Levis
  *  @date   $Date$
  *  @see Net2-WG
  */
@@ -62,6 +63,11 @@ interface CtpInfo {
    * a detected loop.
    */
   command void triggerImmediateRouteUpdate();
+
+  /** 
+   * Tell the routing engine it might want to recompute its routes.
+   */
+  command void recomputeRoutes();
 
   /**
    * Informs the routing engine that a neighbor is congested

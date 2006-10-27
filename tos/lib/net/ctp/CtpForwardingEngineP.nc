@@ -554,6 +554,7 @@ implementation {
     else if (ackPending && !call PacketAcknowledgements.wasAcked(msg)) {
       // AckPending is for case when DL cannot support acks.
       call LinkEstimator.txNoAck(call AMPacket.destination(msg));
+      call CtpInfo.recomputeRoute();
       if (--qe->retries) { 
         dbg("Forwarder", "%s: not acked\n", __FUNCTION__);
         call CollectionDebug.logEventMsg(NET_C_FE_SENDDONE_WAITACK, 

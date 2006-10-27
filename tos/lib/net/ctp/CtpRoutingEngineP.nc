@@ -68,7 +68,7 @@
  *  
  *  <p>The second use is to actually choose a next hop towards any root at
  *  message forwarding time.  This need not be the current parent, even though
-3 *  it is currently implemented as such.
+ *  it is currently implemented as such.
  *
  *  <p>The operation of the routing engine has two main tasks and one main
  *  event: updateRouteTask is called periodically and chooses a new parent;
@@ -418,25 +418,6 @@ implementation {
 
     event void RouteTimer.fired() {
       if (radioOn && running) {
-
-	// Test to see if we should mark nodes that we cannot probe dead
-	routeUpdateTimerCount++;
-	if (routeUpdateTimerCount >= DEATH_TEST_INTERVAL) {
-	  int i;
-	  for (i = 0; i < routingTableActive; i++) {
-            routing_table_entry* entry = &routingTable[i];
-	    if (entry->info.haveHeard == 0 &&
-		entry->info.congested) {
-	      //routingTableEvict(entry->neighbor);
-	    }
-	    else {
-	      entry->info.haveHeard = 0;
-	    }
-	  }
-	  routeUpdateTimerCount = 0;
-	}
-
-	// Then update our routes
 	post updateRouteTask();
       }
     }
@@ -548,6 +529,10 @@ implementation {
             return FAIL;
         *etx = routeInfo.etx;
         return SUCCESS;
+    }
+
+    command void CtpInfo.recomputeRoute() {
+      post routeUpdateTask();
     }
 
     command void CtpInfo.triggerRouteUpdate() {
