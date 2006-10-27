@@ -122,6 +122,7 @@ generic module CtpRoutingEngineP(uint8_t routingTableSize, uint16_t minInterval,
 
 implementation {
 
+    bool ECNOff = TRUE;
 
     /* Keeps track of whether the radio is on. No sense updating or sending
      * beacons if radio is off */
@@ -588,6 +589,10 @@ implementation {
 
     command bool CtpInfo.isNeighborCongested(am_addr_t n) {
         uint8_t idx;    
+
+        if (ECNOff) 
+            return FALSE;
+
         idx = routingTableFind(n);
         if (idx < routingTableActive) {
             return routingTable[idx].info.congested;
