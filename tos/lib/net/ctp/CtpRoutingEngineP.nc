@@ -531,7 +531,7 @@ implementation {
         return SUCCESS;
     }
 
-    command void CtpInfo.recomputeRoute() {
+    command void CtpInfo.recomputeRoutes() {
       post routeUpdateTask();
     }
 
