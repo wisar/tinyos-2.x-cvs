@@ -532,7 +532,7 @@ implementation {
     }
 
     command void CtpInfo.recomputeRoutes() {
-      post routeUpdateTask();
+      post updateRouteTask();
     }
 
     command void CtpInfo.triggerRouteUpdate() {
