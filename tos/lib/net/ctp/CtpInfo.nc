@@ -62,4 +62,14 @@ interface CtpInfo {
    * a detected loop.
    */
   command void triggerImmediateRouteUpdate();
+
+  /**
+   * Informs the routing engine that a neighbor is congested
+   */
+  command void setNeighborCongested(am_addr_t n, bool congested);
+
+  /**
+   *  Returns the currently known state about a neighbor's congestion state
+   */
+  command bool isNeighborCongested(am_addr_t n);
 }
