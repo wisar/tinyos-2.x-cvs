@@ -427,7 +427,7 @@ implementation {
             routing_table_entry* entry = &routingTable[i];
 	    if (entry->info.haveHeard == 0 &&
 		entry->info.congested) {
-	      routingTableEvict(entry->neighbor);
+	      //routingTableEvict(entry->neighbor);
 	    }
 	    else {
 	      entry->info.haveHeard = 0;
