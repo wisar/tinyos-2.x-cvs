@@ -26,8 +26,8 @@ implementation {
   components new SerialAMSenderC(AM_COLLECTION_DEBUG) as UARTSender;
   components UARTDebugSenderP as DebugSender;
   components RandomC;
-  components new QueueC<message_t*>(8);
-  components new PoolC<message_t>(8);
+  components new QueueC(message_t*, 8);
+  components new PoolC(message_t, 8);
 
   TestNetworkC.Boot -> MainC;
   TestNetworkC.RadioControl -> ActiveMessageC;
