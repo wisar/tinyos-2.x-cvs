@@ -43,6 +43,7 @@ implementation {
   TestNetworkC.UARTSend -> SerialAMSenderC.AMSend;
   TestNetworkC.CollectionPacket -> Collector;
   TestNetworkC.CtpInfo -> Collector;
+  TestNetworkC.CtpCongestion -> Collector;
   TestNetworkC.Random -> RandomC;
   TestNetworkC.Pool -> PoolC;
   TestNetworkC.Queue -> QueueC;
