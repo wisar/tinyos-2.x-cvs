@@ -249,6 +249,7 @@ implementation {
     /* Is this quality measure better than the minimum threshold? */
     // Implemented assuming quality is EETX
     bool passLinkEtxThreshold(uint16_t etx) {
+	return TRUE;
         return (etx < ETX_THRESHOLD);
     }
 
@@ -322,6 +323,7 @@ implementation {
             }  
         }
 
+        //call CollectionDebug.logEventDbg(NET_C_DBG_3, routeInfo.parent, currentEtx, minEtx);  
 
         /* Now choose between the current parent and the best neighbor */
         if (minEtx != MAX_METRIC) {
@@ -657,7 +659,6 @@ implementation {
         uint8_t idx;
         uint16_t  linkEtx;
         linkEtx = evaluateEtx(call LinkEstimator.getLinkQuality(from));
-        //call CollectionDebug.logEventDbg(NET_C_DBG_3, from, parent, call LinkEstimator.getLinkQuality(from));  
 
         idx = routingTableFind(from);
         if (idx == routingTableSize) {
