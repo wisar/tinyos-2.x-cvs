@@ -32,7 +32,7 @@ implementation {
   
   task void readTask() {
     float val = (float)counter;
-    val = val / 100.0;
+    val = val / 20.0;
     val = sin(val) * 4096.0;
     val += 8192.0;
     counter++;
