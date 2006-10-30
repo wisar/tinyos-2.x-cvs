@@ -58,10 +58,8 @@ implementation
 {
   components SensorSettingsC as Settings;
   components new AdcReadNowClientC() as AdcReadNowClient;
-  components new ReadNowShiftC(4) as ReadNowShift;
   
-  ReadNow = ReadNowShift;
-  ReadNowShift.ReadNowRaw -> AdcReadNowClient;
   Resource = AdcReadNowClient;
+  ReadNow = AdcReadNowClient;
   AdcReadNowClient.AdcConfigure -> Settings.AdcConfigure[PHOTO_SENSOR_DEFAULT];  
 }

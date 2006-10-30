@@ -56,9 +56,7 @@ implementation
 {
   components SensorSettingsC as Settings;
   components new AdcReadClientC() as AdcReadClient;
-  components new ReadShiftC(4) as ReadShift;
 
-  Read = ReadShift;
-  ReadShift.ReadRaw -> AdcReadClient;
+  Read =  AdcReadClient;
   AdcReadClient.AdcConfigure -> Settings.AdcConfigure[PHOTO_SENSOR_DEFAULT];
 }
