@@ -61,7 +61,7 @@
 
 #include "Timer.h"
 
-module TestArbiterC {
+module TestRoundRobinArbiterC {
   uses {
     interface Boot;  
     interface Leds;

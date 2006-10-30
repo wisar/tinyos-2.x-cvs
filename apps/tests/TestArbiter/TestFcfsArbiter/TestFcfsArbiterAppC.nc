@@ -46,7 +46,7 @@
  * <li> Resource 2
  * <li> Resource 1
  * <br>
- * It is expected then that using a round robin policy, control of the
+ * It is expected then that using a first-come-first-serve policy, control of the
  * resource will be granted in the order of 0,2,1 and the Leds
  * corresponding to each resource will flash whenever this occurs.<br>
  * <li> Led 0 -> Resource 0
@@ -60,10 +60,10 @@
  */
  
 #define TEST_ARBITER_RESOURCE   "Test.Arbiter.Resource"
-configuration TestArbiterAppC{
+configuration TestFcfsArbiterAppC{
 }
 implementation {
-  components MainC, TestArbiterC,LedsC,
+  components MainC, TestFcfsArbiterC as App,LedsC,
      new TimerMilliC() as Timer0,
      new TimerMilliC() as Timer1,
      new TimerMilliC() as Timer2,
@@ -75,15 +75,15 @@ implementation {
     RESOURCE2_ID = unique(TEST_ARBITER_RESOURCE),
   };
 
-  TestArbiterC -> MainC.Boot;
+  App -> MainC.Boot;
  
-  TestArbiterC.Resource0 -> Arbiter.Resource[RESOURCE0_ID];
-  TestArbiterC.Resource1 -> Arbiter.Resource[RESOURCE1_ID];
-  TestArbiterC.Resource2 -> Arbiter.Resource[RESOURCE2_ID];
-  TestArbiterC.Timer0 -> Timer0;
-  TestArbiterC.Timer1 -> Timer1;
-  TestArbiterC.Timer2 -> Timer2;
+  App.Resource0 -> Arbiter.Resource[RESOURCE0_ID];
+  App.Resource1 -> Arbiter.Resource[RESOURCE1_ID];
+  App.Resource2 -> Arbiter.Resource[RESOURCE2_ID];
+  App.Timer0 -> Timer0;
+  App.Timer1 -> Timer1;
+  App.Timer2 -> Timer2;
   
-  TestArbiterC.Leds -> LedsC;
+  App.Leds -> LedsC;
 }
 
