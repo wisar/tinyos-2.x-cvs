@@ -30,12 +30,12 @@
  */
 
 /**
- * This application sends active message broadcasts at 1Hz and blinks
- * LED 0 when it receives a broadcast. It uses the radio HIL component
- * <tt>ActiveMessageC</tt>, and its packets are AM type 240.
+ * Simple test code for low-power-listening. Sends a sequence of packets,
+ * changing the low-power-listening settings every ~32s. See README.txt
+ * for more details.
  *
- * @author Philip Levis
- * @date   May 16 2005
+ *  @author Philip Levis, David Gay
+ *  @date   Oct 27 2006
  */
 
 configuration TestAMAppC {}

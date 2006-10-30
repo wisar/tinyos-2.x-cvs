@@ -29,15 +29,16 @@
  * 94704.  Attention:  Intel License Inquiry.
  */
 
-/**
- *  Implementation of the TestAM application.
- *
- *  @author Philip Levis
- *  @date   May 16 2005
- *
- **/
-
 #include "Timer.h"
+
+/**
+ * Simple test code for low-power-listening. Sends a sequence of packets,
+ * changing the low-power-listening settings every ~32s. See README.txt
+ * for more details.
+ *
+ *  @author Philip Levis, David Gay
+ *  @date   Oct 27 2006
+ */
 
 module TestAMC {
   uses {
