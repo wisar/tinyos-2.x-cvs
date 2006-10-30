@@ -13,12 +13,6 @@
  *
  * @author David Gay
  */
-/*
-  address & 3:
-  1: erase, write
-  2: read
-  3: write some more
-*/
 module RandRWC {
   uses {
     interface Boot;
