@@ -38,9 +38,9 @@
  *  @date   Oct 27 2006
  */
 
-configuration TestAMAppC {}
+configuration TestLplAppC {}
 implementation {
-  components MainC, TestAMC as App, LedsC;
+  components MainC, TestLplC as App, LedsC;
   components ActiveMessageC;
   components new TimerMilliC();
 #if defined(PLATFORM_MICA2) || defined(PLATFORM_MICA2DOT)

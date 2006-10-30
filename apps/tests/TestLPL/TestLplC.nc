@@ -40,7 +40,7 @@
  *  @date   Oct 27 2006
  */
 
-module TestAMC {
+module TestLplC {
   uses {
     interface Leds;
     interface Boot;
