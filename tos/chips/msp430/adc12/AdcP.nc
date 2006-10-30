@@ -96,6 +96,8 @@ implementation
 
   command error_t Read.read[uint8_t client]()
   {
+    if (call ResourceRead.isOwner[client]())
+      return EBUSY;
     return call ResourceRead.request[client]();
   }
 
@@ -211,6 +213,8 @@ implementation
   {
     if (!streamBuf[streamClient])
       return EINVAL;
+    if (call ResourceReadStream.isOwner[streamClient]())
+      return EBUSY;
     usPeriod[streamClient] = _usPeriod;
     return call ResourceReadStream.request[streamClient]();
   }
@@ -320,6 +324,7 @@ implementation
   default async command error_t ResourceRead.request[uint8_t client]() { return FAIL; }
   default async command error_t ResourceRead.immediateRequest[uint8_t client]() { return FAIL; }
   default async command error_t ResourceRead.release[uint8_t client]() { return FAIL; }
+  default async command bool ResourceRead.isOwner[uint8_t client]() { return FALSE; }
   default event void Read.readDone[uint8_t client]( error_t result, uint16_t val ){}
 
   default async command error_t SubResourceReadNow.release[uint8_t nowClient](){ return FAIL;}
@@ -334,6 +339,7 @@ implementation
   
   default async command error_t ResourceReadStream.request[uint8_t streamClient]() { return FAIL; }
   default async command error_t ResourceReadStream.release[uint8_t streamClient]() { return FAIL; }
+  default async command bool ResourceReadStream.isOwner[uint8_t streamClient]() { return FALSE; }
   default event void ReadStream.bufferDone[uint8_t streamClient]( error_t result, 
 			 uint16_t* buf, uint16_t count ){}
   default event void ReadStream.readDone[uint8_t streamClient]( error_t result, uint32_t actualPeriod ){ } 
