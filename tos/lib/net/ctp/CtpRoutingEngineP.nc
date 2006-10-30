@@ -760,4 +760,18 @@ implementation {
     command void          CtpRoutingPacket.setEtx(message_t* msg, uint8_t etx) {
       getHeader(msg)->etx = etx;
     }
+
+    command uint8_t CtpInfo.numNeighbors() {
+      return routingTableActive;
+    }
+    command uint16_t CtpInfo.getNeighborLinkQuality(uint8_t n) {
+      return (n < routingTableActive)? call LinkEstimator.getLinkQuality(routingTable[n].neighbor):0xffff;
+    }
+    command uint16_t CtpInfo.getNeighborRouteQuality(uint8_t n) {
+      return (n < routingTableActive)? call LinkEstimator.getLinkQuality(routingTable[n].neighbor) + routingTable[n].info.etx:0xfffff;
+    }
+    command am_addr_t CtpInfo.getNeighborAddr(uint8_t n) {
+      return (n < routingTableActive)? routingTable[n].neighbor:AM_BROADCAST_ADDR;
+    }
+    
 } 

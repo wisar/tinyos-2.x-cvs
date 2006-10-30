@@ -78,4 +78,9 @@ interface CtpInfo {
    *  Returns the currently known state about a neighbor's congestion state
    */
   command bool isNeighborCongested(am_addr_t n);
+
+  command uint8_t numNeighbors();
+  command uint16_t getNeighborLinkQuality(uint8_t neighbor);
+  command uint16_t getNeighborRouteQuality(uint8_t neighbor);
+  command am_addr_t getNeighborAddr(uint8_t neighbor);
 }
