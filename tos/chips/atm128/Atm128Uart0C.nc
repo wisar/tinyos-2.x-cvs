@@ -40,7 +40,7 @@ configuration Atm128Uart0C {
   provides interface StdControl;
   provides interface UartByte;
   provides interface UartStream;
-  uses interface Counter<TMicro, uint16_t>;
+  uses interface Counter<TMicro, uint32_t>;
   
 }
 

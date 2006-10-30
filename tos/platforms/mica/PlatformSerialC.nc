@@ -49,7 +49,7 @@ implementation {
   UartStream = Uart0;
   UartByte = Uart0;
   
-  components CounterThree16C;
-  Uart0.Counter -> CounterThree16C;
+  components CounterMicro32C;
+  Uart0.Counter -> CounterMicro32C;
   
 }
