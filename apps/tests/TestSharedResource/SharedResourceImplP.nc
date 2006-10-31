@@ -44,7 +44,7 @@ implementation {
   }
   
   command error_t SharedResourceOperations.operation[uint8_t id]() {
-  	if(call ArbiterInfo.userId() == id && call ResourceOperations.operation()) {
+  	if(call ArbiterInfo.userId() == id && call ResourceOperations.operation() == SUCCESS) {
       current_id = id;
   	  return SUCCESS;
   	}

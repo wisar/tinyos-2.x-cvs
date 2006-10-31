@@ -35,9 +35,10 @@ module ResourceP {
 }
 implementation {
 	
-  bool lock = FALSE;
+  bool lock;
 	
   task void startDone() {
+  	lock = FALSE;
   	signal SplitControl.startDone(SUCCESS);
   }
   
@@ -56,6 +57,7 @@ implementation {
   }
   
   command error_t SplitControl.stop() {
+  	lock = TRUE;
   	post stopDone();
   	return  SUCCESS;
   }
