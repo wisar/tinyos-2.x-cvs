@@ -781,7 +781,7 @@ implementation {
                         call Packet.payloadLength(msg)))
       return msg;
     else {
-      dbg("Route", "Forwarding packet from %hu.\n", hdr->origin);
+      dbg("Route", "Forwarding packet from %hu.\n", getHeader(msg)->origin);
       return forward(msg);
     }
   }

@@ -714,7 +714,6 @@ implementation {
 	    dbg("LI", "%d %d %d\n", i, footer->neighborList[i].ll_addr,
 		footer->neighborList[i].inquality);
 	    if (footer->neighborList[i].ll_addr == my_ll_addr) {
-	      dbg("LI", "Found my reverse link to %d\n", hdr->ll_addr);
 	      updateReverseQuality(ll_addr, footer->neighborList[i].inquality);
 	    }
 	  }
