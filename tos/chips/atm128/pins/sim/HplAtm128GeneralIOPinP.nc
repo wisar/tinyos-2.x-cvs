@@ -52,5 +52,7 @@ implementation
     
   inline async command void IO.makeInput()  { CLR_BIT  (ddr, bit);  }
   inline async command void IO.makeOutput() { SET_BIT  (ddr, bit);  }
+  inline async command bool IO.isInput() { !READ_BIT  (ddr, bit);  }
+  inline async command bool IO.isOutput() { READ_BIT  (ddr, bit);  }
 }
 
