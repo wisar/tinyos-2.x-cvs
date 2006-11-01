@@ -595,6 +595,7 @@ implementation {
     ne = &NeighborTable[nidx];
     ne->data_total = 0;
     ne->data_success = 0;
+    return SUCCESS;
   }
 
 
