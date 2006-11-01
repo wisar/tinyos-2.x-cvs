@@ -39,7 +39,6 @@ enum {
   // use last four bits to keep track of
   // how many footer entries there are
   NUM_ENTRIES_FLAG = 15,
-  AM_LINKEST = 20,
 };
 
 // The first byte of each outgoing packet is a control byte
