@@ -35,6 +35,7 @@
  * @version $Revision$ $Date$
  */
 
+#include<Timer.h>
 
 generic module Msp430UartP() {
 
