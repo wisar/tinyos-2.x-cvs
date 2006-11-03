@@ -73,7 +73,7 @@ implementation {
   uint8_t mConfigRegVal;
   norace error_t mSSError;
 
-  static error_t doSetReg(uint8_t nextState, uint8_t reg, uint16_t val) {
+  static error_t doSetReg(uint8_t nextState, uint8_t reg, uint8_t val) {
     error_t error = SUCCESS;
 
     atomic {
