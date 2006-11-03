@@ -65,12 +65,10 @@ implementation {
 
   task void complete_Alert() {
     signal HalTMP175Advanced.alertThreshold();
-    call HplTMP175.measureTemperature();
   }
 
   static error_t setCfg(uint8_t nextState, uint32_t val) {
     error_t error;
-
 
     mState = nextState;
 
@@ -84,12 +82,10 @@ implementation {
     }
 
     return error;
-
   }
 
   static error_t setThresh(uint8_t nextState, uint32_t val) {
     error_t error;
-
 
     mState = nextState;
 
@@ -101,12 +97,8 @@ implementation {
     if (error) {
       call TMP175Resource.release();
     }
-    else {
-      mConfigRegVal = val;
-    }
 
     return error;
-
   }
 
   command error_t HalTMP175Advanced.setThermostatMode(bool useInt) {
@@ -187,8 +179,7 @@ implementation {
     if (error) {
       return error;
     }
-    
-    //error = call HplTMP175.setTLowReg(val << 4);
+
     error = setThresh(STATE_SET_TLOW, val);
 
     if (error) {
@@ -206,7 +197,6 @@ implementation {
       return error;
     }
 
-    //error = call HplTMP175.setTHighReg(val << 4);
     error = setThresh(STATE_SET_THIGH, val);
 
     if (error) {
