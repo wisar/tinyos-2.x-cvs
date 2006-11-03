@@ -21,6 +21,11 @@
  */
  
 /**
+ * SharedResourceC is used to provide a generic configuration around 
+ * the SharedResourceP component so that new instantiations of 
+ * it provide a single set of interfaces that are all properly associated 
+ * with one another rather than requiring the user to deal with the complexity
+ * of doing this themselves.
  *
  * @author Kevin Klues (klueska@cs.wustl.edu)
  * @version $Revision$

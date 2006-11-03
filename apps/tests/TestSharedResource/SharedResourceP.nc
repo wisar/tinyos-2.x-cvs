@@ -21,6 +21,8 @@
  */
  
 /**
+ * The SharedResourceP component is used to create a shared resource
+ * out of a dedicated one.
  *
  * @author Kevin Klues (klueska@cs.wustl.edu)
  * @version $Revision$
