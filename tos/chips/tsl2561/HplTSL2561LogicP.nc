@@ -153,7 +153,7 @@ implementation {
 
   command error_t Init.init() {
     call InterruptPin.makeInput();
-    call InterruptAlert.enableRisingEdge();
+    call InterruptAlert.enableFallingEdge();
     mState = STATE_STOPPED;
     interruptBit = FALSE;
     return SUCCESS;
