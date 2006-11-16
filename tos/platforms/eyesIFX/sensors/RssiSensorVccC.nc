@@ -47,7 +47,6 @@
 generic configuration RssiSensorVccC()
 {
     provides {
-        interface Read<uint16_t> as Read;
         interface ReadNow<uint16_t> as ReadNow;
         interface Resource as ReadNowResource;
     }
@@ -55,13 +54,9 @@ generic configuration RssiSensorVccC()
 implementation
 {
     components SensorSettingsC as Settings;
-             
-    components new AdcReadClientC() as AdcReadClient;
-    Read = AdcReadClient;
-    AdcReadClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[RSSI_SENSOR_VCC];
-  
     components new AdcReadNowClientC() as AdcReadNowClient;
+    
     ReadNow = AdcReadNowClient;
     ReadNowResource = AdcReadNowClient;
-    AdcReadNowClient.Msp430Adc12Config -> Settings.Msp430Adc12Config[RSSI_SENSOR_VCC];
+    AdcReadNowClient.AdcConfigure -> Settings.AdcConfigure[RSSI_SENSOR_VCC];
 }
