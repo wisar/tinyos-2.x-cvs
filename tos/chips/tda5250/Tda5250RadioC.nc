@@ -53,7 +53,8 @@ implementation {
            , HplTda5250ConfigC
            , HplTda5250DataC
            , new Alarm32khz16C() as DelayTimer
-           , MainC;
+           , MainC
+	   , Tda5250CrystalC;
 
   MainC.SoftwareInit -> HplTda5250ConfigC;
   MainC.SoftwareInit -> HplTda5250DataC;
@@ -63,6 +64,7 @@ implementation {
   ResourceRequested = Tda5250RadioP;
   RadioByteComm = Tda5250RadioP;
   SplitControl = Tda5250RadioP;
+  Tda5250RadioP.CrystalControl -> Tda5250CrystalC;
 
   Tda5250RadioP.DelayTimer -> DelayTimer;
   
@@ -72,6 +74,6 @@ implementation {
   
   Tda5250RadioP.HplTda5250Config -> HplTda5250ConfigC;
   Tda5250RadioP.HplTda5250Data -> HplTda5250DataC;
-	Tda5250RadioP.HplTda5250DataControl -> HplTda5250DataC;
+  Tda5250RadioP.HplTda5250DataControl -> HplTda5250DataC;
 
 }
