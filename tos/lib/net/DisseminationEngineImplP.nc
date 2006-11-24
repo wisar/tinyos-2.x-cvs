@@ -87,7 +87,6 @@ implementation {
 
   event void TrickleTimer.fired[ uint16_t key ]() {
 
-    call Leds.led2Toggle();
 
     if ( m_bufBusy ) { return; }
 
@@ -120,10 +119,10 @@ implementation {
 
     if ( dMsg->seqno != DISSEMINATION_SEQNO_UNKNOWN ) {
       object = call DisseminationCache.requestData[ key ]( &objectSize );
-      objectSize = 
-	objectSize < call AMSend.maxPayloadLength() ?
-	objectSize : call AMSend.maxPayloadLength();
-
+      if ((objectSize + sizeof(dissemination_message_t)) > 
+           call AMSend.maxPayloadLength()) {
+        objectSize = call AMSend.maxPayloadLength() - sizeof(dissemination_message_t);
+      }
       memcpy( dMsg->data, object, objectSize );
     }      
     call AMSend.send( AM_BROADCAST_ADDR,
