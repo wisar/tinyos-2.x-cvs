@@ -405,7 +405,6 @@ implementation {
                 signal Tda5250Control.RssiStable();
                 break;
             case RECEIVER_DELAY :
-                call Led.set();
                 delayTimer = RSSISTABLE_DELAY;
                 call DelayTimer.start(TDA5250_RSSI_STABLE_TIME-TDA5250_RECEIVER_SETUP_TIME);
                 if (call DataResource.immediateRequest() == SUCCESS) {
@@ -415,7 +414,6 @@ implementation {
                 }
                 break;
             case TRANSMITTER_DELAY :
-                call Led.set();
                 if (call DataResource.immediateRequest() == SUCCESS) {
                     switchDataResource();
                 } else {
