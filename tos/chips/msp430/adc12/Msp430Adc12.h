@@ -171,7 +171,7 @@ of bitfields in structs and makes MSP430ADC12M.nc fail ! Use version 3.2.3 inste
 of bitfields in structs (MSP430ADC12M.nc would fail). Use version 3.2.3 instead."
 #endif  
 
-#ifndef __msp430_headers_adc12_h
+#ifndef __msp430_have_adc12
 #error MSP430ADC12C: Target msp430 device does not have ADC12 module
 #endif
 
